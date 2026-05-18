@@ -30,6 +30,8 @@ The design is useful because it turns market activity into a verifiable memory e
 
 `afterSwap` is the right first hook point because FlowMemory wants to observe completed swap activity, not decide whether a swap should happen.
 
+Here "after" means after the swap operation inside the PoolManager lifecycle. It does not mean the transaction is finalized, irreversible, or already indexed. Finality is a reader/verifier concern after the transaction is mined.
+
 | Hook point | Public first-release fit | Reason |
 | --- | --- | --- |
 | `beforeSwap` | Poor | Invites pre-execution control logic and policy ambiguity. |
@@ -54,6 +56,8 @@ An event-first hook is better for this use case than a state-heavy hook because 
 | Reader-derived receipt metadata | Keeps on-chain claims honest about what the EVM can know. |
 
 This does not make the hook magical. It makes the hook auditable.
+
+There is one important consequence: invalid or missing FlowMemory `hookData` reverts the hook callback, which reverts the swap transaction path using that hook. The hook is not a pricing or fee-policy gate, but it is a validity gate for the FlowMemory memory payload.
 
 ## Why Receipt Metadata Is Not In The Hook
 

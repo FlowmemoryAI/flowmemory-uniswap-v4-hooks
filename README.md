@@ -86,11 +86,19 @@ test/
   FlowMemoryAfterSwapHook.t.sol    # Dependency-light Foundry tests
 docs/
   ARCHITECTURE.md                  # System and trust-boundary diagrams
+  UNISWAP_V4_COMPATIBILITY.md      # ABI, hook flag, and upstream compatibility assumptions
   WHY_IT_WORKS.md                  # Design rationale and tradeoffs
   EVENT_MODEL.md                   # FlowPulse and reader-derived metadata
+  READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
+  INTEGRATION_BLUEPRINT.md         # How the hook connects to the larger public system
   SECURITY_MODEL.md                # Threat model, invariants, non-goals
+  ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
+  PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
   BASE_SEPOLIA_PLAN.md             # Concrete Base Sepolia planning facts
+  BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+  OFFICIAL_REFERENCES.md           # Upstream Uniswap docs and address assumptions
+  EXPERT_REVIEW_PROMPT.md          # Prompt for external LLM/human architecture review
   HOW_IT_WORKS.md                  # Direct code-level walkthrough
 ```
 
@@ -113,8 +121,8 @@ forge test --match-test testAfterSwapHookIsPoolManagerGated -vvv
 Expected local result:
 
 ```text
-Ran 7 tests for test/FlowMemoryAfterSwapHook.t.sol:FlowMemoryAfterSwapHookTest
-Suite result: ok. 7 passed; 0 failed; 0 skipped
+Ran 12 tests for test/FlowMemoryAfterSwapHook.t.sol:FlowMemoryAfterSwapHookTest
+Suite result: ok. 12 passed; 0 failed; 0 skipped
 ```
 
 ## Contract Invariants

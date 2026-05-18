@@ -50,11 +50,19 @@ jobs:
             test/FlowMemoryAfterSwapHook.t.sol
             docs/ARCHITECTURE.md
             docs/HOW_IT_WORKS.md
+            docs/UNISWAP_V4_COMPATIBILITY.md
             docs/WHY_IT_WORKS.md
             docs/EVENT_MODEL.md
+            docs/READER_VERIFIER_ARCHITECTURE.md
+            docs/INTEGRATION_BLUEPRINT.md
             docs/SECURITY_MODEL.md
+            docs/ARCHITECTURE_DECISIONS.md
             docs/PUBLIC_RELEASE_PATH.md
+            docs/PUBLIC_REVIEW_CHECKLIST.md
             docs/BASE_SEPOLIA_PLAN.md
+            docs/BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+            docs/OFFICIAL_REFERENCES.md
+            docs/EXPERT_REVIEW_PROMPT.md
           )
 
           missing=0

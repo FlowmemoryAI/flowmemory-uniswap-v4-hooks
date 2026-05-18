@@ -43,6 +43,14 @@ Purpose:
 
 This event is useful for hook-specific inspection and debugging.
 
+`hookDataHash` is the hash of the hook context used for signal derivation. In the current contract it hashes:
+
+```text
+abi.encode(params.zeroForOne, params.amountSpecified, params.sqrtPriceLimitX96, swapDelta, hookData)
+```
+
+It is not just `keccak256(rawHookData)`.
+
 ## `FlowPulse`
 
 ```solidity
@@ -66,14 +74,14 @@ For the Uniswap v4 hook:
 | --- | --- |
 | `pulseId` | Domain-separated id derived from schema, chain, hook, PoolManager, sender, pool id, rootfield, commitment, parent pulse, hook data hash, and sequence. |
 | `rootfieldId` | FlowMemory namespace receiving the signal. |
-| `actor` | Swap sender passed to the hook. |
+| `actor` | Swap sender passed to the hook by PoolManager. This may be a router or contract, not necessarily the trader EOA. |
 | `pulseType` | `4`, meaning `SWAP_MEMORY_SIGNAL`. |
 | `subject` | Derived Uniswap v4 pool id. |
-| `commitment` | Commitment to off-chain or downstream memory artifact. |
-| `parentPulseId` | Optional prior pulse reference. |
-| `sequence` | Monotonic per-rootfield hook sequence. |
+| `commitment` | Opaque commitment to off-chain or downstream memory artifact. The hook checks non-zero, not semantic validity. |
+| `parentPulseId` | Optional prior pulse reference. The hook does not verify parent existence. |
+| `sequence` | Monotonic per-rootfield hook sequence, not per pool and not per actor. |
 | `occurredAt` | Block timestamp as `uint64`. |
-| `uri` | Advisory URI, defaulting to `flowmemory://uniswap-v4/after-swap` when blank. |
+| `uri` | Untrusted advisory URI, defaulting to `flowmemory://uniswap-v4/after-swap` when blank. Readers should treat it as metadata, not authority. |
 
 ## Reader-Derived Receipt Fields
 

@@ -14,6 +14,18 @@ This repository is intentionally conservative. The first public hook path should
 | Preserve event honesty | Receipt metadata is reader-derived, not emitted as if the hook knew it. |
 | Make launch claims auditable | Public release path requires deployment and reader evidence. |
 
+## Rootfield Authorization Boundary
+
+The hook validates that `rootfieldId` and `commitment` are non-zero. It does not prove that the swap sender is authorized to write to a rootfield, that a parent pulse exists, or that a commitment points to a valid artifact.
+
+That is intentional for this reference hook. Rootfield authorization and commitment semantics are reader/verifier policy unless a later contract adds explicit on-chain authorization.
+
+Public evidence must therefore distinguish:
+
+- hook-level validity: the callback was well-formed and emitted the expected events;
+- reader-level validity: the log came from the expected contract and receipt;
+- FlowMemory-level validity: the rootfield, commitment, and parent relationship are accepted by policy.
+
 ## Threat Model
 
 ```mermaid

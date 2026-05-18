@@ -10,13 +10,13 @@ This file records the concrete deployment planning facts that are safe to publis
 | --- | --- |
 | Chain | Base Sepolia |
 | Chain id | `84532` |
-| Uniswap v4 PoolManager | `0x9a13F98Cb987694C9F086b1F5eB990EeA8264Ec3` |
+| Uniswap v4 PoolManager | `0x05E73354cFDd6745C338b50BcFDfA3Aa6fA03408` |
 | CREATE2 deployer | `0x4e59b44847b379578588920cA78FbF26c0B4956C` |
 | Hook permission bits | `0x40` |
 | Enabled callback | `afterSwap` |
 | Return delta callbacks | disabled |
 
-The planner constants are in `contracts/FlowMemoryHookPlanner.sol`.
+The PoolManager address is taken from the official Uniswap v4 deployments page. The planner constants are in `contracts/FlowMemoryHookPlanner.sol`.
 
 ## Planning Diagram
 
