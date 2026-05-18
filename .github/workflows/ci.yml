@@ -61,9 +61,15 @@ jobs:
             docs/PUBLIC_RELEASE_PATH.md
             docs/PUBLIC_REVIEW_CHECKLIST.md
             docs/BASE_SEPOLIA_PLAN.md
+            docs/BASE_SEPOLIA_OPERATOR_RUNBOOK.md
             docs/BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+            docs/LAUNCH_DAY_CHECKLIST.md
+            docs/PUBLIC_CANARY_TEMPLATE.md
             docs/OFFICIAL_REFERENCES.md
             docs/EXPERT_REVIEW_PROMPT.md
+            tools/README.md
+            tools/read_flowpulse_logs.py
+            releases/base-sepolia/README.md
           )
 
           missing=0
@@ -95,3 +101,9 @@ jobs:
               exit 1
             fi
           done
+
+      - name: Check reader CLI
+        run: python tools/read_flowpulse_logs.py --help
+
+      - name: Test reader decoder
+        run: python -m unittest tools.test_read_flowpulse_logs

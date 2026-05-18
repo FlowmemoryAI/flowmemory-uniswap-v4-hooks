@@ -53,7 +53,7 @@ Evidence required:
 - proof that hook bits match `afterSwap` only;
 - source verification plan.
 
-This phase is represented by [BASE_SEPOLIA_PLAN.md](BASE_SEPOLIA_PLAN.md), but it is not complete until the mined address and release record are posted.
+This phase is represented by [BASE_SEPOLIA_PLAN.md](BASE_SEPOLIA_PLAN.md). The operator sequence is in [BASE_SEPOLIA_OPERATOR_RUNBOOK.md](BASE_SEPOLIA_OPERATOR_RUNBOOK.md). It is not complete until the mined address and release record are posted.
 
 ## Phase 3: Base Sepolia Deployment
 
@@ -82,6 +82,8 @@ Evidence required:
 - receipt-derived `logIndex`;
 - finality status.
 
+The dependency-light reader in `tools/read_flowpulse_logs.py` can produce the first JSON evidence record once a hook address and block range exist.
+
 ```mermaid
 flowchart LR
     Deploy["verified deployment"] --> Swap["test swap / pool action"]
@@ -103,6 +105,8 @@ The public canary can say:
 - receipt metadata is reader-derived;
 - the transaction is the proof envelope;
 - the FlowPulse is the memory artifact.
+
+Use [PUBLIC_CANARY_TEMPLATE.md](PUBLIC_CANARY_TEMPLATE.md) for the first public evidence post.
 
 The public canary must not say:
 

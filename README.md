@@ -216,11 +216,18 @@ docs/
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
   BASE_SEPOLIA_PLAN.md             # Concrete Base Sepolia planning facts
+  BASE_SEPOLIA_OPERATOR_RUNBOOK.md # Operator path from deployment to proof
   BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+  LAUNCH_DAY_CHECKLIST.md          # May 19 launch guardrails
+  PUBLIC_CANARY_TEMPLATE.md        # Public Base Sepolia evidence announcement template
   MARKETING_POSITIONING.md         # Founder script, category language, and one-liners
   OFFICIAL_REFERENCES.md           # Upstream Uniswap docs and address assumptions
   EXPERT_REVIEW_PROMPT.md          # Prompt for external LLM/human architecture review
   HOW_IT_WORKS.md                  # Direct code-level walkthrough
+tools/
+  read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
+releases/
+  base-sepolia/README.md           # Staging area for public release evidence
 ```
 
 ## Run It

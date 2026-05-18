@@ -62,6 +62,8 @@ Before announcing any live hook, publish a release record with:
 - observed `FlowPulse` logs;
 - explicit statement that receipt metadata is reader-derived.
 
+The practical operator path is in [BASE_SEPOLIA_OPERATOR_RUNBOOK.md](BASE_SEPOLIA_OPERATOR_RUNBOOK.md). The reader utility is `tools/read_flowpulse_logs.py`.
+
 ## Release Record Template
 
 ```text

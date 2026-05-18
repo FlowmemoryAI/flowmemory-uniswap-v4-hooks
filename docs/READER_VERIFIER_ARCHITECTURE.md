@@ -224,6 +224,22 @@ for blockRange in plannedRanges:
     write signal with event payload + receipt metadata + finality
 ```
 
+## Launch Reader Utility
+
+This repo includes `tools/read_flowpulse_logs.py` as the first dependency-light evidence reader.
+
+It:
+
+- reads logs from a configured hook address;
+- decodes `AfterSwapObserved`;
+- decodes `FlowPulse`;
+- fetches transaction receipts;
+- attaches `txHash`, `transactionIndex`, `logIndex`, block facts, and receipt status;
+- classifies finality using a configured confirmation depth;
+- writes a JSON record suitable for the Base Sepolia release artifact folder.
+
+It does not submit transactions and does not need private keys.
+
 ## Why This Matters Publicly
 
 The reader is what makes the memory signal useful to people outside the project. Without it, the hook emits a real FlowPulse but has not attached the proof-envelope facts. With it, the project can show:

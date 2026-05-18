@@ -49,6 +49,7 @@ Use this checklist before sharing the repo publicly, before Base Sepolia deploym
 - [ ] At least one `AfterSwapObserved` log is decoded.
 - [ ] At least one `FlowPulse` log is decoded.
 - [ ] Sample `txHash` and `logIndex` are receipt-derived.
+- [ ] Reader evidence JSON is published from `tools/read_flowpulse_logs.py` or a stricter equivalent.
 - [ ] Release record explicitly says this is not Base mainnet.
 
 ## Mainnet Claim Review
