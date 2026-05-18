@@ -2,15 +2,36 @@
 
 The first live FlowMemory hook surface should be Base Sepolia before any Base mainnet claim.
 
+This file records the concrete deployment planning facts that are safe to publish now. It does not contain private keys, RPC credentials, or signed transactions.
+
 ## Target
 
-- Chain: Base Sepolia
-- Chain id: `84532`
-- Uniswap v4 PoolManager: `0x9a13F98Cb987694C9F086b1F5eB990EeA8264Ec3`
-- CREATE2 deployer: `0x4e59b44847b379578588920cA78FbF26c0B4956C`
-- Hook permission bits: `0x40` (`afterSwap` only)
+| Field | Value |
+| --- | --- |
+| Chain | Base Sepolia |
+| Chain id | `84532` |
+| Uniswap v4 PoolManager | `0x9a13F98Cb987694C9F086b1F5eB990EeA8264Ec3` |
+| CREATE2 deployer | `0x4e59b44847b379578588920cA78FbF26c0B4956C` |
+| Hook permission bits | `0x40` |
+| Enabled callback | `afterSwap` |
+| Return delta callbacks | disabled |
 
 The planner constants are in `contracts/FlowMemoryHookPlanner.sol`.
+
+## Planning Diagram
+
+```mermaid
+flowchart LR
+    A["FlowMemoryAfterSwapHook creation code"] --> B["constructor arg: PoolManager"]
+    B --> C["initCodeHash"]
+    C --> D["FlowMemoryHookPlanner.findSalt"]
+    D --> E["CREATE2 address"]
+    E --> F{"low 14 bits == 0x40?"}
+    F -- yes --> G["candidate hook address"]
+    F -- no --> D
+```
+
+Uniswap v4 hook permissions are encoded in the hook address. For this first public hook, the address must resolve to the `afterSwap` permission and avoid extra return-delta/custom-accounting flags.
 
 ## Local Verification
 
@@ -40,6 +61,41 @@ Before announcing any live hook, publish a release record with:
 - observed `AfterSwapObserved` logs;
 - observed `FlowPulse` logs;
 - explicit statement that receipt metadata is reader-derived.
+
+## Release Record Template
+
+```text
+FlowMemory Uniswap v4 hook release record
+
+Network:
+Chain id:
+PoolManager:
+Create2 deployer:
+Hook contract:
+Constructor args:
+Init code hash:
+Salt:
+Computed hook address:
+Hook permission bits:
+Deployment transaction:
+Deployment block:
+Source verification:
+
+Reader evidence
+From block:
+To block:
+Finalized block:
+AfterSwapObserved log count:
+FlowPulse log count:
+Sample tx hash:
+Sample FlowPulse log index:
+
+Boundary
+Receipt metadata is reader-derived:
+No custody path:
+No dynamic fee path:
+Zero hook delta:
+```
 
 ## Non-Goals
 

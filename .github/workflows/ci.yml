@@ -48,7 +48,12 @@ jobs:
             contracts/interfaces/IFlowMemoryHookAdapter.sol
             contracts/interfaces/IUniswapV4SwapHookLike.sol
             test/FlowMemoryAfterSwapHook.t.sol
+            docs/ARCHITECTURE.md
             docs/HOW_IT_WORKS.md
+            docs/WHY_IT_WORKS.md
+            docs/EVENT_MODEL.md
+            docs/SECURITY_MODEL.md
+            docs/PUBLIC_RELEASE_PATH.md
             docs/BASE_SEPOLIA_PLAN.md
           )
 

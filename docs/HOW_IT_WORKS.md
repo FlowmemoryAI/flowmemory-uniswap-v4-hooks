@@ -1,5 +1,7 @@
 # How The Hook Works
 
+This is the code-level walkthrough for the first public FlowMemory Uniswap v4 hook path.
+
 ## Contract Path
 
 The hook path is centered on `FlowMemoryAfterSwapHook.afterSwap`:
@@ -11,15 +13,16 @@ PoolManager.afterSwap callback
   -> derive poolId from PoolKey
   -> emit AfterSwapObserved
   -> emit FlowPulse(..., pulseType = 4, ...)
+  -> return selector and zero hook delta
 ```
 
 The hook accepts the ABI-compatible fields FlowMemory needs from the Uniswap v4 swap callback:
 
-- `sender`
-- `PoolKey`
-- `SwapParams`
-- `swapDelta`
-- `hookData`
+- `sender`;
+- `PoolKey`;
+- `SwapParams`;
+- `swapDelta`;
+- `hookData`.
 
 `hookData` is ABI-encoded as:
 
@@ -30,6 +33,29 @@ struct FlowMemorySwapHookData {
     bytes32 parentPulseId;
     string uri;
 }
+```
+
+## Step-By-Step
+
+```mermaid
+flowchart TD
+    A["afterSwap called"] --> B{"msg.sender == poolManager?"}
+    B -- no --> R1["revert UnauthorizedPoolManager"]
+    B -- yes --> C{"sender != 0?"}
+    C -- no --> R2["revert ZeroSender"]
+    C -- yes --> D{"hookData non-empty?"}
+    D -- no --> R3["revert EmptyHookData"]
+    D -- yes --> E["decode FlowMemorySwapHookData"]
+    E --> F{"rootfieldId != 0?"}
+    F -- no --> R4["revert ZeroRootfieldId"]
+    F -- yes --> G{"commitment != 0?"}
+    G -- no --> R5["revert ZeroCommitment"]
+    G -- yes --> H["derive poolId"]
+    H --> I["increment rootfield sequence"]
+    I --> J["derive pulseId"]
+    J --> K["emit AfterSwapObserved"]
+    K --> L["emit FlowPulse"]
+    L --> M["return selector, 0"]
 ```
 
 ## Event Boundary
@@ -59,12 +85,21 @@ The event intentionally does not include `txHash`, `transactionIndex`, or `logIn
 
 `FlowMemoryHookPlanner` defines the permission target:
 
-- `afterSwap`: enabled
-- `afterSwapReturnDelta`: disabled
-- `beforeSwap`: disabled
-- liquidity, donate, initialize hooks: disabled
+- `afterSwap`: enabled;
+- `afterSwapReturnDelta`: disabled;
+- `beforeSwap`: disabled;
+- liquidity, donate, initialize hooks: disabled.
 
 The expected low hook bits are `0x40`, matching the Uniswap v4 `AFTER_SWAP_FLAG`.
+
+```mermaid
+flowchart LR
+    Address["hook address"] --> Bits["low hook bits"]
+    Bits --> Target["0x40"]
+    Target --> AfterSwap["afterSwap enabled"]
+    Target --> NoDelta["return delta disabled"]
+    Target --> NoOther["other callbacks disabled"]
+```
 
 ## Safety Properties Tested
 
