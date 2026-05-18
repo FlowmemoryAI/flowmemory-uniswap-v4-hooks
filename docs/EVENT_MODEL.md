@@ -1,22 +1,28 @@
 # Event Model
 
+FlowPulse is the memory artifact.
+
+The transaction is the proof envelope.
+
+The hook emits the memory signal. The reader proves where it landed.
+
 FlowMemory's hook path uses two events:
 
 - `AfterSwapObserved`, a hook-local audit event;
 - `FlowPulse`, the canonical FlowMemory memory signal.
 
-The split keeps hook debugging and FlowMemory indexing separate without forcing the hook to store extra state.
+The split keeps hook inspection and FlowMemory indexing separate without forcing the hook to store extra state or pretend it knows receipt metadata during execution.
 
 ## Event Flow
 
 ```mermaid
 flowchart LR
     Hook["FlowMemoryAfterSwapHook.afterSwap"] --> Local["AfterSwapObserved"]
-    Hook --> Pulse["FlowPulse"]
+    Hook --> Pulse["FlowPulse memory artifact"]
     Local --> Reader["reader/indexer"]
     Pulse --> Reader
     Reader --> Checks["schema + receipt checks"]
-    Checks --> Signal["swap memory signal"]
+    Checks --> Signal["verified memory signal"]
 ```
 
 ## `AfterSwapObserved`
@@ -34,14 +40,14 @@ event AfterSwapObserved(
 
 Purpose:
 
-- confirms which `PoolManager` triggered the hook;
-- records the swap sender;
+- confirms which PoolManager triggered the hook;
+- records the swap sender passed into the callback;
 - records the derived pool id;
 - records the FlowMemory rootfield;
 - records the memory commitment;
-- records the hash of the hook context.
+- records the hash of the hook context used for pulse derivation.
 
-This event is useful for hook-specific inspection and debugging.
+This event is useful for hook-specific inspection and debugging. It is not the full memory artifact. `FlowPulse` is the artifact FlowMemory systems consume.
 
 `hookDataHash` is the hash of the hook context used for signal derivation. In the current contract it hashes:
 
@@ -72,20 +78,24 @@ For the Uniswap v4 hook:
 
 | Field | Meaning |
 | --- | --- |
-| `pulseId` | Domain-separated id derived from schema, chain, hook, PoolManager, sender, pool id, rootfield, commitment, parent pulse, hook data hash, and sequence. |
+| `pulseId` | Domain-separated id derived from schema, chain, hook, PoolManager, sender, pool id, rootfield, commitment, parent pulse, hook context hash, and sequence. |
 | `rootfieldId` | FlowMemory namespace receiving the signal. |
 | `actor` | Swap sender passed to the hook by PoolManager. This may be a router or contract, not necessarily the trader EOA. |
 | `pulseType` | `4`, meaning `SWAP_MEMORY_SIGNAL`. |
 | `subject` | Derived Uniswap v4 pool id. |
-| `commitment` | Opaque commitment to off-chain or downstream memory artifact. The hook checks non-zero, not semantic validity. |
+| `commitment` | Opaque commitment to an off-chain or downstream memory artifact. The hook checks non-zero, not semantic truth. |
 | `parentPulseId` | Optional prior pulse reference. The hook does not verify parent existence. |
 | `sequence` | Monotonic per-rootfield hook sequence, not per pool and not per actor. |
 | `occurredAt` | Block timestamp as `uint64`. |
 | `uri` | Untrusted advisory URI, defaulting to `flowmemory://uniswap-v4/after-swap` when blank. Readers should treat it as metadata, not authority. |
 
+The commitment is intentionally opaque. The hook proves that a commitment was emitted at the boundary. Reader/verifier and downstream FlowMemory policy decide whether the commitment's semantics are accepted.
+
 ## Reader-Derived Receipt Fields
 
-The reader attaches facts that the hook cannot know during execution:
+`txHash`, `transactionIndex`, and `logIndex` are not known by the hook during execution.
+
+The reader attaches facts that the hook cannot know:
 
 | Reader-derived field | Source |
 | --- | --- |

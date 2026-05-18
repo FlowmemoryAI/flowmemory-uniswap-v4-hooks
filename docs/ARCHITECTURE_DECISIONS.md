@@ -1,8 +1,8 @@
 # Architecture Decisions
 
-This file records the design decisions that make the first public hook surface reviewable.
+This file records the design decisions that make the first public memory-native hook primitive reviewable.
 
-The goal is not to make the hook impressive by adding more logic. The goal is to make the hook credible by keeping the on-chain boundary small, proving the invariants, and leaving interpretation to explicit reader/verifier layers.
+The goal is not to make the hook impressive by adding more logic. The goal is to make the primitive credible by keeping the on-chain boundary small, proving the invariants, and leaving receipt interpretation to explicit reader/verifier layers.
 
 ## ADR-001: Use `afterSwap` As The First Hook Point
 
@@ -10,7 +10,7 @@ Status: accepted.
 
 Decision:
 
-FlowMemory's first Uniswap v4 hook surface uses `afterSwap`, not `beforeSwap`, liquidity hooks, donate hooks, or return-delta hooks.
+FlowMemory's first memory-native Uniswap v4 hook primitive uses `afterSwap`, not `beforeSwap`, liquidity hooks, donate hooks, or return-delta hooks.
 
 Reasoning:
 
@@ -23,7 +23,7 @@ Consequences:
 
 - The first hook is easier to audit.
 - The hook is not a routing, policy, or fee engine.
-- The public story is clearer: completed swap activity can become memory evidence.
+- The public story is clearer: completed swap boundaries can emit FlowPulse memory signals.
 
 ## ADR-002: Emit Evidence, Do Not Hold Assets
 
@@ -37,7 +37,7 @@ Reasoning:
 
 - Custody would change the risk profile immediately.
 - The public first release should not require users to trust a new asset-holding system.
-- FlowMemory's near-term value is evidence and memory, not custody.
+- FlowMemory's first public value is protocol-level memory emission, not custody.
 
 Consequences:
 
@@ -62,7 +62,7 @@ Reasoning:
 Consequences:
 
 - The hook does not adjust swap accounting.
-- The first public hook can focus on signal emission.
+- The first public hook can focus on FlowPulse memory-signal emission.
 - Later designs that need custom accounting must be reviewed as new designs.
 
 ## ADR-004: Keep Receipt Metadata Reader-Derived
@@ -131,7 +131,7 @@ Status: accepted.
 
 Decision:
 
-The public repo can be shared as a reference implementation. Live claims require deployment and reader evidence.
+The public repo can be shared as the first public FlowMemory hook primitive. Live claims require deployment and reader evidence.
 
 Reasoning:
 

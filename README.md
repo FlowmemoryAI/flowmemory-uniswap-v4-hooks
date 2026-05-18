@@ -1,14 +1,156 @@
-# FlowMemory Uniswap V4 Hooks
+# FlowMemory Uniswap v4 Hooks
 
 [![CI](https://github.com/FlowmemoryAI/flowmemory-uniswap-v4-hooks/actions/workflows/ci.yml/badge.svg)](https://github.com/FlowmemoryAI/flowmemory-uniswap-v4-hooks/actions/workflows/ci.yml)
 
-Public reference implementation for the first FlowMemory hook surface: a Uniswap v4 `afterSwap` hook that turns swap execution into verifiable FlowMemory signals.
+FlowMemory introduces the first memory-native Uniswap v4 hook primitive: a verified on-chain emission boundary for FlowPulse memory signals.
 
-This repository is intentionally narrow. It is not the full FlowMemory monorepo, and it is not a token, custody system, fee engine, or production launch claim. It is the public, runnable artifact that explains and tests the hook path that FlowMemory expects to bring live first.
+Most DeFi infrastructure is built around execution.
 
-## The Short Version
+Swaps.
+Settlement.
+Liquidity.
+Fees.
+Routing.
+Accounting.
 
-FlowMemory uses a Uniswap v4 `afterSwap` hook as a clean observation point. When a swap completes, the hook emits a `FlowPulse` memory signal that can be read, indexed, verified, and connected to later FlowMemory/Rootflow state.
+FlowMemory adds the missing layer: memory.
+
+This repository contains the first public FlowMemory hook surface: a Uniswap v4 `afterSwap` hook that emits FlowPulse memory signals after a completed swap boundary.
+
+The swap transaction is not the memory.
+The transaction is the proof envelope.
+The FlowPulse is the memory artifact.
+
+This is not a fee hook.
+This is not a custody hook.
+This is not a routing hook.
+This is not a trading engine.
+
+This is a memory hook.
+
+## The New Primitive: Memory Signals
+
+FlowMemory introduces a new primitive: the memory signal.
+
+A memory signal is not analytics.
+It is not a dashboard.
+It is not a post-hoc AI summary.
+It is not transaction scraping.
+
+A memory signal is an intentional protocol event emitted at a verifiable on-chain boundary.
+
+A `FlowPulse` is not a transaction log in the ordinary sense. It is a structured memory signal emitted from a verified execution boundary. The hook does not interpret the swap as memory, scrape transaction history, or rely on an external analytics system to invent meaning after the fact.
+
+The signal is emitted intentionally through explicit FlowMemory `hookData`:
+
+- `rootfieldId`: the FlowMemory namespace receiving the signal;
+- `commitment`: the opaque reference to the downstream memory artifact;
+- `parentPulseId`: the optional prior memory signal being extended;
+- `uri`: advisory metadata, not authority.
+
+The hook emits the memory signal. The reader proves where it landed.
+
+## Why afterSwap?
+
+`afterSwap` is the right first boundary because execution has already happened.
+
+FlowMemory does not need to control the swap to make the moment memorable.
+
+At this lifecycle point:
+
+- the PoolManager has reached the post-swap callback boundary;
+- the hook is not deciding whether the swap happens;
+- the hook is not taking custody;
+- the hook is not changing accounting;
+- the hook is not routing order flow;
+- the hook emits memory after the execution boundary exists.
+
+The transaction is the proof envelope. The FlowPulse is the memory artifact.
+
+## Why This Is Different
+
+Most Uniswap v4 hooks are designed to change execution:
+
+- fee logic;
+- liquidity behavior;
+- routing;
+- incentives;
+- custom accounting;
+- MEV behavior;
+- trading mechanics.
+
+FlowMemory is different.
+
+FlowMemory does not try to make the swap smarter.
+
+FlowMemory makes the swap boundary memorable.
+
+Most hooks ask: how can we change what the swap does?
+
+FlowMemory asks: what should the system remember once execution has happened?
+
+Most hooks modify execution. FlowMemory emits memory.
+
+```mermaid
+flowchart LR
+    A["Swap reaches afterSwap boundary"] --> B["FlowMemoryAfterSwapHook"]
+    B --> C["FlowPulse memory signal"]
+    C --> D["Receipt-aware reader"]
+    D --> E["FlowMemory / Rootflow memory layer"]
+
+    B -. deliberately absent .-> F["Token custody"]
+    B -. deliberately absent .-> G["Dynamic fees"]
+    B -. deliberately absent .-> H["Custom accounting"]
+    B -. deliberately absent .-> I["Routing control"]
+    B -. deliberately absent .-> J["txHash/logIndex claims"]
+```
+
+## Category Claim
+
+FlowMemory is introducing a new category of Uniswap v4 hook: the memory-signal hook.
+
+Traditional hook categories focus on execution changes: fees, routing, incentives, liquidity behavior, accounting, or trading mechanics.
+
+FlowMemory's hook is different.
+
+It is designed around verifiable memory emission.
+
+The hook does not try to make the swap cheaper, faster, or more complex.
+
+It makes the execution boundary memorable.
+
+## What This Is
+
+- A memory-native Uniswap v4 hook primitive.
+- A verified on-chain emission boundary for FlowPulse signals.
+- A protocol-level memory signal surface.
+- The first public FlowMemory hook reference.
+- A live-prep artifact for memory-native DeFi infrastructure.
+
+## What This Is Not
+
+- Not a custody system.
+- Not a token.
+- Not a fee engine.
+- Not a routing engine.
+- Not a swap-control engine.
+- Not transaction scraping.
+- Not analytics after the fact.
+- Not an AI summary layer.
+- Not a claim that the swap transaction itself is memory.
+
+## Developer Mental Model
+
+1. A FlowMemory-enabled swap flow provides `hookData`.
+2. The Uniswap v4 PoolManager completes the swap lifecycle step.
+3. The PoolManager calls `afterSwap`.
+4. `FlowMemoryAfterSwapHook` validates the caller.
+5. The hook decodes `rootfieldId`, `commitment`, `parentPulseId`, and `uri`.
+6. The hook emits `AfterSwapObserved`.
+7. The hook emits `FlowPulse`.
+8. The hook returns the `afterSwap` selector and zero hook delta.
+9. A reader later attaches receipt metadata.
+10. Downstream FlowMemory / Rootflow systems can use the pulse as the memory artifact.
 
 ```mermaid
 sequenceDiagram
@@ -18,85 +160,64 @@ sequenceDiagram
     participant Hook as FlowMemoryAfterSwapHook
     participant Logs as EVM logs
     participant Reader as FlowMemory reader
-    participant Rootflow as Rootflow / memory layer
+    participant Rootflow as FlowMemory / Rootflow memory layer
 
     Trader->>PoolManager: swap(...)
-    PoolManager->>PoolManager: execute pool swap
+    PoolManager->>PoolManager: execute swap lifecycle
     PoolManager->>Hook: afterSwap(sender, key, params, delta, hookData)
     Hook->>Hook: validate PoolManager caller
     Hook->>Hook: decode rootfield + commitment
     Hook->>Logs: emit AfterSwapObserved
     Hook->>Logs: emit FlowPulse(type = SWAP_MEMORY_SIGNAL)
     Hook-->>PoolManager: selector + zero hook delta
-    Reader->>Logs: read receipt logs after finality
+    Reader->>Logs: read receipt logs after finality policy
     Reader->>Rootflow: attach txHash/logIndex-derived evidence
 ```
 
-The hook does four things deliberately:
+## Contract Invariants
 
-- it only runs after a swap;
-- it emits public memory evidence;
-- it returns zero hook delta;
-- it leaves transaction receipt metadata to off-chain readers, where that metadata actually exists.
+The hook is deliberately minimal because the primitive is not execution control. The primitive is verifiable memory emission.
 
-## Why This Works
-
-Uniswap v4 hooks let a pool call external logic at specific lifecycle points, including `afterSwap`. FlowMemory uses that extension point as an evidence boundary, not as a custody or fee mechanism.
-
-That makes the design small enough to reason about:
-
-- `PoolManager` is the only authorized caller;
-- `afterSwap` is the only intended hook permission;
-- `FlowPulse` is the canonical public signal;
-- `txHash`, `transactionIndex`, and `logIndex` are derived after execution by the reader;
-- the hook never takes funds and never changes swap accounting.
-
-For the full engineering argument, see [docs/WHY_IT_WORKS.md](docs/WHY_IT_WORKS.md).
-
-## Why This Is Different
-
-Many hook designs try to do too much inside the hook: fee logic, custody, accounting, routing, or assumptions about receipt metadata. FlowMemory keeps the on-chain hook intentionally boring and moves interpretation to a verifier/reader layer.
-
-That is the point. The first public hook should be easy to inspect, easy to test, and hard to misunderstand.
-
-```mermaid
-flowchart LR
-    A[Swap completes] --> B[afterSwap hook]
-    B --> C[FlowPulse event]
-    C --> D[Receipt-aware reader]
-    D --> E[Verifiable memory signal]
-
-    B -. deliberately absent .-> F[Token custody]
-    B -. deliberately absent .-> G[Dynamic fees]
-    B -. deliberately absent .-> H[Custom accounting]
-    B -. deliberately absent .-> I[txHash/logIndex claims]
-```
+| Property | Why it matters |
+| --- | --- |
+| `afterSwap` only | Keeps the Uniswap v4 permission surface small and auditable. |
+| PoolManager-gated callback | Prevents arbitrary callers from fabricating swap memory signals through the hook callback. |
+| `hookData` required | Makes memory emission intentional, not automatic transaction scraping. |
+| `rootfieldId` required | Every signal names a FlowMemory namespace. |
+| `commitment` required | Every signal points to an opaque downstream memory artifact. |
+| `sender` required | The actor field is explicit, while still allowing routers or contract senders. |
+| Zero hook delta | Avoids custom accounting and token balance side effects. |
+| No custody path | The hook emits memory; it does not hold user assets. |
+| No dynamic-fee path | The hook is not a fee controller. |
+| Receipt metadata excluded | `txHash`, `transactionIndex`, and `logIndex` are reader-derived after the transaction is mined. |
+| CREATE2 planning | The hook address can be mined to match the v4 `afterSwap` permission bit. |
 
 ## Repository Map
 
 ```text
 contracts/
-  FlowMemoryAfterSwapHook.sol      # PoolManager-gated afterSwap hook candidate
+  FlowMemoryAfterSwapHook.sol      # Memory-native afterSwap emission boundary
   FlowMemoryHookPlanner.sol        # Hook flag helpers and Base Sepolia CREATE2 planner
-  FlowPulse.sol                    # FlowPulse event schema and pulse type ids
+  FlowPulse.sol                    # FlowPulse memory signal schema and pulse type ids
   interfaces/
-    IFlowMemoryHookAdapter.sol     # Encoded hook-data shape
+    IFlowMemoryHookData.sol        # Encoded FlowMemory hook-data shape
     IUniswapV4SwapHookLike.sol     # Minimal ABI-compatible v4 afterSwap surface
 test/
   FlowMemoryAfterSwapHook.t.sol    # Dependency-light Foundry tests
 docs/
-  ARCHITECTURE.md                  # System and trust-boundary diagrams
+  ARCHITECTURE.md                  # Execution, emission, evidence, and memory layers
   UNISWAP_V4_COMPATIBILITY.md      # ABI, hook flag, and upstream compatibility assumptions
-  WHY_IT_WORKS.md                  # Design rationale and tradeoffs
-  EVENT_MODEL.md                   # FlowPulse and reader-derived metadata
+  WHY_IT_WORKS.md                  # Why the hook creates a new primitive
+  EVENT_MODEL.md                   # FlowPulse artifact and reader-derived receipt metadata
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
-  INTEGRATION_BLUEPRINT.md         # How the hook connects to the larger public system
+  INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
   SECURITY_MODEL.md                # Threat model, invariants, non-goals
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
   BASE_SEPOLIA_PLAN.md             # Concrete Base Sepolia planning facts
   BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+  MARKETING_POSITIONING.md         # Founder script, category language, and one-liners
   OFFICIAL_REFERENCES.md           # Upstream Uniswap docs and address assumptions
   EXPERT_REVIEW_PROMPT.md          # Prompt for external LLM/human architecture review
   HOW_IT_WORKS.md                  # Direct code-level walkthrough
@@ -125,23 +246,11 @@ Ran 12 tests for test/FlowMemoryAfterSwapHook.t.sol:FlowMemoryAfterSwapHookTest
 Suite result: ok. 12 passed; 0 failed; 0 skipped
 ```
 
-## Contract Invariants
-
-The tests enforce the properties that matter for the first public hook:
-
-| Property | Why it matters |
-| --- | --- |
-| PoolManager-gated callback | Prevents arbitrary callers from fabricating swap memory signals through the hook callback. |
-| `afterSwap` only | Keeps the Uniswap v4 permission surface small and auditable. |
-| Zero hook delta | Avoids custom accounting and token balance side effects. |
-| No custody path | The hook observes and emits evidence; it does not hold user assets. |
-| No dynamic-fee path | The hook is not a fee controller. |
-| Receipt metadata excluded | `txHash` and `logIndex` are reader-derived after the transaction is mined. |
-| CREATE2 planning | The hook address can be mined to match the v4 hook permission bits. |
-
 ## Public Release Boundary
 
-The current repository is the public reference and live-prep package. A real live release requires a separate release record with:
+This repository is the first public FlowMemory hook surface and the live-prep package for the memory-native hook primitive.
+
+A real live release requires a separate release record with:
 
 - chain id;
 - PoolManager address;
@@ -168,6 +277,6 @@ See [docs/PUBLIC_RELEASE_PATH.md](docs/PUBLIC_RELEASE_PATH.md).
 
 ## Status
 
-This repo is public, runnable, and CI-tested. It is the hook reference path FlowMemory can share first.
+This repo is public, runnable, and CI-tested. It is the first public primitive in the FlowMemory hook path.
 
 It is not a production Base mainnet deployment claim.

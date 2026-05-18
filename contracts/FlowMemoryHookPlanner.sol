@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-/// @notice Dependency-light Uniswap v4 hook flag helpers for FlowMemory.
+/// @notice Dependency-light Uniswap v4 hook flag helpers for FlowMemory's
+/// memory-native afterSwap primitive.
 /// @dev Constants mirror Uniswap v4 core Hooks flag positions without
 /// vendoring v4-core into the current repository.
 library FlowMemoryHookFlags {
@@ -34,7 +35,7 @@ library FlowMemoryHookFlags {
 }
 
 /// @title FlowMemoryHookPlanner
-/// @notice Pure planner/miner helper for the Base Sepolia Uniswap v4 hook path.
+/// @notice Pure planner/miner helper for the Base Sepolia memory-signal hook path.
 /// @dev This helper performs no deployment and has no secrets. Use it to derive
 /// a CREATE2 salt/address plan, then deploy only from a reviewed script or
 /// operator runbook that records the exact inputs.

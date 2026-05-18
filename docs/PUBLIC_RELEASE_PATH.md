@@ -1,6 +1,8 @@
 # Public Release Path
 
-The hook repo is the first public technical artifact. The release path must keep that public trust intact.
+This repository is the first public FlowMemory hook surface and the live-prep package for the memory-native hook primitive.
+
+The release path must keep the category claim strong and the evidence clean.
 
 The principle is simple: each public claim must have matching public evidence.
 
@@ -8,14 +10,14 @@ The principle is simple: each public claim must have matching public evidence.
 
 ```mermaid
 stateDiagram-v2
-    [*] --> ReferenceRepo
-    ReferenceRepo --> BaseSepoliaPlan
+    [*] --> PrimitiveRepo
+    PrimitiveRepo --> BaseSepoliaPlan
     BaseSepoliaPlan --> BaseSepoliaDeployed
     BaseSepoliaDeployed --> ReaderObserved
     ReaderObserved --> PublicCanary
     PublicCanary --> MainnetCandidate
 
-    ReferenceRepo: Public code + tests
+    PrimitiveRepo: Public memory-native hook primitive + tests
     BaseSepoliaPlan: Salt/address/source plan
     BaseSepoliaDeployed: Verified testnet contract
     ReaderObserved: Logs read with receipt metadata
@@ -23,7 +25,7 @@ stateDiagram-v2
     MainnetCandidate: Separate go/no-go review
 ```
 
-## Phase 1: Reference Repo
+## Phase 1: Public Primitive Repo
 
 Evidence required:
 
@@ -93,11 +95,14 @@ flowchart LR
 
 The public canary can say:
 
+- FlowMemory has published the first memory-native Uniswap v4 hook primitive;
 - the hook code is public;
-- the testnet deployment is verified;
-- reader evidence exists for observed hook logs;
+- the testnet deployment is verified, once the deployment record exists;
+- reader evidence exists for observed hook logs, once reader records exist;
 - the hook returns zero delta;
-- receipt metadata is reader-derived.
+- receipt metadata is reader-derived;
+- the transaction is the proof envelope;
+- the FlowPulse is the memory artifact.
 
 The public canary must not say:
 
@@ -105,7 +110,9 @@ The public canary must not say:
 - funds are protected by an audited production system;
 - a production verifier network is live;
 - the hook has no risk;
-- the hook can know txHash/logIndex during execution.
+- the hook can know txHash/logIndex during execution;
+- every ordinary Uniswap transaction automatically becomes FlowMemory;
+- the swap transaction itself is memory.
 
 ## Phase 6: Mainnet Candidate
 
@@ -124,9 +131,13 @@ Required before a mainnet claim:
 
 ## Public Language
 
-Acceptable:
+Acceptable now:
 
-> FlowMemory has published its Uniswap v4 afterSwap hook reference implementation. The hook emits FlowPulse memory signals and is designed for a Base Sepolia live path.
+> FlowMemory introduces the first memory-native Uniswap v4 hook primitive: a verified on-chain emission boundary for FlowPulse memory signals.
+
+Acceptable now:
+
+> This repository is the first public FlowMemory hook surface and the live-prep package for the memory-native hook primitive.
 
 Acceptable after Base Sepolia evidence:
 

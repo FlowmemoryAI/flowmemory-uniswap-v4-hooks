@@ -11,7 +11,7 @@ You are a senior Solidity and DeFi protocol architect reviewing a public reposit
 
 https://github.com/FlowmemoryAI/flowmemory-uniswap-v4-hooks
 
-The repo implements a FlowMemory Uniswap v4 afterSwap hook reference. It contains:
+The repo implements the first public FlowMemory memory-native Uniswap v4 afterSwap hook primitive. It contains:
 
 - FlowMemoryAfterSwapHook.sol
 - FlowMemoryHookPlanner.sol
@@ -46,7 +46,7 @@ Please produce:
 - language that is safe to use publicly;
 - language that must be avoided.
 
-Assume the project wants to be conservative and technically precise.
+Assume the project wants bold category language with precise technical boundaries.
 Do not invent deployment facts. If a live deployment is not in the repo, say so.
 ```
 
@@ -80,4 +80,4 @@ A good reviewer should push on:
 
 The intended architecture answer is:
 
-FlowMemory's public hook starts as a narrow, event-first `afterSwap` path. It is PoolManager-gated, emits `FlowPulse`, returns zero hook delta, and avoids custody, dynamic fees, and custom accounting. It does not claim receipt metadata during execution. A reader/verifier layer must attach receipt facts after the transaction lands. The repo is shareable as a reference implementation now; live Base Sepolia and Base mainnet claims require release records and observed evidence.
+FlowMemory's public hook starts as a narrow, memory-native `afterSwap` primitive. It is PoolManager-gated, emits `FlowPulse`, returns zero hook delta, and avoids custody, dynamic fees, routing, and custom accounting. It does not claim receipt metadata during execution. The transaction is the proof envelope. The FlowPulse is the memory artifact. A reader/verifier layer must attach receipt facts after the transaction lands. The repo is shareable as the first public FlowMemory hook primitive now; live Base Sepolia and Base mainnet claims require release records and observed evidence.

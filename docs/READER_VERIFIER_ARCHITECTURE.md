@@ -1,8 +1,8 @@
 # Reader And Verifier Architecture
 
-The hook emits evidence. It does not complete the full FlowMemory system by itself.
+The hook emits the FlowPulse memory signal. It does not complete the full FlowMemory system by itself.
 
-The reader/verifier architecture is the bridge between on-chain logs and a public memory claim. It is also the layer that prevents the project from overstating what the hook can know during EVM execution.
+The reader/verifier architecture is the bridge between the on-chain memory artifact and a public memory claim. It is also the layer that prevents the project from overstating what the hook can know during EVM execution.
 
 ## Architecture Overview
 
@@ -30,7 +30,7 @@ flowchart TB
         DriftCheck["schema drift check"]
     end
 
-    subgraph Output["Public evidence"]
+    subgraph Output["Public FlowPulse evidence"]
         Record["append-only signal record"]
         Report["release/canary report"]
         Dashboard["public status surface"]
@@ -72,7 +72,7 @@ No private key is required to read logs.
 
 ## Reader Output Shape
 
-A normalized swap-memory signal should preserve both event payload and receipt provenance:
+A normalized swap-memory signal should preserve both the FlowPulse payload and receipt provenance:
 
 ```json
 {
@@ -117,7 +117,7 @@ A normalized swap-memory signal should preserve both event payload and receipt p
 
 The exact schema can evolve, but the split must remain clear:
 
-- event payload comes from the hook log;
+- FlowPulse payload comes from the hook log;
 - receipt metadata comes from the transaction receipt;
 - finality status comes from reader policy.
 
@@ -226,12 +226,12 @@ for blockRange in plannedRanges:
 
 ## Why This Matters Publicly
 
-The reader is what makes the hook evidence useful to people outside the project. Without it, the hook is only a contract that emits logs. With it, the project can show:
+The reader is what makes the memory signal useful to people outside the project. Without it, the hook emits a real FlowPulse but has not attached the proof-envelope facts. With it, the project can show:
 
-- which swap produced a signal;
+- which swap boundary produced a FlowPulse;
 - which exact log carried the signal;
 - whether the source contract was expected;
 - whether the event shape matched the schema;
 - whether the signal is pending, finalized, or rejected.
 
-That is the difference between a demo and public evidence.
+That is the difference between transaction logs and memory signals.

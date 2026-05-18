@@ -1,6 +1,6 @@
 # Base Sepolia Release Record Template
 
-Copy this file into `releases/base-sepolia/YYYY-MM-DD-hook-release.md` when the first live Base Sepolia hook is deployed.
+Copy this file into `releases/base-sepolia/YYYY-MM-DD-hook-release.md` when the first Base Sepolia memory-signal hook is deployed.
 
 Do not fill this template with private keys, RPC URLs, seed phrases, API keys, signed transactions, webhook URLs, or local operator secrets.
 
@@ -96,11 +96,14 @@ Sample uri:
 ```text
 This is a Base Sepolia hook release record.
 This is not a Base mainnet production deployment claim.
+The transaction is the proof envelope.
+The FlowPulse is the memory artifact.
 Receipt metadata is reader-derived after transaction execution.
 The hook returns zero hook delta.
 The hook does not take custody.
 The hook does not implement dynamic fees.
 The hook does not implement custom accounting.
+The hook does not route or control swaps.
 ```
 
 ## Reviewer Signoff

@@ -1,6 +1,6 @@
 # Uniswap V4 Compatibility
 
-This repo keeps the hook implementation dependency-light, but the public release still needs to prove compatibility with Uniswap v4 concepts and ABI expectations.
+This repo keeps the memory-native hook primitive dependency-light, but the public release still needs to prove compatibility with Uniswap v4 concepts and ABI expectations.
 
 The design should be reviewed against the official Uniswap v4 docs before each live release.
 
@@ -46,7 +46,7 @@ interface IUniswapV4SwapHookLike {
 }
 ```
 
-This is not a claim that the repo vendors the full Uniswap v4 core. It is a narrow compatibility surface used for the reference implementation and tests.
+This is not a claim that the repo vendors the full Uniswap v4 core. It is a narrow compatibility surface used for the public hook primitive and tests.
 
 Before a live deployment, the release record should identify the exact upstream `v4-core`/`v4-periphery` version or commit used for final integration review.
 

@@ -2,37 +2,44 @@
 
 This document describes how the hook repo fits into the larger FlowMemory public launch without requiring the full private system to be public on day one.
 
+The integration thesis is simple:
+
+Execution already exists. Memory is the missing layer.
+
 ## Layers
 
 ```mermaid
 flowchart TB
-    L1["Layer 1: Hook contract"]
-    L2["Layer 2: Reader/indexer"]
-    L3["Layer 3: Verifier policy"]
-    L4["Layer 4: Rootflow memory state"]
-    L5["Layer 5: Public dashboard/API"]
+    L1["Layer 1: Execution boundary"]
+    L2["Layer 2: Memory emission"]
+    L3["Layer 3: Evidence reader"]
+    L4["Layer 4: Verifier policy"]
+    L5["Layer 5: FlowMemory / Rootflow memory"]
+    L6["Layer 6: Public dashboard/API"]
 
-    L1 --> L2 --> L3 --> L4 --> L5
+    L1 --> L2 --> L3 --> L4 --> L5 --> L6
 ```
 
 | Layer | Public artifact | Launch expectation |
 | --- | --- | --- |
-| Hook contract | This repo | Public, tested, source-verifiable. |
-| Reader/indexer | Release evidence, later code package | Must show receipt-derived records before live claims. |
+| Execution boundary | Uniswap v4 `afterSwap` callback | Must be understood as lifecycle boundary, not finality. |
+| Memory emission | This repo | Public, tested, source-verifiable. |
+| Evidence reader | Release evidence, later code package | Must show receipt-derived records before live claims. |
 | Verifier policy | Public checklist/report | Must explain accepted/rejected evidence. |
-| Rootflow memory state | Public summary or dashboard | Must not overstate finality or verifier scope. |
+| FlowMemory / Rootflow memory | Public summary or dashboard | Must not overstate finality or verifier scope. |
 | Public dashboard/API | FlowMemory public surface | Must show status, contract, logs, and boundaries. |
 
 ## Data Flow
 
 ```mermaid
 flowchart LR
-    Swap["Uniswap v4 swap"] --> Hook["afterSwap hook"]
-    Hook --> Events["AfterSwapObserved + FlowPulse"]
-    Events --> Reader["reader/indexer"]
-    Reader --> Evidence["normalized evidence record"]
+    Swap["Uniswap v4 swap"] --> Boundary["afterSwap boundary"]
+    Boundary --> Hook["FlowMemoryAfterSwapHook"]
+    Hook --> Pulse["FlowPulse memory artifact"]
+    Pulse --> Reader["reader/indexer"]
+    Reader --> Evidence["normalized proof-envelope record"]
     Evidence --> Verifier["verifier checks"]
-    Verifier --> Rootflow["Rootflow state update"]
+    Verifier --> Rootflow["FlowMemory / Rootflow state update"]
     Rootflow --> Public["public page/API"]
 ```
 
@@ -65,7 +72,7 @@ The API should never require browser users to submit private keys, seed phrases,
 
 ```mermaid
 flowchart TD
-    A["Public hook repo"] --> B["Mined Base Sepolia hook address"]
+    A["Public memory-native hook repo"] --> B["Mined Base Sepolia hook address"]
     B --> C["Verified deployment"]
     C --> D["Observed hook logs"]
     D --> E["Reader-derived receipts"]
@@ -78,7 +85,7 @@ flowchart TD
 
 Share this repo first when you want to show:
 
-- the contract architecture;
+- the first public FlowMemory hook primitive;
 - why `afterSwap` is the chosen lifecycle point;
 - the event model;
 - what safety boundaries are intentionally absent;
@@ -95,4 +102,8 @@ Do not use this repo alone to claim:
 
 ## Suggested Public Narrative
 
-FlowMemory's first public Uniswap v4 work is an `afterSwap` hook that emits a verifiable memory signal when swap activity reaches a post-execution lifecycle point. The hook keeps the on-chain surface narrow: PoolManager-gated, afterSwap-only, zero hook delta, no custody, no dynamic fee path. Receipt facts are derived by readers after the transaction lands. That separation gives the public a clean contract to inspect now and a concrete evidence path for Base Sepolia next.
+FlowMemory introduces the first memory-native Uniswap v4 hook primitive: a verified on-chain emission boundary where DeFi execution can produce FlowPulse memory signals.
+
+Most hooks change what a swap does. FlowMemory changes what a swap can prove.
+
+The hook keeps the on-chain surface narrow: PoolManager-gated, afterSwap-only, zero hook delta, no custody, no dynamic fee path, no routing path. Receipt facts are derived by readers after the transaction lands. That separation gives the public a clean primitive to inspect now and a concrete evidence path for Base Sepolia next.

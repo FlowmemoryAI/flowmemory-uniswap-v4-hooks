@@ -45,7 +45,8 @@ jobs:
             contracts/FlowMemoryAfterSwapHook.sol
             contracts/FlowMemoryHookPlanner.sol
             contracts/FlowPulse.sol
-            contracts/interfaces/IFlowMemoryHookAdapter.sol
+            contracts/interfaces/IFlowMemoryHookData.sol
+            docs/MARKETING_POSITIONING.md
             contracts/interfaces/IUniswapV4SwapHookLike.sol
             test/FlowMemoryAfterSwapHook.t.sol
             docs/ARCHITECTURE.md

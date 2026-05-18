@@ -1,14 +1,64 @@
 # Architecture
 
-FlowMemory's first public hook path is designed around a small contract surface and a clear evidence boundary.
+FlowMemory separates execution, emission, evidence, and memory.
 
-The hook does not try to be a full protocol inside a swap callback. It records a memory signal at the moment Uniswap v4 gives the hook a valid post-swap execution point, then lets readers and verifiers attach receipt-aware facts after the transaction exists.
+That separation is the architecture. The Uniswap v4 swap is execution. The `afterSwap` hook is the verified on-chain emission boundary. The EVM receipt is the proof envelope. The `FlowPulse` is the memory artifact.
+
+This repository is not trying to put a full protocol inside a swap callback. It defines the first public memory-native hook primitive: a narrow, PoolManager-gated surface where DeFi execution can emit a protocol-level memory signal.
+
+## Layer Model
+
+```mermaid
+flowchart TB
+    subgraph Execution["Execution Layer"]
+        PM["Uniswap v4 PoolManager"]
+        Swap["swap lifecycle"]
+        Boundary["afterSwap boundary"]
+    end
+
+    subgraph Emission["Memory Emission Layer"]
+        Hook["FlowMemoryAfterSwapHook"]
+        Pulse["FlowPulse"]
+        Rootfield["rootfieldId"]
+        Commitment["commitment"]
+        Parent["parentPulseId"]
+        Uri["uri"]
+    end
+
+    subgraph Evidence["Evidence Layer"]
+        Logs["EVM logs"]
+        Receipts["transaction receipts"]
+        TxHash["txHash"]
+        LogIndex["logIndex"]
+        Finality["finality policy"]
+    end
+
+    subgraph Memory["Memory Layer"]
+        Reader["FlowMemory reader"]
+        Verifier["verifier policy"]
+        Rootflow["FlowMemory / Rootflow state"]
+    end
+
+    PM --> Swap --> Boundary --> Hook
+    Hook --> Pulse
+    Rootfield --> Pulse
+    Commitment --> Pulse
+    Parent --> Pulse
+    Uri --> Pulse
+    Pulse --> Logs
+    Logs --> Reader
+    Receipts --> Reader
+    TxHash --> Reader
+    LogIndex --> Reader
+    Finality --> Reader
+    Reader --> Verifier --> Rootflow
+```
 
 ## System Context
 
 ```mermaid
 flowchart TB
-    subgraph Uniswap["Uniswap v4"]
+    subgraph Uniswap["Uniswap v4 execution"]
         PoolManager["PoolManager"]
         Pool["Pool state"]
     end
@@ -16,13 +66,16 @@ flowchart TB
     subgraph HookRepo["flowmemory-uniswap-v4-hooks"]
         Hook["FlowMemoryAfterSwapHook"]
         Planner["FlowMemoryHookPlanner"]
-        FlowPulse["FlowPulse event schema"]
+        FlowPulse["FlowPulse schema"]
     end
 
-    subgraph Offchain["FlowMemory off-chain evidence layer"]
+    subgraph EvidenceLayer["Receipt-aware evidence"]
         Reader["Reader / indexer"]
         Verifier["Verifier checks"]
-        Rootflow["Rootflow memory state"]
+    end
+
+    subgraph MemoryLayer["FlowMemory memory"]
+        Rootflow["Rootflow / downstream memory state"]
     end
 
     PoolManager --> Pool
@@ -48,7 +101,7 @@ sequenceDiagram
     participant Verifier
 
     User->>PM: swap
-    PM->>PM: execute swap and compute delta
+    PM->>PM: execute swap lifecycle
     PM->>Hook: afterSwap(sender, PoolKey, SwapParams, swapDelta, hookData)
     Hook->>Hook: require msg.sender == PoolManager
     Hook->>Hook: require sender != 0
@@ -63,17 +116,30 @@ sequenceDiagram
     Verifier->>Verifier: check topics, payload, finality, schema
 ```
 
+The hook emits the memory signal. The reader proves where it landed.
+
+## Component Responsibilities
+
+| Component | Responsibility | What it must not do |
+| --- | --- | --- |
+| `FlowMemoryAfterSwapHook` | Validate callback caller, decode memory payload, emit `AfterSwapObserved` and `FlowPulse`. | Custody tokens, override fees, route swaps, fabricate receipt metadata, perform custom accounting. |
+| `FlowMemoryHookPlanner` | Compute hook permission bits and CREATE2 candidate addresses for Base Sepolia planning. | Deploy contracts, hold keys, print secrets. |
+| `FlowPulse` | Define the public memory signal schema and stable pulse type ids. | Describe off-chain receipt facts as on-chain facts. |
+| Reader / indexer | Read logs, attach receipt fields, enforce finality windows. | Rewrite event payloads or treat unfinalized logs as final. |
+| Verifier | Check event schema, provenance, expected contract, topic signatures, and finality. | Trust arbitrary UI claims without logs. |
+| FlowMemory / Rootflow | Consume verified pulse records as memory artifacts. | Treat ordinary swaps as FlowMemory without an emitted pulse. |
+
 ## Trust Boundaries
 
 ```mermaid
 flowchart LR
-    subgraph Onchain["On-chain execution"]
+    subgraph Onchain["On-chain emission"]
         PM["PoolManager"]
         Hook["FlowMemoryAfterSwapHook"]
         Logs["EVM logs"]
     end
 
-    subgraph Derived["Reader-derived facts"]
+    subgraph ProofEnvelope["Transaction proof envelope"]
         Receipt["transaction receipt"]
         TxHash["txHash"]
         LogIndex["logIndex"]
@@ -83,7 +149,7 @@ flowchart LR
     subgraph Memory["FlowMemory interpretation"]
         Reader["reader"]
         Checks["schema + provenance checks"]
-        MemorySignal["memory signal"]
+        MemorySignal["FlowPulse memory artifact"]
     end
 
     PM --> Hook --> Logs
@@ -100,21 +166,9 @@ flowchart LR
 
 The hook only emits what the EVM can know inside execution. Receipt fields are outside that boundary.
 
-## Component Responsibilities
-
-| Component | Responsibility | What it must not do |
-| --- | --- | --- |
-| `FlowMemoryAfterSwapHook` | Validate callback caller, decode memory payload, emit `AfterSwapObserved` and `FlowPulse`. | Custody tokens, override fees, fabricate receipt metadata, perform custom accounting. |
-| `FlowMemoryHookPlanner` | Compute hook permission bits and CREATE2 candidate addresses for Base Sepolia planning. | Deploy contracts, hold keys, print secrets. |
-| `FlowPulse` | Define the public event schema and stable pulse type ids. | Describe off-chain receipt facts as on-chain facts. |
-| Reader / indexer | Read logs, attach receipt fields, enforce finality windows. | Rewrite event payloads or treat unfinalized logs as final. |
-| Verifier | Check event schema, provenance, expected contract, topic signatures, and finality. | Trust arbitrary UI claims without logs. |
-
 ## Why The Hook Surface Is Small
 
-The public release needs a low-ambiguity contract. Each additional hook permission increases the number of execution paths that reviewers, pool creators, and users must understand.
-
-FlowMemory starts with exactly one callback:
+The hook is deliberately minimal because the primitive is not execution control. The primitive is verifiable memory emission.
 
 ```mermaid
 flowchart TD
@@ -127,4 +181,4 @@ flowchart TD
     AfterSwap --> FlowPulse["emit FlowPulse"]
 ```
 
-That choice keeps the first public hook focused on evidence, not hidden control.
+Most hooks change what a swap does. FlowMemory changes what a swap can prove.

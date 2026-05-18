@@ -1,6 +1,6 @@
 # Base Sepolia Plan
 
-The first live FlowMemory hook surface should be Base Sepolia before any Base mainnet claim.
+The first deployment target for the FlowMemory hook surface should be Base Sepolia before any Base mainnet claim.
 
 This file records the concrete deployment planning facts that are safe to publish now. It does not contain private keys, RPC credentials, or signed transactions.
 
@@ -31,7 +31,7 @@ flowchart LR
     F -- no --> D
 ```
 
-Uniswap v4 hook permissions are encoded in the hook address. For this first public hook, the address must resolve to the `afterSwap` permission and avoid extra return-delta/custom-accounting flags.
+Uniswap v4 hook permissions are encoded in the hook address. For this first memory-native hook primitive, the address must resolve to the `afterSwap` permission and avoid extra return-delta/custom-accounting flags.
 
 ## Local Verification
 
@@ -42,7 +42,7 @@ forge test --match-test testPlannerMinesBaseSepoliaCreate2AddressWithTargetFlags
 forge test --match-test testAfterSwapHookEmitsFlowPulseAndReturnsZeroHookDelta -vvv
 ```
 
-The first test confirms the CREATE2 planner can find an address with only the `afterSwap` hook flag. The second confirms the callback emits the FlowPulse memory signal and returns zero hook delta.
+The first test confirms the CREATE2 planner can find an address with only the `afterSwap` hook flag. The second confirms the callback emits the FlowPulse memory artifact and returns zero hook delta.
 
 ## Required Live Release Record
 

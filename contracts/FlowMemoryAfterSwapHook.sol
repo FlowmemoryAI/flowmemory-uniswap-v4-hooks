@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {IFlowMemoryHookAdapter} from "./interfaces/IFlowMemoryHookAdapter.sol";
+import {IFlowMemoryHookData} from "./interfaces/IFlowMemoryHookData.sol";
 import {IUniswapV4SwapHookLike} from "./interfaces/IUniswapV4SwapHookLike.sol";
 import {IFlowPulse, FlowPulseTypes} from "./FlowPulse.sol";
 import {FlowMemoryHookFlags} from "./FlowMemoryHookPlanner.sol";
 
 /// @title FlowMemoryAfterSwapHook
-/// @notice Production-shaped Uniswap v4 afterSwap hook path for Base Sepolia planning.
-/// @dev This is still not a production deployment. It is PoolManager-gated,
-/// returns zero hook delta, takes no token custody, exposes no fee override
-/// path, and cannot know txHash or logIndex during execution.
+/// @notice Memory-native Uniswap v4 afterSwap hook primitive that emits
+/// FlowPulse memory signals from a completed swap boundary.
+/// @dev This is a verified emission boundary, not a swap-control engine. It is
+/// PoolManager-gated, afterSwap-only, returns zero hook delta, takes no token
+/// custody, exposes no fee override path, and cannot know txHash or logIndex
+/// during execution. Receipt metadata belongs to the reader/verifier layer.
 contract FlowMemoryAfterSwapHook is IUniswapV4SwapHookLike, IFlowPulse {
     bytes4 public constant UNISWAP_V4_AFTER_SWAP_SELECTOR = IUniswapV4SwapHookLike.afterSwap.selector;
     uint160 public constant HOOK_PERMISSION_FLAGS = FlowMemoryHookFlags.FLOWMEMORY_AFTER_SWAP_FLAGS;
@@ -53,8 +55,8 @@ contract FlowMemoryAfterSwapHook is IUniswapV4SwapHookLike, IFlowPulse {
         if (sender == address(0)) revert ZeroSender();
         if (hookData.length == 0) revert EmptyHookData();
 
-        IFlowMemoryHookAdapter.FlowMemorySwapHookData memory decoded =
-            abi.decode(hookData, (IFlowMemoryHookAdapter.FlowMemorySwapHookData));
+        IFlowMemoryHookData.FlowMemorySwapHookData memory decoded =
+            abi.decode(hookData, (IFlowMemoryHookData.FlowMemorySwapHookData));
         bytes32 poolId = _poolIdFor(key);
         bytes memory pulseContext =
             abi.encode(params.zeroForOne, params.amountSpecified, params.sqrtPriceLimitX96, swapDelta, hookData);
@@ -78,7 +80,7 @@ contract FlowMemoryAfterSwapHook is IUniswapV4SwapHookLike, IFlowPulse {
         returns (bytes memory hookData)
     {
         return abi.encode(
-            IFlowMemoryHookAdapter.FlowMemorySwapHookData({
+            IFlowMemoryHookData.FlowMemorySwapHookData({
                 rootfieldId: rootfieldId, commitment: commitment, parentPulseId: parentPulseId, uri: uri
             })
         );

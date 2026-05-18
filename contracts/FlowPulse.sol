@@ -1,18 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-/// @title FlowPulse event schema for FlowMemory protocol activity.
-/// @notice FlowPulse intentionally excludes receipt-only metadata such as
-/// txHash and logIndex. Indexers derive those fields after reading receipts.
+/// @title FlowPulse event schema for FlowMemory protocol memory signals.
+/// @notice A FlowPulse is the memory artifact emitted from a protocol boundary.
+/// It intentionally excludes receipt-only metadata such as txHash and logIndex.
+/// Indexers derive those proof-envelope fields after reading receipts.
 interface IFlowPulse {
-    /// @notice Canonical event stream for registry, root, proof, and work-state
-    /// activity.
+    /// @notice Canonical event stream for FlowMemory artifacts.
     /// @param pulseId Domain-separated identifier emitted by the source contract.
     /// @param rootfieldId Rootfield namespace this pulse belongs to.
     /// @param actor Account that caused the pulse.
     /// @param pulseType Stable numeric type from FlowPulseTypes.
     /// @param subject Type-specific subject, such as a rootfield id or root.
-    /// @param commitment Type-specific hash commitment to off-chain data.
+    /// @param commitment Opaque commitment to off-chain or downstream memory data.
     /// @param parentPulseId Optional prior pulse being extended or referenced.
     /// @param sequence Monotonic sequence within the rootfield namespace.
     /// @param occurredAt Block timestamp observed by the emitting contract.

@@ -4,7 +4,7 @@ Use this checklist before sharing the repo publicly, before Base Sepolia deploym
 
 ## Repo Review
 
-- [ ] `README.md` explains what the hook does in the first screen.
+- [ ] `README.md` names the category in the first screen: memory-native Uniswap v4 hook primitive.
 - [ ] Mermaid diagrams render on GitHub.
 - [ ] `forge test -vvv` passes.
 - [ ] GitHub Actions are green.
@@ -24,6 +24,8 @@ Use this checklist before sharing the repo publicly, before Base Sepolia deploym
 - [ ] Hook returns zero hook delta.
 - [ ] Hook has no custody path.
 - [ ] Hook has no dynamic-fee path.
+- [ ] Hook has no routing path.
+- [ ] Hook has no custom-accounting path.
 - [ ] Hook does not claim `txHash`, `transactionIndex`, or `logIndex`.
 
 ## Planner Review
@@ -62,8 +64,9 @@ Use this checklist before sharing the repo publicly, before Base Sepolia deploym
 
 Allowed before live deployment:
 
-- [ ] "Public reference implementation."
-- [ ] "Designed for the FlowMemory Uniswap v4 afterSwap hook path."
+- [ ] "First memory-native Uniswap v4 hook primitive."
+- [ ] "Verified on-chain emission boundary for FlowPulse memory signals."
+- [ ] "The transaction is the proof envelope. The FlowPulse is the memory artifact."
 - [ ] "CI-tested Foundry implementation."
 - [ ] "Base Sepolia release path."
 
@@ -79,3 +82,5 @@ Not allowed unless separately proven:
 - [ ] "Audited custody system."
 - [ ] "Production verifier network."
 - [ ] "The hook knows transaction hash or log index during execution."
+- [ ] "The swap transaction itself is the memory."
+- [ ] "Every ordinary Uniswap transaction automatically becomes FlowMemory."
