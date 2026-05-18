@@ -63,6 +63,7 @@ jobs:
             docs/BASE_SEPOLIA_PLAN.md
             docs/BASE_SEPOLIA_OPERATOR_RUNBOOK.md
             docs/BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+            docs/LAUNCH_ARTIFACT_AUDIT.md
             docs/LAUNCH_DAY_CHECKLIST.md
             docs/PUBLIC_CANARY_TEMPLATE.md
             docs/OFFICIAL_REFERENCES.md

@@ -218,6 +218,7 @@ docs/
   BASE_SEPOLIA_PLAN.md             # Concrete Base Sepolia planning facts
   BASE_SEPOLIA_OPERATOR_RUNBOOK.md # Operator path from deployment to proof
   BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
+  LAUNCH_ARTIFACT_AUDIT.md         # Prompt-to-artifact launch readiness map
   LAUNCH_DAY_CHECKLIST.md          # May 19 launch guardrails
   PUBLIC_CANARY_TEMPLATE.md        # Public Base Sepolia evidence announcement template
   MARKETING_POSITIONING.md         # Founder script, category language, and one-liners
