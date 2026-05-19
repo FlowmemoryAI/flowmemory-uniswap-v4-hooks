@@ -1,0 +1,17 @@
+Compute Reuse Router
+
+Decisions:
+  req-exact-reuse              REUSE_PRIOR_COMPUTE    compute-pulse-h100-001
+  req-runtime-drift            RUN_GPU_JOB            runtimeCommitmentMatches
+  req-unverified-only          RUN_GPU_JOB            statusVerified
+  req-attestation-required     RUN_GPU_JOB            attestationSatisfied
+  req-expired                  RUN_GPU_JOB            freshEnough
+
+Summary:
+  requests checked: 5
+  prior compute reused: 1
+  GPU jobs avoided: 1
+  unsafe reuse rejected: 4/4
+
+Result:
+  FlowMemory can route compute reuse from proof-backed memory without claiming hardware speedup.

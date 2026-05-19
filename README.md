@@ -492,7 +492,40 @@ GPUs compute. FlowMemory remembers.
 
 The fastest GPU job is the one a system can prove it does not need to run again.
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+The Compute Reuse Router makes that claim executable. It routes a scheduler
+request to `REUSE_PRIOR_COMPUTE` only when rootfield, model, input, runtime,
+lineage, freshness, executor, hardware, and attestation policy checks pass.
+Unsafe reuse is rejected with explicit proof failures.
+
+```bash
+python tools/compute_reuse_router.py demo --pretty
+```
+
+Expected launch signal:
+
+```text
+prior compute reused: 1
+GPU jobs avoided: 1
+unsafe reuse rejected: 4/4
+```
+
+## Release Transcript
+
+The release transcript is the canonical offline launch object. It gives a
+reviewer one place to see what passed, what is pending, and what is explicitly
+not claimed.
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+```
+
+Expected launch line:
+
+```text
+FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
+```
+
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Primitive: AxiomPatch
 
@@ -831,6 +864,7 @@ docs/
   EVENT_MODEL.md                   # FlowPulse artifact and reader-derived receipt metadata
   BEYOND_DEFI_MEMORY.md            # Larger FlowMemory thesis across DeFi, AI, GPU work, and agents
   COMPUTE_PULSE.md                 # ComputePulse architecture for AI/GPU memory artifacts
+  COMPUTE_REUSE_ROUTER.md          # Proof-backed scheduler decisions for reusable compute
   PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
@@ -842,6 +876,7 @@ docs/
   FLOW_MMU.md                      # Receipt-backed dereference semantics for agents
   FLOW_QUIESCE.md                  # Receipt-triggered quiescence epochs for agent runtimes
   FLOW_SERIAL.md                   # Receipt-linearizability for machine cognition
+  FLOWMEMORY_RELEASE_TRANSCRIPT.md # Canonical offline launch transcript
   FLOWMEMORY_RUNTIME_MODEL.md      # Runtime rules and forbidden outcomes
   FLOWLITMUS_LAUNCH_DEMO.md        # Executable launch demo for runtime consistency
   FLOWLITMUS_FORBIDDEN_OUTCOMES.md # Casebook for each impossible history
@@ -870,6 +905,8 @@ docs/
 tools/
   read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
   memory_trace.py                  # Builds proof-carried Agent Memory Packs from traces
+  compute_reuse_router.py          # Routes safe reuse of committed AI/GPU work
+  flowmemory_release_transcript.py # Builds the canonical offline launch transcript
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
   axiom_patch.py                   # Applies AxiomPatch allow/deny/downgrade decisions
   boundary_fission.py              # Applies proof-triggered working-memory fission
@@ -888,6 +925,8 @@ specs/
   FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
+  ComputeReuseRouter.v0.md         # Draft scheduler-facing compute reuse spec
+  FlowMemoryReleaseTranscript.v0.md # Draft offline release transcript spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
   AgentMemoryPack.v0.md            # Draft proof-carried agent memory pack spec
   AxiomWrit.v0.md                  # Draft proof-conditioned belief object spec
@@ -903,6 +942,8 @@ specs/
   FlowLitmus.v0.md                 # Draft forbidden-outcome suite spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
+  compute-reuse-router/            # Example proof-backed GPU workflow reuse decision
+  release-transcript/              # Example canonical launch transcript output
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action
   boundary-fission/                # Example FlowPulse -> memory release products

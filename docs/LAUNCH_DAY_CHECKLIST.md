@@ -30,6 +30,8 @@ Execution already exists. Memory is the missing layer.
 - [ ] `python tools/fmm0_forbidden_core.py demo --pretty` passes and extracts 10/10 one-minimal forbidden cores.
 - [ ] `python tools/fmm0_witness_pack.py demo --pretty` passes and reports 8/8 local conformance layers.
 - [ ] `python tools/flowpulse_boundary_abi.py check --pretty` passes and exposes 0 receipt-only fields.
+- [ ] `python tools/compute_reuse_router.py demo --pretty` passes and rejects 4/4 unsafe reuse attempts.
+- [ ] `python tools/flowmemory_release_transcript.py --pretty` passes and reports local PASS with public receipt evidence PENDING unless release evidence exists.
 - [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
 - [ ] `python tools/reviewer_walkthrough.py --pretty` passes and shows each launch claim with evidence/status/non-claims.
 - [ ] `python tools/verify_release_evidence.py --pretty` passes and reports `PENDING` unless real public receipt evidence exists.
@@ -65,6 +67,8 @@ Allowed:
 - FMM-0 Phase Space;
 - FMM-0 Counterexample Forge;
 - FMM-0 Skeptic Walkthrough;
+- Compute Reuse Router;
+- FlowMemory Release Transcript;
 - FlowLitmus forbidden-outcomes casebook;
 - executable forbidden outcomes for machine histories.
 - receipt-bound memory consistency model.
@@ -95,3 +99,5 @@ Not allowed:
 - FMM-0 is not just a claim; it has adversarial counterexamples.
 - Public receipt evidence stays PENDING until `RELEASE_EVIDENCE.json` validates.
 - Each impossible machine history has a FlowLitmus case and a named fault.
+- GPUs compute. FlowMemory remembers.
+- The fastest GPU job is the one a system can prove it does not need to run again.

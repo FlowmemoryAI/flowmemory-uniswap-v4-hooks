@@ -37,6 +37,8 @@ The swap transaction is not the memory. The transaction is the proof envelope. T
 | Claim-to-evidence scorecard exists | `docs/MEMORY_CONSISTENCY_CARD.md`, `tools/memory_consistency_card.py`, `examples/memory-consistency-card/` | Frames FlowMemory as a receipt-bound memory consistency model and marks public Base Sepolia evidence pending. |
 | FMM-0 Phase Space exists | `docs/FMM_0_PHASE_TABLE.md`, `specs/FMM-0-PhaseTable.v0.md`, `tools/fmm0_phase_table.py`, `examples/fmm0-phase-table/` | Makes machine-state phases executable and catches illegal pre-receipt receipt-field claims. |
 | Skeptic claim ledger exists | `docs/SKEPTIC_REVIEW_WALKTHROUGH.md`, `docs/LAUNCH_CLAIM_LEDGER.md`, `tools/reviewer_walkthrough.py`, `examples/reviewer-walkthrough/` | Maps each launch claim to evidence, commands, expected results, status, and explicit non-claims. |
+| GPU workflow reuse claim is executable | `docs/COMPUTE_REUSE_ROUTER.md`, `specs/ComputeReuseRouter.v0.md`, `tools/compute_reuse_router.py`, `examples/compute-reuse-router/` | Routes safe prior compute reuse only when commitments, lineage, freshness, executor, hardware, and attestation policy pass. |
+| Canonical release transcript exists | `docs/FLOWMEMORY_RELEASE_TRANSCRIPT.md`, `specs/FlowMemoryReleaseTranscript.v0.md`, `tools/flowmemory_release_transcript.py`, `examples/release-transcript/` | Gives one offline object for passed local evidence, pending public evidence, and explicit non-claims. |
 | Public release evidence gate exists | `tools/verify_release_evidence.py`, `releases/base-sepolia/RELEASE_EVIDENCE.template.json`, `releases/base-sepolia/expected-pending-output.txt` | Keeps public Base Sepolia receipt evidence pending until a real packet validates. |
 | CI enforces required launch artifacts | `.github/workflows/ci.yml` | Required-file check includes reader, launch docs, and release staging folder. |
 
@@ -62,6 +64,10 @@ python -m unittest tools.test_memory_consistency_card
 python tools/memory_consistency_card.py --pretty
 python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
+python -m unittest tools.test_compute_reuse_router
+python tools/compute_reuse_router.py demo --pretty
+python -m unittest tools.test_flowmemory_release_transcript
+python tools/flowmemory_release_transcript.py --pretty
 python -m unittest tools.test_verify_release_evidence
 python tools/verify_release_evidence.py --pretty
 python -m unittest tools.test_flowlitmus_casebook
@@ -93,6 +99,8 @@ GitHub Actions should show both jobs green:
 - FlowMemory Reality Check for a screenshot-ready launch command.
 - Memory Consistency Card for claim-to-evidence launch positioning.
 - FMM-0 Skeptic Walkthrough for claim-to-command reviewability.
+- Compute Reuse Router for proof-backed AI/GPU workflow reuse decisions.
+- FlowMemory Release Transcript for one offline launch-state object.
 - Pending-safe Base Sepolia release evidence verifier.
 
 ## What Still Requires Live Evidence

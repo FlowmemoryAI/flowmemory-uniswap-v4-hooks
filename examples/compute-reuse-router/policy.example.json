@@ -1,0 +1,14 @@
+{
+  "allowCrossRootfield": false,
+  "allowedExecutors": [
+    "executor-a",
+    "executor-b"
+  ],
+  "allowedHardwareClasses": [
+    "H100-class",
+    "A100-class"
+  ],
+  "maxAgeSeconds": 3600,
+  "requireAttestationRef": false,
+  "schema": "flowmemory.compute_reuse_policy.v0"
+}

@@ -1,0 +1,56 @@
+{
+  "requests": [
+    {
+      "inputCommitment": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "modelCommitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "requestId": "req-exact-reuse",
+      "requestedAt": 1100,
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "runtimeCommitment": "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "schema": "flowmemory.compute_reuse_request.v0",
+      "sourceCachePulse": "cache:prefix-alpha"
+    },
+    {
+      "inputCommitment": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "modelCommitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "requestId": "req-runtime-drift",
+      "requestedAt": 1100,
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "runtimeCommitment": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "schema": "flowmemory.compute_reuse_request.v0",
+      "sourceCachePulse": "cache:prefix-alpha"
+    },
+    {
+      "inputCommitment": "0x7777777777777777777777777777777777777777777777777777777777777777",
+      "modelCommitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "requestId": "req-unverified-only",
+      "requestedAt": 1100,
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "runtimeCommitment": "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "schema": "flowmemory.compute_reuse_request.v0",
+      "sourceCachePulse": "cache:prefix-beta"
+    },
+    {
+      "inputCommitment": "0x9999999999999999999999999999999999999999999999999999999999999999",
+      "modelCommitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "requestId": "req-attestation-required",
+      "requestedAt": 1100,
+      "requireAttestationRef": true,
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "runtimeCommitment": "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "schema": "flowmemory.compute_reuse_request.v0",
+      "sourceCachePulse": "cache:prefix-gamma"
+    },
+    {
+      "inputCommitment": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "modelCommitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "requestId": "req-expired",
+      "requestedAt": 10000,
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "runtimeCommitment": "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "schema": "flowmemory.compute_reuse_request.v0",
+      "sourceCachePulse": "cache:prefix-delta"
+    }
+  ],
+  "schema": "flowmemory.compute_reuse_requests.v0"
+}

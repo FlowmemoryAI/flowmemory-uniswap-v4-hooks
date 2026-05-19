@@ -44,6 +44,10 @@ The repo now presents a stack rather than a loose set of ideas:
   conformance surface.
 - `FlowPulse Boundary ABI`: a Solidity event/model drift gate for the
   FlowPulse boundary.
+- `Compute Reuse Router`: a proof-backed AI/GPU workflow gate that routes safe
+  prior compute reuse and rejects unsafe reuse.
+- `FlowMemory Release Transcript`: one offline launch transcript that shows
+  passed local evidence, pending public evidence, and explicit non-claims.
 - `FlowMemory Memory Consistency Card`: a claim-to-evidence scorecard that shows
   FlowMemory is treating agent memory as a consistency model, not retrieval.
 - `FMM-0 Skeptic Walkthrough`: a claim ledger that maps every launch claim to
@@ -115,6 +119,18 @@ Use this as the Solidity ABI/model drift gate:
 python tools/flowpulse_boundary_abi.py check --pretty
 ```
 
+Use this as the AI/GPU workflow reuse proof point:
+
+```bash
+python tools/compute_reuse_router.py demo --pretty
+```
+
+Use this as the canonical offline launch transcript:
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+```
+
 Use this as the reviewer credibility packet:
 
 ```bash
@@ -171,6 +187,10 @@ python -m unittest tools.test_fmm0_witness_pack
 python tools/fmm0_witness_pack.py demo --pretty
 python -m unittest tools.test_flowpulse_boundary_abi
 python tools/flowpulse_boundary_abi.py check --pretty
+python -m unittest tools.test_compute_reuse_router
+python tools/compute_reuse_router.py demo --pretty
+python -m unittest tools.test_flowmemory_release_transcript
+python tools/flowmemory_release_transcript.py --pretty
 python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
 python -m unittest tools.test_verify_release_evidence
@@ -201,6 +221,8 @@ FMM-0 Boundary Bisimulation gives the model cross-layer projection checks.
 FMM-0 Forbidden Core Extractor gives the model minimal failure diagnostics.
 FMM-0 Witness Pack gives the model a reproducible local evidence packet.
 FlowPulse Boundary ABI keeps the Solidity event surface aligned with the memory model.
+Compute Reuse Router turns proof-backed compute memory into a scheduler decision.
+FlowMemory Release Transcript gives reviewers one offline object for passed, pending, and not-claimed launch state.
 FlowSerial gives receipt-linearizability.
 FlowLitmus makes forbidden outcomes executable.
 FlowMemory Reality Check shows live histories pass and impossible histories fault.
@@ -218,6 +240,8 @@ FlowLitmus Forbidden Outcomes names each impossible history and the fault that c
 4. Terminal screenshot from `python tools/fmm0_phase_table.py demo --pretty`.
 5. Terminal screenshot from `python tools/fmm0_counterexample_forge.py demo --pretty`.
 6. Terminal screenshot from `python tools/fmm0_closure_lab.py demo --pretty`.
+7. Terminal screenshot from `python tools/flowmemory_release_transcript.py --pretty`.
+8. Optional GPU-angle screenshot from `python tools/compute_reuse_router.py demo --pretty`.
 7. Terminal screenshot from `python tools/fmm0_boundary_bisim.py demo --pretty`.
 8. Terminal screenshot from `python tools/fmm0_forbidden_core.py demo --pretty`.
 9. Terminal screenshot from `python tools/fmm0_witness_pack.py demo --pretty`.

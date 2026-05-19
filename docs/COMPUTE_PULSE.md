@@ -130,6 +130,34 @@ A ComputePulse-aware scheduler can:
 
 This turns memory from a passive log into an active compute primitive.
 
+## Compute Reuse Router
+
+The Compute Reuse Router is the first executable scheduler artifact for this
+idea.
+
+It takes:
+
+- a request commitment set;
+- a prior ComputePulse ledger;
+- a reuse policy.
+
+It returns:
+
+- `REUSE_PRIOR_COMPUTE`; or
+- `RUN_GPU_JOB`.
+
+The router only reuses prior work when rootfield, model, input, runtime,
+lineage, freshness, executor, hardware, and attestation policy checks pass.
+Runtime drift, unverified evidence, missing attestation, and stale artifacts
+force a new run.
+
+```bash
+python tools/compute_reuse_router.py demo --pretty
+```
+
+This is the practical GPU angle: not faster silicon, but less repeated work
+because compute memory is proof-backed.
+
 ## Related Future Pulses
 
 ComputePulse is the base AI/GPU workload artifact. It naturally leads to three adjacent memory signals:

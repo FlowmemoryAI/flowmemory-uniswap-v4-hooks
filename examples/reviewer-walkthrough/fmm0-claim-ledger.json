@@ -292,7 +292,7 @@
         "python tools/fmm0_witness_pack.py demo --pretty",
         "python -m unittest tools.test_fmm0_witness_pack"
       ],
-      "expected": "Witness Pack reports 7/7 local conformance layers, PENDING public Base Sepolia evidence, and 0 escaped faults.",
+      "expected": "Witness Pack reports 8/8 local conformance layers, PENDING public Base Sepolia evidence, and 0 escaped faults.",
       "nonClaims": [
         "not_production_verifier_infrastructure",
         "not_semantic_truth",
@@ -321,6 +321,52 @@
         "not_hook_time_receipt_metadata",
         "not_semantic_truth",
         "not_model_correctness"
+      ]
+    },
+    {
+      "id": "FM-C18",
+      "category": "ai_compute_reuse",
+      "claim": "Compute Reuse Router turns proof-backed compute memory into a scheduler decision.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/ComputeReuseRouter.v0.md",
+        "docs/COMPUTE_REUSE_ROUTER.md",
+        "tools/compute_reuse_router.py",
+        "examples/compute-reuse-router/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/compute_reuse_router.py demo --pretty",
+        "python -m unittest tools.test_compute_reuse_router"
+      ],
+      "expected": "Compute Reuse Router reuses 1 safe prior compute artifact and rejects 4/4 unsafe reuse attempts.",
+      "nonClaims": [
+        "not_gpu_acceleration",
+        "not_cuda_optimizer",
+        "not_kv_cache_storage",
+        "not_model_correctness"
+      ]
+    },
+    {
+      "id": "FM-C19",
+      "category": "launch_packaging",
+      "claim": "FlowMemory Release Transcript gives one offline object for passed, pending, and non-claimed launch state.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FlowMemoryReleaseTranscript.v0.md",
+        "docs/FLOWMEMORY_RELEASE_TRANSCRIPT.md",
+        "tools/flowmemory_release_transcript.py",
+        "examples/release-transcript/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/flowmemory_release_transcript.py --pretty",
+        "python -m unittest tools.test_flowmemory_release_transcript"
+      ],
+      "expected": "Release Transcript reports local PASS, public receipt evidence PENDING, and explicit non-claims.",
+      "nonClaims": [
+        "not_live_base_mainnet",
+        "not_audited_custody",
+        "not_fund_protection",
+        "not_production_verifier_infrastructure"
       ]
     },
     {

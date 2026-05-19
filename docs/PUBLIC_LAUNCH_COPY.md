@@ -194,6 +194,12 @@ This names each impossible machine history and the FlowMemory fault that catches
 15. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
     a reviewer-readable memory-model casebook.
 
+16. Compute Reuse Router shows the AI/GPU angle without overclaiming hardware:
+    proof-backed compute memory can become a scheduler reuse decision.
+
+17. FlowMemory Release Transcript gives one offline object for what passed,
+    what is pending, and what is explicitly not claimed.
+
 ## Demo Caption
 
 ```text
@@ -224,6 +230,14 @@ Release Evidence Gate: public receipt evidence stays pending until the Base Sepo
 FlowLitmus casebook: each impossible history has a name, a boundary reason, and a fault.
 ```
 
+```text
+Compute Reuse Router: the fastest GPU job is the one the system can prove it does not need to run again.
+```
+
+```text
+Release Transcript: local evidence is green, public receipt evidence is pending, and overclaims are fenced out.
+```
+
 ## Founder Script
 
 FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse.
@@ -247,6 +261,13 @@ are supported by repo evidence and which release evidence is still pending.
 
 The Skeptic Walkthrough is the credibility layer: it maps each public claim to
 evidence, commands, expected results, status, and explicit non-claims.
+
+The Release Transcript is the launch packaging layer: one offline object says
+what passed, what is still pending, and what the repo does not claim.
+
+The Compute Reuse Router is the GPU workflow bridge: it does not make a chip
+faster, but it shows how proof-backed memory can stop safe prior compute from
+being run twice.
 
 ## Skeptic Replies
 

@@ -15,7 +15,9 @@ It now also names the runtime model and its state surface:
 - **FMM-0 Boundary Bisimulation**;
 - **FMM-0 Forbidden Core Extractor**;
 - **FMM-0 Witness Pack**;
-- **FlowPulse Boundary ABI**.
+- **FlowPulse Boundary ABI**;
+- **Compute Reuse Router**;
+- **FlowMemory Release Transcript**.
 
 ## Command
 
@@ -113,6 +115,8 @@ It checks:
 - FMM-0 Forbidden Core Extractor;
 - FMM-0 Witness Pack;
 - FlowPulse Boundary ABI;
+- Compute Reuse Router;
+- FlowMemory Release Transcript;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:
@@ -136,7 +140,9 @@ flowchart LR
     Bisim --> Core["Forbidden Core shrinks impossible histories"]
     Core --> ABI["FlowPulse Boundary ABI checks event drift"]
     ABI --> Witness["Witness Pack bundles local evidence"]
-    Witness --> Serial["FlowSerial checks serial history"]
+    Witness --> Router["Compute Reuse Router checks reuse decisions"]
+    Router --> Transcript["Release Transcript summarizes launch state"]
+    Transcript --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
 
@@ -255,6 +261,14 @@ evidence pending until real receipt data exists.
 FlowPulse Boundary ABI is the hook/model drift layer. It checks that the
 Solidity event surface still excludes receipt-only fields and matches the
 runtime boundary assumptions.
+
+Compute Reuse Router is the GPU workflow bridge. It proves when committed
+compute memory can become a scheduler reuse decision, and when unsafe reuse must
+be rejected.
+
+FlowMemory Release Transcript is the launch packaging layer. It gives one
+offline object for passed local evidence, pending public evidence, and explicit
+non-claims.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.

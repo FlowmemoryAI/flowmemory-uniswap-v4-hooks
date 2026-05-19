@@ -135,6 +135,7 @@ Use these lines for the broader vision:
 - FMM-0 Forbidden Core Extractor is the launch diagnostic layer: it shrinks impossible histories to one-minimal failing cores.
 - FMM-0 Witness Pack is the launch evidence-quality layer: it bundles every local conformance surface into one reproducible packet.
 - FlowPulse Boundary ABI is the hook/model drift layer: it checks the Solidity event surface against FMM-0 assumptions.
+- Compute Reuse Router is the GPU workflow bridge: it proves when prior committed compute can be reused and when unsafe reuse must be rejected.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -151,6 +152,12 @@ Most infrastructure asks how to make execution faster. FlowMemory asks what syst
 GPUs compute. FlowMemory remembers.
 
 Logs tell humans what happened. FlowMemory gives machines artifacts they can verify, route around, and reuse.
+
+The Compute Reuse Router turns that into a scheduler decision. It checks
+rootfield, model, input, runtime, lineage, freshness, executor, hardware, and
+attestation policy before letting a request reuse prior compute. That is the
+honest GPU angle: FlowMemory does not make the chip faster; it makes the system
+less wasteful because memory becomes proof-backed and actionable.
 
 ## BoundaryFission Founder Script
 

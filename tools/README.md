@@ -73,6 +73,58 @@ Tests:
 python -m unittest tools.test_memory_trace
 ```
 
+## `compute_reuse_router.py`
+
+Routes AI/GPU compute reuse through ComputePulse commitments.
+
+This is the executable version of the GPU workflow claim: FlowMemory does not
+make a GPU chip faster; it lets a scheduler prove when a prior committed
+compute artifact can be reused instead of rerunning work.
+
+Run the demo:
+
+```bash
+python tools/compute_reuse_router.py demo --pretty
+```
+
+Route one request:
+
+```bash
+python tools/compute_reuse_router.py route \
+  --request examples/compute-reuse-router/request.reuse.json \
+  --ledger examples/compute-reuse-router/ledger.example.json \
+  --policy examples/compute-reuse-router/policy.example.json \
+  --out /tmp/compute-reuse-decision.json \
+  --pretty
+
+python tools/compute_reuse_router.py verify-decision \
+  --decision /tmp/compute-reuse-decision.json
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_compute_reuse_router
+```
+
+## `flowmemory_release_transcript.py`
+
+Builds one offline launch transcript from the local evidence gates.
+
+It answers what passed, what remains pending, and what is explicitly not
+claimed. It does not use live RPC.
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+python tools/flowmemory_release_transcript.py --json --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flowmemory_release_transcript
+```
+
 ## `axiom_writ.py`
 
 Mints, verifies, and applies AxiomWrit objects.

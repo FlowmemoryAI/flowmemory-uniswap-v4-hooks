@@ -225,6 +225,20 @@ A GPU job can produce a model output, an embedding batch, a checkpoint, a contex
 
 FlowMemory can turn them into memory signals.
 
+The next step is not just recording that compute happened. It is using that
+memory before scheduling the next job.
+
+The Compute Reuse Router does that:
+
+```text
+ComputeReuseRequest + ComputePulse ledger + reuse policy
+  -> REUSE_PRIOR_COMPUTE or RUN_GPU_JOB
+```
+
+It rejects unsafe reuse when runtime commitments drift, evidence is unverified,
+attestation is missing, or the artifact is stale. This is where FlowMemory moves
+from passive provenance to active compute routing.
+
 ## What Feels Impossible
 
 The public demo should make one idea visible:
@@ -262,7 +276,7 @@ That is execution becoming memory.
 8. **PulseRetire Queue**: receipt-driven retirement for speculative model outputs, cache reuse, and next actions.
 9. **FlowMMU**: receipt-backed virtual memory where agents fault if they dereference transaction facts before reader mapping.
 10. **FlowQuiesce**: receipt-triggered quiescence epochs for active agent and GPU workflow frames.
-11. **Compute Reuse Router**: a system that checks whether a committed output or context already exists before scheduling GPU work.
+11. **Compute Reuse Router**: an executable scheduler gate that checks whether a committed output or context already exists before scheduling GPU work.
 12. **KV Lineage Ledger**: off-chain commitments for KV-cache/context artifacts so long-running agent systems can identify reusable context without putting private data on-chain.
 13. **DePIN Compute Receipts**: a receipt model for GPU marketplaces where paid work emits a ComputePulse tied to model, input, output, executor, and attestation references.
 14. **Memory-Native Wallets**: wallets that show not just transactions, but verified memory timelines connected to protocols, agents, compute, and intent.

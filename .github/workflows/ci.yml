@@ -79,6 +79,7 @@ jobs:
             docs/EXPERT_REVIEW_PROMPT.md
             docs/BEYOND_DEFI_MEMORY.md
             docs/COMPUTE_PULSE.md
+            docs/COMPUTE_REUSE_ROUTER.md
             docs/PROOF_EXPLORER_CONCEPT.md
             docs/PROOF_CARRIED_AGENT_MEMORY.md
             docs/AXIOM_WRIT.md
@@ -89,6 +90,7 @@ jobs:
             docs/FLOW_QUIESCE.md
             docs/FLOW_SERIAL.md
             docs/FLOWPULSE_BOUNDARY_ABI.md
+            docs/FLOWMEMORY_RELEASE_TRANSCRIPT.md
             docs/FLOWMEMORY_RUNTIME_MODEL.md
             docs/FLOWMEMORY_MEMORY_MODEL.md
             docs/FLOWLITMUS_LAUNCH_DEMO.md
@@ -113,6 +115,8 @@ jobs:
             specs/FMM-0-WitnessPack.v0.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
+            specs/ComputeReuseRouter.v0.md
+            specs/FlowMemoryReleaseTranscript.v0.md
             specs/MachineMemoryTrace.v0.md
             specs/AgentMemoryPack.v0.md
             specs/AxiomWrit.v0.md
@@ -129,6 +133,14 @@ jobs:
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
+            examples/compute-reuse-router/README.md
+            examples/compute-reuse-router/ledger.example.json
+            examples/compute-reuse-router/policy.example.json
+            examples/compute-reuse-router/request.reuse.json
+            examples/compute-reuse-router/requests.example.json
+            examples/compute-reuse-router/expected-output.txt
+            examples/release-transcript/README.md
+            examples/release-transcript/expected-output.txt
             examples/axiom-writ/README.md
             examples/axiom-writ/flowpulse-evidence.fixture.json
             examples/axiom-writ/claim.swap-boundary.json
@@ -259,6 +271,8 @@ jobs:
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
+            tools/compute_reuse_router.py
+            tools/flowmemory_release_transcript.py
             tools/axiom_writ.py
             tools/axiom_patch.py
             tools/boundary_fission.py
@@ -326,6 +340,21 @@ jobs:
 
       - name: Check pulse trace example
         run: python tools/memory_trace.py verify-trace examples/pulse-trace/trace.example.json --output /tmp/agent-memory-pack.json
+
+      - name: Test Compute Reuse Router
+        run: python -m unittest tools.test_compute_reuse_router
+
+      - name: Check Compute Reuse Router demo
+        run: |
+          python tools/compute_reuse_router.py demo --pretty
+          python tools/compute_reuse_router.py route --request examples/compute-reuse-router/request.reuse.json --ledger examples/compute-reuse-router/ledger.example.json --policy examples/compute-reuse-router/policy.example.json --out /tmp/compute-reuse-decision.json --pretty
+          python tools/compute_reuse_router.py verify-decision --decision /tmp/compute-reuse-decision.json
+
+      - name: Test FlowMemory release transcript
+        run: python -m unittest tools.test_flowmemory_release_transcript
+
+      - name: Check FlowMemory release transcript
+        run: python tools/flowmemory_release_transcript.py --pretty
 
       - name: Test AxiomWrit
         run: python -m unittest tools.test_axiom_writ

@@ -84,6 +84,18 @@ Check FlowPulse Boundary ABI conformance:
 python tools/flowpulse_boundary_abi.py check --pretty
 ```
 
+Check Compute Reuse Router:
+
+```bash
+python tools/compute_reuse_router.py demo --pretty
+```
+
+Build the FlowMemory Release Transcript:
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or

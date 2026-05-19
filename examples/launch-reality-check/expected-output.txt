@@ -27,6 +27,8 @@ Runtime model
   PASS  FlowPulse Boundary ABI: Solidity event and runtime model conformance
   PASS  FlowSerial: receipt-linearizability for machine cognition
   PASS  FlowLitmus: executable forbidden outcomes
+  PASS  Compute Reuse Router: proof-backed GPU workflow reuse decisions
+  PASS  Release Transcript: canonical launch state in one offline object
 
 Required launch artifacts
   PASS  README.md
@@ -40,12 +42,15 @@ Required launch artifacts
   PASS  specs/FMM-0-BoundaryBisimulation.v0.md
   PASS  specs/FMM-0-ForbiddenCore.v0.md
   PASS  specs/FMM-0-WitnessPack.v0.md
+  PASS  specs/ComputeReuseRouter.v0.md
+  PASS  specs/FlowMemoryReleaseTranscript.v0.md
   PASS  docs/FLOW_SERIAL.md
   PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
   PASS  docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
   PASS  docs/FLOWMEMORY_RUNTIME_MODEL.md
   PASS  docs/FLOWMEMORY_MEMORY_MODEL.md
   PASS  docs/FLOWPULSE_BOUNDARY_ABI.md
+  PASS  docs/FLOWMEMORY_RELEASE_TRANSCRIPT.md
   PASS  docs/FMM_0_CONFORMANCE_MATRIX.md
   PASS  docs/FMM_0_PHASE_TABLE.md
   PASS  docs/FMM_0_COUNTEREXAMPLE_FORGE.md
@@ -53,6 +58,7 @@ Required launch artifacts
   PASS  docs/FMM_0_BOUNDARY_BISIMULATION.md
   PASS  docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md
   PASS  docs/FMM_0_WITNESS_PACK.md
+  PASS  docs/COMPUTE_REUSE_ROUTER.md
   PASS  docs/SKEPTIC_REVIEW_WALKTHROUGH.md
   PASS  docs/LAUNCH_CLAIM_LEDGER.md
   PASS  examples/flow-litmus/litmus.manifest.json
@@ -65,6 +71,8 @@ Required launch artifacts
   PASS  examples/fmm0-boundary-bisimulation/expected-output.txt
   PASS  examples/fmm0-forbidden-core/expected-output.txt
   PASS  examples/fmm0-witness-pack/expected-output.txt
+  PASS  examples/compute-reuse-router/expected-output.txt
+  PASS  examples/release-transcript/expected-output.txt
   PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
   PASS  tools/flowpulse_boundary_abi.py
@@ -74,6 +82,8 @@ Required launch artifacts
   PASS  tools/fmm0_boundary_bisim.py
   PASS  tools/fmm0_forbidden_core.py
   PASS  tools/fmm0_witness_pack.py
+  PASS  tools/compute_reuse_router.py
+  PASS  tools/flowmemory_release_transcript.py
   PASS  tools/memory_consistency_card.py
   PASS  tools/render_fmm0_matrix.py
   PASS  tools/reviewer_walkthrough.py
