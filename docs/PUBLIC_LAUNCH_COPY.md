@@ -72,6 +72,16 @@ FlowMemory is not trying to make agents remember more. It is making impossible m
 
 The model name is FMM-0: FlowMemory Agent Memory Model.
 
+## Five-Line Public Post
+
+```text
+The swap is not the memory.
+The transaction is the proof envelope.
+The FlowPulse is the memory artifact.
+FMM-0 treats agent memory as a consistency model, not retrieval.
+FlowMemory makes impossible machine histories fail; public Base Sepolia receipt evidence is pending and not claimed.
+```
+
 For the phase-space demo:
 
 ```bash

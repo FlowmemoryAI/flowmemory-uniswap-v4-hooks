@@ -28,6 +28,20 @@ This is not a trading engine.
 
 This is a memory hook.
 
+## Start Here
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+```
+
+Status:
+
+```text
+Local FMM-0 consistency surface: PASS
+Public Base Sepolia receipt evidence: PENDING
+Production verifier infrastructure: NOT_CLAIMED
+```
+
 ## Launch Theorem
 
 FlowMemory is not trying to make agents remember more. It is making impossible
