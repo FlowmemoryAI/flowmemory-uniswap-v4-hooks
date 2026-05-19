@@ -22,7 +22,7 @@ What this release-prep surface includes:
 - FMM-0 witness, counterexample, closure, boundary, and forbidden-core harnesses.
 - FlowPulse Boundary ABI gate for hook-time and receipt-time schema separation.
 - Cache Lineage Gate, Compute Reuse Router, and Compute Reuse Consistency for proof-backed AI/GPU workflow reuse discipline.
-- Release Transcript, Reviewer Quickstart, Skeptic Walkthrough, and Launch Reality Check.
+- Public Claim Gate, Release Transcript, Reviewer Quickstart, Skeptic Walkthrough, and Launch Reality Check.
 
 Verified locally before this entry:
 

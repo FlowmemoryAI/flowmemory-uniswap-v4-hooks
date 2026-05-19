@@ -20,6 +20,7 @@ It now also names the runtime model and its state surface:
 - **Compute Reuse Router**;
 - **Compute Reuse Consistency**;
 - **FlowMemory Release Transcript**.
+- **Public Claim Gate**.
 
 ## Command
 
@@ -50,6 +51,12 @@ For the pending-safe public receipt evidence gate, run:
 
 ```bash
 python tools/verify_release_evidence.py --pretty
+```
+
+For the public launch-copy claim gate, run:
+
+```bash
+python tools/public_claim_gate.py --pretty
 ```
 
 For the forbidden-outcomes casebook, run:
@@ -121,6 +128,7 @@ It checks:
 - Compute Reuse Router;
 - Compute Reuse Consistency;
 - FlowMemory Release Transcript;
+- Public Claim Gate;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:

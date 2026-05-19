@@ -12,6 +12,7 @@ consistent with that boundary.
 
 ```bash
 python tools/flowmemory_release_transcript.py --pretty
+python tools/public_claim_gate.py --pretty
 python tools/launch_reality_check.py --pretty
 python tools/compute_reuse_consistency.py demo --pretty
 forge test -vvv
@@ -22,6 +23,7 @@ forge test -vvv
 | Command | Why it matters |
 | --- | --- |
 | `flowmemory_release_transcript.py` | One offline object for passed local evidence, pending public evidence, and explicit non-claims. |
+| `public_claim_gate.py` | Public launch copy can mention risky claims only as explicit non-claims. |
 | `launch_reality_check.py` | Hook boundary model, launch artifact inventory, and forbidden-outcome runtime checks. |
 | `compute_reuse_consistency.py` | Cache lineage, compute fingerprint, and receipt-bound history must all pass before reuse becomes live. |
 | `forge test -vvv` | The hook remains narrow: `afterSwap`, PoolManager-gated, zero hook delta, no custody, no fee/routing/accounting path. |

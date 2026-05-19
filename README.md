@@ -978,6 +978,7 @@ tools/
   compute_reuse_consistency.py     # Tests cache, compute, and receipt-history reuse gates
   compute_reuse_router.py          # Routes safe reuse of committed AI/GPU work
   flowmemory_release_transcript.py # Builds the canonical offline launch transcript
+  public_claim_gate.py             # Checks public launch copy for unguarded overclaims
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
   axiom_patch.py                   # Applies AxiomPatch allow/deny/downgrade decisions
   boundary_fission.py              # Applies proof-triggered working-memory fission

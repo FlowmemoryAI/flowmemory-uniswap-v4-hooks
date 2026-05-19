@@ -24,6 +24,7 @@ except ModuleNotFoundError:  # pragma: no cover
 REPORT_SCHEMA = "flowmemory.launch_reality_check.v0"
 REQUIRED_FILES = [
     "README.md",
+    "CHANGELOG.md",
     "contracts/FlowMemoryAfterSwapHook.sol",
     "contracts/FlowPulse.sol",
     "specs/FlowPulse-BoundaryABI.v0.md",
@@ -85,6 +86,7 @@ REQUIRED_FILES = [
     "tools/compute_reuse_consistency.py",
     "tools/compute_reuse_router.py",
     "tools/flowmemory_release_transcript.py",
+    "tools/public_claim_gate.py",
     "tools/memory_consistency_card.py",
     "tools/render_fmm0_matrix.py",
     "tools/reviewer_walkthrough.py",
@@ -123,6 +125,7 @@ RUNTIME_LINES = [
     "Compute Reuse Router: proof-backed GPU workflow reuse decisions",
     "Compute Reuse Consistency: cache, compute, and receipt-history gates",
     "Release Transcript: canonical launch state in one offline object",
+    "Public Claim Gate: launch copy overclaims stay fenced as non-claims",
 ]
 NON_CLAIMS = [
     "no live mainnet deployment claim",

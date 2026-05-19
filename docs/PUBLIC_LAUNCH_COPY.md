@@ -16,6 +16,7 @@ Run these first:
 
 ```bash
 python tools/flowmemory_release_transcript.py --pretty
+python tools/public_claim_gate.py --pretty
 python tools/launch_reality_check.py --pretty
 python tools/compute_reuse_consistency.py demo --pretty
 forge test -vvv

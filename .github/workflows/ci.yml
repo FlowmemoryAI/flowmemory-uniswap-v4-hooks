@@ -41,6 +41,7 @@ jobs:
         run: |
           required=(
             README.md
+            CHANGELOG.md
             CONTRIBUTING.md
             SECURITY.md
             .github/pull_request_template.md
@@ -288,6 +289,7 @@ jobs:
             tools/compute_reuse_consistency.py
             tools/compute_reuse_router.py
             tools/flowmemory_release_transcript.py
+            tools/public_claim_gate.py
             tools/axiom_writ.py
             tools/axiom_patch.py
             tools/boundary_fission.py
@@ -385,6 +387,12 @@ jobs:
 
       - name: Check FlowMemory release transcript
         run: python tools/flowmemory_release_transcript.py --pretty
+
+      - name: Test Public Claim Gate
+        run: python -m unittest tools.test_public_claim_gate
+
+      - name: Check Public Claim Gate
+        run: python tools/public_claim_gate.py --pretty
 
       - name: Test AxiomWrit
         run: python -m unittest tools.test_axiom_writ

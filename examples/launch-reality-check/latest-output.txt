@@ -31,9 +31,11 @@ Runtime model
   PASS  Compute Reuse Router: proof-backed GPU workflow reuse decisions
   PASS  Compute Reuse Consistency: cache, compute, and receipt-history gates
   PASS  Release Transcript: canonical launch state in one offline object
+  PASS  Public Claim Gate: launch copy overclaims stay fenced as non-claims
 
 Required launch artifacts
   PASS  README.md
+  PASS  CHANGELOG.md
   PASS  contracts/FlowMemoryAfterSwapHook.sol
   PASS  contracts/FlowPulse.sol
   PASS  specs/FlowPulse-BoundaryABI.v0.md
@@ -95,6 +97,7 @@ Required launch artifacts
   PASS  tools/compute_reuse_consistency.py
   PASS  tools/compute_reuse_router.py
   PASS  tools/flowmemory_release_transcript.py
+  PASS  tools/public_claim_gate.py
   PASS  tools/memory_consistency_card.py
   PASS  tools/render_fmm0_matrix.py
   PASS  tools/reviewer_walkthrough.py
