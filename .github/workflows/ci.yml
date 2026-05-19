@@ -93,6 +93,8 @@ jobs:
             docs/LAUNCH_REALITY_CHECK.md
             docs/FMM_0_CONFORMANCE_MATRIX.md
             docs/MEMORY_CONSISTENCY_CARD.md
+            docs/SKEPTIC_REVIEW_WALKTHROUGH.md
+            docs/LAUNCH_CLAIM_LEDGER.md
             specs/FMM-0.v0.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
@@ -211,6 +213,9 @@ jobs:
             examples/memory-consistency-card/README.md
             examples/memory-consistency-card/expected-output.txt
             examples/memory-consistency-card/latest-output.txt
+            examples/reviewer-walkthrough/README.md
+            examples/reviewer-walkthrough/fmm0-claim-ledger.json
+            examples/reviewer-walkthrough/expected-output.txt
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -225,6 +230,7 @@ jobs:
             tools/launch_reality_check.py
             tools/memory_consistency_card.py
             tools/render_fmm0_matrix.py
+            tools/reviewer_walkthrough.py
             releases/base-sepolia/README.md
           )
 
@@ -350,3 +356,9 @@ jobs:
 
       - name: Check memory consistency card
         run: python tools/memory_consistency_card.py --pretty
+
+      - name: Test reviewer walkthrough
+        run: python -m unittest tools.test_reviewer_walkthrough
+
+      - name: Check reviewer walkthrough
+        run: python tools/reviewer_walkthrough.py --pretty

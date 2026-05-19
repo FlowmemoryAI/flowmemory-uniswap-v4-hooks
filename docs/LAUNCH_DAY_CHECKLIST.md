@@ -24,6 +24,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] Release language does not claim txHash/logIndex are known during hook execution.
 - [ ] `python tools/launch_reality_check.py --pretty` passes and produces the screenshot text.
 - [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
+- [ ] `python tools/reviewer_walkthrough.py --pretty` passes and shows each launch claim with evidence/status/non-claims.
 - [ ] Public launch copy uses [PUBLIC_LAUNCH_COPY.md](PUBLIC_LAUNCH_COPY.md).
 
 ## If Base Sepolia Evidence Is Ready
@@ -51,6 +52,7 @@ Allowed:
 - FlowMemory Reality Check;
 - FlowMemory Memory Consistency Card;
 - FMM-0 draft memory model;
+- FMM-0 Skeptic Walkthrough;
 - executable forbidden outcomes for machine histories.
 - receipt-bound memory consistency model.
 
@@ -74,3 +76,4 @@ Not allowed:
 - Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
 - Agent memory should be checked like a consistency model, not retrieved like text.
 - Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
+- Every launch claim has a command, and every overclaim has a red line.

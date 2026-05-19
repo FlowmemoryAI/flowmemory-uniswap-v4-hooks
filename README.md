@@ -78,6 +78,39 @@ FMM-0 is not a production standard, not semantic truth, and not a mainnet deploy
 
 See [specs/FMM-0.v0.md](specs/FMM-0.v0.md), [docs/FLOWMEMORY_MEMORY_MODEL.md](docs/FLOWMEMORY_MEMORY_MODEL.md), and [docs/FMM_0_CONFORMANCE_MATRIX.md](docs/FMM_0_CONFORMANCE_MATRIX.md).
 
+## 10-Minute Skeptic Review
+
+FlowMemory's launch claim is reviewable.
+
+Run:
+
+```bash
+python tools/reviewer_walkthrough.py --pretty
+```
+
+This command walks through the repo like a skeptical engineer:
+
+1. hook boundary claims;
+2. non-interference claims;
+3. receipt-separation claims;
+4. FMM-0 runtime consistency claims;
+5. public release evidence status.
+
+Each claim maps to files, commands, expected outcomes, current status, and explicit non-claims.
+
+Expected result:
+
+```text
+Local FMM-0 consistency surface: PASS
+FlowLitmus forbidden outcomes: PASS
+Public Base Sepolia receipt evidence: PENDING
+Production verifier infrastructure: NOT_CLAIMED
+```
+
+Every launch claim has a command, and every overclaim has a red line.
+
+See [docs/SKEPTIC_REVIEW_WALKTHROUGH.md](docs/SKEPTIC_REVIEW_WALKTHROUGH.md), [docs/LAUNCH_CLAIM_LEDGER.md](docs/LAUNCH_CLAIM_LEDGER.md), and [examples/reviewer-walkthrough/](examples/reviewer-walkthrough/).
+
 ## Memory Consistency Card
 
 Run the claim-to-evidence scorecard:
@@ -587,6 +620,8 @@ docs/
   LAUNCH_REALITY_CHECK.md          # One-command launch screenshot guide
   FLOWMEMORY_MEMORY_MODEL.md       # FMM-0 memory model overview
   FMM_0_CONFORMANCE_MATRIX.md      # Generated FMM-0 rule/evidence matrix
+  SKEPTIC_REVIEW_WALKTHROUGH.md    # 10-minute claim-to-evidence review path
+  LAUNCH_CLAIM_LEDGER.md           # Claim status, commands, and non-claims
   MEMORY_CONSISTENCY_CARD.md       # Claim-to-evidence consistency scorecard
   LAUNCH_SPRINT_SUMMARY.md         # Launch package summary and remaining evidence gaps
   PUBLIC_LAUNCH_COPY.md            # Public launch post, founder script, and skeptic replies
@@ -618,6 +653,7 @@ tools/
   launch_reality_check.py          # Screenshot-ready launch harness around FlowLitmus
   memory_consistency_card.py       # Maps launch claims to executable consistency evidence
   render_fmm0_matrix.py            # Renders the FMM-0 conformance matrix
+  reviewer_walkthrough.py          # Renders the launch claim ledger for skeptics
 specs/
   FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
@@ -647,6 +683,7 @@ examples/
   flow-litmus/                     # Executable runtime consistency suite
   launch-reality-check/            # Screenshot guide and expected launch output
   memory-model/                    # FMM-0 manifest and conformance matrix inputs
+  reviewer-walkthrough/            # Claim ledger and expected skeptic output
   memory-consistency-card/          # Claim-to-evidence card output
 releases/
   base-sepolia/README.md           # Staging area for public release evidence

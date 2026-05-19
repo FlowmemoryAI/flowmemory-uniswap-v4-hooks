@@ -468,3 +468,39 @@ Tests:
 ```bash
 python -m unittest tools.test_fmm0_manifest
 ```
+
+## `reviewer_walkthrough.py`
+
+Renders the FMM-0 Skeptic Walkthrough from `examples/reviewer-walkthrough/fmm0-claim-ledger.json`.
+
+This is the launch credibility layer:
+
+```text
+Every launch claim has a command, and every overclaim has a red line.
+```
+
+Run:
+
+```bash
+python tools/reviewer_walkthrough.py --pretty
+```
+
+Write the screenshot text:
+
+```bash
+python tools/reviewer_walkthrough.py --pretty \
+  --write examples/reviewer-walkthrough/expected-output.txt
+```
+
+Regenerate the markdown walkthrough:
+
+```bash
+python tools/reviewer_walkthrough.py \
+  --markdown docs/SKEPTIC_REVIEW_WALKTHROUGH.md
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_reviewer_walkthrough
+```

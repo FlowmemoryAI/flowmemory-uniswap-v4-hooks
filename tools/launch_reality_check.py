@@ -32,11 +32,15 @@ REQUIRED_FILES = [
     "docs/FLOWMEMORY_RUNTIME_MODEL.md",
     "docs/FLOWMEMORY_MEMORY_MODEL.md",
     "docs/FMM_0_CONFORMANCE_MATRIX.md",
+    "docs/SKEPTIC_REVIEW_WALKTHROUGH.md",
+    "docs/LAUNCH_CLAIM_LEDGER.md",
     "examples/flow-litmus/litmus.manifest.json",
     "examples/memory-model/fmm0.manifest.json",
+    "examples/reviewer-walkthrough/fmm0-claim-ledger.json",
     "tools/flow_litmus.py",
     "tools/memory_consistency_card.py",
     "tools/render_fmm0_matrix.py",
+    "tools/reviewer_walkthrough.py",
 ]
 BOUNDARY_LINES = [
     "swap != memory",

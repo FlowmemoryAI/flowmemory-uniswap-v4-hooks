@@ -27,6 +27,12 @@ For the claim-to-evidence launch scorecard, run:
 python tools/memory_consistency_card.py --pretty
 ```
 
+For the 10-minute skeptic review packet, run:
+
+```bash
+python tools/reviewer_walkthrough.py --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around

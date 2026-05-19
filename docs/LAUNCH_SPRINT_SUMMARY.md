@@ -32,6 +32,8 @@ The repo now presents a stack rather than a loose set of ideas:
   model for machine histories.
 - `FlowMemory Memory Consistency Card`: a claim-to-evidence scorecard that shows
   FlowMemory is treating agent memory as a consistency model, not retrieval.
+- `FMM-0 Skeptic Walkthrough`: a claim ledger that maps every launch claim to
+  evidence, commands, expected results, status, and explicit non-claims.
 
 ## Launch Command
 
@@ -53,6 +55,12 @@ Use this as the launch positioning scorecard:
 python tools/memory_consistency_card.py --pretty
 ```
 
+Use this as the reviewer credibility packet:
+
+```bash
+python tools/reviewer_walkthrough.py --pretty
+```
+
 Expected core thesis:
 
 ```text
@@ -70,6 +78,8 @@ forge test -vvv
 python -m unittest tools.test_read_flowpulse_logs tools.test_memory_trace tools.test_axiom_writ tools.test_axiom_patch tools.test_boundary_fission tools.test_pulse_retire tools.test_flow_mmu tools.test_flow_quiesce tools.test_flow_serial tools.test_flow_litmus tools.test_launch_reality_check tools.test_memory_consistency_card
 python tools/launch_reality_check.py --pretty
 python tools/memory_consistency_card.py --pretty
+python -m unittest tools.test_reviewer_walkthrough
+python tools/reviewer_walkthrough.py --pretty
 git diff --check
 ```
 
@@ -91,6 +101,7 @@ FlowSerial gives receipt-linearizability.
 FlowLitmus makes forbidden outcomes executable.
 FlowMemory Reality Check shows live histories pass and impossible histories fault.
 Memory Consistency Card maps the launch claim to evidence and marks public-chain evidence pending.
+Skeptic Walkthrough maps every public claim to evidence, commands, expected result, and non-claims.
 ```
 
 ## What To Share First
@@ -99,7 +110,8 @@ Memory Consistency Card maps the launch claim to evidence and marks public-chain
 2. README `Launch Reality Check` section.
 3. Terminal screenshot from `python tools/launch_reality_check.py --pretty`.
 4. Terminal screenshot from `python tools/memory_consistency_card.py --pretty`.
-5. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
+5. Terminal screenshot from `python tools/reviewer_walkthrough.py --pretty`.
+6. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
 
 ## Remaining Launch Gaps
 

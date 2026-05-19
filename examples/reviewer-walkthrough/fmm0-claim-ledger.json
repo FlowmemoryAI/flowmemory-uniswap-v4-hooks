@@ -1,0 +1,205 @@
+{
+  "schema": "flowmemory.fmm0.claim_ledger.v0",
+  "title": "FMM-0 Skeptic Walkthrough Claim Ledger",
+  "safeLaunchWording": "FlowMemory defines FMM-0, a receipt-bound memory consistency model for machine histories.",
+  "boundaryModel": [
+    "the swap is not the memory",
+    "the transaction is the proof envelope",
+    "the FlowPulse is the memory artifact",
+    "the hook does not know txHash/logIndex during execution",
+    "reader/verifier attaches receipt metadata later"
+  ],
+  "claims": [
+    {
+      "id": "FM-C01",
+      "category": "hook_boundary",
+      "claim": "Hook emits FlowPulse at the Uniswap v4 afterSwap boundary.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "contracts/FlowMemoryAfterSwapHook.sol",
+        "contracts/FlowPulse.sol",
+        "test/FlowMemoryAfterSwapHook.t.sol"
+      ],
+      "commands": [
+        "forge test --match-test testAfterSwapHookEmitsFlowPulseAndReturnsZeroHookDelta -vvv"
+      ],
+      "expected": "FlowPulse is emitted and the hook returns the afterSwap selector with zero hook delta.",
+      "nonClaims": [
+        "not_swap_memory",
+        "not_custody",
+        "not_swap_control"
+      ]
+    },
+    {
+      "id": "FM-C02",
+      "category": "hook_boundary",
+      "claim": "Hook returns zero hook delta.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "contracts/FlowMemoryAfterSwapHook.sol",
+        "test/FlowMemoryAfterSwapHook.t.sol"
+      ],
+      "commands": [
+        "forge test --match-test testAfterSwapHookEmitsFlowPulseAndReturnsZeroHookDelta -vvv"
+      ],
+      "expected": "No custom accounting delta is returned.",
+      "nonClaims": [
+        "not_custom_accounting",
+        "not_balance_change_engine"
+      ]
+    },
+    {
+      "id": "FM-C03",
+      "category": "non_interference",
+      "claim": "Hook has no custody, fee, routing, or custom-accounting path.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "contracts/FlowMemoryAfterSwapHook.sol",
+        "contracts/FlowMemoryHookPlanner.sol",
+        "docs/SECURITY_MODEL.md"
+      ],
+      "commands": [
+        "forge test --match-test testPlannerRejectsCustomAccountingAndExtraHookFlags -vvv"
+      ],
+      "expected": "Planner rejects custom-accounting and extra hook flags.",
+      "nonClaims": [
+        "not_custody",
+        "not_fee_engine",
+        "not_routing_engine",
+        "not_fund_protection"
+      ]
+    },
+    {
+      "id": "FM-C04",
+      "category": "receipt_separation",
+      "claim": "Hook does not know txHash/logIndex during execution.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "contracts/FlowPulse.sol",
+        "docs/EVENT_MODEL.md",
+        "docs/FLOWMEMORY_RUNTIME_MODEL.md",
+        "test/FlowMemoryAfterSwapHook.t.sol"
+      ],
+      "commands": [
+        "forge test --match-test testHookEventSchemasExcludeTxHashAndLogIndexAssumptions -vvv"
+      ],
+      "expected": "FlowPulse schema excludes txHash, transactionIndex, and logIndex.",
+      "nonClaims": [
+        "not_txhash_at_hook_time",
+        "not_logindex_at_hook_time"
+      ]
+    },
+    {
+      "id": "FM-C05",
+      "category": "receipt_separation",
+      "claim": "Reader/verifier attaches receipt metadata later.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "tools/read_flowpulse_logs.py",
+        "tools/test_read_flowpulse_logs.py",
+        "docs/READER_VERIFIER_ARCHITECTURE.md"
+      ],
+      "commands": [
+        "python -m unittest tools.test_read_flowpulse_logs"
+      ],
+      "expected": "Reader output separates hook log payload from txHash/logIndex receipt facts.",
+      "nonClaims": [
+        "not_hook_time_receipt_metadata",
+        "not_semantic_truth"
+      ]
+    },
+    {
+      "id": "FM-C06",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 defines legal and impossible machine histories around FlowPulse receipt boundaries.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0.v0.md",
+        "docs/FLOWMEMORY_MEMORY_MODEL.md",
+        "examples/memory-model/fmm0.manifest.json",
+        "docs/FMM_0_CONFORMANCE_MATRIX.md"
+      ],
+      "commands": [
+        "python tools/render_fmm0_matrix.py --check"
+      ],
+      "expected": "FMM-0 matrix reports local model status PASS and public release evidence PENDING.",
+      "nonClaims": [
+        "not_production_standard",
+        "not_production_verifier_infrastructure"
+      ]
+    },
+    {
+      "id": "FM-C07",
+      "category": "fmm0_runtime",
+      "claim": "FlowSerial catches impossible schedules.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "tools/flow_serial.py",
+        "tools/test_flow_serial.py",
+        "examples/flow-serial/"
+      ],
+      "commands": [
+        "python -m unittest tools.test_flow_serial"
+      ],
+      "expected": "Retrocausal receipt claims, rollback, and split-brain writes fault.",
+      "nonClaims": [
+        "not_semantic_truth",
+        "not_model_correctness"
+      ]
+    },
+    {
+      "id": "FM-C08",
+      "category": "fmm0_runtime",
+      "claim": "FlowLitmus makes forbidden outcomes executable.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "tools/flow_litmus.py",
+        "tools/test_flow_litmus.py",
+        "examples/flow-litmus/litmus.manifest.json"
+      ],
+      "commands": [
+        "python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json"
+      ],
+      "expected": "FlowLitmus reports 8/8 passed.",
+      "nonClaims": [
+        "not_ai_memory_verifier_network",
+        "not_model_correctness"
+      ]
+    },
+    {
+      "id": "FM-C09",
+      "category": "public_release_evidence",
+      "claim": "Public Base Sepolia receipt evidence is pending.",
+      "status": "PENDING",
+      "evidenceFiles": [
+        "releases/base-sepolia/flowpulse-evidence.json"
+      ],
+      "commands": [
+        "python tools/read_flowpulse_logs.py --pretty"
+      ],
+      "expected": "A future release evidence file contains observed FlowPulse logs and reader-derived txHash/logIndex.",
+      "nonClaims": [
+        "not_live_base_mainnet",
+        "not_verified_deployment_yet"
+      ]
+    },
+    {
+      "id": "FM-C10",
+      "category": "explicit_non_claim",
+      "claim": "Production verifier infrastructure is not claimed.",
+      "status": "NOT_CLAIMED",
+      "evidenceFiles": [
+        "docs/LAUNCH_REALITY_CHECK.md",
+        "docs/PUBLIC_LAUNCH_COPY.md",
+        "docs/MEMORY_CONSISTENCY_CARD.md"
+      ],
+      "commands": [],
+      "expected": "Launch copy keeps production verifier infrastructure out of the claim surface.",
+      "nonClaims": [
+        "not_production_verifier_infrastructure",
+        "not_audited_runtime",
+        "not_mainnet_proven"
+      ]
+    }
+  ]
+}

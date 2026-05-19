@@ -55,6 +55,15 @@ It maps the claim to evidence: hook boundary, FlowPulse emission, receipt
 metadata separation, reader-derived proof envelope, FlowSerial, FlowLitmus, and
 pending public Base Sepolia receipt evidence.
 
+For skeptical reviewers:
+
+```bash
+python tools/reviewer_walkthrough.py --pretty
+```
+
+This maps every launch claim to files, commands, expected results, status, and
+explicit non-claims.
+
 ## Technical Thread
 
 1. FlowMemory is not another swap hook. It is a memory hook.
@@ -89,6 +98,9 @@ pending public Base Sepolia receipt evidence.
 
 10. The model name is FMM-0: FlowMemory Agent Memory Model.
 
+11. The skeptic walkthrough makes the claim surface reviewable: every launch
+    claim has a command, and every overclaim has a red line.
+
 ## Demo Caption
 
 ```text
@@ -97,6 +109,10 @@ FlowMemory Reality Check: live histories pass, impossible histories fault.
 
 ```text
 Memory Consistency Card: most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
+```
+
+```text
+FMM-0 Skeptic Walkthrough: every launch claim has a command, and every overclaim has a red line.
 ```
 
 ## Founder Script
@@ -116,6 +132,9 @@ machines a way to tell live histories from impossible ones.
 
 The Memory Consistency Card turns that into a scorecard. It shows which claims
 are supported by repo evidence and which release evidence is still pending.
+
+The Skeptic Walkthrough is the credibility layer: it maps each public claim to
+evidence, commands, expected results, status, and explicit non-claims.
 
 ## Skeptic Replies
 
@@ -171,3 +190,4 @@ are attached by reader/verifier infrastructure.
 - receipt-bound memory consistency model;
 - claim-to-evidence launch scorecard;
 - public Base Sepolia evidence pending until the release record is filled.
+- every launch claim has a command, and every overclaim has a red line.

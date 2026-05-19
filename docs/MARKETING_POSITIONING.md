@@ -36,6 +36,7 @@ Most hooks modify execution. FlowMemory emits memory.
 - Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
 - FlowMemory defines a receipt-bound memory consistency model for machine histories.
 - Retrieval asks what context is relevant. FlowMemory asks whether the history is possible.
+- Every launch claim has a command, and every overclaim has a red line.
 
 ## Category Framing
 
@@ -90,6 +91,7 @@ FlowMemory can connect:
 - executable forbidden outcomes for agent runtime consistency;
 - memory consistency cards that map public claims to executable evidence;
 - FMM-0 conformance matrices for receipt-bound machine histories;
+- skeptic claim ledgers that map launch claims to evidence, commands, and non-claims;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -117,6 +119,7 @@ Use these lines for the broader vision:
 - FlowMemory does not just give agents memory. It gives them forbidden outcomes.
 - The Memory Consistency Card is the launch scoreboard: local consistency evidence passes, public Base Sepolia receipt evidence remains pending until the release record is filled.
 - FMM-0 is the name of the draft launch model: a receipt-bound consistency model for agent memory.
+- The FMM-0 Skeptic Walkthrough is the launch credibility layer: every claim maps to evidence, status, expected output, and red-line non-claims.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -201,3 +204,13 @@ The launch anchor is still the Uniswap v4 `afterSwap` hook. The swap is not the 
 The Memory Consistency Card maps that claim to evidence. It shows the afterSwap boundary, intentional FlowPulse emission, receipt metadata separation, reader-derived proof envelopes, FlowSerial receipt-linearizability, and FlowLitmus forbidden outcomes. Then it marks the public Base Sepolia release evidence as pending until the release record is filled.
 
 The short version: most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
+
+## FMM-0 Skeptic Walkthrough Founder Script
+
+FlowMemory is not asking reviewers to trust a metaphor. It gives them a claim ledger.
+
+The launch anchor is a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The swap is not the memory. The transaction is the proof envelope. The FlowPulse is the memory artifact.
+
+FMM-0 is the memory model. The Skeptic Walkthrough maps each public claim to files, commands, expected results, status, and explicit non-claims. Local FMM-0 consistency surface: PASS. FlowLitmus forbidden outcomes: PASS. Public Base Sepolia receipt evidence: PENDING. Production verifier infrastructure: NOT CLAIMED.
+
+Every launch claim has a command, and every overclaim has a red line.

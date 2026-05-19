@@ -34,6 +34,7 @@ The swap transaction is not the memory. The transaction is the proof envelope. T
 | FMM-0 memory model is named and mapped | `specs/FMM-0.v0.md`, `docs/FLOWMEMORY_MEMORY_MODEL.md`, `docs/FMM_0_CONFORMANCE_MATRIX.md`, `examples/memory-model/fmm0.manifest.json` | Defines the draft FlowMemory Agent Memory Model and maps each rule to evidence. |
 | One-command launch screenshot exists | `docs/LAUNCH_REALITY_CHECK.md`, `tools/launch_reality_check.py`, `examples/launch-reality-check/` | Prints the boundary model, hook invariants, FlowLitmus table, and exact safe public claim. |
 | Claim-to-evidence scorecard exists | `docs/MEMORY_CONSISTENCY_CARD.md`, `tools/memory_consistency_card.py`, `examples/memory-consistency-card/` | Frames FlowMemory as a receipt-bound memory consistency model and marks public Base Sepolia evidence pending. |
+| Skeptic claim ledger exists | `docs/SKEPTIC_REVIEW_WALKTHROUGH.md`, `docs/LAUNCH_CLAIM_LEDGER.md`, `tools/reviewer_walkthrough.py`, `examples/reviewer-walkthrough/` | Maps each launch claim to evidence, commands, expected results, status, and explicit non-claims. |
 | CI enforces required launch artifacts | `.github/workflows/ci.yml` | Required-file check includes reader, launch docs, and release staging folder. |
 
 ## Verification Commands
@@ -56,6 +57,8 @@ python -m unittest tools.test_launch_reality_check
 python tools/launch_reality_check.py --pretty
 python -m unittest tools.test_memory_consistency_card
 python tools/memory_consistency_card.py --pretty
+python -m unittest tools.test_reviewer_walkthrough
+python tools/reviewer_walkthrough.py --pretty
 git diff --check
 ```
 
@@ -81,6 +84,7 @@ GitHub Actions should show both jobs green:
 - FMM-0 draft memory model and conformance matrix.
 - FlowMemory Reality Check for a screenshot-ready launch command.
 - Memory Consistency Card for claim-to-evidence launch positioning.
+- FMM-0 Skeptic Walkthrough for claim-to-command reviewability.
 
 ## What Still Requires Live Evidence
 

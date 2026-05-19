@@ -31,11 +31,15 @@ Required launch artifacts
   PASS  docs/FLOWMEMORY_RUNTIME_MODEL.md
   PASS  docs/FLOWMEMORY_MEMORY_MODEL.md
   PASS  docs/FMM_0_CONFORMANCE_MATRIX.md
+  PASS  docs/SKEPTIC_REVIEW_WALKTHROUGH.md
+  PASS  docs/LAUNCH_CLAIM_LEDGER.md
   PASS  examples/flow-litmus/litmus.manifest.json
   PASS  examples/memory-model/fmm0.manifest.json
+  PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
   PASS  tools/memory_consistency_card.py
   PASS  tools/render_fmm0_matrix.py
+  PASS  tools/reviewer_walkthrough.py
 
 FlowLitmus Runtime Consistency Suite
 
