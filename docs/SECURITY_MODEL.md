@@ -26,7 +26,7 @@ This repository is intentionally narrow because the first public primitive shoul
 - The hook is not an accounting engine.
 - The hook is not a fee engine.
 - The hook is not a routing engine.
-- The hook is not a swap-control engine.
+- The hook is not a swap-economics engine.
 - The hook is a memory-signal emission surface.
 
 ## Rootfield Authorization Boundary

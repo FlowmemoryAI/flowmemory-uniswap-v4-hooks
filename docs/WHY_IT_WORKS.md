@@ -61,7 +61,7 @@ Here "after" means after the swap operation inside the PoolManager lifecycle. It
 | donate hooks | Later | Not part of the first memory-signal path. |
 | return-delta hooks | Avoid for first release | Adds custom accounting complexity. |
 
-FlowMemory does not need to control the swap to make the moment memorable.
+FlowMemory does not need to control swap economics to make the moment memorable.
 
 ## Why Event-First Is Better
 

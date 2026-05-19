@@ -54,12 +54,13 @@ The hook emits the memory signal. The reader proves where it landed.
 
 `afterSwap` is the right first boundary because execution has already happened.
 
-FlowMemory does not need to control the swap to make the moment memorable.
+FlowMemory does not need to control swap economics to make the moment memorable.
 
 At this lifecycle point:
 
 - the PoolManager has reached the post-swap callback boundary;
-- the hook is not deciding whether the swap happens;
+- the hook is not pricing, routing, custodying, or accounting for the swap;
+- strict mode can reject malformed or missing memory payloads for pools that intentionally opt into this hook;
 - the hook is not taking custody;
 - the hook is not changing accounting;
 - the hook is not routing order flow;
@@ -119,6 +120,42 @@ The hook does not try to make the swap cheaper, faster, or more complex.
 
 It makes the execution boundary memorable.
 
+## Beyond The Hook
+
+The Uniswap v4 hook is the first public edge of a larger category: memory for execution.
+
+Execution is not enough. Systems need memory.
+
+FlowMemory starts with DeFi because Uniswap v4 gives a clean public proof surface: a real lifecycle boundary, a real receipt, a real log, and a real artifact.
+
+The same pattern can extend beyond DeFi:
+
+- swaps can emit FlowPulse memory signals;
+- GPU jobs can emit ComputePulse memory signals;
+- KV/context reuse can emit CachePulse memory signals;
+- model outputs can emit ModelPulse memory signals;
+- autonomous workflows can emit AgentPulse memory trails;
+- agents can cite proof-backed memory instead of vague internal context;
+- Rootflow can connect execution memory across protocols, compute, and applications.
+
+For DeFi:
+
+```text
+swap boundary -> FlowPulse -> transaction receipt -> memory artifact -> Rootflow graph
+```
+
+For AI compute:
+
+```text
+GPU job boundary -> ComputePulse -> compute receipt -> memory artifact -> Rootflow graph
+```
+
+GPUs compute. FlowMemory remembers.
+
+The fastest GPU job is the one a system can prove it does not need to run again.
+
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -133,7 +170,7 @@ It makes the execution boundary memorable.
 - Not a token.
 - Not a fee engine.
 - Not a routing engine.
-- Not a swap-control engine.
+- Not a swap-economics engine.
 - Not transaction scraping.
 - Not analytics after the fact.
 - Not an AI summary layer.
@@ -192,6 +229,8 @@ The hook is deliberately minimal because the primitive is not execution control.
 | Receipt metadata excluded | `txHash`, `transactionIndex`, and `logIndex` are reader-derived after the transaction is mined. |
 | CREATE2 planning | The hook address can be mined to match the v4 `afterSwap` permission bit. |
 
+Strict payload validation is intentional. For pools that opt into this hook, malformed or missing FlowMemory `hookData` is rejected because the primitive is not passive analytics. It is explicit memory emission from a verified boundary.
+
 ## Repository Map
 
 ```text
@@ -209,6 +248,9 @@ docs/
   UNISWAP_V4_COMPATIBILITY.md      # ABI, hook flag, and upstream compatibility assumptions
   WHY_IT_WORKS.md                  # Why the hook creates a new primitive
   EVENT_MODEL.md                   # FlowPulse artifact and reader-derived receipt metadata
+  BEYOND_DEFI_MEMORY.md            # Larger FlowMemory thesis across DeFi, AI, GPU work, and agents
+  COMPUTE_PULSE.md                 # ComputePulse architecture for AI/GPU memory artifacts
+  PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
   SECURITY_MODEL.md                # Threat model, invariants, non-goals
@@ -219,7 +261,7 @@ docs/
   BASE_SEPOLIA_OPERATOR_RUNBOOK.md # Operator path from deployment to proof
   BASE_SEPOLIA_RELEASE_RECORD_TEMPLATE.md
   LAUNCH_ARTIFACT_AUDIT.md         # Prompt-to-artifact launch readiness map
-  LAUNCH_DAY_CHECKLIST.md          # May 19 launch guardrails
+  LAUNCH_DAY_CHECKLIST.md          # May 19 launch checks
   PUBLIC_CANARY_TEMPLATE.md        # Public Base Sepolia evidence announcement template
   MARKETING_POSITIONING.md         # Founder script, category language, and one-liners
   OFFICIAL_REFERENCES.md           # Upstream Uniswap docs and address assumptions

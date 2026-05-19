@@ -103,7 +103,7 @@ The hook returns zero hook delta.
 The hook does not take custody.
 The hook does not implement dynamic fees.
 The hook does not implement custom accounting.
-The hook does not route or control swaps.
+The hook does not route swaps or control swap economics. Strict payload validation can reject malformed memory payloads for pools that intentionally opt into this hook.
 ```
 
 ## Reviewer Signoff

@@ -18,7 +18,7 @@ The swap transaction is not the memory.
 The transaction is the proof envelope.
 The FlowPulse is the memory artifact.
 
-This hook does not custody funds, control swaps, route orders, alter fees, or change accounting. It emits a memory signal from the completed `afterSwap` boundary.
+This hook does not custody funds, control swap economics, route orders, alter fees, or change accounting. It emits a memory signal from the completed `afterSwap` boundary.
 
 Evidence:
 
