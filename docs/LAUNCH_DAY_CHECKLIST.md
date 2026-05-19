@@ -21,6 +21,8 @@ Execution already exists. Memory is the missing layer.
 - [ ] Release language does not claim audited custody.
 - [ ] Release language does not claim the hook controls swaps or protects funds.
 - [ ] Release language does not claim txHash/logIndex are known during hook execution.
+- [ ] `python tools/launch_reality_check.py --pretty` passes and produces the screenshot text.
+- [ ] Public launch copy uses [PUBLIC_LAUNCH_COPY.md](PUBLIC_LAUNCH_COPY.md).
 
 ## If Base Sepolia Evidence Is Ready
 
@@ -44,6 +46,8 @@ Allowed:
 - Base Sepolia release path;
 - CI-tested public implementation;
 - protocol-level memory signal primitive.
+- FlowMemory Reality Check;
+- executable forbidden outcomes for machine histories.
 
 Not allowed:
 
@@ -61,3 +65,4 @@ Not allowed:
 - The transaction is the proof envelope. The FlowPulse is the memory artifact.
 - This is not a trading hook. This is a memory hook.
 - FlowMemory gives DeFi a way to remember.
+- FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
