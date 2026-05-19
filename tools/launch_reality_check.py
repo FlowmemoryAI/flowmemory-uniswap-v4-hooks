@@ -62,6 +62,7 @@ REQUIRED_FILES = [
     "docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md",
     "docs/FMM_0_WITNESS_PACK.md",
     "docs/AGENT_COMMERCE_MEMORY.md",
+    "docs/AGENT_COMMERCE_STACK.md",
     "docs/CACHE_LINEAGE_GATE.md",
     "docs/COMPUTE_REUSE_CONSISTENCY.md",
     "docs/COMPUTE_REUSE_ROUTER.md",

@@ -20,6 +20,7 @@ What this release-prep surface includes:
 - FMM-0: a receipt-bound memory consistency model for machine histories.
 - FlowLitmus: executable forbidden outcomes for impossible machine histories.
 - FMM-0 witness, counterexample, closure, boundary, and forbidden-core harnesses.
+- Memory-Native Agent Commerce Stack doc for the agent-commerce architecture in one public artifact.
 - FlowPulse Boundary ABI gate for hook-time and receipt-time schema separation.
 - Cache Lineage Gate, Compute Reuse Router, and Compute Reuse Consistency for proof-backed AI/GPU workflow reuse discipline.
 - Compute ChargeLine for matching AI/GPU compute payment to the memory-consistent compute route.
