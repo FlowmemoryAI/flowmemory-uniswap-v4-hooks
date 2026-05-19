@@ -133,6 +133,7 @@ Use these lines for the broader vision:
 - FMM-0 Closure Lab is the launch memory-algebra layer: it proves valid composition stays valid and invalid composition is rejected.
 - FMM-0 Boundary Bisimulation is the launch cross-layer layer: it catches FlowPulse projection drift between hook signal, receipt envelope, and runtime state.
 - FMM-0 Forbidden Core Extractor is the launch diagnostic layer: it shrinks impossible histories to one-minimal failing cores.
+- FMM-0 Witness Pack is the launch evidence-quality layer: it bundles every local conformance surface into one reproducible packet.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -311,3 +312,19 @@ FMM-0 catches impossible histories, then shrinks them to minimal forbidden cores
 
 That turns FlowMemory from a conformance suite into a debugging surface for
 agent runtimes, readers, and future compute-memory pipelines.
+
+## FMM-0 Witness Pack Founder Script
+
+The Witness Pack is not a new primitive. It is the evidence packet.
+
+It collects Phase Space, Counterexample Forge, Closure Lab, Boundary
+Bisimulation, Forbidden Core, FlowLitmus, the Memory Consistency Card, and the
+pending-safe release evidence gate into one reproducible launch output.
+
+The line:
+
+```text
+Local conformance is reproducible. Public receipt evidence stays pending until the release packet exists.
+```
+
+That is the honest launch posture: bold category claim, disciplined evidence.

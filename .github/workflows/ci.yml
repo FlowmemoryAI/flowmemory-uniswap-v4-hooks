@@ -98,6 +98,7 @@ jobs:
             docs/FMM_0_CLOSURE_LAB.md
             docs/FMM_0_BOUNDARY_BISIMULATION.md
             docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md
+            docs/FMM_0_WITNESS_PACK.md
             docs/MEMORY_CONSISTENCY_CARD.md
             docs/SKEPTIC_REVIEW_WALKTHROUGH.md
             docs/LAUNCH_CLAIM_LEDGER.md
@@ -107,6 +108,7 @@ jobs:
             specs/FMM-0-ClosureLab.v0.md
             specs/FMM-0-BoundaryBisimulation.v0.md
             specs/FMM-0-ForbiddenCore.v0.md
+            specs/FMM-0-WitnessPack.v0.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -242,6 +244,8 @@ jobs:
             examples/fmm0-forbidden-core/README.md
             examples/fmm0-forbidden-core/core-manifest.json
             examples/fmm0-forbidden-core/expected-output.txt
+            examples/fmm0-witness-pack/README.md
+            examples/fmm0-witness-pack/expected-output.txt
             examples/memory-consistency-card/README.md
             examples/memory-consistency-card/expected-output.txt
             examples/memory-consistency-card/latest-output.txt
@@ -265,6 +269,7 @@ jobs:
             tools/fmm0_closure_lab.py
             tools/fmm0_boundary_bisim.py
             tools/fmm0_forbidden_core.py
+            tools/fmm0_witness_pack.py
             tools/memory_consistency_card.py
             tools/render_fmm0_matrix.py
             tools/reviewer_walkthrough.py
@@ -421,6 +426,12 @@ jobs:
 
       - name: Check FMM-0 forbidden core
         run: python tools/fmm0_forbidden_core.py demo --pretty
+
+      - name: Test FMM-0 witness pack
+        run: python -m unittest tools.test_fmm0_witness_pack
+
+      - name: Check FMM-0 witness pack
+        run: python tools/fmm0_witness_pack.py demo --pretty
 
       - name: Test memory consistency card
         run: python -m unittest tools.test_memory_consistency_card

@@ -13,7 +13,8 @@ It now also names the runtime model and its state surface:
 - **FMM-0 Counterexample Forge**;
 - **FMM-0 Closure Lab**;
 - **FMM-0 Boundary Bisimulation**;
-- **FMM-0 Forbidden Core Extractor**.
+- **FMM-0 Forbidden Core Extractor**;
+- **FMM-0 Witness Pack**.
 
 ## Command
 
@@ -82,6 +83,12 @@ For the minimal forbidden-core diagnostic harness, run:
 python tools/fmm0_forbidden_core.py demo --pretty
 ```
 
+For the local witness packet, run:
+
+```bash
+python tools/fmm0_witness_pack.py demo --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around
@@ -97,6 +104,7 @@ It checks:
 - FMM-0 Closure Lab;
 - FMM-0 Boundary Bisimulation;
 - FMM-0 Forbidden Core Extractor;
+- FMM-0 Witness Pack;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:
@@ -118,7 +126,8 @@ flowchart LR
     Forge --> Closure["Closure Lab checks memory algebra"]
     Closure --> Bisim["Boundary Bisimulation checks projection drift"]
     Bisim --> Core["Forbidden Core shrinks impossible histories"]
-    Core --> Serial["FlowSerial checks serial history"]
+    Core --> Witness["Witness Pack bundles local evidence"]
+    Witness --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
 
@@ -229,6 +238,10 @@ projection without drift.
 Forbidden Core is the diagnostic layer. It shrinks impossible histories to the
 smallest mutation core that still violates FMM-0, so the failure becomes
 explainable instead of only rejected.
+
+The Witness Pack is the evidence-quality layer. It bundles the local
+conformance outputs into one reproducible packet and keeps public release
+evidence pending until real receipt data exists.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.

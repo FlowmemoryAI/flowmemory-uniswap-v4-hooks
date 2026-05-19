@@ -563,6 +563,28 @@ Tests:
 python -m unittest tools.test_fmm0_forbidden_core
 ```
 
+## `fmm0_witness_pack.py`
+
+Builds a deterministic local FMM-0 evidence bundle.
+
+This is the launch evidence-quality layer:
+
+```text
+FlowMemory has a reproducible local FMM-0 witness pack.
+```
+
+Run:
+
+```bash
+python tools/fmm0_witness_pack.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_fmm0_witness_pack
+```
+
 ## `render_fmm0_matrix.py`
 
 Renders the FMM-0 conformance matrix from `examples/memory-model/fmm0.manifest.json`.

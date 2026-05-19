@@ -278,6 +278,29 @@
       ]
     },
     {
+      "id": "FM-C16",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 Witness Pack bundles local conformance evidence into a reproducible packet.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0-WitnessPack.v0.md",
+        "docs/FMM_0_WITNESS_PACK.md",
+        "tools/fmm0_witness_pack.py",
+        "examples/fmm0-witness-pack/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/fmm0_witness_pack.py demo --pretty",
+        "python -m unittest tools.test_fmm0_witness_pack"
+      ],
+      "expected": "Witness Pack reports 7/7 local conformance layers, PENDING public Base Sepolia evidence, and 0 escaped faults.",
+      "nonClaims": [
+        "not_production_verifier_infrastructure",
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_live_base_mainnet"
+      ]
+    },
+    {
       "id": "FM-C10",
       "category": "public_release_evidence",
       "claim": "Public Base Sepolia receipt evidence is pending.",

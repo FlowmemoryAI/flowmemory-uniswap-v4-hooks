@@ -92,6 +92,15 @@ python tools/fmm0_forbidden_core.py demo --pretty
 This shrinks impossible histories into one-minimal diagnostic cores so an
 integrator can see the smallest reason a machine history failed.
 
+For the witness pack:
+
+```bash
+python tools/fmm0_witness_pack.py demo --pretty
+```
+
+This bundles the local conformance surface into one reproducible evidence
+packet while keeping public Base Sepolia evidence pending.
+
 For that, run the Memory Consistency Card:
 
 ```bash

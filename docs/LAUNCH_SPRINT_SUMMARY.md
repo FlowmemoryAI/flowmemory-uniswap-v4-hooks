@@ -40,6 +40,8 @@ The repo now presents a stack rather than a loose set of ideas:
   hook-to-receipt-to-runtime FlowPulse boundary projection.
 - `FMM-0 Forbidden Core Extractor`: a diagnostic minimizer that shrinks
   impossible histories into one-minimal forbidden cores.
+- `FMM-0 Witness Pack`: a reproducible local evidence packet for the launch
+  conformance surface.
 - `FlowMemory Memory Consistency Card`: a claim-to-evidence scorecard that shows
   FlowMemory is treating agent memory as a consistency model, not retrieval.
 - `FMM-0 Skeptic Walkthrough`: a claim ledger that maps every launch claim to
@@ -99,6 +101,12 @@ Use this as the minimal-core diagnostic proof point:
 python tools/fmm0_forbidden_core.py demo --pretty
 ```
 
+Use this as the local evidence packet:
+
+```bash
+python tools/fmm0_witness_pack.py demo --pretty
+```
+
 Use this as the reviewer credibility packet:
 
 ```bash
@@ -151,6 +159,8 @@ python -m unittest tools.test_fmm0_boundary_bisim
 python tools/fmm0_boundary_bisim.py demo --pretty
 python -m unittest tools.test_fmm0_forbidden_core
 python tools/fmm0_forbidden_core.py demo --pretty
+python -m unittest tools.test_fmm0_witness_pack
+python tools/fmm0_witness_pack.py demo --pretty
 python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
 python -m unittest tools.test_verify_release_evidence
@@ -179,6 +189,7 @@ FMM-0 Counterexample Forge gives the model adversarial negative tests.
 FMM-0 Closure Lab gives the model executable memory algebra.
 FMM-0 Boundary Bisimulation gives the model cross-layer projection checks.
 FMM-0 Forbidden Core Extractor gives the model minimal failure diagnostics.
+FMM-0 Witness Pack gives the model a reproducible local evidence packet.
 FlowSerial gives receipt-linearizability.
 FlowLitmus makes forbidden outcomes executable.
 FlowMemory Reality Check shows live histories pass and impossible histories fault.
@@ -198,9 +209,10 @@ FlowLitmus Forbidden Outcomes names each impossible history and the fault that c
 6. Terminal screenshot from `python tools/fmm0_closure_lab.py demo --pretty`.
 7. Terminal screenshot from `python tools/fmm0_boundary_bisim.py demo --pretty`.
 8. Terminal screenshot from `python tools/fmm0_forbidden_core.py demo --pretty`.
-9. Terminal screenshot from `python tools/memory_consistency_card.py --pretty`.
-10. Terminal screenshot from `python tools/reviewer_walkthrough.py --pretty`.
-11. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
+9. Terminal screenshot from `python tools/fmm0_witness_pack.py demo --pretty`.
+10. Terminal screenshot from `python tools/memory_consistency_card.py --pretty`.
+11. Terminal screenshot from `python tools/reviewer_walkthrough.py --pretty`.
+12. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
 
 ## Remaining Launch Gaps
 

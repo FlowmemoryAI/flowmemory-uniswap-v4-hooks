@@ -226,6 +226,31 @@ machine history is impossible instead of only seeing a generic invalid result.
 
 See [specs/FMM-0-ForbiddenCore.v0.md](specs/FMM-0-ForbiddenCore.v0.md), [docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md](docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md), and [examples/fmm0-forbidden-core/](examples/fmm0-forbidden-core/).
 
+## FMM-0 Witness Pack
+
+The Witness Pack bundles the local conformance evidence into one reproducible
+reviewer packet.
+
+Run:
+
+```bash
+python tools/fmm0_witness_pack.py demo --pretty
+```
+
+Expected result:
+
+```text
+local conformance layers passed: 7/7
+public Base Sepolia evidence: PENDING
+escaped faults: 0
+```
+
+This is the evidence-quality layer: local FMM-0 conformance is reproducible,
+while public Base Sepolia evidence remains pending until a real release packet
+exists.
+
+See [specs/FMM-0-WitnessPack.v0.md](specs/FMM-0-WitnessPack.v0.md), [docs/FMM_0_WITNESS_PACK.md](docs/FMM_0_WITNESS_PACK.md), and [examples/fmm0-witness-pack/](examples/fmm0-witness-pack/).
+
 ## 10-Minute Skeptic Review
 
 FlowMemory's launch claim is reviewable.

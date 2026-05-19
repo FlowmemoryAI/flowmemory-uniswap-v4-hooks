@@ -1,0 +1,21 @@
+FMM-0 Witness Pack
+
+Checks:
+  FMM-0 Phase Space                    PASS     illegal phase jumps caught
+  FMM-0 Counterexample Forge           PASS     12/12 caught
+  FMM-0 Closure Lab                    PASS     8/8 laws
+  FMM-0 Boundary Bisimulation          PASS     8/8 projections
+  FMM-0 Forbidden Core Extractor       PASS     10/10 cores
+  FlowLitmus                           PASS     8/8 forbidden outcomes
+  Memory Consistency Card              PASS     local surface pass
+  Public Base Sepolia Evidence         PENDING  release evidence pending-safe
+
+Summary:
+  local conformance layers passed: 7/7
+  public Base Sepolia evidence: PENDING
+  escaped faults: 0
+
+Result:
+  FlowMemory has a reproducible local FMM-0 witness pack.
+
+Witness Pack ID: sha256:d4e4de1c8e5e431852a43b18be14ba2aa22912ed966b101450d1e67813a90b3f

@@ -72,6 +72,12 @@ Check the FMM-0 Forbidden Core Extractor:
 python tools/fmm0_forbidden_core.py demo --pretty
 ```
 
+Build the FMM-0 Witness Pack:
+
+```bash
+python tools/fmm0_witness_pack.py demo --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or
