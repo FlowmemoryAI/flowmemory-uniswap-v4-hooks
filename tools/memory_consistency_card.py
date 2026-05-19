@@ -17,9 +17,12 @@ from pathlib import Path
 from typing import Any
 
 try:  # pragma: no cover
-    from tools import axiom_writ, fmm0_phase_table, launch_reality_check, verify_release_evidence
+    from tools import axiom_writ, fmm0_boundary_bisim, fmm0_closure_lab, fmm0_counterexample_forge, fmm0_phase_table, launch_reality_check, verify_release_evidence
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
+    import fmm0_boundary_bisim  # type: ignore
+    import fmm0_closure_lab  # type: ignore
+    import fmm0_counterexample_forge  # type: ignore
     import fmm0_phase_table  # type: ignore
     import launch_reality_check  # type: ignore
     import verify_release_evidence  # type: ignore
@@ -81,6 +84,27 @@ CONSISTENCY_LEVELS = [
     },
     {
         "id": "FM-C7",
+        "name": "Counterexample forge",
+        "claim": "FMM-0 catches adversarial counterexamples instead of only passing hand-written happy paths.",
+        "evidence": ["tools/fmm0_counterexample_forge.py", "docs/FMM_0_COUNTEREXAMPLE_FORGE.md", "examples/fmm0-counterexample-forge/expected-output.txt"],
+        "requiresCounterexampleForge": True,
+    },
+    {
+        "id": "FM-C8",
+        "name": "Closure lab",
+        "claim": "Valid receipt-bound memory histories stay valid under composition, and invalid composition is rejected.",
+        "evidence": ["tools/fmm0_closure_lab.py", "docs/FMM_0_CLOSURE_LAB.md", "examples/fmm0-closure-lab/expected-output.txt"],
+        "requiresClosureLab": True,
+    },
+    {
+        "id": "FM-C9",
+        "name": "Boundary bisimulation",
+        "claim": "The same FlowPulse boundary survives hook-to-receipt-to-runtime projection without drift.",
+        "evidence": ["tools/fmm0_boundary_bisim.py", "docs/FMM_0_BOUNDARY_BISIMULATION.md", "examples/fmm0-boundary-bisimulation/expected-output.txt"],
+        "requiresBoundaryBisim": True,
+    },
+    {
+        "id": "FM-C10",
         "name": "Public Base Sepolia evidence",
         "claim": "A public release record can attach txHash/logIndex evidence from a real deployed hook.",
         "evidence": [PUBLIC_RELEASE_EVIDENCE],
@@ -133,13 +157,51 @@ def phase_table_status() -> str:
     return "pass" if forbidden else "fail"
 
 
-def level_status(level: dict[str, Any], root: Path, litmus_status: str | None, phase_status: str | None) -> str:
+def counterexample_status() -> str:
+    try:
+        report = fmm0_counterexample_forge.build_report()
+    except Exception:
+        return "fail"
+    return "pass" if report.get("status") == "pass" and report.get("uncaught") == 0 else "fail"
+
+
+def closure_lab_status() -> str:
+    try:
+        report = fmm0_closure_lab.build_report()
+    except Exception:
+        return "fail"
+    return "pass" if report.get("status") == "pass" and report.get("escaped") == 0 else "fail"
+
+
+def boundary_bisim_status() -> str:
+    try:
+        report = fmm0_boundary_bisim.build_report()
+    except Exception:
+        return "fail"
+    return "pass" if report.get("status") == "pass" and report.get("escaped") == 0 else "fail"
+
+
+def level_status(
+    level: dict[str, Any],
+    root: Path,
+    litmus_status: str | None,
+    phase_status: str | None,
+    counterexample_forge_status: str | None,
+    closure_lab_status_value: str | None,
+    boundary_bisim_status_value: str | None,
+) -> str:
     if level.get("publicChainEvidence"):
         status = verify_release_evidence.build_report()["verdict"]["publicBaseSepoliaReceiptEvidence"].lower()
         return status
     if level.get("requiresLitmus") and litmus_status != "pass":
         return "fail"
     if level.get("requiresPhaseTable") and phase_status != "pass":
+        return "fail"
+    if level.get("requiresCounterexampleForge") and counterexample_forge_status != "pass":
+        return "fail"
+    if level.get("requiresClosureLab") and closure_lab_status_value != "pass":
+        return "fail"
+    if level.get("requiresBoundaryBisim") and boundary_bisim_status_value != "pass":
         return "fail"
     return "pass" if all(path_exists(root, path) for path in level["evidence"]) else "fail"
 
@@ -150,9 +212,12 @@ def build_card(run_litmus: bool = True) -> dict[str, Any]:
     litmus = reality.get("litmus")
     litmus_status = litmus.get("status") if isinstance(litmus, dict) else None
     phase_status = phase_table_status()
+    counterexample_forge_status = counterexample_status()
+    closure_lab_status_value = closure_lab_status()
+    boundary_bisim_status_value = boundary_bisim_status()
     levels = []
     for item in CONSISTENCY_LEVELS:
-        status = level_status(item, root, litmus_status, phase_status)
+        status = level_status(item, root, litmus_status, phase_status, counterexample_forge_status, closure_lab_status_value, boundary_bisim_status_value)
         evidence = [{"path": path, "exists": path_exists(root, path)} for path in item["evidence"]]
         levels.append({**item, "status": status, "evidence": evidence})
 

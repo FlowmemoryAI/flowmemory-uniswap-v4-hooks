@@ -189,6 +189,72 @@
       ]
     },
     {
+      "id": "FM-C12",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 Counterexample Forge catches generated impossible histories.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0-CounterexampleForge.v0.md",
+        "docs/FMM_0_COUNTEREXAMPLE_FORGE.md",
+        "tools/fmm0_counterexample_forge.py",
+        "examples/fmm0-counterexample-forge/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/fmm0_counterexample_forge.py demo --pretty",
+        "python -m unittest tools.test_fmm0_counterexample_forge"
+      ],
+      "expected": "The counterexample forge generates 12 impossible histories and FMM-0 catches 12/12.",
+      "nonClaims": [
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_production_verifier_infrastructure"
+      ]
+    },
+    {
+      "id": "FM-C13",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 Closure Lab preserves valid memory algebra and rejects invalid composition.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0-ClosureLab.v0.md",
+        "docs/FMM_0_CLOSURE_LAB.md",
+        "tools/fmm0_closure_lab.py",
+        "examples/fmm0-closure-lab/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/fmm0_closure_lab.py demo --pretty",
+        "python -m unittest tools.test_fmm0_closure_lab"
+      ],
+      "expected": "The closure lab checks 8 closure laws, preserves 4/4 valid closures, rejects 4/4 invalid closures, and reports 0 escaped.",
+      "nonClaims": [
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_production_verifier_infrastructure"
+      ]
+    },
+    {
+      "id": "FM-C14",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 Boundary Bisimulation catches cross-layer FlowPulse projection drift.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0-BoundaryBisimulation.v0.md",
+        "docs/FMM_0_BOUNDARY_BISIMULATION.md",
+        "tools/fmm0_boundary_bisim.py",
+        "examples/fmm0-boundary-bisimulation/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/fmm0_boundary_bisim.py demo --pretty",
+        "python -m unittest tools.test_fmm0_boundary_bisim"
+      ],
+      "expected": "Boundary Bisimulation checks 8 projections, preserves 4/4 valid bisimulations, rejects 4/4 drift cases, and reports 0 escaped.",
+      "nonClaims": [
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_production_verifier_infrastructure"
+      ]
+    },
+    {
       "id": "FM-C10",
       "category": "public_release_evidence",
       "claim": "Public Base Sepolia receipt evidence is pending.",

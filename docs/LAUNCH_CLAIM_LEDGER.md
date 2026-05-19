@@ -48,6 +48,24 @@ Check FMM-0 Phase Space:
 python tools/fmm0_phase_table.py demo --pretty
 ```
 
+Check the FMM-0 Counterexample Forge:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+Check the FMM-0 Closure Lab:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+Check FMM-0 Boundary Bisimulation:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or
@@ -89,6 +107,12 @@ Use:
 
 ```text
 Retrieval treats memory as text; FMM-0 treats machine history as a phase space with forbidden transitions.
+```
+
+Use:
+
+```text
+FMM-0 is not just a claim; it has adversarial counterexamples.
 ```
 
 Do not lead with "AI memory on Uniswap." Lead with the stronger systems claim:

@@ -475,6 +475,72 @@ Test the phase-table invariants:
 python -m unittest tools.test_fmm0_phase_table
 ```
 
+## `fmm0_counterexample_forge.py`
+
+Generates deterministic adversarial counterexamples against FMM-0 Phase Space.
+
+This is the negative-test layer:
+
+```text
+FMM-0 is not just a claim; it has adversarial counterexamples.
+```
+
+Run:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_fmm0_counterexample_forge
+```
+
+## `fmm0_closure_lab.py`
+
+Checks FMM-0 closure laws for receipt-bound memory composition.
+
+This is the memory-algebra layer:
+
+```text
+FMM-0 is closed under valid receipt-bound composition and rejects invalid memory algebra.
+```
+
+Run:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_fmm0_closure_lab
+```
+
+## `fmm0_boundary_bisim.py`
+
+Checks hook-to-receipt-to-runtime boundary projection.
+
+This is the cross-layer conformance layer:
+
+```text
+FlowPulse boundary semantics survive hook-to-receipt-to-runtime projection and reject cross-layer drift.
+```
+
+Run:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_fmm0_boundary_bisim
+```
+
 ## `render_fmm0_matrix.py`
 
 Renders the FMM-0 conformance matrix from `examples/memory-model/fmm0.manifest.json`.

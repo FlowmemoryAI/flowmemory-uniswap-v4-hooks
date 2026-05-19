@@ -9,7 +9,10 @@ FlowLitmus.
 It now also names the runtime model and its state surface:
 
 - **FMM-0: FlowMemory Agent Memory Model**;
-- **FMM-0 Phase Space**.
+- **FMM-0 Phase Space**;
+- **FMM-0 Counterexample Forge**;
+- **FMM-0 Closure Lab**;
+- **FMM-0 Boundary Bisimulation**.
 
 ## Command
 
@@ -54,6 +57,24 @@ For the phase-space demo, run:
 python tools/fmm0_phase_table.py demo --pretty
 ```
 
+For the adversarial counterexample harness, run:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+For the memory-algebra closure harness, run:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+For the cross-layer boundary projection harness, run:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around
@@ -65,6 +86,9 @@ It checks:
 - the narrow hook invariant surface;
 - required launch artifacts;
 - FMM-0 Phase Space;
+- FMM-0 Counterexample Forge;
+- FMM-0 Closure Lab;
+- FMM-0 Boundary Bisimulation;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:
@@ -82,7 +106,10 @@ flowchart LR
     Pulse --> Receipt["transaction proof envelope"]
     Receipt --> Reader["reader attaches txHash/logIndex"]
     Reader --> Phase["FMM-0 Phase Space"]
-    Phase --> Serial["FlowSerial checks serial history"]
+    Phase --> Forge["Counterexample Forge"]
+    Forge --> Closure["Closure Lab checks memory algebra"]
+    Closure --> Bisim["Boundary Bisimulation checks projection drift"]
+    Bisim --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
 
@@ -178,6 +205,17 @@ local output, a reader-derived FlowPulse, and an
 FMM-0-conforming history are different phases of machine state. A pre-receipt
 artifact cannot claim `txHash` or `logIndex`, and a local artifact cannot jump
 straight into live FMM-0 state.
+
+The Counterexample Forge is the adversarial layer. It mutates valid artifacts
+into impossible histories and requires FMM-0 to catch every one.
+
+The Closure Lab is the algebra layer. It checks that valid receipt-bound
+memory histories stay valid under composition and that invalid composition
+cannot escape.
+
+Boundary Bisimulation is the cross-layer layer. It checks that the same
+FlowPulse boundary survives hook signal, receipt envelope, and FMM-0 runtime
+projection without drift.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.

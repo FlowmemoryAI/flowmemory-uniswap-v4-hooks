@@ -155,7 +155,7 @@ def classify_artifact(table: dict[str, Any], artifact: dict[str, Any]) -> dict[s
 
     smuggled = []
     if artifact.get("receiptStage") == "before_receipt":
-        smuggled = [field for field in non_empty_receipt_fields(artifact) if field in {"txHash", "logIndex"}]
+        smuggled = non_empty_receipt_fields(artifact)
     if smuggled:
         body = {
             "schema": CLASSIFICATION_SCHEMA,
@@ -170,6 +170,27 @@ def classify_artifact(table: dict[str, Any], artifact: dict[str, Any]) -> dict[s
         }
         body["classificationId"] = digest(body)
         return body
+
+    if artifact.get("receiptStage") == "after_receipt" and artifact.get("authorityLevel") == "reader_derived":
+        missing = [
+            field
+            for field in ["txHash", "logIndex"]
+            if fields(artifact).get(field) in (None, "", [], {})
+        ]
+        if missing:
+            body = {
+                "schema": CLASSIFICATION_SCHEMA,
+                "artifactId": artifact.get("artifactId"),
+                "artifactType": artifact.get("artifactType"),
+                "status": "invalid",
+                "cellId": "INVALID",
+                "fault": "missing_reader_derived_receipt_metadata",
+                "missingFields": missing,
+                "reason": "reader-derived artifacts must include receipt metadata",
+                "notClaims": table.get("notClaims", []),
+            }
+            body["classificationId"] = digest(body)
+            return body
 
     cell = matching_cell(table, artifact)
     if not cell:

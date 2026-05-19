@@ -35,9 +35,13 @@ The hook is the launch anchor, but the hook alone is not the whole story.
 
 The hook emits a FlowPulse at a verified Uniswap v4 `afterSwap` boundary. The
 reader attaches receipt metadata later. FMM-0 Phase Space classifies
-machine artifacts before and after that receipt boundary. FlowSerial checks
-whether machine history can be serialized around those receipt-bound boundaries.
-FlowLitmus turns forbidden outcomes into executable tests.
+machine artifacts before and after that receipt boundary. Counterexample Forge
+mutates valid artifacts into impossible histories. Closure Lab checks whether
+valid receipt-bound histories remain valid under composition and invalid
+composition is rejected. Boundary Bisimulation checks whether the same
+FlowPulse boundary survives hook-to-receipt-to-runtime projection. FlowSerial
+checks whether machine history can be serialized around those receipt-bound
+boundaries. FlowLitmus turns forbidden outcomes into executable tests.
 
 The card turns that stack into one reviewer-facing artifact.
 
@@ -62,7 +66,10 @@ The card separates local repo evidence from public release evidence:
 | `FM-C4` | Machine histories can be serialized around FlowPulse receipts. | Local repo evidence |
 | `FM-C5` | Impossible histories fault under FlowLitmus. | Local executable evidence |
 | `FM-C6` | FMM-0 Phase Space catches illegal machine-state phase jumps. | Local executable evidence |
-| `FM-C7` | A real Base Sepolia release can attach public `txHash`/`logIndex` evidence. | Pending release evidence |
+| `FM-C7` | FMM-0 Counterexample Forge catches generated impossible histories. | Local executable evidence |
+| `FM-C8` | FMM-0 Closure Lab preserves valid memory algebra and rejects invalid composition. | Local executable evidence |
+| `FM-C9` | FMM-0 Boundary Bisimulation catches cross-layer FlowPulse projection drift. | Local executable evidence |
+| `FM-C10` | A real Base Sepolia release can attach public `txHash`/`logIndex` evidence. | Pending release evidence |
 
 This matters because it prevents the launch from collapsing into either hype or
 timidity.
@@ -85,13 +92,31 @@ The release evidence gate is:
 python tools/verify_release_evidence.py --pretty
 ```
 
-That command keeps `FM-C7` pending until `releases/base-sepolia/RELEASE_EVIDENCE.json`
+That command keeps `FM-C10` pending until `releases/base-sepolia/RELEASE_EVIDENCE.json`
 and its referenced receipt artifacts validate.
 
 The phase table demo is:
 
 ```bash
 python tools/fmm0_phase_table.py demo --pretty
+```
+
+The counterexample forge is:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+The closure lab is:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+Boundary bisimulation is:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
 ```
 
 ## What To Screenshot
@@ -113,7 +138,10 @@ Consistency ladder
   PASS    FM-C4  Receipt-linearizable histories
   PASS    FM-C5  Executable forbidden outcomes
   PASS    FM-C6  FMM-0 phase space
-  PENDING FM-C7  Public Base Sepolia evidence
+  PASS    FM-C7  Counterexample forge
+  PASS    FM-C8  Closure lab
+  PASS    FM-C9  Boundary bisimulation
+  PENDING FM-C10 Public Base Sepolia evidence
 ```
 
 That is the honest launch shape: local consistency model proven, public release
@@ -130,7 +158,7 @@ FlowMemory is not treating agent memory like retrieval. It is treating memory li
 Then:
 
 ```text
-The Uniswap v4 afterSwap hook emits the FlowPulse boundary signal. FMM-0 Phase Space classifies machine-state phases. FlowSerial gives receipt-linearizability. FlowLitmus makes forbidden histories executable. The Memory Consistency Card maps the claim to evidence and shows what is still pending for public-chain release.
+The Uniswap v4 afterSwap hook emits the FlowPulse boundary signal. FMM-0 Phase Space classifies machine-state phases. Counterexample Forge generates impossible histories and requires FMM-0 to catch them. Closure Lab checks valid and invalid memory algebra. Boundary Bisimulation checks that hook, receipt, and runtime projections preserve the same boundary. FlowSerial gives receipt-linearizability. FlowLitmus makes forbidden histories executable. The Memory Consistency Card maps the claim to evidence and shows what is still pending for public-chain release.
 ```
 
 Short version:

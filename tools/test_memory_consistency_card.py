@@ -12,7 +12,10 @@ class MemoryConsistencyCardTest(unittest.TestCase):
         self.assertEqual(memory_consistency_card.CARD_SCHEMA, card["schema"])
         self.assertEqual("fail", next(level for level in card["levels"] if level["id"] == "FM-C5")["status"])
         self.assertEqual("pass", next(level for level in card["levels"] if level["id"] == "FM-C6")["status"])
-        self.assertEqual("pending", next(level for level in card["levels"] if level["id"] == "FM-C7")["status"])
+        self.assertEqual("pass", next(level for level in card["levels"] if level["id"] == "FM-C7")["status"])
+        self.assertEqual("pass", next(level for level in card["levels"] if level["id"] == "FM-C8")["status"])
+        self.assertEqual("pass", next(level for level in card["levels"] if level["id"] == "FM-C9")["status"])
+        self.assertEqual("pending", next(level for level in card["levels"] if level["id"] == "FM-C10")["status"])
 
     def test_litmus_mode_passes_local_surface(self):
         card = memory_consistency_card.build_card(run_litmus=True)
@@ -27,11 +30,17 @@ class MemoryConsistencyCardTest(unittest.TestCase):
         self.assertIn("not retrieved like text", text)
         self.assertIn("Uniswap v4 afterSwap", text)
         self.assertIn("FMM-0 phase space", text)
+        self.assertIn("Counterexample forge", text)
+        self.assertIn("Closure lab", text)
+        self.assertIn("Boundary bisimulation", text)
 
     def test_output_marks_public_chain_evidence_pending(self):
         text = memory_consistency_card.render_card(memory_consistency_card.build_card(run_litmus=True))
         self.assertIn("PASS    FM-C6", text)
-        self.assertIn("PENDING FM-C7", text)
+        self.assertIn("PASS    FM-C7", text)
+        self.assertIn("PASS    FM-C8", text)
+        self.assertIn("PASS    FM-C9", text)
+        self.assertIn("PENDING FM-C10", text)
         self.assertIn("public Base Sepolia receipt evidence", text)
 
     def test_json_mode_returns_parseable_card(self):

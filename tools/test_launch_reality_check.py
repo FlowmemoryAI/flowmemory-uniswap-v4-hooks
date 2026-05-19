@@ -27,6 +27,9 @@ class LaunchRealityCheckTest(unittest.TestCase):
         self.assertIn("FlowSerial", text)
         self.assertIn("FlowLitmus", text)
         self.assertIn("FMM-0 Phase Space", text)
+        self.assertIn("FMM-0 Counterexample Forge", text)
+        self.assertIn("FMM-0 Closure Lab", text)
+        self.assertIn("FMM-0 Boundary Bisimulation", text)
 
     def test_output_includes_litmus_case_ids_when_suite_runs(self):
         text = launch_reality_check.render_report(launch_reality_check.build_report(run_litmus=True))

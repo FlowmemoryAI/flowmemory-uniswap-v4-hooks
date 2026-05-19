@@ -32,6 +32,12 @@ The repo now presents a stack rather than a loose set of ideas:
   model for machine histories.
 - `FMM-0 Phase Space`: a machine-state phase diagram that catches
   illegal local-only to FMM-0 live jumps and pre-receipt receipt-field claims.
+- `FMM-0 Counterexample Forge`: an adversarial harness that mutates valid
+  artifacts into impossible histories and checks that FMM-0 catches them.
+- `FMM-0 Closure Lab`: an executable memory-algebra harness that preserves
+  valid receipt-bound composition and rejects invalid composition.
+- `FMM-0 Boundary Bisimulation`: a cross-layer conformance harness that checks
+  hook-to-receipt-to-runtime FlowPulse boundary projection.
 - `FlowMemory Memory Consistency Card`: a claim-to-evidence scorecard that shows
   FlowMemory is treating agent memory as a consistency model, not retrieval.
 - `FMM-0 Skeptic Walkthrough`: a claim ledger that maps every launch claim to
@@ -65,6 +71,24 @@ Use this as the phase-space proof point:
 
 ```bash
 python tools/fmm0_phase_table.py demo --pretty
+```
+
+Use this as the adversarial proof point:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+Use this as the memory-algebra proof point:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+Use this as the cross-layer projection proof point:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
 ```
 
 Use this as the reviewer credibility packet:
@@ -111,6 +135,12 @@ python tools/launch_reality_check.py --pretty
 python tools/memory_consistency_card.py --pretty
 python -m unittest tools.test_fmm0_phase_table
 python tools/fmm0_phase_table.py demo --pretty
+python -m unittest tools.test_fmm0_counterexample_forge
+python tools/fmm0_counterexample_forge.py demo --pretty
+python -m unittest tools.test_fmm0_closure_lab
+python tools/fmm0_closure_lab.py demo --pretty
+python -m unittest tools.test_fmm0_boundary_bisim
+python tools/fmm0_boundary_bisim.py demo --pretty
 python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
 python -m unittest tools.test_verify_release_evidence
@@ -135,6 +165,9 @@ Short version:
 ```text
 FMM-0 is the FlowMemory Agent Memory Model.
 FMM-0 Phase Space gives machine histories a phase diagram.
+FMM-0 Counterexample Forge gives the model adversarial negative tests.
+FMM-0 Closure Lab gives the model executable memory algebra.
+FMM-0 Boundary Bisimulation gives the model cross-layer projection checks.
 FlowSerial gives receipt-linearizability.
 FlowLitmus makes forbidden outcomes executable.
 FlowMemory Reality Check shows live histories pass and impossible histories fault.
@@ -150,9 +183,12 @@ FlowLitmus Forbidden Outcomes names each impossible history and the fault that c
 2. README `Launch Reality Check` section.
 3. Terminal screenshot from `python tools/launch_reality_check.py --pretty`.
 4. Terminal screenshot from `python tools/fmm0_phase_table.py demo --pretty`.
-5. Terminal screenshot from `python tools/memory_consistency_card.py --pretty`.
-6. Terminal screenshot from `python tools/reviewer_walkthrough.py --pretty`.
-7. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
+5. Terminal screenshot from `python tools/fmm0_counterexample_forge.py demo --pretty`.
+6. Terminal screenshot from `python tools/fmm0_closure_lab.py demo --pretty`.
+7. Terminal screenshot from `python tools/fmm0_boundary_bisim.py demo --pretty`.
+8. Terminal screenshot from `python tools/memory_consistency_card.py --pretty`.
+9. Terminal screenshot from `python tools/reviewer_walkthrough.py --pretty`.
+10. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
 
 ## Remaining Launch Gaps
 

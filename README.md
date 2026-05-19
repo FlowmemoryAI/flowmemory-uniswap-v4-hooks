@@ -110,6 +110,93 @@ FMM-0 treats machine memory as phase space, not retrieval text.
 
 See [specs/FMM-0-PhaseTable.v0.md](specs/FMM-0-PhaseTable.v0.md), [docs/FMM_0_PHASE_TABLE.md](docs/FMM_0_PHASE_TABLE.md), and [examples/fmm0-phase-table/](examples/fmm0-phase-table/).
 
+## FMM-0 Counterexample Forge
+
+FlowMemory should not only pass examples.
+
+It should catch counterexamples.
+
+The FMM-0 Counterexample Forge mutates valid phase-space artifacts into
+impossible histories and checks whether FMM-0 rejects them.
+
+Run:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+Expected result:
+
+```text
+Generated counterexamples: 12
+Caught by FMM-0: 12/12
+Escaped: 0
+```
+
+This is the rigor layer: FMM-0 is not only a claim surface. It has adversarial
+counterexamples.
+
+See [specs/FMM-0-CounterexampleForge.v0.md](specs/FMM-0-CounterexampleForge.v0.md), [docs/FMM_0_COUNTEREXAMPLE_FORGE.md](docs/FMM_0_COUNTEREXAMPLE_FORGE.md), and [examples/fmm0-counterexample-forge/](examples/fmm0-counterexample-forge/).
+
+## FMM-0 Closure Lab
+
+Counterexamples prove that bad histories fail.
+
+Closure proves the other half: valid memory histories can be composed without
+leaving the model.
+
+Run:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+Expected result:
+
+```text
+Closure laws checked: 8
+Valid closures preserved: 4/4
+Invalid closures rejected: 4/4
+Escaped: 0
+```
+
+This is the memory-algebra layer: FMM-0 preserves matching receipt attachment,
+consistency-gated promotion, monotonic append, and independent-rootfield merge,
+while rejecting rollback, split-brain heads, pre-receipt receipt facts, and
+semantic overclaims.
+
+See [specs/FMM-0-ClosureLab.v0.md](specs/FMM-0-ClosureLab.v0.md), [docs/FMM_0_CLOSURE_LAB.md](docs/FMM_0_CLOSURE_LAB.md), and [examples/fmm0-closure-lab/](examples/fmm0-closure-lab/).
+
+## FMM-0 Boundary Bisimulation
+
+The boundary has to survive translation.
+
+The hook emits a FlowPulse. The reader attaches receipt metadata. FMM-0 runtime
+state cites the same proof envelope. Boundary Bisimulation checks that those are
+the same boundary, not three similar-looking stories.
+
+Run:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
+```
+
+Expected result:
+
+```text
+Projection checks: 8
+Bisimulations preserved: 4/4
+Drift cases rejected: 4/4
+Escaped: 0
+```
+
+This is the cross-layer conformance layer: hook projection, receipt projection,
+and runtime projection preserve FlowPulse boundary semantics, while rootfield
+drift, commitment drift, receipt drift, and hook-time receipt metadata smuggling
+are rejected.
+
+See [specs/FMM-0-BoundaryBisimulation.v0.md](specs/FMM-0-BoundaryBisimulation.v0.md), [docs/FMM_0_BOUNDARY_BISIMULATION.md](docs/FMM_0_BOUNDARY_BISIMULATION.md), and [examples/fmm0-boundary-bisimulation/](examples/fmm0-boundary-bisimulation/).
+
 ## 10-Minute Skeptic Review
 
 FlowMemory's launch claim is reviewable.

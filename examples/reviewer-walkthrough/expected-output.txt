@@ -23,6 +23,9 @@ Claims:
   FM-C07 FlowSerial catches impossible schedules.                               PASS
   FM-C08 FlowLitmus makes forbidden outcomes executable.                        PASS
   FM-C09 FMM-0 Phase Space catches illegal machine-state phase jumps.           PASS
+  FM-C12 FMM-0 Counterexample Forge catches generated impossible histories.     PASS
+  FM-C13 FMM-0 Closure Lab preserves valid memory algebra and rejects invalid composition. PASS
+  FM-C14 FMM-0 Boundary Bisimulation catches cross-layer FlowPulse projection drift. PASS
   FM-C10 Public Base Sepolia receipt evidence is pending.                       PENDING
   FM-C11 Production verifier infrastructure is not claimed.                     NOT_CLAIMED
 
@@ -32,4 +35,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:8e1c531b9179aa811bfe3c2fff07b116c8d15eb9035b85676c8aa983c52abc6d
+Walkthrough ID: sha256:1b0bbec88593f7a259e43b5bc5e289c716f657d4162196c73321c37d2f69e2c1

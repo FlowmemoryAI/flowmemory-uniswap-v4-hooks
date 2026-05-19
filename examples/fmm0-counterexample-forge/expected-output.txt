@@ -1,0 +1,20 @@
+FMM-0 Counterexample Forge
+
+Generated counterexamples: 12
+Caught by FMM-0: 12/12
+Escaped: 0
+
+CE-001 pre-receipt txHash smuggle                              CAUGHT receipt_field_smuggled_before_reader_attachment
+CE-002 pre-receipt logIndex smuggle                            CAUGHT receipt_field_smuggled_before_reader_attachment
+CE-003 pre-receipt receiptStatus smuggle                       CAUGHT receipt_field_smuggled_before_reader_attachment
+CE-004 local-only publish_as_live                              CAUGHT operation_forbidden_in_phase
+CE-005 local-only -> FMM-0 live without receipt metadata       CAUGHT missing_reader_derived_receipt_metadata
+CE-006 reader-derived -> FMM-0 live without consistency        CAUGHT missing_fmm0_consistency_checks
+CE-007 reader-derived FlowPulse missing txHash                 CAUGHT missing_reader_derived_receipt_metadata
+CE-008 reader-derived FlowPulse missing logIndex               CAUGHT missing_reader_derived_receipt_metadata
+CE-009 rootfield mismatch                                      CAUGHT rootfield_or_commitment_mismatch
+CE-010 commitment mismatch                                     CAUGHT rootfield_or_commitment_mismatch
+CE-011 reader-derived semantic truth overclaim                 CAUGHT operation_forbidden_in_phase
+CE-012 reader-derived model correctness overclaim              CAUGHT operation_forbidden_in_phase
+
+Result: FMM-0 is not just a claim; it has adversarial counterexamples.

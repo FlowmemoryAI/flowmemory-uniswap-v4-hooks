@@ -1,0 +1,17 @@
+FMM-0 Closure Lab
+
+Closure laws checked: 8
+Valid closures preserved: 4/4
+Invalid closures rejected: 4/4
+Escaped: 0
+
+CL-001 receipt attachment preserves a matching local draft                 PASS -
+CL-002 reader-derived FlowPulse can promote only with consistency evidence PASS -
+CL-003 same-rootfield append preserves monotonic sequence                  PASS -
+CL-004 independent rootfield merge is commutative                          PASS -
+CL-005 same-rootfield append rejects rollback                              PASS rootfield_rollback
+CL-006 same-rootfield same-sequence merge rejects split-brain heads        PASS split_brain_write
+CL-007 pre-receipt composition rejects receipt-only facts                  PASS receipt_field_smuggled_before_reader_attachment
+CL-008 reader-derived evidence cannot close over semantic truth            PASS operation_forbidden_in_phase
+
+Result: FMM-0 is closed under valid receipt-bound composition and rejects invalid memory algebra.

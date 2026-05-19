@@ -55,6 +55,34 @@ This shows the key transition: local-only speculative artifacts cannot jump
 directly into FMM-0-conforming live state, and pre-receipt artifacts cannot
 claim `txHash` or `logIndex`.
 
+For the adversarial counterexample demo:
+
+```bash
+python tools/fmm0_counterexample_forge.py demo --pretty
+```
+
+This generates impossible histories and checks that FMM-0 catches them.
+
+For the memory-algebra closure demo:
+
+```bash
+python tools/fmm0_closure_lab.py demo --pretty
+```
+
+This checks that valid receipt-bound memory composition stays valid, while
+rollback, split-brain heads, pre-receipt receipt facts, and semantic overclaims
+are rejected.
+
+For the cross-layer boundary projection demo:
+
+```bash
+python tools/fmm0_boundary_bisim.py demo --pretty
+```
+
+This checks that the same FlowPulse boundary survives hook signal, receipt
+envelope, and FMM-0 runtime projection without rootfield, commitment, or receipt
+drift.
+
 For that, run the Memory Consistency Card:
 
 ```bash
@@ -118,22 +146,25 @@ This names each impossible machine history and the FlowMemory fault that catches
 8. FMM-0 Phase Space shows machine-state phases: local-only,
    public-boundary, reader-derived, FMM-0-conforming, quarantined, and extinct.
 
-9. The launch claim is not "we emitted an event." The launch claim is:
+9. Counterexample Forge mutates valid artifacts into impossible histories and
+   checks that FMM-0 catches them.
+
+10. The launch claim is not "we emitted an event." The launch claim is:
    FlowMemory gives machines a way to tell live histories from impossible ones.
 
-10. The Memory Consistency Card makes the evidence surface explicit. Local
+11. The Memory Consistency Card makes the evidence surface explicit. Local
    consistency evidence passes. Public Base Sepolia receipt evidence remains
    pending until the release record is filled.
 
-11. The model name is FMM-0: FlowMemory Agent Memory Model.
+12. The model name is FMM-0: FlowMemory Agent Memory Model.
 
-12. The skeptic walkthrough makes the claim surface reviewable: every launch
+13. The skeptic walkthrough makes the claim surface reviewable: every launch
     claim has a command, and every overclaim has a red line.
 
-13. Public Base Sepolia receipt evidence stays `PENDING` until the release
+14. Public Base Sepolia receipt evidence stays `PENDING` until the release
     evidence gate validates the actual packet.
 
-14. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
+15. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
     a reviewer-readable memory-model casebook.
 
 ## Demo Caption
@@ -155,6 +186,10 @@ FMM-0 Phase Space: retrieval treats memory as text; FMM-0 treats machine history
 ```
 
 ```text
+Counterexample Forge: FMM-0 is not just a claim; it has adversarial counterexamples.
+```
+
+```text
 Release Evidence Gate: public receipt evidence stays pending until the Base Sepolia packet validates.
 ```
 
@@ -172,9 +207,10 @@ But the deeper launch claim is runtime consistency. Agents are becoming
 distributed systems: model calls, tool calls, state writes, caches, and compute
 jobs all crossing external events. FMM-0 Phase Space shows that
 machine artifacts have phases: local-only, reader-derived, FMM-0-conforming,
-quarantined, or extinct. FlowLitmus is our executable forbidden-outcome suite.
-It tests whether an agent history respects FlowPulse receipt boundaries or
-becomes impossible.
+quarantined, or extinct. Counterexample Forge mutates valid artifacts into
+impossible histories and checks that FMM-0 catches them. FlowLitmus is our
+executable forbidden-outcome suite. It tests whether an agent history respects
+FlowPulse receipt boundaries or becomes impossible.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.
@@ -238,6 +274,7 @@ are attached by reader/verifier infrastructure.
 - local R&D runtime conformance suite.
 - receipt-bound memory consistency model;
 - machine-state phase space;
+- adversarial counterexamples for impossible machine histories;
 - forbidden phase transitions around FlowPulse receipt boundaries.
 - claim-to-evidence launch scorecard;
 - public Base Sepolia evidence pending until the release record is filled.

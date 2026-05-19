@@ -23,7 +23,10 @@ Consistency ladder
   PASS    FM-C4  Receipt-linearizable histories: Machine histories can be serialized around receipt-bound FlowPulse boundaries.
   PASS    FM-C5  Executable forbidden outcomes: Impossible agent histories fault under FlowLitmus.
   PASS    FM-C6  FMM-0 phase space: Machine artifacts cannot illegally jump phases around FlowPulse receipt boundaries.
-  PENDING FM-C7  Public Base Sepolia evidence: A public release record can attach txHash/logIndex evidence from a real deployed hook.
+  PASS    FM-C7  Counterexample forge: FMM-0 catches adversarial counterexamples instead of only passing hand-written happy paths.
+  PASS    FM-C8  Closure lab: Valid receipt-bound memory histories stay valid under composition, and invalid composition is rejected.
+  PASS    FM-C9  Boundary bisimulation: The same FlowPulse boundary survives hook-to-receipt-to-runtime projection without drift.
+  PENDING FM-C10  Public Base Sepolia evidence: A public release record can attach txHash/logIndex evidence from a real deployed hook.
 
 Executable checks
   PASS    local consistency surface
@@ -41,4 +44,4 @@ Do not claim
   no GPU acceleration
   no txHash/logIndex at hook time
 
-Card ID: sha256:4f13d11bb4bac556ad7f1da31afda64edff811eb3d29e6a6ad0c8d3a5452a053
+Card ID: sha256:3087b3efab325ac648addb9a1e2e6649e44e5a7cdeedfb030287bed757a387ef

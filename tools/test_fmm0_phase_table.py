@@ -37,6 +37,15 @@ class Fmm0PhaseTableTest(unittest.TestCase):
         self.assertEqual("POST-READER-LIVE", result["cellId"])
         self.assertEqual("pass", result["status"])
 
+    def test_reader_derived_flowpulse_requires_receipt_metadata(self):
+        table = fmm0_phase_table.load_table(TABLE)
+        artifact = fmm0_phase_table.read_json(READER_FLOWPULSE)
+        artifact["fields"].pop("txHash")
+        result = fmm0_phase_table.classify_artifact(table, artifact)
+        self.assertEqual("invalid", result["status"])
+        self.assertEqual("missing_reader_derived_receipt_metadata", result["fault"])
+        self.assertEqual(["txHash"], result["missingFields"])
+
     def test_fmm0_conforming_history_classifies(self):
         table = fmm0_phase_table.load_table(TABLE)
         result = fmm0_phase_table.classify_artifact(table, fmm0_phase_table.read_json(FMM0_HISTORY))

@@ -1,0 +1,17 @@
+FMM-0 Boundary Bisimulation
+
+Projection checks: 8
+Bisimulations preserved: 4/4
+Drift cases rejected: 4/4
+Escaped: 0
+
+BS-001 hook projection preserves FlowPulse boundary identity without receipt facts  PASS -
+BS-002 receipt projection preserves hook identity and attaches proof-envelope facts PASS -
+BS-003 runtime projection preserves receipt identity inside FMM-0 live state        PASS -
+BS-004 end-to-end boundary bisimulation preserves hook-to-receipt-to-runtime identity PASS -
+BS-005 receipt projection rejects rootfield drift                                   PASS rootfieldId_drift
+BS-006 receipt projection rejects commitment drift                                  PASS commitment_drift
+BS-007 runtime projection rejects receipt metadata drift                            PASS runtime_receipt_drift
+BS-008 hook projection rejects receipt metadata smuggling                           PASS hook_projection_contains_receipt_metadata
+
+Result: FlowPulse boundary semantics survive hook-to-receipt-to-runtime projection and reject cross-layer drift.

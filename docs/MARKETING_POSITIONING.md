@@ -41,6 +41,8 @@ Most hooks modify execution. FlowMemory emits memory.
 - FlowMemory gives machine state a phase diagram.
 - A local output cannot jump straight into live machine history.
 - The receipt decides when a machine artifact changes phase.
+- FMM-0 is not just a claim; it has adversarial counterexamples.
+- FMM-0 is not just a set of examples; it has closure laws and boundary bisimulation.
 
 ## Category Framing
 
@@ -94,6 +96,7 @@ FlowMemory can connect:
 - receipt-linearizable machine histories;
 - executable forbidden outcomes for agent runtime consistency;
 - reality phase tables that classify local-only, reader-derived, FMM-0-conforming, quarantined, and extinct machine artifacts;
+- counterexample forges that mutate valid artifacts into impossible machine histories;
 - memory consistency cards that map public claims to executable evidence;
 - FMM-0 conformance matrices for receipt-bound machine histories;
 - skeptic claim ledgers that map launch claims to evidence, commands, and non-claims;
@@ -126,6 +129,9 @@ Use these lines for the broader vision:
 - FMM-0 is the name of the draft launch model: a receipt-bound consistency model for agent memory.
 - The FMM-0 Skeptic Walkthrough is the launch credibility layer: every claim maps to evidence, status, expected output, and red-line non-claims.
 - FMM-0 Phase Space is the launch phase-space layer: it catches illegal state jumps before they become live machine history.
+- FMM-0 Counterexample Forge is the launch negative-test layer: it generates impossible histories and requires FMM-0 to catch them.
+- FMM-0 Closure Lab is the launch memory-algebra layer: it proves valid composition stays valid and invalid composition is rejected.
+- FMM-0 Boundary Bisimulation is the launch cross-layer layer: it catches FlowPulse projection drift between hook signal, receipt envelope, and runtime state.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -236,3 +242,52 @@ cannot jump phases illegally. It cannot claim receipt fields before the receipt
 exists. It cannot pretend local text is live machine history.
 
 Retrieval gives agents context. FlowMemory gives their memories a state model.
+
+## FMM-0 Counterexample Forge Founder Script
+
+FMM-0 should not only pass examples. It should catch counterexamples.
+
+The launch anchor is still the Uniswap v4 `afterSwap` hook. The swap is not the
+memory. The transaction is the proof envelope. The FlowPulse is the memory
+artifact.
+
+Counterexample Forge mutates valid phase-space artifacts into impossible
+histories: pre-receipt `txHash` claims, missing consistency checks,
+rootfield/commitment mismatches, and semantic-truth overclaims. Then it asks the
+runtime to catch them.
+
+Most memory benchmarks ask whether an agent remembered the right thing.
+FlowMemory asks whether an impossible history was rejected.
+
+## FMM-0 Closure Lab Founder Script
+
+Counterexamples prove bad histories fail. Closure proves the model can still
+compose good histories.
+
+FMM-0 Closure Lab checks the memory algebra: a matching receipt can attach to a
+local draft, consistency evidence can promote a reader-derived FlowPulse,
+same-rootfield append must be monotonic, and independent rootfields can merge
+commutatively.
+
+Then it attacks the algebra: rollback, split-brain heads, pre-receipt receipt
+facts, and semantic overclaims must fail.
+
+This is not retrieval. This is a memory model with executable closure behavior.
+
+## FMM-0 Boundary Bisimulation Founder Script
+
+Most demos die at the layer boundary.
+
+The event looks right. The receipt reader adds facts. The runtime consumes a
+derived object. But did the same boundary survive translation?
+
+Boundary Bisimulation makes that question executable. It projects the FlowPulse
+from hook signal, to receipt envelope, to FMM-0 runtime state, then mutates the
+projection to catch rootfield drift, commitment drift, receipt drift, and
+hook-time metadata smuggling.
+
+The line is simple:
+
+```text
+FlowMemory preserves boundary semantics across hook, receipt, and runtime.
+```

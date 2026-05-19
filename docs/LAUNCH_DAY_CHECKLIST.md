@@ -24,6 +24,9 @@ Execution already exists. Memory is the missing layer.
 - [ ] Release language does not claim txHash/logIndex are known during hook execution.
 - [ ] `python tools/launch_reality_check.py --pretty` passes and produces the screenshot text.
 - [ ] `python tools/fmm0_phase_table.py demo --pretty` passes and catches illegal phase transitions.
+- [ ] `python tools/fmm0_counterexample_forge.py demo --pretty` passes and catches 12/12 generated counterexamples.
+- [ ] `python tools/fmm0_closure_lab.py demo --pretty` passes and preserves/rejects 8/8 closure laws.
+- [ ] `python tools/fmm0_boundary_bisim.py demo --pretty` passes and preserves/rejects 8/8 boundary projection checks.
 - [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
 - [ ] `python tools/reviewer_walkthrough.py --pretty` passes and shows each launch claim with evidence/status/non-claims.
 - [ ] `python tools/verify_release_evidence.py --pretty` passes and reports `PENDING` unless real public receipt evidence exists.
@@ -57,6 +60,7 @@ Allowed:
 - FlowMemory Memory Consistency Card;
 - FMM-0 draft memory model;
 - FMM-0 Phase Space;
+- FMM-0 Counterexample Forge;
 - FMM-0 Skeptic Walkthrough;
 - FlowLitmus forbidden-outcomes casebook;
 - executable forbidden outcomes for machine histories.
@@ -85,5 +89,6 @@ Not allowed:
 - Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
 - Every launch claim has a command, and every overclaim has a red line.
 - Retrieval treats memory as text. FMM-0 treats machine history as phase space.
+- FMM-0 is not just a claim; it has adversarial counterexamples.
 - Public receipt evidence stays PENDING until `RELEASE_EVIDENCE.json` validates.
 - Each impossible machine history has a FlowLitmus case and a named fault.
