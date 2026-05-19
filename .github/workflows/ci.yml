@@ -87,6 +87,10 @@ jobs:
             docs/BEYOND_DEFI_MEMORY.md
             docs/AGENT_COMMERCE_MEMORY.md
             docs/AGENT_COMMERCE_STACK.md
+            docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md
+            docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md
+            docs/AGENT_COMMERCE_INVARIANTS.md
+            docs/LAUNCH_REVIEW_FAQ.md
             docs/AGENT_COMMERCE_CONSERVATION.md
             docs/CACHE_LINEAGE_GATE.md
             docs/COMPUTE_PULSE.md

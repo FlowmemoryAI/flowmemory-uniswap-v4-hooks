@@ -717,7 +717,7 @@ Expected launch line:
 FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
 ```
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_STACK.md](docs/AGENT_COMMERCE_STACK.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/COMPUTE_CHARGELINE.md](docs/COMPUTE_CHARGELINE.md), [docs/DISCHARGELINE.md](docs/DISCHARGELINE.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_STACK.md](docs/AGENT_COMMERCE_STACK.md), [docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md](docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md), [docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md](docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md), [docs/AGENT_COMMERCE_INVARIANTS.md](docs/AGENT_COMMERCE_INVARIANTS.md), [docs/LAUNCH_REVIEW_FAQ.md](docs/LAUNCH_REVIEW_FAQ.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/COMPUTE_CHARGELINE.md](docs/COMPUTE_CHARGELINE.md), [docs/DISCHARGELINE.md](docs/DISCHARGELINE.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Surfaces
 
@@ -1063,6 +1063,10 @@ docs/
   BEYOND_DEFI_MEMORY.md            # Larger FlowMemory thesis across DeFi, AI, GPU work, and agents
   AGENT_COMMERCE_MEMORY.md         # Memory-native commerce model for Base agents
   AGENT_COMMERCE_STACK.md          # Layered memory-native agent commerce architecture
+  AGENT_COMMERCE_SKEPTIC_RESPONSES.md # Direct responses to reviewer attacks
+  LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md # Launch boundary: local conformance, not enforcement
+  AGENT_COMMERCE_INVARIANTS.md     # One-table invariant map for agent commerce
+  LAUNCH_REVIEW_FAQ.md             # Direct answers for launch-day reviewers
   CACHE_LINEAGE_GATE.md            # Proof-carried KV/context reuse gate
   COMPUTE_PULSE.md                 # ComputePulse architecture for AI/GPU memory artifacts
   COMPUTE_REUSE_CONSISTENCY.md     # Cache, compute, and receipt-history reuse harness
