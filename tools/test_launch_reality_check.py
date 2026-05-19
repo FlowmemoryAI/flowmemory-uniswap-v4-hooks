@@ -19,7 +19,7 @@ class LaunchRealityCheckTest(unittest.TestCase):
 
     def test_output_includes_non_claims(self):
         text = launch_reality_check.render_report(launch_reality_check.build_report(run_litmus=False))
-        for phrase in ["no custody", "no swap control", "no semantic truth", "no model correctness", "no GPU acceleration"]:
+        for phrase in ["no custody", "no swap-economic control", "no semantic truth", "no model correctness", "no GPU acceleration"]:
             self.assertIn(phrase, text)
 
     def test_output_includes_flowserial_and_flowlitmus(self):

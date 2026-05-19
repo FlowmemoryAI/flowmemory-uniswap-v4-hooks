@@ -9,6 +9,7 @@ binds the current local evidence surface into one deterministic object.
 
 | Section | Meaning |
 | --- | --- |
+| `repoBoundary` | Current package boundary plus future packages explicitly deferred from this launch repo. |
 | `localEvidence` | Local deterministic gates that should pass without RPC. |
 | `publicEvidence` | Public release evidence status, usually `PENDING` before release. |
 | `result` | Human-readable launch state. |
@@ -34,3 +35,8 @@ not failure and not evidence.
 
 The strongest launch artifact is not more vocabulary. It is one transcript that
 says what passed, what is pending, and what is not claimed.
+
+The hook repo boundary is part of that discipline: this launch package centers
+the Uniswap v4 `afterSwap` FlowPulse primitive, while future runtime surfaces
+such as FlowCompiler, FlowKernel, MCP adapters, and coding-agent conformance are
+deferred to separate packages.

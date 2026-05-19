@@ -35,13 +35,18 @@ What this release-prep surface includes:
 - Public Claim Gate, Release Transcript, Reviewer Quickstart, Skeptic Walkthrough, and Launch Reality Check.
 - Public Technical Report: a publication-style Markdown source and PDF for reviewers, journals, and public launch readers.
 - External Review Packet: a simple plus technical review handoff, with PDF, for outside security and architecture review.
+- Repo Boundary and Future Runtime Architecture doc for keeping this launch repo
+  centered on the Uniswap v4 `afterSwap` FlowPulse primitive while deferring
+  FlowCompiler, FlowKernel, MCP adapters, and coding-agent conformance to
+  future packages.
 
 Verified locally before this entry:
 
-- `python -m unittest discover -s tools -p 'test_*.py'`: 381 tests passed.
+- `python -m unittest discover -s tools -p 'test_*.py'`: 399 tests passed.
 - `forge fmt --check`: passed.
 - `forge build`: passed.
 - `forge test -vvv`: 12 tests passed.
+- `python tools/public_claim_gate.py --pretty`: 24 files checked, 0 unguarded overclaims.
 - GitHub Actions `CI`: passing on `main`.
 
 Public evidence status:
@@ -54,7 +59,7 @@ Do not claim from this repo alone:
 
 - live Base mainnet deployment;
 - audited custody or fund-safety guarantees;
-- swap control, routing, fee control, or custom accounting;
+- swap-economic control, routing, fee control, or custom accounting;
 - hook-time `txHash`, `transactionIndex`, or `logIndex`;
 - semantic truth or model correctness;
 - GPU hardware speedup;

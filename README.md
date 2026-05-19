@@ -42,6 +42,20 @@ Public Base Sepolia receipt evidence: PENDING
 Production verifier infrastructure: NOT_CLAIMED
 ```
 
+## Repo Boundary
+
+This repository is the public launch repo for the Uniswap v4 `afterSwap`
+FlowPulse primitive.
+
+It includes local FMM-0 R&D harnesses that show how receipt-bound FlowPulse
+artifacts can support memory consistency, compute reuse discipline, and
+agent-commerce conformance.
+
+Future runtime packages such as FlowKernel, FlowCompiler, MCP adapters, and
+coding-agent conformance should build on this boundary outside the launch repo.
+
+See [docs/REPO_BOUNDARY_AND_FUTURE_RUNTIME.md](docs/REPO_BOUNDARY_AND_FUTURE_RUNTIME.md).
+
 ## Launch Theorem
 
 FlowMemory is not trying to make agents remember more. It is making impossible
@@ -1094,6 +1108,7 @@ docs/
   OBLIGATION_MEMBRANE.md           # No obligation laundering through multi-agent supply chains
   PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
+  REPO_BOUNDARY_AND_FUTURE_RUNTIME.md # Current hook repo boundary and future packages
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
   SECURITY_MODEL.md                # Threat model, invariants, non-goals
   AXIOM_WRIT.md                    # AxiomWrit proof-conditioned cognition R&D primitive

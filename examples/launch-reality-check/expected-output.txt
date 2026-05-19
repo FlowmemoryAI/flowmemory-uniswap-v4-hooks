@@ -73,6 +73,7 @@ Required launch artifacts
   PASS  docs/FLOWMEMORY_MEMORY_MODEL.md
   PASS  docs/FLOWPULSE_BOUNDARY_ABI.md
   PASS  docs/FLOWMEMORY_RELEASE_TRANSCRIPT.md
+  PASS  docs/REPO_BOUNDARY_AND_FUTURE_RUNTIME.md
   PASS  docs/FMM_0_CONFORMANCE_MATRIX.md
   PASS  docs/FMM_0_PHASE_TABLE.md
   PASS  docs/FMM_0_COUNTEREXAMPLE_FORGE.md
@@ -172,7 +173,7 @@ Do not claim
   no live mainnet deployment claim
   no audited production claim
   no custody
-  no swap control
+  no swap-economic control
   no semantic truth
   no model correctness
   no GPU acceleration

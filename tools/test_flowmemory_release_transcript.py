@@ -18,6 +18,9 @@ class FlowMemoryReleaseTranscriptTest(unittest.TestCase):
         transcript = flowmemory_release_transcript.build_transcript()
         local_names = {item["name"] for item in transcript["localEvidence"]}
         public_names = {item["name"] for item in transcript["publicEvidence"]}
+        self.assertEqual("Uniswap v4 afterSwap FlowPulse primitive", transcript["repoBoundary"]["currentPackage"])
+        self.assertIn("flowmemory-coding", transcript["repoBoundary"]["futurePackages"])
+        self.assertIn("FlowCompiler", transcript["repoBoundary"]["deferredSurfaces"])
         self.assertIn("FMM-0 Witness Pack", local_names)
         self.assertIn("Launch Reality Check", local_names)
         self.assertIn("Compute Reuse Router", local_names)
@@ -50,6 +53,8 @@ class FlowMemoryReleaseTranscriptTest(unittest.TestCase):
             text=True,
         )
         self.assertIn("FlowMemory Release Transcript", completed.stdout)
+        self.assertIn("Repo boundary", completed.stdout)
+        self.assertIn("current package: Uniswap v4 afterSwap FlowPulse primitive", completed.stdout)
         self.assertIn("FMM-0 Witness Pack", completed.stdout)
         self.assertIn("Compute Reuse Router", completed.stdout)
         self.assertIn("Compute ChargeLine", completed.stdout)

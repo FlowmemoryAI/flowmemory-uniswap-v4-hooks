@@ -59,6 +59,8 @@ NON_CLAIMS = [
     "no_model_correctness_claim",
     "no_hardware_speedup_claim",
     "no_production_verifier_claim",
+    "no_coding_agent_framework_claim",
+    "no_plugin_ecosystem_claim",
 ]
 BANNED_OUTPUT_PHRASES = [
     "base mainnet deployed",
@@ -191,6 +193,25 @@ def build_transcript() -> dict[str, Any]:
         "schema": TRANSCRIPT_SCHEMA,
         "title": "FlowMemory Release Transcript",
         "thesis": "The transaction is the proof envelope. The FlowPulse is the memory artifact.",
+        "repoBoundary": {
+            "currentPackage": "Uniswap v4 afterSwap FlowPulse primitive",
+            "currentLaunchClaim": "local FMM-0 conformance with public receipt evidence pending",
+            "futurePackages": [
+                "flowmemory-core",
+                "flowmemory-onchain-reader",
+                "flowmemory-agent-commerce",
+                "flowmemory-coding",
+                "flowmemory-kernel",
+                "flowmemory-mcp",
+            ],
+            "deferredSurfaces": [
+                "FlowCompiler",
+                "FlowKernel",
+                "coding-agent conformance",
+                "MCP adapters",
+                "production reader/verifier infrastructure",
+            ],
+        },
         "localStatus": "PASS" if local_pass else "FAIL",
         "publicReceiptEvidence": public_status,
         "launchReadiness": "local_ready_public_evidence_pending" if local_pass and public_status == "PENDING" else "needs_review",
@@ -210,6 +231,11 @@ def render_transcript(transcript: dict[str, Any]) -> str:
         "Thesis:",
         f"  {transcript['thesis']}",
         "",
+        "Repo boundary:",
+        f"  current package: {transcript['repoBoundary']['currentPackage']}",
+        f"  current launch claim: {transcript['repoBoundary']['currentLaunchClaim']}",
+        f"  future packages: {', '.join(transcript['repoBoundary']['futurePackages'])}",
+        "",
         "Local evidence:",
     ]
     for item in transcript["localEvidence"]:
@@ -226,7 +252,8 @@ def render_transcript(transcript: dict[str, Any]) -> str:
             "Do not claim:",
             "  live Base mainnet deployment",
             "  custody audit or fund-safety guarantees",
-            "  swap control, semantic truth, model correctness, hardware speedup, or production verifier readiness",
+            "  swap-economic control, semantic truth, model correctness, hardware speedup, or production verifier readiness",
+            "  coding-agent framework, MCP adapter, plugin ecosystem, or production runtime package",
         ]
     )
     return "\n".join(rows)

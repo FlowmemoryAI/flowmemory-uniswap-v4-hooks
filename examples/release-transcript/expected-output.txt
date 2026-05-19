@@ -3,6 +3,11 @@ FlowMemory Release Transcript
 Thesis:
   The transaction is the proof envelope. The FlowPulse is the memory artifact.
 
+Repo boundary:
+  current package: Uniswap v4 afterSwap FlowPulse primitive
+  current launch claim: local FMM-0 conformance with public receipt evidence pending
+  future packages: flowmemory-core, flowmemory-onchain-reader, flowmemory-agent-commerce, flowmemory-coding, flowmemory-kernel, flowmemory-mcp
+
 Local evidence:
   FMM-0 Witness Pack           PASS     8/8 local layers, 0 escaped faults
   Launch Reality Check         PASS     boundary model, hook invariants, artifacts, and FlowLitmus
@@ -26,4 +31,5 @@ Result:
 Do not claim:
   live Base mainnet deployment
   custody audit or fund-safety guarantees
-  swap control, semantic truth, model correctness, hardware speedup, or production verifier readiness
+  swap-economic control, semantic truth, model correctness, hardware speedup, or production verifier readiness
+  coding-agent framework, MCP adapter, plugin ecosystem, or production runtime package

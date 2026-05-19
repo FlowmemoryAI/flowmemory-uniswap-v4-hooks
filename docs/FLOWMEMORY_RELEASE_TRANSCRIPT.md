@@ -11,6 +11,7 @@ The transcript answers:
 ```text
 What passed?
 What is pending?
+What belongs in this launch repo?
 What is explicitly not claimed?
 ```
 
@@ -28,8 +29,28 @@ What is explicitly not claimed?
 - Agent Commerce Conservation.
 - Obligation Membrane.
 - Public Base Sepolia receipt evidence gate.
+- Repo boundary and future runtime package map.
 
 The transcript is deterministic and does not depend on live RPC.
+
+## Repo Boundary
+
+The transcript names the current package boundary:
+
+```text
+current package: Uniswap v4 afterSwap FlowPulse primitive
+current launch claim: local FMM-0 conformance with public receipt evidence pending
+```
+
+It also names the future packages that should build on this boundary without
+turning this hook repo into a general-purpose AI-agent framework:
+
+- `flowmemory-core`;
+- `flowmemory-onchain-reader`;
+- `flowmemory-agent-commerce`;
+- `flowmemory-coding`;
+- `flowmemory-kernel`;
+- `flowmemory-mcp`.
 
 ## Run It
 
@@ -71,8 +92,10 @@ The transcript does not claim:
 
 - live Base mainnet deployment;
 - custody audit or fund-safety guarantees;
-- swap control;
+- swap-economic control;
 - semantic truth;
 - model correctness;
 - hardware speedup;
-- production verifier readiness.
+- production verifier readiness;
+- coding-agent framework, MCP adapter, plugin ecosystem, or production runtime
+  package.
