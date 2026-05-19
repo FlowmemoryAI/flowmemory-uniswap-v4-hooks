@@ -79,6 +79,8 @@ jobs:
             docs/FLOW_MMU.md
             docs/FLOW_QUIESCE.md
             docs/FLOW_SERIAL.md
+            docs/FLOWMEMORY_RUNTIME_MODEL.md
+            docs/FLOWLITMUS_LAUNCH_DEMO.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -93,6 +95,7 @@ jobs:
             specs/ReceiptPageFault.v0.md
             specs/FlowQuiesce.v0.md
             specs/FlowSerial.v0.md
+            specs/FlowLitmus.v0.md
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
@@ -167,6 +170,26 @@ jobs:
             examples/flow-serial/fault.retrocausal.json
             examples/flow-serial/fault.rollback.json
             examples/flow-serial/fault.split-brain.json
+            examples/flow-litmus/README.md
+            examples/flow-litmus/litmus.manifest.json
+            examples/flow-litmus/results.latest.json
+            examples/flow-litmus/cases/FM-LB-001-pre-receipt-deref.json
+            examples/flow-litmus/cases/FM-SER-001-retrocausal-claim.json
+            examples/flow-litmus/cases/FM-QS-001-unquiesced-output.json
+            examples/flow-litmus/cases/FM-RT-001-unretired-output.json
+            examples/flow-litmus/cases/FM-FIS-001-stale-output-survives.json
+            examples/flow-litmus/cases/FM-SER-002-rootfield-rollback.json
+            examples/flow-litmus/cases/FM-SER-003-split-brain-write.json
+            examples/flow-litmus/cases/FM-OK-001-valid-boundary-history.json
+            examples/flow-litmus/expected/FM-LB-001.result.json
+            examples/flow-litmus/expected/FM-SER-001.result.json
+            examples/flow-litmus/expected/FM-QS-001.result.json
+            examples/flow-litmus/expected/FM-RT-001.result.json
+            examples/flow-litmus/expected/FM-FIS-001.result.json
+            examples/flow-litmus/expected/FM-SER-002.result.json
+            examples/flow-litmus/expected/FM-SER-003.result.json
+            examples/flow-litmus/expected/FM-OK-001.result.json
+            examples/flow-litmus/diagrams/impossible-agent-trace.mmd
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -177,6 +200,7 @@ jobs:
             tools/flow_mmu.py
             tools/flow_quiesce.py
             tools/flow_serial.py
+            tools/flow_litmus.py
             releases/base-sepolia/README.md
           )
 
@@ -278,3 +302,9 @@ jobs:
         run: |
           python tools/flow_serial.py demo
           python tools/flow_serial.py verify-certificate --certificate examples/flow-serial/certificate.valid.json
+
+      - name: Test FlowLitmus
+        run: python -m unittest tools.test_flow_litmus
+
+      - name: Check FlowLitmus suite
+        run: python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json

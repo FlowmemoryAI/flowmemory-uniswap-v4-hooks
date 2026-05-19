@@ -338,3 +338,40 @@ Tests:
 ```bash
 python -m unittest tools.test_flow_serial
 ```
+
+## `flow_litmus.py`
+
+Runs the FlowLitmus runtime consistency suite.
+
+FlowLitmus is a conformance suite for reality:
+
+- pre-receipt `txHash` reads must fault;
+- retrocausal receipt claims must fault;
+- unquiesced post-boundary outputs must stay unsafe;
+- unretired speculative outputs must not become live;
+- stale memory must not survive boundary fission as raw post-boundary context;
+- rootfield rollback and split-brain canonical writes must fault;
+- valid receipt-ordered histories must serialize.
+
+Run the suite:
+
+```bash
+python tools/flow_litmus.py run \
+  --suite examples/flow-litmus/litmus.manifest.json
+```
+
+Machine-readable output:
+
+```bash
+python tools/flow_litmus.py run \
+  --suite examples/flow-litmus/litmus.manifest.json \
+  --json \
+  --pretty \
+  --out examples/flow-litmus/results.latest.json
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flow_litmus
+```

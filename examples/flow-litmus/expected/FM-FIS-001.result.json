@@ -1,0 +1,37 @@
+{
+  "caseId": "FM-FIS-001",
+  "category": "boundary_fission",
+  "expected": {
+    "faultTypes": [
+      "BoundaryFissionViolation"
+    ],
+    "outcome": "forbidden_outcome_detected"
+  },
+  "invariant": "Stale and unsupported working-memory payloads must be conserved, compressed, quarantined, or killed after a receipt-bound boundary.",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim",
+    "not_production_safety_claim"
+  ],
+  "observed": {
+    "artifactId": "sha256:be57458c026a0383fcfe08b76222d8f57f435cf2f0acbee27c4c8bd4c4a0ee3b",
+    "artifactSchema": "flowmemory.boundary_fission.v0",
+    "faultTypes": [
+      "BoundaryFissionViolation"
+    ],
+    "outcome": "forbidden_outcome_detected",
+    "reason": "stale or unsupported working-memory payloads were prevented from surviving the boundary"
+  },
+  "problems": [],
+  "resultId": "sha256:3237e2f1e44a40ef89f978071ee9b7c15242fa0709c3fc4f17ade4f6cc7c1d10",
+  "schema": "flowmemory.flow_litmus_result.v0",
+  "status": "pass",
+  "title": "stale output survived boundary",
+  "whyFlowPulseMatters": "The receipt-bound FlowPulse is the trigger that turns stale working memory into release products instead of raw post-boundary context."
+}

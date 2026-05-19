@@ -30,6 +30,7 @@ The swap transaction is not the memory. The transaction is the proof envelope. T
 | Launch checklist exists | `docs/LAUNCH_DAY_CHECKLIST.md` | Separates launch with Base Sepolia evidence from launch as repo/live-prep artifact. |
 | Marketing language is controlled | `docs/MARKETING_POSITIONING.md` | Strong category language plus explicit forbidden claims. |
 | Frontier R&D artifact shows broader AI-agent value | `docs/FLOW_SERIAL.md`, `tools/flow_serial.py`, `examples/flow-serial/` | Demonstrates receipt-linearizable machine histories without claiming semantic truth, custody, swap control, or live production deployment. |
+| Launch demo makes the runtime model executable | `docs/FLOWLITMUS_LAUNCH_DEMO.md`, `tools/flow_litmus.py`, `examples/flow-litmus/` | Runs forbidden-outcome cases that show pre-receipt, stale-state, retirement, quiescence, rollback, and split-brain failures. |
 | CI enforces required launch artifacts | `.github/workflows/ci.yml` | Required-file check includes reader, launch docs, and release staging folder. |
 
 ## Verification Commands
@@ -44,6 +45,8 @@ python tools/read_flowpulse_logs.py --help
 python -m unittest tools.test_read_flowpulse_logs
 python -m unittest tools.test_flow_serial
 python tools/flow_serial.py demo --pretty
+python -m unittest tools.test_flow_litmus
+python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json
 git diff --check
 ```
 
@@ -65,6 +68,7 @@ GitHub Actions should show both jobs green:
 - Public canary template.
 - Launch-day checklist.
 - FlowSerial R&D artifact for receipt-linearizable machine cognition.
+- FlowLitmus launch demo for executable forbidden outcomes.
 
 ## What Still Requires Live Evidence
 

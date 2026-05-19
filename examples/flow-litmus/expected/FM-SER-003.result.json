@@ -1,0 +1,37 @@
+{
+  "caseId": "FM-SER-003",
+  "category": "receipt_linearizability",
+  "expected": {
+    "faultTypes": [
+      "split_brain_write"
+    ],
+    "outcome": "forbidden_outcome_detected"
+  },
+  "invariant": "Exclusive machine-state writers cannot publish incompatible canonical state under different FlowPulse heads.",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim",
+    "not_production_safety_claim"
+  ],
+  "observed": {
+    "artifactId": "sha256:18bbc565bf35118aa06d190cb9bbc2f85145a3e138c90bfe1a2e6000799da1d1",
+    "artifactSchema": "flowmemory.flow_serial_fault.v0",
+    "faultTypes": [
+      "split_brain_write"
+    ],
+    "outcome": "forbidden_outcome_detected",
+    "reason": "two events claim the same exclusive machine-state write under incompatible FlowPulse heads"
+  },
+  "problems": [],
+  "resultId": "sha256:79a7575332237eb6e767e02076128511d0e631954b79ca40c53dcff48d781819",
+  "schema": "flowmemory.flow_litmus_result.v0",
+  "status": "pass",
+  "title": "split-brain canonical write",
+  "whyFlowPulseMatters": "The incompatibility is defined by different receipt-bound FlowPulse heads, not by a local text transcript."
+}

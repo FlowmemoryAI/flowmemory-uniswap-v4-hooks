@@ -81,6 +81,7 @@ FlowMemory can connect:
 - receipt-backed dereference semantics for external proof coordinates;
 - receipt-triggered quiescence epochs for active agent frames;
 - receipt-linearizable machine histories;
+- executable forbidden outcomes for agent runtime consistency;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -104,6 +105,8 @@ Use these lines for the broader vision:
 - FlowQuiesce turns receipt-bound FlowPulses into safe points for in-flight cognition.
 - FlowSerial gives agents linearizability against reality.
 - A model can generate a story. FlowSerial decides whether that story could have happened.
+- FlowLitmus is a conformance suite for reality.
+- FlowMemory does not just give agents memory. It gives them forbidden outcomes.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -164,3 +167,15 @@ FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The
 FlowSerial is receipt-linearizability for machine cognition. It compiles an agent's outputs, tool calls, and state writes into a serial history around FlowPulse receipt boundaries. If the history can be serialized, it emits a certificate. If not, it emits a fault: retrocausal claim, rootfield rollback, split-brain write, impossible schedule.
 
 This gives agents linearizability against reality.
+
+## FlowLitmus Founder Script
+
+FlowMemory started with a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The swap is not memory. The transaction is the proof envelope. The FlowPulse is the memory artifact.
+
+But the deeper point is not just memory. It is runtime consistency. Agents are distributed systems now: model calls, tools, caches, state writes, and GPU jobs all running across external events.
+
+FlowLitmus makes that concrete. It is an executable suite of forbidden outcomes for agent reality. It feeds the runtime adversarial histories: a model claiming `txHash` before the receipt exists, a stale output crossing a boundary, a rootfield rollback, a split-brain canonical write.
+
+If the history respects FlowPulse receipt boundaries, it passes. If the history is impossible, FlowLitmus catches it.
+
+FlowMemory gives agents memory signals. FlowLitmus proves the runtime knows what histories are impossible.

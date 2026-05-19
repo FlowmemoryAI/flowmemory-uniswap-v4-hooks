@@ -1,0 +1,37 @@
+{
+  "caseId": "FM-SER-002",
+  "category": "receipt_linearizability",
+  "expected": {
+    "faultTypes": [
+      "rootfield_rollback"
+    ],
+    "outcome": "forbidden_outcome_detected"
+  },
+  "invariant": "A rootfield head may advance only by receipt-bound FlowPulse and may not move backward.",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim",
+    "not_production_safety_claim"
+  ],
+  "observed": {
+    "artifactId": "sha256:8a1ac950882bc1e4e795af165ce38020d32055c15ba7e02017c9a47d37b5a723",
+    "artifactSchema": "flowmemory.flow_serial_fault.v0",
+    "faultTypes": [
+      "rootfield_rollback"
+    ],
+    "outcome": "forbidden_outcome_detected",
+    "reason": "later event clears a rootfield head after a receipt-bound FlowPulse already advanced it"
+  },
+  "problems": [],
+  "resultId": "sha256:02b344a1c044160997b8fdd99e919408928c5b91c0a64177b4a38ea53c01044d",
+  "schema": "flowmemory.flow_litmus_result.v0",
+  "status": "pass",
+  "title": "rootfield rollback",
+  "whyFlowPulseMatters": "The rootfield head is anchored to public receipt order instead of a local agent timeline."
+}

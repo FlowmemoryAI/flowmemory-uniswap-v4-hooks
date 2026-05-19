@@ -352,6 +352,47 @@ A model can generate a story. FlowSerial decides whether that story could have h
 
 See [docs/FLOW_SERIAL.md](docs/FLOW_SERIAL.md), [specs/FlowSerial.v0.md](specs/FlowSerial.v0.md), and [examples/flow-serial/](examples/flow-serial/).
 
+## Launch R&D Demo: FlowLitmus
+
+FlowLitmus is an executable runtime consistency suite for FlowMemory.
+
+FlowMemory does not just give agents memory. It gives them forbidden outcomes.
+
+The FlowMemory hook emits a FlowPulse at a Uniswap v4 `afterSwap` boundary. The swap is not the memory. The transaction is the proof envelope. The FlowPulse is the memory artifact. The hook does not know `txHash` or `logIndex` during execution; reader/verifier infrastructure attaches receipt metadata later.
+
+FlowLitmus turns that boundary model into runtime tests.
+
+It runs adversarial agent histories and checks whether the runtime catches impossible states:
+
+- reading `txHash` before receipt mapping;
+- claiming `logIndex` before the receipt exists;
+- publishing unquiesced output after a boundary;
+- releasing speculative output before retirement;
+- allowing stale model output to survive boundary fission;
+- rolling back a rootfield head;
+- split-brain canonical writes.
+
+```bash
+python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json
+```
+
+Expected:
+
+```text
+FlowLitmus Runtime Consistency Suite
+8/8 passed
+```
+
+This is not memory storage.
+This is not retrieval.
+This is not a proof explorer.
+This is not a dashboard.
+This is not a workflow engine.
+
+FlowLitmus is a conformance suite for reality.
+
+See [docs/FLOWLITMUS_LAUNCH_DEMO.md](docs/FLOWLITMUS_LAUNCH_DEMO.md), [docs/FLOWMEMORY_RUNTIME_MODEL.md](docs/FLOWMEMORY_RUNTIME_MODEL.md), [specs/FlowLitmus.v0.md](specs/FlowLitmus.v0.md), and [examples/flow-litmus/](examples/flow-litmus/).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -457,6 +498,8 @@ docs/
   FLOW_MMU.md                      # Receipt-backed dereference semantics for agents
   FLOW_QUIESCE.md                  # Receipt-triggered quiescence epochs for agent runtimes
   FLOW_SERIAL.md                   # Receipt-linearizability for machine cognition
+  FLOWMEMORY_RUNTIME_MODEL.md      # Runtime rules and forbidden outcomes
+  FLOWLITMUS_LAUNCH_DEMO.md        # Executable launch demo for runtime consistency
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -481,6 +524,7 @@ tools/
   flow_mmu.py                      # Maps virtual FlowPulse pointers into read-only receipt pages
   flow_quiesce.py                  # Requires active pre-boundary frames to quiesce after FlowPulse receipts
   flow_serial.py                   # Compiles machine histories into serial schedules or typed faults
+  flow_litmus.py                   # Runs executable forbidden-outcome cases across R&D tools
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
@@ -496,6 +540,7 @@ specs/
   ReceiptPageFault.v0.md           # Draft runtime fault spec for early receipt reads
   FlowQuiesce.v0.md                # Draft receipt-triggered quiescence epoch spec
   FlowSerial.v0.md                 # Draft receipt-linearizable machine history spec
+  FlowLitmus.v0.md                 # Draft forbidden-outcome suite spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
@@ -505,6 +550,7 @@ examples/
   flow-mmu/                        # Example PulsePointer -> ReceiptPageFault -> ReceiptPage
   flow-quiesce/                    # Example active frame -> quiescence request -> certificate
   flow-serial/                     # Example history -> serial certificate or impossibility fault
+  flow-litmus/                     # Executable runtime consistency suite
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

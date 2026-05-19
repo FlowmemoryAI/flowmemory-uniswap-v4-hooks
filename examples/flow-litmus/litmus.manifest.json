@@ -1,0 +1,15 @@
+{
+  "cases": [
+    "examples/flow-litmus/cases/FM-LB-001-pre-receipt-deref.json",
+    "examples/flow-litmus/cases/FM-SER-001-retrocausal-claim.json",
+    "examples/flow-litmus/cases/FM-QS-001-unquiesced-output.json",
+    "examples/flow-litmus/cases/FM-RT-001-unretired-output.json",
+    "examples/flow-litmus/cases/FM-FIS-001-stale-output-survives.json",
+    "examples/flow-litmus/cases/FM-SER-002-rootfield-rollback.json",
+    "examples/flow-litmus/cases/FM-SER-003-split-brain-write.json",
+    "examples/flow-litmus/cases/FM-OK-001-valid-boundary-history.json"
+  ],
+  "schema": "flowmemory.flow_litmus_suite.v0",
+  "suiteId": "flowmemory-runtime-consistency-suite.v0",
+  "title": "FlowLitmus Runtime Consistency Suite"
+}

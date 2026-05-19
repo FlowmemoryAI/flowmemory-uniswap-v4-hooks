@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    participant Agent
+    participant Runtime as FlowMemory Runtime
+    participant Hook as afterSwap Hook
+    participant Reader as Receipt Reader
+    participant Litmus as FlowLitmus
+
+    Agent->>Runtime: allocate virtual FlowPulse pointer
+    Agent->>Runtime: read txHash before receipt
+    Runtime-->>Litmus: ReceiptPageFault
+    Hook->>Hook: emit FlowPulse at afterSwap boundary
+    Reader->>Runtime: attach txHash/logIndex receipt facts
+    Agent->>Runtime: claim pre-boundary output is post-receipt
+    Runtime-->>Litmus: retrocausal_receipt_claim
+    Agent->>Runtime: publish stale post-boundary output
+    Runtime-->>Litmus: QuiescenceViolation
+    Agent->>Runtime: release speculative output before retirement
+    Runtime-->>Litmus: RetirementViolation
+    Agent->>Runtime: write incompatible canonical rootfield head
+    Runtime-->>Litmus: split_brain_write

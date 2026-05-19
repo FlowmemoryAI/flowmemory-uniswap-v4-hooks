@@ -1,0 +1,37 @@
+{
+  "caseId": "FM-QS-001",
+  "category": "quiescence",
+  "expected": {
+    "faultTypes": [
+      "QuiescenceViolation"
+    ],
+    "outcome": "forbidden_outcome_detected"
+  },
+  "invariant": "Active pre-boundary readers must quiesce before their outputs join post-boundary state.",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim",
+    "not_production_safety_claim"
+  ],
+  "observed": {
+    "artifactId": "sha256:84c069316eeb895dc53e6b20e214e1bb0fba2d63f55f9a9d008358babee396eb",
+    "artifactSchema": "flowmemory.quiescence_certificate.v0",
+    "faultTypes": [
+      "QuiescenceViolation"
+    ],
+    "outcome": "forbidden_outcome_detected",
+    "reason": "post-boundary output is unsafe while the quiescence grace period is open"
+  },
+  "problems": [],
+  "resultId": "sha256:c41747dda597f484bdb9ca3b92440cadecf964ad1e11b32d0307fce2f653accc",
+  "schema": "flowmemory.flow_litmus_result.v0",
+  "status": "pass",
+  "title": "unquiesced post-boundary output",
+  "whyFlowPulseMatters": "The receipt-bound FlowPulse advances the rootfield epoch that forces old readers to reach a safe point."
+}

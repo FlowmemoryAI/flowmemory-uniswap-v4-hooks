@@ -1,0 +1,37 @@
+{
+  "artifacts": {
+    "enforcement": "examples/pulse-retire/enforcement.speculative.example.json"
+  },
+  "boundaryRequirement": {
+    "requiresFlowPulse": true,
+    "requiresReaderAttachedLogIndex": true,
+    "requiresReaderAttachedTxHash": true,
+    "requiresReceiptStatusSuccess": true
+  },
+  "caseId": "FM-RT-001",
+  "category": "speculative_retirement",
+  "expected": {
+    "faultTypes": [
+      "RetirementViolation"
+    ],
+    "outcome": "forbidden_outcome_detected"
+  },
+  "forbiddenOutcome": {
+    "description": "A speculative model output tries to become live before a matching FlowPulse receipt retires it."
+  },
+  "invariant": "Speculative artifacts cannot become live agent state until a matching receipt-bound FlowPulse retires them.",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim"
+  ],
+  "runner": "pulse_retire_enforcement",
+  "schema": "flowmemory.flow_litmus_case.v0",
+  "title": "speculative output escaped",
+  "whyFlowPulseMatters": "The receipt-bound FlowPulse is the external retirement signal that separates speculation from live state."
+}
