@@ -54,6 +54,18 @@ FMM-0 is the memory consistency model.
 Cache and compute reuse are allowed only when lineage and memory consistency pass.
 ```
 
+## Public Reading Path
+
+Read the repo in this order:
+
+1. **Boundary**: the `afterSwap` hook emits `FlowPulse`; the swap is not the memory.
+2. **FMM-0**: machine histories are checked as a memory consistency model.
+3. **Forbidden histories**: FlowLitmus and adversarial harnesses catch histories that could not have happened.
+4. **Reuse discipline**: cache and compute reuse are blocked unless lineage and FMM-0 consistency pass.
+5. **Transcript**: one offline object shows what passed, what is pending, and what is not claimed.
+
+Everything below is evidence for that path.
+
 ## Launch Reality Check
 
 Run the launch-grade runtime consistency demo:
@@ -106,7 +118,11 @@ FMM-0 is not a production standard, not semantic truth, and not a mainnet deploy
 
 See [specs/FMM-0.v0.md](specs/FMM-0.v0.md), [docs/FLOWMEMORY_MEMORY_MODEL.md](docs/FLOWMEMORY_MEMORY_MODEL.md), and [docs/FMM_0_CONFORMANCE_MATRIX.md](docs/FMM_0_CONFORMANCE_MATRIX.md).
 
-## FMM-0 Phase Space
+## Detailed Evidence Surfaces
+
+The sections below are reviewer evidence, not separate launch theses.
+
+### FMM-0 Phase Space
 
 Everyone treated agent memory like retrieval. FlowMemory treats it like phase space.
 
@@ -138,7 +154,7 @@ FMM-0 treats machine memory as phase space, not retrieval text.
 
 See [specs/FMM-0-PhaseTable.v0.md](specs/FMM-0-PhaseTable.v0.md), [docs/FMM_0_PHASE_TABLE.md](docs/FMM_0_PHASE_TABLE.md), and [examples/fmm0-phase-table/](examples/fmm0-phase-table/).
 
-## FMM-0 Counterexample Forge
+### FMM-0 Counterexample Forge
 
 FlowMemory should not only pass examples.
 
@@ -166,7 +182,7 @@ counterexamples.
 
 See [specs/FMM-0-CounterexampleForge.v0.md](specs/FMM-0-CounterexampleForge.v0.md), [docs/FMM_0_COUNTEREXAMPLE_FORGE.md](docs/FMM_0_COUNTEREXAMPLE_FORGE.md), and [examples/fmm0-counterexample-forge/](examples/fmm0-counterexample-forge/).
 
-## FMM-0 Closure Lab
+### FMM-0 Closure Lab
 
 Counterexamples prove that bad histories fail.
 
@@ -195,7 +211,7 @@ semantic overclaims.
 
 See [specs/FMM-0-ClosureLab.v0.md](specs/FMM-0-ClosureLab.v0.md), [docs/FMM_0_CLOSURE_LAB.md](docs/FMM_0_CLOSURE_LAB.md), and [examples/fmm0-closure-lab/](examples/fmm0-closure-lab/).
 
-## FMM-0 Boundary Bisimulation
+### FMM-0 Boundary Bisimulation
 
 The boundary has to survive translation.
 
@@ -225,7 +241,7 @@ are rejected.
 
 See [specs/FMM-0-BoundaryBisimulation.v0.md](specs/FMM-0-BoundaryBisimulation.v0.md), [docs/FMM_0_BOUNDARY_BISIMULATION.md](docs/FMM_0_BOUNDARY_BISIMULATION.md), and [examples/fmm0-boundary-bisimulation/](examples/fmm0-boundary-bisimulation/).
 
-## FMM-0 Forbidden Core Extractor
+### FMM-0 Forbidden Core Extractor
 
 FMM-0 does not only catch impossible histories.
 
@@ -254,7 +270,7 @@ machine history is impossible instead of only seeing a generic invalid result.
 
 See [specs/FMM-0-ForbiddenCore.v0.md](specs/FMM-0-ForbiddenCore.v0.md), [docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md](docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md), and [examples/fmm0-forbidden-core/](examples/fmm0-forbidden-core/).
 
-## FMM-0 Witness Pack
+### FMM-0 Witness Pack
 
 The Witness Pack bundles the local conformance evidence into one reproducible
 reviewer packet.
@@ -279,7 +295,7 @@ exists.
 
 See [specs/FMM-0-WitnessPack.v0.md](specs/FMM-0-WitnessPack.v0.md), [docs/FMM_0_WITNESS_PACK.md](docs/FMM_0_WITNESS_PACK.md), and [examples/fmm0-witness-pack/](examples/fmm0-witness-pack/).
 
-## FlowPulse Boundary ABI Gate
+### FlowPulse Boundary ABI Gate
 
 FMM-0 does not float above the hook.
 
@@ -306,7 +322,7 @@ surface.
 
 See [specs/FlowPulse-BoundaryABI.v0.md](specs/FlowPulse-BoundaryABI.v0.md), [docs/FLOWPULSE_BOUNDARY_ABI.md](docs/FLOWPULSE_BOUNDARY_ABI.md), and [examples/flowpulse-boundary-abi/](examples/flowpulse-boundary-abi/).
 
-## 10-Minute Skeptic Review
+### 10-Minute Skeptic Review
 
 FlowMemory's launch claim is reviewable.
 
@@ -339,7 +355,7 @@ Every launch claim has a command, and every overclaim has a red line.
 
 See [docs/SKEPTIC_REVIEW_WALKTHROUGH.md](docs/SKEPTIC_REVIEW_WALKTHROUGH.md), [docs/LAUNCH_CLAIM_LEDGER.md](docs/LAUNCH_CLAIM_LEDGER.md), and [examples/reviewer-walkthrough/](examples/reviewer-walkthrough/).
 
-## Base Sepolia Evidence Gate
+### Base Sepolia Evidence Gate
 
 Public testnet receipt evidence should be explicit, not implied.
 
@@ -360,7 +376,7 @@ The gate is pending-safe. It will not turn public evidence into `PASS` unless th
 
 See [releases/base-sepolia/README.md](releases/base-sepolia/README.md) and [releases/base-sepolia/RELEASE_EVIDENCE.template.json](releases/base-sepolia/RELEASE_EVIDENCE.template.json).
 
-## Memory Consistency Card
+### Memory Consistency Card
 
 Run the claim-to-evidence scorecard:
 
@@ -569,7 +585,13 @@ FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evi
 
 See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
-## R&D Primitive: AxiomPatch
+## R&D Surfaces
+
+These are lower-level experimental surfaces. They support the memory
+consistency thesis, but the public launch should still lead with Boundary ->
+FMM-0 -> forbidden histories -> reuse discipline -> transcript.
+
+### AxiomPatch
 
 AxiomPatch is proof-conditioned cognition for machine agents.
 
@@ -595,7 +617,7 @@ It is a cognitive state transition derived from a receipt-bound FlowPulse proof 
 
 See [docs/AXIOM_PATCH.md](docs/AXIOM_PATCH.md), [specs/AxiomPatch.v0.md](specs/AxiomPatch.v0.md), and [examples/axiom-patch/](examples/axiom-patch/).
 
-## Frontier R&D Primitive: BoundaryFission
+### BoundaryFission
 
 BoundaryFission is proof-triggered forgetting.
 
@@ -639,7 +661,7 @@ It gives agents proof-triggered forgetting.
 
 See [docs/BOUNDARY_FISSION.md](docs/BOUNDARY_FISSION.md), [specs/BoundaryFission.v0.md](specs/BoundaryFission.v0.md), [specs/ResidueAtom.v0.md](specs/ResidueAtom.v0.md), and [examples/boundary-fission/](examples/boundary-fission/).
 
-## Frontier R&D Primitive: PulseRetire Queue
+### PulseRetire Queue
 
 PulseRetire Queue is receipt-driven retirement for speculative machine cognition.
 
@@ -667,7 +689,7 @@ FlowMemory gives AI agents a reorder buffer for reality: they can compute specul
 
 See [docs/PULSE_RETIRE.md](docs/PULSE_RETIRE.md), [specs/PulseRetire.v0.md](specs/PulseRetire.v0.md), and [examples/pulse-retire/](examples/pulse-retire/).
 
-## Frontier R&D Primitive: FlowMMU
+### FlowMMU
 
 FlowMMU is receipt-backed virtual memory for machine reality.
 
@@ -695,7 +717,7 @@ It is a runtime primitive for external reality: agents can point at a boundary b
 
 See [docs/FLOW_MMU.md](docs/FLOW_MMU.md), [specs/FlowMMU.v0.md](specs/FlowMMU.v0.md), [specs/ReceiptPageFault.v0.md](specs/ReceiptPageFault.v0.md), and [examples/flow-mmu/](examples/flow-mmu/).
 
-## Frontier R&D Primitive: FlowQuiesce
+### FlowQuiesce
 
 FlowQuiesce is receipt-triggered quiescence for autonomous agents and GPU workflows.
 
@@ -720,7 +742,7 @@ It is a public safe-point protocol for machine cognition.
 
 See [docs/FLOW_QUIESCE.md](docs/FLOW_QUIESCE.md), [specs/FlowQuiesce.v0.md](specs/FlowQuiesce.v0.md), and [examples/flow-quiesce/](examples/flow-quiesce/).
 
-## Frontier R&D Primitive: FlowSerial
+### FlowSerial
 
 FlowSerial is receipt-linearizability for machine cognition.
 
@@ -765,7 +787,7 @@ A model can generate a story. FlowSerial decides whether that story could have h
 
 See [docs/FLOW_SERIAL.md](docs/FLOW_SERIAL.md), [specs/FlowSerial.v0.md](specs/FlowSerial.v0.md), and [examples/flow-serial/](examples/flow-serial/).
 
-## Launch R&D Demo: FlowLitmus
+### FlowLitmus
 
 FlowLitmus is an executable runtime consistency suite for FlowMemory.
 
