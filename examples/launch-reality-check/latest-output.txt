@@ -24,6 +24,7 @@ Runtime model
   PASS  FMM-0 Boundary Bisimulation: hook-to-receipt-to-runtime projection checks
   PASS  FMM-0 Forbidden Core Extractor: minimal failing-core diagnostics
   PASS  FMM-0 Witness Pack: reproducible local evidence bundle
+  PASS  FlowPulse Boundary ABI: Solidity event and runtime model conformance
   PASS  FlowSerial: receipt-linearizability for machine cognition
   PASS  FlowLitmus: executable forbidden outcomes
 
@@ -31,6 +32,7 @@ Required launch artifacts
   PASS  README.md
   PASS  contracts/FlowMemoryAfterSwapHook.sol
   PASS  contracts/FlowPulse.sol
+  PASS  specs/FlowPulse-BoundaryABI.v0.md
   PASS  specs/FMM-0.v0.md
   PASS  specs/FMM-0-PhaseTable.v0.md
   PASS  specs/FMM-0-CounterexampleForge.v0.md
@@ -43,6 +45,7 @@ Required launch artifacts
   PASS  docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
   PASS  docs/FLOWMEMORY_RUNTIME_MODEL.md
   PASS  docs/FLOWMEMORY_MEMORY_MODEL.md
+  PASS  docs/FLOWPULSE_BOUNDARY_ABI.md
   PASS  docs/FMM_0_CONFORMANCE_MATRIX.md
   PASS  docs/FMM_0_PHASE_TABLE.md
   PASS  docs/FMM_0_COUNTEREXAMPLE_FORGE.md
@@ -55,6 +58,7 @@ Required launch artifacts
   PASS  examples/flow-litmus/litmus.manifest.json
   PASS  examples/flow-litmus/flowlitmus-casebook.json
   PASS  examples/memory-model/fmm0.manifest.json
+  PASS  examples/flowpulse-boundary-abi/expected-output.txt
   PASS  examples/fmm0-phase-table/phase-table.json
   PASS  examples/fmm0-counterexample-forge/expected-output.txt
   PASS  examples/fmm0-closure-lab/expected-output.txt
@@ -63,6 +67,7 @@ Required launch artifacts
   PASS  examples/fmm0-witness-pack/expected-output.txt
   PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
+  PASS  tools/flowpulse_boundary_abi.py
   PASS  tools/fmm0_phase_table.py
   PASS  tools/fmm0_counterexample_forge.py
   PASS  tools/fmm0_closure_lab.py

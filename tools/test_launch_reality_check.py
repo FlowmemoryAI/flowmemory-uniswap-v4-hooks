@@ -32,6 +32,7 @@ class LaunchRealityCheckTest(unittest.TestCase):
         self.assertIn("FMM-0 Boundary Bisimulation", text)
         self.assertIn("FMM-0 Forbidden Core Extractor", text)
         self.assertIn("FMM-0 Witness Pack", text)
+        self.assertIn("FlowPulse Boundary ABI", text)
 
     def test_output_includes_litmus_case_ids_when_suite_runs(self):
         text = launch_reality_check.render_report(launch_reality_check.build_report(run_litmus=True))

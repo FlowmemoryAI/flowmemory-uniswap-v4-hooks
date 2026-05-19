@@ -101,6 +101,15 @@ python tools/fmm0_witness_pack.py demo --pretty
 This bundles the local conformance surface into one reproducible evidence
 packet while keeping public Base Sepolia evidence pending.
 
+For the Solidity ABI/model drift gate:
+
+```bash
+python tools/flowpulse_boundary_abi.py check --pretty
+```
+
+This verifies that the `FlowPulse` hook-time event surface still excludes
+receipt-only fields like `txHash` and `logIndex`.
+
 For that, run the Memory Consistency Card:
 
 ```bash

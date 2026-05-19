@@ -14,7 +14,8 @@ It now also names the runtime model and its state surface:
 - **FMM-0 Closure Lab**;
 - **FMM-0 Boundary Bisimulation**;
 - **FMM-0 Forbidden Core Extractor**;
-- **FMM-0 Witness Pack**.
+- **FMM-0 Witness Pack**;
+- **FlowPulse Boundary ABI**.
 
 ## Command
 
@@ -89,6 +90,12 @@ For the local witness packet, run:
 python tools/fmm0_witness_pack.py demo --pretty
 ```
 
+For ABI/model drift checks, run:
+
+```bash
+python tools/flowpulse_boundary_abi.py check --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around
@@ -105,6 +112,7 @@ It checks:
 - FMM-0 Boundary Bisimulation;
 - FMM-0 Forbidden Core Extractor;
 - FMM-0 Witness Pack;
+- FlowPulse Boundary ABI;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:
@@ -126,7 +134,8 @@ flowchart LR
     Forge --> Closure["Closure Lab checks memory algebra"]
     Closure --> Bisim["Boundary Bisimulation checks projection drift"]
     Bisim --> Core["Forbidden Core shrinks impossible histories"]
-    Core --> Witness["Witness Pack bundles local evidence"]
+    Core --> ABI["FlowPulse Boundary ABI checks event drift"]
+    ABI --> Witness["Witness Pack bundles local evidence"]
     Witness --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
@@ -242,6 +251,10 @@ explainable instead of only rejected.
 The Witness Pack is the evidence-quality layer. It bundles the local
 conformance outputs into one reproducible packet and keeps public release
 evidence pending until real receipt data exists.
+
+FlowPulse Boundary ABI is the hook/model drift layer. It checks that the
+Solidity event surface still excludes receipt-only fields and matches the
+runtime boundary assumptions.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.

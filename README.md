@@ -240,7 +240,7 @@ python tools/fmm0_witness_pack.py demo --pretty
 Expected result:
 
 ```text
-local conformance layers passed: 7/7
+local conformance layers passed: 8/8
 public Base Sepolia evidence: PENDING
 escaped faults: 0
 ```
@@ -250,6 +250,33 @@ while public Base Sepolia evidence remains pending until a real release packet
 exists.
 
 See [specs/FMM-0-WitnessPack.v0.md](specs/FMM-0-WitnessPack.v0.md), [docs/FMM_0_WITNESS_PACK.md](docs/FMM_0_WITNESS_PACK.md), and [examples/fmm0-witness-pack/](examples/fmm0-witness-pack/).
+
+## FlowPulse Boundary ABI Gate
+
+FMM-0 does not float above the hook.
+
+The Boundary ABI Gate checks that the Solidity `FlowPulse` event, reader
+projection, and runtime assumptions still describe the same boundary.
+
+Run:
+
+```bash
+python tools/flowpulse_boundary_abi.py check --pretty
+```
+
+Expected result:
+
+```text
+ABI checks passed: 9/9
+receipt-only fields exposed: 0
+status: PASS
+```
+
+This is the ABI/model drift gate: `txHash`, `logIndex`, transaction index,
+block facts, receipt status, and finality remain outside the hook-time event
+surface.
+
+See [specs/FlowPulse-BoundaryABI.v0.md](specs/FlowPulse-BoundaryABI.v0.md), [docs/FLOWPULSE_BOUNDARY_ABI.md](docs/FLOWPULSE_BOUNDARY_ABI.md), and [examples/flowpulse-boundary-abi/](examples/flowpulse-boundary-abi/).
 
 ## 10-Minute Skeptic Review
 

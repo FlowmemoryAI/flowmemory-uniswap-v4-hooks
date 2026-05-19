@@ -134,6 +134,7 @@ Use these lines for the broader vision:
 - FMM-0 Boundary Bisimulation is the launch cross-layer layer: it catches FlowPulse projection drift between hook signal, receipt envelope, and runtime state.
 - FMM-0 Forbidden Core Extractor is the launch diagnostic layer: it shrinks impossible histories to one-minimal failing cores.
 - FMM-0 Witness Pack is the launch evidence-quality layer: it bundles every local conformance surface into one reproducible packet.
+- FlowPulse Boundary ABI is the hook/model drift layer: it checks the Solidity event surface against FMM-0 assumptions.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -328,3 +329,17 @@ Local conformance is reproducible. Public receipt evidence stays pending until t
 ```
 
 That is the honest launch posture: bold category claim, disciplined evidence.
+
+## FlowPulse Boundary ABI Founder Script
+
+FMM-0 does not float above the hook.
+
+The FlowPulse Boundary ABI gate checks the Solidity event surface directly:
+hook-time fields stay in the event, receipt-only fields stay out, and the
+runtime model does not silently drift away from the contract.
+
+The line:
+
+```text
+The memory model is anchored to the ABI boundary, not only to prose.
+```

@@ -19,6 +19,7 @@ try:  # pragma: no cover
     from tools import (
         axiom_writ,
         flow_litmus,
+        flowpulse_boundary_abi,
         fmm0_boundary_bisim,
         fmm0_closure_lab,
         fmm0_counterexample_forge,
@@ -30,6 +31,7 @@ try:  # pragma: no cover
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
     import flow_litmus  # type: ignore
+    import flowpulse_boundary_abi  # type: ignore
     import fmm0_boundary_bisim  # type: ignore
     import fmm0_closure_lab  # type: ignore
     import fmm0_counterexample_forge  # type: ignore
@@ -101,6 +103,7 @@ def build_pack() -> dict[str, Any]:
     closure = fmm0_closure_lab.build_report()
     bisim = fmm0_boundary_bisim.build_report()
     core = fmm0_forbidden_core.build_report()
+    abi = flowpulse_boundary_abi.build_report()
     litmus = flow_litmus.run_suite(litmus_manifest())
     card = memory_consistency_card.build_card(run_litmus=True)
     release = verify_release_evidence.build_report()
@@ -111,6 +114,7 @@ def build_pack() -> dict[str, Any]:
         check("FMM-0 Closure Lab", "PASS" if closure["status"] == "pass" else "FAIL", f"{closure['validClosuresPreserved'] + closure['invalidClosuresRejected']}/{closure['closureLawsChecked']} laws", closure),
         check("FMM-0 Boundary Bisimulation", "PASS" if bisim["status"] == "pass" else "FAIL", f"{bisim['bisimulationsPreserved'] + bisim['driftCasesRejected']}/{bisim['projectionChecks']} projections", bisim),
         check("FMM-0 Forbidden Core Extractor", "PASS" if core["status"] == "pass" else "FAIL", f"{core['minimalCoresFound']}/{core['invalidHistoriesChecked']} cores", core),
+        check("FlowPulse Boundary ABI", "PASS" if abi["status"] == "pass" else "FAIL", f"{abi['checksPassed']}/{abi['checksTotal']} ABI checks", abi),
         check("FlowLitmus", "PASS" if litmus["status"] == "pass" else "FAIL", f"{litmus['passed']}/{litmus['total']} forbidden outcomes", litmus),
         check("Memory Consistency Card", "PASS" if card["localStatus"] == "pass" else "FAIL", "local surface pass", card),
         check("Public Base Sepolia Evidence", release["verdict"]["publicBaseSepoliaReceiptEvidence"], "release evidence pending-safe", release),
@@ -148,8 +152,6 @@ def render_pack(pack: dict[str, Any]) -> str:
             "",
             "Result:",
             f"  {pack['result']}",
-            "",
-            f"Witness Pack ID: {pack['witnessPackId']}",
         ]
     )
     return "\n".join(rows)

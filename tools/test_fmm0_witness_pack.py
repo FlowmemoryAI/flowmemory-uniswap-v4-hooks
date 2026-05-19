@@ -28,6 +28,7 @@ class Fmm0WitnessPackTest(unittest.TestCase):
             "FMM-0 Closure Lab",
             "FMM-0 Boundary Bisimulation",
             "FMM-0 Forbidden Core Extractor",
+            "FlowPulse Boundary ABI",
             "FlowLitmus",
             "Memory Consistency Card",
             "Public Base Sepolia Evidence",
@@ -45,7 +46,7 @@ class Fmm0WitnessPackTest(unittest.TestCase):
             capture_output=True,
             text=True,
         )
-        self.assertIn("local conformance layers passed: 7/7", completed.stdout)
+        self.assertIn("local conformance layers passed: 8/8", completed.stdout)
         self.assertIn("public Base Sepolia evidence: PENDING", completed.stdout)
         self.assertIn("escaped faults: 0", completed.stdout)
 

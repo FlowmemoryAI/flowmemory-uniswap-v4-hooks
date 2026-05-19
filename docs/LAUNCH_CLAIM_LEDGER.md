@@ -78,6 +78,12 @@ Build the FMM-0 Witness Pack:
 python tools/fmm0_witness_pack.py demo --pretty
 ```
 
+Check FlowPulse Boundary ABI conformance:
+
+```bash
+python tools/flowpulse_boundary_abi.py check --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or

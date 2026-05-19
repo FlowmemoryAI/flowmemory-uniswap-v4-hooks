@@ -1,0 +1,20 @@
+FlowPulse Boundary ABI Conformance
+
+Checks:
+  PASS  compiled ABI available or source fallback used
+  PASS  FlowPulse event present
+  PASS  FlowPulse hook-time fields match FMM-0
+  PASS  FlowPulse field types match
+  PASS  FlowPulse indexed boundary fields match
+  PASS  FlowPulse excludes receipt-only fields
+  PASS  AfterSwapObserved excludes receipt-only fields
+  PASS  FlowPulse carries rootfieldId and commitment
+  PASS  FlowPulse uses uint64 sequence and occurredAt
+
+Summary:
+  ABI checks passed: 9/9
+  receipt-only fields exposed: 0
+  status: PASS
+
+Result:
+  Solidity hook boundary, FlowPulse schema, and FMM-0 runtime assumptions are aligned.

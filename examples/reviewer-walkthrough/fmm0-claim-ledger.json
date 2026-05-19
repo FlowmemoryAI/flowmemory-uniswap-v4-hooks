@@ -301,6 +301,29 @@
       ]
     },
     {
+      "id": "FM-C17",
+      "category": "hook_boundary",
+      "claim": "FlowPulse Boundary ABI matches FMM-0 hook-time and receipt-time assumptions.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FlowPulse-BoundaryABI.v0.md",
+        "docs/FLOWPULSE_BOUNDARY_ABI.md",
+        "tools/flowpulse_boundary_abi.py",
+        "examples/flowpulse-boundary-abi/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/flowpulse_boundary_abi.py check --pretty",
+        "python -m unittest tools.test_flowpulse_boundary_abi"
+      ],
+      "expected": "Boundary ABI reports 9/9 checks passed and 0 receipt-only fields exposed.",
+      "nonClaims": [
+        "not_production_verifier_infrastructure",
+        "not_hook_time_receipt_metadata",
+        "not_semantic_truth",
+        "not_model_correctness"
+      ]
+    },
+    {
       "id": "FM-C10",
       "category": "public_release_evidence",
       "claim": "Public Base Sepolia receipt evidence is pending.",

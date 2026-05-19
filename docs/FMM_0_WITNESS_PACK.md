@@ -14,7 +14,7 @@ python tools/fmm0_witness_pack.py demo --pretty
 Expected result:
 
 ```text
-local conformance layers passed: 7/7
+local conformance layers passed: 8/8
 public Base Sepolia evidence: PENDING
 escaped faults: 0
 ```
@@ -26,6 +26,7 @@ escaped faults: 0
 - FMM-0 Closure Lab;
 - FMM-0 Boundary Bisimulation;
 - FMM-0 Forbidden Core Extractor;
+- FlowPulse Boundary ABI;
 - FlowLitmus;
 - Memory Consistency Card;
 - pending-safe public Base Sepolia evidence status.

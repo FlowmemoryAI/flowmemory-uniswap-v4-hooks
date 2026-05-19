@@ -585,6 +585,28 @@ Tests:
 python -m unittest tools.test_fmm0_witness_pack
 ```
 
+## `flowpulse_boundary_abi.py`
+
+Checks Solidity event ABI/model conformance for the FlowPulse boundary.
+
+This is the ABI drift gate:
+
+```text
+Solidity hook boundary, FlowPulse schema, and FMM-0 runtime assumptions are aligned.
+```
+
+Run:
+
+```bash
+python tools/flowpulse_boundary_abi.py check --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flowpulse_boundary_abi
+```
+
 ## `render_fmm0_matrix.py`
 
 Renders the FMM-0 conformance matrix from `examples/memory-model/fmm0.manifest.json`.

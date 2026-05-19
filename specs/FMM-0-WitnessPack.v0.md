@@ -11,6 +11,7 @@ packages them into one reviewer-facing packet:
 - FMM-0 Closure Lab;
 - FMM-0 Boundary Bisimulation;
 - FMM-0 Forbidden Core Extractor;
+- FlowPulse Boundary ABI;
 - FlowLitmus;
 - Memory Consistency Card;
 - pending-safe public Base Sepolia evidence gate.

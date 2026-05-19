@@ -52,6 +52,7 @@ jobs:
             contracts/FlowMemoryHookPlanner.sol
             contracts/FlowPulse.sol
             contracts/interfaces/IFlowMemoryHookData.sol
+            specs/FlowPulse-BoundaryABI.v0.md
             docs/MARKETING_POSITIONING.md
             contracts/interfaces/IUniswapV4SwapHookLike.sol
             test/FlowMemoryAfterSwapHook.t.sol
@@ -87,6 +88,7 @@ jobs:
             docs/FLOW_MMU.md
             docs/FLOW_QUIESCE.md
             docs/FLOW_SERIAL.md
+            docs/FLOWPULSE_BOUNDARY_ABI.md
             docs/FLOWMEMORY_RUNTIME_MODEL.md
             docs/FLOWMEMORY_MEMORY_MODEL.md
             docs/FLOWLITMUS_LAUNCH_DEMO.md
@@ -219,6 +221,8 @@ jobs:
             examples/flow-litmus/expected/FM-SER-003.result.json
             examples/flow-litmus/expected/FM-OK-001.result.json
             examples/flow-litmus/diagrams/impossible-agent-trace.mmd
+            examples/flowpulse-boundary-abi/README.md
+            examples/flowpulse-boundary-abi/expected-output.txt
             examples/launch-reality-check/screenshot-guide.md
             examples/launch-reality-check/expected-output.txt
             examples/launch-reality-check/latest-output.txt
@@ -263,6 +267,7 @@ jobs:
             tools/flow_quiesce.py
             tools/flow_serial.py
             tools/flow_litmus.py
+            tools/flowpulse_boundary_abi.py
             tools/launch_reality_check.py
             tools/fmm0_phase_table.py
             tools/fmm0_counterexample_forge.py
@@ -384,6 +389,12 @@ jobs:
 
       - name: Check FlowLitmus suite
         run: python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json
+
+      - name: Test FlowPulse boundary ABI
+        run: python -m unittest tools.test_flowpulse_boundary_abi
+
+      - name: Check FlowPulse boundary ABI
+        run: python tools/flowpulse_boundary_abi.py check --pretty
 
       - name: Test launch reality check
         run: python -m unittest tools.test_launch_reality_check
