@@ -300,3 +300,41 @@ Tests:
 ```bash
 python -m unittest tools.test_flow_quiesce
 ```
+
+## `flow_serial.py`
+
+Compiles machine histories into serial schedules or typed impossibility faults.
+
+FlowSerial gives agents linearizability against reality:
+
+- a successful FlowPulse receipt boundary becomes a public ordering anchor;
+- post-boundary events can cite reader-attached receipt facts;
+- pre-boundary events cannot claim `txHash`, `logIndex`, or other receipt-only facts;
+- rootfield heads cannot roll backward after receipt-bound advancement;
+- exclusive machine-state writers cannot claim incompatible FlowPulse heads.
+
+Run the demo:
+
+```bash
+python tools/flow_serial.py demo --pretty
+```
+
+Regenerate example artifacts:
+
+```bash
+python tools/flow_serial.py certify \
+  --history examples/flow-serial/history.valid.json \
+  --out examples/flow-serial/certificate.valid.json \
+  --pretty
+
+python tools/flow_serial.py certify \
+  --history examples/flow-serial/history.retrocausal.json \
+  --out examples/flow-serial/fault.retrocausal.json \
+  --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flow_serial
+```

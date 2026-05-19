@@ -1,0 +1,97 @@
+{
+  "agentId": "demo-agent",
+  "boundaries": [
+    {
+      "artifactType": "FlowPulse",
+      "blockHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "blockNumber": 123456,
+      "boundary": "uniswap_v4_afterSwap",
+      "boundaryId": "boundary-flowpulse-001",
+      "chainId": "84532",
+      "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "declaredOrder": 2,
+      "hookAddress": "0x0000000000000000000000000000000000000001",
+      "logIndex": 7,
+      "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "receiptStatus": "success",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "schema": "flowmemory.receipt_boundary.v0",
+      "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "transactionIndex": 3,
+      "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "artifactType": "FlowPulse",
+      "blockHash": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "blockNumber": 123457,
+      "boundary": "uniswap_v4_afterSwap",
+      "boundaryId": "boundary-flowpulse-002",
+      "chainId": "84532",
+      "commitment": "0x5555555555555555555555555555555555555555555555555555555555555555",
+      "declaredOrder": 4,
+      "hookAddress": "0x0000000000000000000000000000000000000001",
+      "logIndex": 8,
+      "parentPulseId": "boundary-flowpulse-001",
+      "receiptStatus": "success",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "schema": "flowmemory.receipt_boundary.v0",
+      "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "transactionIndex": 4,
+      "txHash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "declaredConsistency": "flow_serializable",
+  "events": [
+    {
+      "agentId": "demo-agent",
+      "claimedReceiptFacts": [],
+      "declaredOrder": 3,
+      "eventId": "event-canonical-a",
+      "eventType": "state_write",
+      "exclusiveWriteKey": "rootfield:demo:canonical_summary",
+      "mustFollow": [
+        "boundary-flowpulse-001"
+      ],
+      "mustPrecede": [],
+      "observedBoundaries": [
+        "boundary-flowpulse-001"
+      ],
+      "outputCommitment": "sha256:canonical-a",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "schema": "flowmemory.machine_event.v0",
+      "writes": []
+    },
+    {
+      "agentId": "demo-agent",
+      "claimedReceiptFacts": [],
+      "declaredOrder": 5,
+      "eventId": "event-canonical-b",
+      "eventType": "state_write",
+      "exclusiveWriteKey": "rootfield:demo:canonical_summary",
+      "mustFollow": [
+        "boundary-flowpulse-002"
+      ],
+      "mustPrecede": [],
+      "observedBoundaries": [
+        "boundary-flowpulse-002"
+      ],
+      "outputCommitment": "sha256:canonical-b",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "schema": "flowmemory.machine_event.v0",
+      "writes": []
+    }
+  ],
+  "historyId": "history-split-brain",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim"
+  ],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.flow_serial_history.v0"
+}

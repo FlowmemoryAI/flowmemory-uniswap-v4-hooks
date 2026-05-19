@@ -80,6 +80,7 @@ FlowMemory can connect:
 - receipt-driven retirement for speculative machine cognition;
 - receipt-backed dereference semantics for external proof coordinates;
 - receipt-triggered quiescence epochs for active agent frames;
+- receipt-linearizable machine histories;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -101,6 +102,8 @@ Use these lines for the broader vision:
 - PulseRetire lets agents compute ahead while preventing speculative outputs from becoming live until a matching FlowPulse receipt retires them.
 - FlowMMU turns blockchain receipts into virtual-memory mappings for machine cognition.
 - FlowQuiesce turns receipt-bound FlowPulses into safe points for in-flight cognition.
+- FlowSerial gives agents linearizability against reality.
+- A model can generate a story. FlowSerial decides whether that story could have happened.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -151,3 +154,13 @@ FlowMemory changes that. A Uniswap v4 `afterSwap` hook emits a FlowPulse. The sw
 FlowQuiesce turns that receipt-bound FlowPulse into a runtime epoch. Any in-flight agent or GPU frame that read the old epoch must reach a quiescent point before its output joins the new world.
 
 This is not memory retrieval or proof exploration. It is a grace period for reality.
+
+## FlowSerial Founder Script
+
+AI agents are becoming distributed systems. They run model calls, tools, compute jobs, state writes, and cache reuse across time. The failure mode is not just hallucination. It is impossible history.
+
+FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The swap is not memory. The transaction is the proof envelope. The FlowPulse is the memory artifact. The reader attaches receipt facts like `txHash` and `logIndex` later.
+
+FlowSerial is receipt-linearizability for machine cognition. It compiles an agent's outputs, tool calls, and state writes into a serial history around FlowPulse receipt boundaries. If the history can be serialized, it emits a certificate. If not, it emits a fault: retrocausal claim, rootfield rollback, split-brain write, impossible schedule.
+
+This gives agents linearizability against reality.

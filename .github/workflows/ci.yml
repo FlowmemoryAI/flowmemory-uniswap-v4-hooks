@@ -78,6 +78,7 @@ jobs:
             docs/PULSE_RETIRE.md
             docs/FLOW_MMU.md
             docs/FLOW_QUIESCE.md
+            docs/FLOW_SERIAL.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -91,6 +92,7 @@ jobs:
             specs/FlowMMU.v0.md
             specs/ReceiptPageFault.v0.md
             specs/FlowQuiesce.v0.md
+            specs/FlowSerial.v0.md
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
@@ -156,6 +158,15 @@ jobs:
             examples/flow-quiesce/ack.frame-001.json
             examples/flow-quiesce/quiescence-certificate.open.json
             examples/flow-quiesce/quiescence-certificate.closed.json
+            examples/flow-serial/README.md
+            examples/flow-serial/history.valid.json
+            examples/flow-serial/history.retrocausal.json
+            examples/flow-serial/history.rollback.json
+            examples/flow-serial/history.split-brain.json
+            examples/flow-serial/certificate.valid.json
+            examples/flow-serial/fault.retrocausal.json
+            examples/flow-serial/fault.rollback.json
+            examples/flow-serial/fault.split-brain.json
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -165,6 +176,7 @@ jobs:
             tools/pulse_retire.py
             tools/flow_mmu.py
             tools/flow_quiesce.py
+            tools/flow_serial.py
             releases/base-sepolia/README.md
           )
 
@@ -258,3 +270,11 @@ jobs:
 
       - name: Check FlowQuiesce demo
         run: python tools/flow_quiesce.py demo
+
+      - name: Test FlowSerial
+        run: python -m unittest tools.test_flow_serial
+
+      - name: Check FlowSerial demo
+        run: |
+          python tools/flow_serial.py demo
+          python tools/flow_serial.py verify-certificate --certificate examples/flow-serial/certificate.valid.json

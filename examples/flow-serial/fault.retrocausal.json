@@ -1,0 +1,30 @@
+{
+  "boundaryId": "boundary-flowpulse-001",
+  "details": {
+    "claimedField": "txHash"
+  },
+  "eventId": "event-retrocausal-output",
+  "faultId": "sha256:7dde8f043ccb7f4667e00a892a5f7567e005b6bf7960792dcb10ebcbb5653c4a",
+  "faultType": "retrocausal_receipt_claim",
+  "historyId": "history-retrocausal",
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_attestation",
+    "not_hardware_acceleration",
+    "not_swap_control",
+    "not_custody",
+    "not_fund_protection",
+    "not_live_mainnet_claim",
+    "not_consensus_replacement",
+    "not_workflow_engine_replacement"
+  ],
+  "reason": "event claims txHash for a FlowPulse receipt boundary before that receipt boundary is available",
+  "repairHints": [
+    "move the event after the receipt boundary",
+    "remove receipt-only claims from pre-boundary output",
+    "mark the output as a pre-boundary draft",
+    "recompute from post-boundary context"
+  ],
+  "schema": "flowmemory.flow_serial_fault.v0"
+}

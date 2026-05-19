@@ -307,6 +307,51 @@ It is a public safe-point protocol for machine cognition.
 
 See [docs/FLOW_QUIESCE.md](docs/FLOW_QUIESCE.md), [specs/FlowQuiesce.v0.md](specs/FlowQuiesce.v0.md), and [examples/flow-quiesce/](examples/flow-quiesce/).
 
+## Frontier R&D Primitive: FlowSerial
+
+FlowSerial is receipt-linearizability for machine cognition.
+
+FlowMemory gives agents linearizability against reality.
+
+AI agents are becoming distributed systems: model calls, tools, background workers, cache reuse, GPU jobs, planner loops, and state writers all produce machine history. The dangerous failure is not only hallucination. It is impossible history.
+
+FlowSerial asks:
+
+```text
+Can this agent history be serialized around the FlowPulse receipt boundaries it claims to have observed?
+```
+
+If yes, FlowSerial emits a deterministic certificate with a serial schedule.
+
+If no, FlowSerial emits a typed impossibility fault:
+
+- retrocausal receipt claim;
+- rootfield rollback;
+- split-brain write;
+- missing receipt metadata;
+- failed receipt boundary;
+- impossible schedule.
+
+This is not memory storage.
+This is not retrieval.
+This is not a proof explorer.
+This is not a workflow engine.
+This is not semantic truth.
+
+It is linearizability against reality for autonomous systems.
+
+```text
+machine history
+  -> FlowSerial
+  -> serializable schedule
+     or
+  -> impossible history fault
+```
+
+A model can generate a story. FlowSerial decides whether that story could have happened.
+
+See [docs/FLOW_SERIAL.md](docs/FLOW_SERIAL.md), [specs/FlowSerial.v0.md](specs/FlowSerial.v0.md), and [examples/flow-serial/](examples/flow-serial/).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -411,6 +456,7 @@ docs/
   PULSE_RETIRE.md                  # Receipt-driven retirement for speculative cognition
   FLOW_MMU.md                      # Receipt-backed dereference semantics for agents
   FLOW_QUIESCE.md                  # Receipt-triggered quiescence epochs for agent runtimes
+  FLOW_SERIAL.md                   # Receipt-linearizability for machine cognition
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -434,6 +480,7 @@ tools/
   pulse_retire.py                  # Retires or squashes speculative artifacts with FlowPulse receipts
   flow_mmu.py                      # Maps virtual FlowPulse pointers into read-only receipt pages
   flow_quiesce.py                  # Requires active pre-boundary frames to quiesce after FlowPulse receipts
+  flow_serial.py                   # Compiles machine histories into serial schedules or typed faults
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
@@ -448,6 +495,7 @@ specs/
   FlowMMU.v0.md                    # Draft receipt-backed virtual memory spec
   ReceiptPageFault.v0.md           # Draft runtime fault spec for early receipt reads
   FlowQuiesce.v0.md                # Draft receipt-triggered quiescence epoch spec
+  FlowSerial.v0.md                 # Draft receipt-linearizable machine history spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
@@ -456,6 +504,7 @@ examples/
   pulse-retire/                    # Example speculative artifacts -> FlowPulse retirement
   flow-mmu/                        # Example PulsePointer -> ReceiptPageFault -> ReceiptPage
   flow-quiesce/                    # Example active frame -> quiescence request -> certificate
+  flow-serial/                     # Example history -> serial certificate or impossibility fault
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

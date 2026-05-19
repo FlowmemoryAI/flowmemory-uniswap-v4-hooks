@@ -29,6 +29,7 @@ The swap transaction is not the memory. The transaction is the proof envelope. T
 | Public canary language exists | `docs/PUBLIC_CANARY_TEMPLATE.md` | Gives evidence-first post copy without Base mainnet or custody overclaims. |
 | Launch checklist exists | `docs/LAUNCH_DAY_CHECKLIST.md` | Separates launch with Base Sepolia evidence from launch as repo/live-prep artifact. |
 | Marketing language is controlled | `docs/MARKETING_POSITIONING.md` | Strong category language plus explicit forbidden claims. |
+| Frontier R&D artifact shows broader AI-agent value | `docs/FLOW_SERIAL.md`, `tools/flow_serial.py`, `examples/flow-serial/` | Demonstrates receipt-linearizable machine histories without claiming semantic truth, custody, swap control, or live production deployment. |
 | CI enforces required launch artifacts | `.github/workflows/ci.yml` | Required-file check includes reader, launch docs, and release staging folder. |
 
 ## Verification Commands
@@ -41,6 +42,8 @@ forge build
 forge test -vvv
 python tools/read_flowpulse_logs.py --help
 python -m unittest tools.test_read_flowpulse_logs
+python -m unittest tools.test_flow_serial
+python tools/flow_serial.py demo --pretty
 git diff --check
 ```
 
@@ -61,6 +64,7 @@ GitHub Actions should show both jobs green:
 - Reader decoder tests.
 - Public canary template.
 - Launch-day checklist.
+- FlowSerial R&D artifact for receipt-linearizable machine cognition.
 
 ## What Still Requires Live Evidence
 
