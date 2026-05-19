@@ -254,6 +254,34 @@ FlowMemory gives AI agents a reorder buffer for reality: they can compute specul
 
 See [docs/PULSE_RETIRE.md](docs/PULSE_RETIRE.md), [specs/PulseRetire.v0.md](specs/PulseRetire.v0.md), and [examples/pulse-retire/](examples/pulse-retire/).
 
+## Frontier R&D Primitive: FlowMMU
+
+FlowMMU is receipt-backed virtual memory for machine reality.
+
+FlowMemory gives agents a page fault for reality.
+
+A machine can hold a virtual pointer to an expected FlowPulse boundary: `rootfieldId`, `commitment`, hook, pool, and optional parent pulse.
+
+But it cannot read receipt facts like `txHash`, `logIndex`, receipt status, transaction index, or block hash until a reader maps that pointer using actual FlowPulse evidence.
+
+```text
+unmapped PulsePointer
+  -> read txHash
+  -> ReceiptPageFault
+  -> map matching FlowPulse receipt
+  -> ReceiptPage(read-only)
+  -> read txHash succeeds
+```
+
+This is not memory storage.
+This is not indexing.
+This is not a dashboard.
+This is not a policy gate.
+
+It is a runtime primitive for external reality: agents can point at a boundary before proof exists, but they cannot dereference it until the receipt maps it.
+
+See [docs/FLOW_MMU.md](docs/FLOW_MMU.md), [specs/FlowMMU.v0.md](specs/FlowMMU.v0.md), [specs/ReceiptPageFault.v0.md](specs/ReceiptPageFault.v0.md), and [examples/flow-mmu/](examples/flow-mmu/).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -356,6 +384,7 @@ docs/
   AXIOM_PATCH.md                   # AxiomPatch operational cognitive state transition
   BOUNDARY_FISSION.md              # Proof-triggered forgetting and memory release
   PULSE_RETIRE.md                  # Receipt-driven retirement for speculative cognition
+  FLOW_MMU.md                      # Receipt-backed dereference semantics for agents
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -377,6 +406,7 @@ tools/
   axiom_patch.py                   # Applies AxiomPatch allow/deny/downgrade decisions
   boundary_fission.py              # Applies proof-triggered working-memory fission
   pulse_retire.py                  # Retires or squashes speculative artifacts with FlowPulse receipts
+  flow_mmu.py                      # Maps virtual FlowPulse pointers into read-only receipt pages
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
@@ -388,12 +418,15 @@ specs/
   BoundaryFission.v0.md            # Draft proof-triggered memory release spec
   ResidueAtom.v0.md                # Draft compression residue spec
   PulseRetire.v0.md                # Draft receipt-driven speculative retirement spec
+  FlowMMU.v0.md                    # Draft receipt-backed virtual memory spec
+  ReceiptPageFault.v0.md           # Draft runtime fault spec for early receipt reads
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action
   boundary-fission/                # Example FlowPulse -> memory release products
   pulse-retire/                    # Example speculative artifacts -> FlowPulse retirement
+  flow-mmu/                        # Example PulsePointer -> ReceiptPageFault -> ReceiptPage
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

@@ -1,0 +1,9 @@
+{
+  "agentId": "demo-agent",
+  "entries": [],
+  "faults": [],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.pulse_page_table.v0",
+  "tableId": "sha256:3903411b4648cd0b7830a59fed277d8dadbce6b6ab59ca6f48a54dda22843678",
+  "tableType": "receipt_backed_flowpulse_page_table"
+}

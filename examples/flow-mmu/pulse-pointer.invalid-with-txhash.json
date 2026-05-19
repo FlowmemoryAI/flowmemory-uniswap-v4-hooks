@@ -1,0 +1,12 @@
+{
+  "schema": "flowmemory.pulse_pointer_request.v0",
+  "agentId": "demo-agent",
+  "virtualAddress": {
+    "boundary": "uniswap_v4_afterSwap",
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "hookAddress": "0x0000000000000000000000000000000000000001",
+    "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

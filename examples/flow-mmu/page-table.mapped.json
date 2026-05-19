@@ -1,0 +1,114 @@
+{
+  "agentId": "demo-agent",
+  "entries": [
+    {
+      "pageId": "sha256:1eb2bf10cb11cf462759e8b3b509a309cd9c0520804e10c8b2d25e8ffda365ef",
+      "pointer": {
+        "agentId": "demo-agent",
+        "allowedReadsBeforeMapping": [
+          "rootfieldId",
+          "commitment",
+          "hookAddress",
+          "subjectPoolId",
+          "parentPulseId",
+          "boundary"
+        ],
+        "forbiddenAtAllocation": [
+          "txHash",
+          "logIndex",
+          "transactionIndex",
+          "blockHash",
+          "receiptStatus"
+        ],
+        "forbiddenReadsBeforeMapping": [
+          "txHash",
+          "logIndex",
+          "transactionIndex",
+          "blockHash",
+          "receiptStatus"
+        ],
+        "notClaims": [
+          "not_receipt_bound_yet",
+          "not_semantic_truth",
+          "not_swap_control",
+          "not_custody",
+          "not_gpu_attestation"
+        ],
+        "pointerId": "sha256:44e616feb242514ec30f5d02cf3d7352a46a874ac2ca30851ca49ca9c650b00b",
+        "pointerType": "virtual_flowpulse_address",
+        "schema": "flowmemory.pulse_pointer.v0",
+        "state": "unmapped",
+        "virtualAddress": {
+          "boundary": "uniswap_v4_afterSwap",
+          "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+          "hookAddress": "0x0000000000000000000000000000000000000001",
+          "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      },
+      "pointerId": "sha256:44e616feb242514ec30f5d02cf3d7352a46a874ac2ca30851ca49ca9c650b00b",
+      "receiptPage": {
+        "allowedReadsAfterMapping": [
+          "txHash",
+          "logIndex",
+          "transactionIndex",
+          "blockHash",
+          "blockNumber",
+          "receiptStatus",
+          "rootfieldId",
+          "commitment",
+          "hookAddress",
+          "subjectPoolId",
+          "parentPulseId",
+          "chainId"
+        ],
+        "causalAddress": "sha256:00aa462c37155b8b49eb3dec191f02fcbca26c5c35241aeb65758ff07be99d18",
+        "checks": {
+          "commitmentMatches": true,
+          "flowPulseRecordFound": true,
+          "hookAddressMatches": true,
+          "pageIdMatches": true,
+          "readerAttachedLogIndex": true,
+          "readerAttachedTxHash": true,
+          "receiptStatusSuccess": true,
+          "rootfieldMatches": true,
+          "subjectPoolMatches": true
+        },
+        "mappedBy": {
+          "mapper": "reader_verifier",
+          "source": "flowpulse_evidence"
+        },
+        "pageId": "sha256:1eb2bf10cb11cf462759e8b3b509a309cd9c0520804e10c8b2d25e8ffda365ef",
+        "pageType": "read_only_flowpulse_receipt_page",
+        "physicalAddress": {
+          "artifactType": "FlowPulse",
+          "blockHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "blockNumber": "123456",
+          "boundary": "uniswap_v4_afterSwap",
+          "chainId": "84532",
+          "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+          "hookAddress": "0x0000000000000000000000000000000000000001",
+          "logIndex": "7",
+          "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "pulseId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+          "receiptStatus": "success",
+          "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+          "transactionIndex": "3",
+          "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "pointerId": "sha256:44e616feb242514ec30f5d02cf3d7352a46a874ac2ca30851ca49ca9c650b00b",
+        "readOnly": true,
+        "schema": "flowmemory.receipt_page.v0",
+        "state": "mapped"
+      },
+      "state": "mapped"
+    }
+  ],
+  "faults": [],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.pulse_page_table.v0",
+  "tableId": "sha256:3903411b4648cd0b7830a59fed277d8dadbce6b6ab59ca6f48a54dda22843678",
+  "tableType": "receipt_backed_flowpulse_page_table"
+}

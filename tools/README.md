@@ -236,3 +236,43 @@ Tests:
 ```bash
 python -m unittest tools.test_pulse_retire
 ```
+
+## `flow_mmu.py`
+
+Maps virtual FlowPulse pointers into read-only receipt pages.
+
+FlowMMU is receipt-backed virtual memory for agents:
+
+- an agent can allocate a `PulsePointer` before receipt metadata exists;
+- virtual fields like `rootfieldId` and `commitment` can be read before mapping;
+- receipt-only fields like `txHash` and `logIndex` throw `ReceiptPageFault` before mapping;
+- matching FlowPulse evidence maps a read-only `ReceiptPage`;
+- mismatched evidence produces an address-mismatch fault.
+
+Run the demo:
+
+```bash
+python tools/flow_mmu.py demo --pretty
+```
+
+Regenerate example artifacts:
+
+```bash
+python tools/flow_mmu.py init \
+  --agent-id demo-agent \
+  --rootfield-id 0x1111111111111111111111111111111111111111111111111111111111111111 \
+  --out examples/flow-mmu/page-table.initial.json \
+  --pretty
+
+python tools/flow_mmu.py alloc \
+  --table examples/flow-mmu/page-table.initial.json \
+  --pointer examples/flow-mmu/pulse-pointer.request.json \
+  --out examples/flow-mmu/page-table.with-pointer.json \
+  --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flow_mmu
+```

@@ -1,0 +1,7 @@
+{
+  "allowed": true,
+  "field": "txHash",
+  "schema": "flowmemory.flow_mmu_read.v0",
+  "source": "receipt_page",
+  "value": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

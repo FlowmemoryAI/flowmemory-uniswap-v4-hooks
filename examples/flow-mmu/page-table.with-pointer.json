@@ -1,0 +1,59 @@
+{
+  "agentId": "demo-agent",
+  "entries": [
+    {
+      "pageId": null,
+      "pointer": {
+        "agentId": "demo-agent",
+        "allowedReadsBeforeMapping": [
+          "rootfieldId",
+          "commitment",
+          "hookAddress",
+          "subjectPoolId",
+          "parentPulseId",
+          "boundary"
+        ],
+        "forbiddenAtAllocation": [
+          "txHash",
+          "logIndex",
+          "transactionIndex",
+          "blockHash",
+          "receiptStatus"
+        ],
+        "forbiddenReadsBeforeMapping": [
+          "txHash",
+          "logIndex",
+          "transactionIndex",
+          "blockHash",
+          "receiptStatus"
+        ],
+        "notClaims": [
+          "not_receipt_bound_yet",
+          "not_semantic_truth",
+          "not_swap_control",
+          "not_custody",
+          "not_gpu_attestation"
+        ],
+        "pointerId": "sha256:44e616feb242514ec30f5d02cf3d7352a46a874ac2ca30851ca49ca9c650b00b",
+        "pointerType": "virtual_flowpulse_address",
+        "schema": "flowmemory.pulse_pointer.v0",
+        "state": "unmapped",
+        "virtualAddress": {
+          "boundary": "uniswap_v4_afterSwap",
+          "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+          "hookAddress": "0x0000000000000000000000000000000000000001",
+          "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      },
+      "pointerId": "sha256:44e616feb242514ec30f5d02cf3d7352a46a874ac2ca30851ca49ca9c650b00b",
+      "state": "unmapped"
+    }
+  ],
+  "faults": [],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.pulse_page_table.v0",
+  "tableId": "sha256:3903411b4648cd0b7830a59fed277d8dadbce6b6ab59ca6f48a54dda22843678",
+  "tableType": "receipt_backed_flowpulse_page_table"
+}

@@ -28,6 +28,7 @@ Most hooks modify execution. FlowMemory emits memory.
 - A FlowPulse is not context. It is a boundary event that can rupture stale cognition.
 - The agent can speculate. The receipt decides what becomes real.
 - FlowMemory gives AI agents a reorder buffer for reality.
+- FlowMemory gives agents a page fault for reality.
 
 ## Category Framing
 
@@ -76,6 +77,7 @@ FlowMemory can connect:
 - proof-backed agent memory;
 - proof-triggered forgetting;
 - receipt-driven retirement for speculative machine cognition;
+- receipt-backed dereference semantics for external proof coordinates;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -95,6 +97,7 @@ Use these lines for the broader vision:
 - Rootflow is the graph where execution becomes memory.
 - BoundaryFission turns proof into memory release: conserve facts, compress stale context, quarantine unsupported claims, kill unsafe branches, and delegate fresh compute.
 - PulseRetire lets agents compute ahead while preventing speculative outputs from becoming live until a matching FlowPulse receipt retires them.
+- FlowMMU turns blockchain receipts into virtual-memory mappings for machine cognition.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -125,3 +128,13 @@ FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The
 PulseRetire Queue lets an agent compute speculatively, but the result cannot become live until a matching FlowPulse arrives with reader-attached receipt metadata like `txHash` and `logIndex`. If the FlowPulse matches, the artifact retires. If it mismatches, the artifact is squashed.
 
 This gives agents a reorder buffer for reality. They can think ahead, but the receipt decides what becomes real.
+
+## FlowMMU Founder Script
+
+Agents today treat external reality like text. They remember expected events, model guesses, logs, and settled facts in the same context window. FlowMemory gives them a better runtime model.
+
+The Uniswap v4 hook emits a FlowPulse at the `afterSwap` boundary. The swap is not memory. The transaction is the proof envelope. The FlowPulse is the memory artifact.
+
+FlowMMU is a receipt-backed memory-management unit for agents. A machine can hold a virtual pointer to an expected FlowPulse, but if it tries to read `txHash` or `logIndex` before the reader maps the receipt, it gets a page fault. Once the matching FlowPulse evidence arrives, FlowMMU maps a read-only proof page.
+
+The agent can point at reality before proof exists, but it cannot dereference reality until the chain maps it.

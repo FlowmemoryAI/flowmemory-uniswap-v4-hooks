@@ -1,0 +1,19 @@
+{
+  "attemptedAccess": {
+    "field": "receipt",
+    "operation": "map"
+  },
+  "faultId": "sha256:b99549c1b615eea9f5c6d3b4af368abbed23ed762624eee19b3c45e3656bfd7b",
+  "faultType": "address_mismatch",
+  "handlerHint": "map_with_flowpulse_receipt_or_treat_as_unresolved_external_fact",
+  "pointerId": "sha256:44e616feb242514ec30f5d02cf3d7352a46a874ac2ca30851ca49ca9c650b00b",
+  "reason": "commitmentMatches",
+  "requiredResolution": [
+    "provide FlowPulse evidence",
+    "require reader-attached txHash",
+    "require reader-attached logIndex",
+    "require matching rootfieldId",
+    "require matching commitment"
+  ],
+  "schema": "flowmemory.receipt_page_fault.v0"
+}

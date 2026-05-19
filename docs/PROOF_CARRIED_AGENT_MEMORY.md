@@ -134,6 +134,7 @@ new proof boundary
   -> apply AxiomPatch permissions
   -> run BoundaryFission release
   -> retire eligible speculative artifacts through PulseRetire
+  -> map receipt facts through FlowMMU
   -> emit AgentPulse for what survived, changed, or died
 ```
 
@@ -143,6 +144,10 @@ when receipt-bound evidence arrives.
 PulseRetire handles the other side of agent memory: not what must be released
 after a boundary, but what must stay speculative before a boundary. It gives
 agents a reorder buffer for reality.
+
+FlowMMU handles dereference: expected boundary facts and receipt-settled facts
+are not the same memory state. If an agent tries to read receipt-only fields too
+early, it gets a deterministic `ReceiptPageFault`.
 
 ## Line To Use
 

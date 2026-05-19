@@ -76,6 +76,7 @@ jobs:
             docs/AXIOM_PATCH.md
             docs/BOUNDARY_FISSION.md
             docs/PULSE_RETIRE.md
+            docs/FLOW_MMU.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -86,6 +87,8 @@ jobs:
             specs/BoundaryFission.v0.md
             specs/ResidueAtom.v0.md
             specs/PulseRetire.v0.md
+            specs/FlowMMU.v0.md
+            specs/ReceiptPageFault.v0.md
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
@@ -127,6 +130,19 @@ jobs:
             examples/pulse-retire/retirement.squashed.example.json
             examples/pulse-retire/enforcement.retired.example.json
             examples/pulse-retire/enforcement.speculative.example.json
+            examples/flow-mmu/README.md
+            examples/flow-mmu/page-table.initial.json
+            examples/flow-mmu/page-table.with-pointer.json
+            examples/flow-mmu/page-table.mapped.json
+            examples/flow-mmu/pulse-pointer.request.json
+            examples/flow-mmu/pulse-pointer.invalid-with-txhash.json
+            examples/flow-mmu/flowpulse.matching.json
+            examples/flow-mmu/flowpulse.mismatched.json
+            examples/flow-mmu/receipt-page.example.json
+            examples/flow-mmu/fault.unmapped-txhash.json
+            examples/flow-mmu/fault.address-mismatch.json
+            examples/flow-mmu/fault.illegal-write.json
+            examples/flow-mmu/read.txhash.example.json
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -134,6 +150,7 @@ jobs:
             tools/axiom_patch.py
             tools/boundary_fission.py
             tools/pulse_retire.py
+            tools/flow_mmu.py
             releases/base-sepolia/README.md
           )
 
@@ -213,3 +230,11 @@ jobs:
           python tools/pulse_retire.py demo
           python tools/pulse_retire.py verify --retirement examples/pulse-retire/retirement.retired.example.json
           python tools/pulse_retire.py enforce --queue examples/pulse-retire/queue.after-retire.json --artifact-id model-output-001
+
+      - name: Test FlowMMU
+        run: python -m unittest tools.test_flow_mmu
+
+      - name: Check FlowMMU demo
+        run: |
+          python tools/flow_mmu.py demo
+          python tools/flow_mmu.py verify-page --page examples/flow-mmu/receipt-page.example.json
