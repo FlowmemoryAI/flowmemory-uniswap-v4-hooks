@@ -43,6 +43,10 @@ jobs:
             README.md
             CONTRIBUTING.md
             SECURITY.md
+            .github/pull_request_template.md
+            .github/ISSUE_TEMPLATE/bug_report.md
+            .github/ISSUE_TEMPLATE/security_invariant_review.md
+            .github/ISSUE_TEMPLATE/release_evidence.md
             foundry.toml
             contracts/FlowMemoryAfterSwapHook.sol
             contracts/FlowMemoryHookPlanner.sol
