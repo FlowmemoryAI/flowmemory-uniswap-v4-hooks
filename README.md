@@ -269,6 +269,12 @@ docs/
   HOW_IT_WORKS.md                  # Direct code-level walkthrough
 tools/
   read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
+specs/
+  FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
+  ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
+  MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
+examples/
+  pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

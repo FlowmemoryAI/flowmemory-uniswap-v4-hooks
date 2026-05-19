@@ -1,0 +1,77 @@
+{
+  "schema": "flowmemory.machine_memory_trace.v0",
+  "traceId": "0xtrace000000000000000000000000000000000000000000000000000000000001",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "summary": "Example trace linking a DeFi swap memory signal to an AI/GPU analysis memory path.",
+  "artifacts": [
+    {
+      "type": "FlowPulse",
+      "status": "example_from_uniswap_v4_after_swap",
+      "id": "0xflow000000000000000000000000000000000000000000000000000000000001",
+      "boundary": "uniswap_v4_afterSwap",
+      "proofEnvelope": {
+        "chainId": 84532,
+        "txHash": "0xtx00000000000000000000000000000000000000000000000000000000000001",
+        "logIndex": 7,
+        "hookAddress": "0x0000000000000000000000000000000000000000",
+        "readerAttachedReceiptMetadata": true
+      },
+      "memory": {
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "commitment": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "artifact": "FlowPulse memory signal"
+      }
+    },
+    {
+      "type": "ComputePulse",
+      "status": "mocked_rd_artifact",
+      "id": "0xcompute000000000000000000000000000000000000000000000000000000001",
+      "boundary": "post_compute_job",
+      "proofEnvelope": {
+        "jobId": "gpu-job-example-001",
+        "executor": "rd-local-worker",
+        "hardwareClass": "gpu-class-example",
+        "attestationRef": null
+      },
+      "memory": {
+        "modelCommitment": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "inputCommitment": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "outputCommitment": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "artifact": "ComputePulse memory signal"
+      }
+    },
+    {
+      "type": "ModelPulse",
+      "status": "mocked_rd_artifact",
+      "id": "0xmodel00000000000000000000000000000000000000000000000000000000001",
+      "boundary": "model_output_committed",
+      "proofEnvelope": {
+        "sourceComputePulse": "0xcompute000000000000000000000000000000000000000000000000000000001",
+        "outputCommitment": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      },
+      "memory": {
+        "artifact": "ModelPulse output provenance signal",
+        "uri": "flowmemory://examples/pulse-trace/model-output"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "0xcompute000000000000000000000000000000000000000000000000000000001",
+      "to": "0xflow000000000000000000000000000000000000000000000000000000000001",
+      "type": "observed_by",
+      "description": "The compute job analyzed or reacted to the FlowPulse artifact."
+    },
+    {
+      "from": "0xmodel00000000000000000000000000000000000000000000000000000000001",
+      "to": "0xcompute000000000000000000000000000000000000000000000000000000001",
+      "type": "produces",
+      "description": "The model output was produced by the compute job."
+    }
+  ],
+  "verifierNotes": [
+    "FlowPulse is the currently implemented public primitive in this repository.",
+    "ComputePulse and ModelPulse are draft R&D artifacts, not deployed verifier claims.",
+    "Receipt metadata is reader-derived and is not known by the hook during execution."
+  ]
+}
