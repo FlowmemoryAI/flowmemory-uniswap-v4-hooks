@@ -1,17 +1,17 @@
 {
   "schema": "flowmemory.machine_memory_trace.v0",
-  "traceId": "0xtrace000000000000000000000000000000000000000000000000000000000001",
+  "traceId": "0x9999999999999999999999999999999999999999999999999999999999999999",
   "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
   "summary": "Example trace linking a DeFi swap memory signal to an AI/GPU analysis memory path.",
   "artifacts": [
     {
       "type": "FlowPulse",
       "status": "example_from_uniswap_v4_after_swap",
-      "id": "0xflow000000000000000000000000000000000000000000000000000000000001",
+      "id": "0xf100000000000000000000000000000000000000000000000000000000000001",
       "boundary": "uniswap_v4_afterSwap",
       "proofEnvelope": {
         "chainId": 84532,
-        "txHash": "0xtx00000000000000000000000000000000000000000000000000000000000001",
+        "txHash": "0x2222222222222222222222222222222222222222222222222222222222222222",
         "logIndex": 7,
         "hookAddress": "0x0000000000000000000000000000000000000000",
         "readerAttachedReceiptMetadata": true
@@ -25,7 +25,7 @@
     {
       "type": "ComputePulse",
       "status": "mocked_rd_artifact",
-      "id": "0xcompute000000000000000000000000000000000000000000000000000000001",
+      "id": "0xc000000000000000000000000000000000000000000000000000000000000001",
       "boundary": "post_compute_job",
       "proofEnvelope": {
         "jobId": "gpu-job-example-001",
@@ -43,10 +43,10 @@
     {
       "type": "ModelPulse",
       "status": "mocked_rd_artifact",
-      "id": "0xmodel00000000000000000000000000000000000000000000000000000000001",
+      "id": "0xd000000000000000000000000000000000000000000000000000000000000001",
       "boundary": "model_output_committed",
       "proofEnvelope": {
-        "sourceComputePulse": "0xcompute000000000000000000000000000000000000000000000000000000001",
+        "sourceComputePulse": "0xc000000000000000000000000000000000000000000000000000000000000001",
         "outputCommitment": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
       },
       "memory": {
@@ -57,14 +57,14 @@
   ],
   "edges": [
     {
-      "from": "0xcompute000000000000000000000000000000000000000000000000000000001",
-      "to": "0xflow000000000000000000000000000000000000000000000000000000000001",
+      "from": "0xc000000000000000000000000000000000000000000000000000000000000001",
+      "to": "0xf100000000000000000000000000000000000000000000000000000000000001",
       "type": "observed_by",
       "description": "The compute job analyzed or reacted to the FlowPulse artifact."
     },
     {
-      "from": "0xmodel00000000000000000000000000000000000000000000000000000000001",
-      "to": "0xcompute000000000000000000000000000000000000000000000000000000001",
+      "from": "0xd000000000000000000000000000000000000000000000000000000000000001",
+      "to": "0xc000000000000000000000000000000000000000000000000000000000000001",
       "type": "produces",
       "description": "The model output was produced by the compute job."
     }

@@ -1,0 +1,48 @@
+﻿[
+    {
+        "boundaryPulseHash":  "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "erasedFieldHashes":  {
+                                  "rawText":  "sha256:68c31ba153a601281ae0e58d3a08624ec8a5fd0300663b441731d5e2047a2f5d"
+                              },
+        "notRetained":  [
+                            "rawText"
+                        ],
+        "reason":  "draft_or_unattested_compute_cannot_survive_boundary_as_raw_context",
+        "releaseAction":  "compress_to_commitment_only",
+        "residueId":  "sha256:a213b36805bb56f8a368351cb12c52f20c1f6b3171cb4b13a2961a92a773391c",
+        "retainedFacts":  {
+                              "boundaryPulseId":  "0x3333333333333333333333333333333333333333333333333333333333333333",
+                              "createdBeforeBoundary":  true,
+                              "memoryId":  "mem-old-model-output",
+                              "proofTier":  "local_draft",
+                              "rootfieldId":  "0x1111111111111111111111111111111111111111111111111111111111111111",
+                              "sourceCommitment":  "sha256:old-model-output",
+                              "type":  "ModelPulseDraft"
+                          },
+        "schema":  "flowmemory.residue_atom.v0",
+        "sourceMemoryHash":  "sha256:3995af3ef4a017bc076e9e2ec68f5ee4534b2a3410ac8e74a7182d8cb62c3908"
+    },
+    {
+        "boundaryPulseHash":  "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "erasedFieldHashes":  {
+
+                              },
+        "notRetained":  [
+
+                        ],
+        "reason":  "draft_or_unattested_compute_cannot_survive_boundary_as_raw_context",
+        "releaseAction":  "compress_to_commitment_only",
+        "residueId":  "sha256:29b5fe651cbbeacb09cdcd65f4ae9e722c136dde9c5c5360fe68e5d1e5f22bcd",
+        "retainedFacts":  {
+                              "action":  "reuse_compute_result",
+                              "boundaryPulseId":  "0x3333333333333333333333333333333333333333333333333333333333333333",
+                              "createdBeforeBoundary":  false,
+                              "memoryId":  "mem-cache-hint",
+                              "proofTier":  "unverified",
+                              "rootfieldId":  "0x1111111111111111111111111111111111111111111111111111111111111111",
+                              "type":  "CacheHint"
+                          },
+        "schema":  "flowmemory.residue_atom.v0",
+        "sourceMemoryHash":  "sha256:d1c2ac8899107e4a2d176ba5079686f638f22e8842a0b4370ff30d84f826ca38"
+    }
+]

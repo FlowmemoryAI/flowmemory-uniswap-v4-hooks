@@ -1,0 +1,196 @@
+{
+  "checks": {
+    "commitmentNonZero": true,
+    "eventNameFlowPulse": true,
+    "flowPulseRecordFound": true,
+    "logIndexReaderAttached": true,
+    "noReceiptMetadataFromHookPayload": true,
+    "notRejected": true,
+    "rawPayloadsErasedWhenPolicyRequires": true,
+    "receiptStatusSuccessful": true,
+    "rootfieldNonZero": true,
+    "triggerRootfieldMatchesWorkingSet": true,
+    "txHashReaderAttached": true,
+    "validationEmpty": true
+  },
+  "fissionId": "sha256:be57458c026a0383fcfe08b76222d8f57f435cf2f0acbee27c4c8bd4c4a0ee3b",
+  "fissionType": "proof_triggered_memory_release",
+  "inputMemorySet": {
+    "itemCount": 5,
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "workingSetHash": "sha256:b6138b4550a2c515530403bd390e0183f77df869757a0f710ee8f1dbfb2d6c85"
+  },
+  "memoryAfter": {
+    "agentId": "demo-agent",
+    "branchAsh": [
+      "sha256:64517264a9bbdc927c9a87102512e08102e2818404fb78005813b223966ba905"
+    ],
+    "conservedFacts": [
+      {
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "logIndex": "7",
+        "memoryId": "flowpulse-boundary-0x3333333333333333",
+        "pulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "reason": "receipt_bound_boundary_fact_survives",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "type": "FlowPulseBoundaryFact"
+      },
+      {
+        "itemHash": "sha256:2247d6e2bf3becada3d91c00d26c21d2ea7b258483c7083c1ebd7a3bf73b7738",
+        "memoryId": "mem-other-rootfield",
+        "reason": "different_rootfield_unaffected",
+        "rootfieldId": "0x9999999999999999999999999999999999999999999999999999999999999999",
+        "type": "LocalNote"
+      }
+    ],
+    "containsRawPrivatePayload": false,
+    "delegatedRecompute": [
+      "sha256:35dde711015d8c6ac2cf60ed5d13655bb8d62074f0f11dcd3858b223a9682380",
+      "sha256:56b3a6cb6834572ba301da490f8b1a0aca8085c5b8db4a7fe6e344ac3df43171"
+    ],
+    "executableOnchainActionPresent": false,
+    "quarantined": [
+      "mem-intent-claim"
+    ],
+    "rawTextPresent": false,
+    "residueAtoms": [
+      "sha256:a213b36805bb56f8a368351cb12c52f20c1f6b3171cb4b13a2961a92a773391c",
+      "sha256:29b5fe651cbbeacb09cdcd65f4ae9e722c136dde9c5c5360fe68e5d1e5f22bcd"
+    ],
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "schema": "flowmemory.agent_working_memory_after_fission.v0",
+    "triggerPulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "unsupportedIntentInferencePresent": false
+  },
+  "releaseProducts": {
+    "branchAsh": [
+      {
+        "boundaryPulseHash": "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "branchAshId": "sha256:64517264a9bbdc927c9a87102512e08102e2818404fb78005813b223966ba905",
+        "killedAction": "submit_onchain_transaction",
+        "memoryId": "plan-submit-swap",
+        "reason": "preboundary_action_branch_lacks_current_flowpulse_parent",
+        "replacement": "propose_unsigned_action",
+        "schema": "flowmemory.branch_ash.v0",
+        "sourcePlanHash": "sha256:1e55d9bdd7946ab03b573b81800f9be882517d8d49a01f1e0b0602961f6b5a13"
+      }
+    ],
+    "conserved": [
+      {
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "logIndex": "7",
+        "memoryId": "flowpulse-boundary-0x3333333333333333",
+        "pulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "reason": "receipt_bound_boundary_fact_survives",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "type": "FlowPulseBoundaryFact"
+      },
+      {
+        "itemHash": "sha256:2247d6e2bf3becada3d91c00d26c21d2ea7b258483c7083c1ebd7a3bf73b7738",
+        "memoryId": "mem-other-rootfield",
+        "reason": "different_rootfield_unaffected",
+        "rootfieldId": "0x9999999999999999999999999999999999999999999999999999999999999999",
+        "type": "LocalNote"
+      }
+    ],
+    "delegatedRecompute": [
+      {
+        "boundaryPulseHash": "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "delegateId": "sha256:35dde711015d8c6ac2cf60ed5d13655bb8d62074f0f11dcd3858b223a9682380",
+        "parentPulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "reason": "fresh_compute_requested_from_current_boundary",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "schema": "flowmemory.delegated_recompute.v0",
+        "sourceMemoryHash": "sha256:3995af3ef4a017bc076e9e2ec68f5ee4534b2a3410ac8e74a7182d8cb62c3908",
+        "task": "rerun_analysis_from_current_flowpulse_boundary"
+      },
+      {
+        "boundaryPulseHash": "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "delegateId": "sha256:56b3a6cb6834572ba301da490f8b1a0aca8085c5b8db4a7fe6e344ac3df43171",
+        "parentPulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "reason": "fresh_compute_requested_from_current_boundary",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "schema": "flowmemory.delegated_recompute.v0",
+        "sourceMemoryHash": "sha256:d1c2ac8899107e4a2d176ba5079686f638f22e8842a0b4370ff30d84f826ca38",
+        "task": "rerun_analysis_from_current_flowpulse_boundary"
+      }
+    ],
+    "quarantined": [
+      {
+        "itemHash": "sha256:04d112873f9564a67e0873e3531893133b31d9662fded2955c679483a48d1347",
+        "memoryId": "mem-intent-claim",
+        "reason": "semantic_or_intent_claim_not_supported_by_flowpulse",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "type": "IntentClaim"
+      }
+    ],
+    "residueAtoms": [
+      {
+        "boundaryPulseHash": "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "erasedFieldHashes": {
+          "rawText": "sha256:68c31ba153a601281ae0e58d3a08624ec8a5fd0300663b441731d5e2047a2f5d"
+        },
+        "notRetained": [
+          "rawText"
+        ],
+        "reason": "draft_or_unattested_compute_cannot_survive_boundary_as_raw_context",
+        "releaseAction": "compress_to_commitment_only",
+        "residueId": "sha256:a213b36805bb56f8a368351cb12c52f20c1f6b3171cb4b13a2961a92a773391c",
+        "retainedFacts": {
+          "boundaryPulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+          "createdBeforeBoundary": true,
+          "memoryId": "mem-old-model-output",
+          "proofTier": "local_draft",
+          "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "sourceCommitment": "sha256:old-model-output",
+          "type": "ModelPulseDraft"
+        },
+        "schema": "flowmemory.residue_atom.v0",
+        "sourceMemoryHash": "sha256:3995af3ef4a017bc076e9e2ec68f5ee4534b2a3410ac8e74a7182d8cb62c3908"
+      },
+      {
+        "boundaryPulseHash": "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "erasedFieldHashes": {},
+        "notRetained": [],
+        "reason": "draft_or_unattested_compute_cannot_survive_boundary_as_raw_context",
+        "releaseAction": "compress_to_commitment_only",
+        "residueId": "sha256:29b5fe651cbbeacb09cdcd65f4ae9e722c136dde9c5c5360fe68e5d1e5f22bcd",
+        "retainedFacts": {
+          "action": "reuse_compute_result",
+          "boundaryPulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+          "createdBeforeBoundary": false,
+          "memoryId": "mem-cache-hint",
+          "proofTier": "unverified",
+          "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "type": "CacheHint"
+        },
+        "schema": "flowmemory.residue_atom.v0",
+        "sourceMemoryHash": "sha256:d1c2ac8899107e4a2d176ba5079686f638f22e8842a0b4370ff30d84f826ca38"
+      }
+    ]
+  },
+  "schema": "flowmemory.boundary_fission.v0",
+  "status": "active",
+  "trigger": {
+    "blockNumber": "123456",
+    "boundary": "uniswap_v4_afterSwap",
+    "chainId": "84532",
+    "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "hookAddress": "0x0000000000000000000000000000000000000001",
+    "logIndex": "7",
+    "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "proofTier": "receipt_bound_flowpulse",
+    "pulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "receiptStatus": "success",
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "subjectPoolId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+    "triggerType": "FlowPulse",
+    "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "warnings": [
+    "BoundaryFission proves deterministic memory release under this policy; it does not prove semantic truth.",
+    "Delegated recompute tasks are drafts unless later bound to signed or attested ComputePulse evidence."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "planId": "overclaim-and-act",
+  "agentId": "demo-agent",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "requiredClaimHashes": [],
+  "requestedVerbs": [
+    "claim_semantic_truth",
+    "execute_onchain_action"
+  ]
+}

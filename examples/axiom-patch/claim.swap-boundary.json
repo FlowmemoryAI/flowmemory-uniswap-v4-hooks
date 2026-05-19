@@ -1,0 +1,6 @@
+{
+  "claimType": "flowpulse_after_swap_boundary_observed",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+  "statement": "A FlowPulse was emitted for this rootfield and commitment from a Uniswap v4 afterSwap boundary."
+}

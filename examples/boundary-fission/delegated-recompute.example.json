@@ -1,0 +1,22 @@
+﻿[
+    {
+        "boundaryPulseHash":  "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "delegateId":  "sha256:35dde711015d8c6ac2cf60ed5d13655bb8d62074f0f11dcd3858b223a9682380",
+        "parentPulseId":  "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "reason":  "fresh_compute_requested_from_current_boundary",
+        "rootfieldId":  "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "schema":  "flowmemory.delegated_recompute.v0",
+        "sourceMemoryHash":  "sha256:3995af3ef4a017bc076e9e2ec68f5ee4534b2a3410ac8e74a7182d8cb62c3908",
+        "task":  "rerun_analysis_from_current_flowpulse_boundary"
+    },
+    {
+        "boundaryPulseHash":  "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+        "delegateId":  "sha256:56b3a6cb6834572ba301da490f8b1a0aca8085c5b8db4a7fe6e344ac3df43171",
+        "parentPulseId":  "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "reason":  "fresh_compute_requested_from_current_boundary",
+        "rootfieldId":  "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "schema":  "flowmemory.delegated_recompute.v0",
+        "sourceMemoryHash":  "sha256:d1c2ac8899107e4a2d176ba5079686f638f22e8842a0b4370ff30d84f826ca38",
+        "task":  "rerun_analysis_from_current_flowpulse_boundary"
+    }
+]

@@ -1,0 +1,75 @@
+{
+  "artifactTypes": [
+    "ComputePulse",
+    "FlowPulse",
+    "ModelPulse"
+  ],
+  "counts": {
+    "artifacts": 3,
+    "edges": 2,
+    "error": 0,
+    "info": 2,
+    "warning": 0
+  },
+  "issues": [
+    {
+      "code": "rd_artifact",
+      "message": "0xc000000000000000000000000000000000000000000000000000000000000001 is labeled as R&D/example material, not a deployed verifier claim",
+      "severity": "info"
+    },
+    {
+      "code": "rd_artifact",
+      "message": "0xd000000000000000000000000000000000000000000000000000000000000001 is labeled as R&D/example material, not a deployed verifier claim",
+      "severity": "info"
+    }
+  ],
+  "recallCards": [
+    {
+      "agentUse": "Use as receipt-bound DeFi execution memory.",
+      "artifactId": "0xf100000000000000000000000000000000000000000000000000000000000001",
+      "artifactType": "FlowPulse",
+      "boundary": "uniswap_v4_afterSwap",
+      "fingerprint": "0x25907a47741a533f86e7ba49e5396a2f73231d02fa4f42c520068cba23197a16",
+      "recallScore": 73,
+      "status": "example_from_uniswap_v4_after_swap"
+    },
+    {
+      "agentUse": "Use as compute provenance and possible reuse candidate.",
+      "artifactId": "0xc000000000000000000000000000000000000000000000000000000000000001",
+      "artifactType": "ComputePulse",
+      "boundary": "post_compute_job",
+      "fingerprint": "0xe4178d8ac3e7e29ca623ad47d1a05da50d4e4ed27d00bea12547769284fbb673",
+      "recallScore": 44,
+      "status": "mocked_rd_artifact"
+    },
+    {
+      "agentUse": "Use as model-output provenance, not semantic truth by itself.",
+      "artifactId": "0xd000000000000000000000000000000000000000000000000000000000000001",
+      "artifactType": "ModelPulse",
+      "boundary": "model_output_committed",
+      "fingerprint": "0x2cebb4d3587b6fe5c5e803e7818d21e0a94fa59e4919250b752e440b849b82e7",
+      "recallScore": 27,
+      "status": "mocked_rd_artifact"
+    }
+  ],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "routing": {
+    "nextBestAction": "Promote this trace into a Rootflow-indexed agent memory pack.",
+    "principle": "Agents should cite pulse fingerprints and proof envelopes, not vague memory text.",
+    "reusableComputeCandidates": [
+      {
+        "artifactId": "0xc000000000000000000000000000000000000000000000000000000000000001",
+        "fingerprint": "0xe4178d8ac3e7e29ca623ad47d1a05da50d4e4ed27d00bea12547769284fbb673",
+        "inputCommitment": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "jobId": "gpu-job-example-001",
+        "modelCommitment": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "outputCommitment": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "reusePolicy": "verify commitments and policy before reuse"
+      }
+    ]
+  },
+  "schema": "flowmemory.agent_memory_pack.v0",
+  "status": "verified_with_notes",
+  "summary": "Example trace linking a DeFi swap memory signal to an AI/GPU analysis memory path.",
+  "traceFingerprint": "0x3209b5f5b7ff589e97be805e79fa6b2ec2ee52e69a36cad036de717922119805"
+}

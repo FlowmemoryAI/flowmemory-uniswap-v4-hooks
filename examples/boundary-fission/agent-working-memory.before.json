@@ -1,0 +1,43 @@
+{
+  "schema": "flowmemory.agent_working_memory.v0",
+  "agentId": "demo-agent",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "items": [
+    {
+      "memoryId": "mem-old-model-output",
+      "type": "ModelPulseDraft",
+      "proofTier": "local_draft",
+      "createdBeforeBoundary": true,
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "rawText": "The trader likely intended to accumulate exposure.",
+      "containsUnsupportedIntentInference": true,
+      "sourceCommitment": "sha256:old-model-output"
+    },
+    {
+      "memoryId": "mem-cache-hint",
+      "type": "CacheHint",
+      "proofTier": "unverified",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "action": "reuse_compute_result"
+    },
+    {
+      "memoryId": "mem-intent-claim",
+      "type": "IntentClaim",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "claim": "Trader intended accumulation."
+    },
+    {
+      "memoryId": "plan-submit-swap",
+      "type": "AgentPlan",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "action": "submit_onchain_transaction",
+      "referencesCurrentPulse": false
+    },
+    {
+      "memoryId": "mem-other-rootfield",
+      "type": "LocalNote",
+      "rootfieldId": "0x9999999999999999999999999999999999999999999999999999999999999999",
+      "rawText": "This belongs to another rootfield."
+    }
+  ]
+}

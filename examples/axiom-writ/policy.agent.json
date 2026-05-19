@@ -1,0 +1,31 @@
+{
+  "schema": "flowmemory.cognitive_policy.v0",
+  "allowedVerbsByProofTier": {
+    "receipt_bound_flowpulse": [
+      "believe",
+      "cite",
+      "reuse_context",
+      "plan_with"
+    ],
+    "receipt_attached_flowpulse": [
+      "believe",
+      "cite"
+    ],
+    "local_draft": [
+      "cite"
+    ]
+  },
+  "deniedVerbs": [
+    "claim_semantic_truth",
+    "claim_user_intent",
+    "claim_gpu_attestation",
+    "claim_model_correctness",
+    "execute_onchain_action"
+  ],
+  "scope": {
+    "validForRootfieldOnly": true,
+    "validForAgentOnly": true,
+    "expiresAt": null,
+    "maxDerivedDepth": 2
+  }
+}

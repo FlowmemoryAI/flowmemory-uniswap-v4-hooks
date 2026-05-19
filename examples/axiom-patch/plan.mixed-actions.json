@@ -1,0 +1,11 @@
+{
+  "planId": "mixed-agent-plan",
+  "agentId": "demo-agent",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "requestedActions": [
+    "cite_boundary_fact",
+    "submit_onchain_transaction",
+    "claim_semantic_truth",
+    "move_funds"
+  ]
+}

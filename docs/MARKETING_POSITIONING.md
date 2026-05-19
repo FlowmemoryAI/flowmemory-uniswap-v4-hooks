@@ -24,6 +24,8 @@ Most hooks modify execution. FlowMemory emits memory.
 - Execution is temporary. Memory is composable.
 - The swap is not the memory. The boundary emits the memory.
 - FlowMemory gives DeFi a way to remember.
+- FlowMemory does not just help agents remember. It gives agents proof-triggered forgetting.
+- A FlowPulse is not context. It is a boundary event that can rupture stale cognition.
 
 ## Category Framing
 
@@ -70,6 +72,7 @@ FlowMemory can connect:
 - model output provenance;
 - autonomous workflow memory;
 - proof-backed agent memory;
+- proof-triggered forgetting;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -87,6 +90,7 @@ Use these lines for the broader vision:
 - The GPU is not faster. The system is less forgetful.
 - Every autonomous system needs a black box recorder. FlowMemory is building it.
 - Rootflow is the graph where execution becomes memory.
+- BoundaryFission turns proof into memory release: conserve facts, compress stale context, quarantine unsupported claims, kill unsafe branches, and delegate fresh compute.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -103,3 +107,7 @@ Most infrastructure asks how to make execution faster. FlowMemory asks what syst
 GPUs compute. FlowMemory remembers.
 
 Logs tell humans what happened. FlowMemory gives machines artifacts they can verify, route around, and reuse.
+
+## BoundaryFission Founder Script
+
+FlowMemory does not just make agents remember. It gives them proof-triggered forgetting. A Uniswap v4 `afterSwap` hook emits a FlowPulse after execution; the transaction receipt is the proof envelope, and the FlowPulse is the memory artifact. BoundaryFission is the next primitive: when that receipt-bound FlowPulse lands, an agent's working memory splits. Receipt facts are conserved. Stale model outputs are compressed into residues. Unsupported claims are quarantined. Pre-boundary action plans are killed. Fresh compute can be delegated. This is not memory storage. This is memory physics for autonomous systems.

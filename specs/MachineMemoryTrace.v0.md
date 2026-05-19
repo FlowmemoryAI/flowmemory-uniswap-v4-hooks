@@ -44,6 +44,16 @@ Each edge explains how one artifact depended on, extended, verified, reused, or 
 - `produces`: an artifact produced another artifact.
 - `summarizes`: an artifact summarized a prior memory set.
 - `verifies`: an artifact or proof verified another artifact.
+- `releases`: a BoundaryFission compressed, quarantined, killed, or delegated memory after a proof boundary.
+
+## Release Artifacts
+
+MachineMemoryTrace can reference memory release products:
+
+- `BoundaryFission`: a proof-triggered working-memory release report.
+- `ResidueAtom`: a commitment proving raw memory was compressed or erased.
+- `BranchAsh`: a killed speculative branch with a deterministic replacement or refusal reason.
+- `DelegatedRecompute`: a draft compute task created because stale memory could not survive the current boundary.
 
 ## Launch Demo Trace
 

@@ -22,6 +22,13 @@ The public launch should make the category visible:
 ## Files
 
 - `trace.example.json`: sample machine-memory trace.
+- `agent-memory-pack.example.json`: output from `tools/memory_trace.py`.
+
+Regenerate the pack:
+
+```bash
+python tools/memory_trace.py verify-trace examples/pulse-trace/trace.example.json --pretty --output examples/pulse-trace/agent-memory-pack.example.json
+```
 
 ## Core Message
 

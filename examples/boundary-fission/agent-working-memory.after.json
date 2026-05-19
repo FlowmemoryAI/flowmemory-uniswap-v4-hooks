@@ -1,0 +1,43 @@
+{
+  "agentId": "demo-agent",
+  "branchAsh": [
+    "sha256:64517264a9bbdc927c9a87102512e08102e2818404fb78005813b223966ba905"
+  ],
+  "conservedFacts": [
+    {
+      "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "logIndex": "7",
+      "memoryId": "flowpulse-boundary-0x3333333333333333",
+      "pulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "reason": "receipt_bound_boundary_fact_survives",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "type": "FlowPulseBoundaryFact"
+    },
+    {
+      "itemHash": "sha256:2247d6e2bf3becada3d91c00d26c21d2ea7b258483c7083c1ebd7a3bf73b7738",
+      "memoryId": "mem-other-rootfield",
+      "reason": "different_rootfield_unaffected",
+      "rootfieldId": "0x9999999999999999999999999999999999999999999999999999999999999999",
+      "type": "LocalNote"
+    }
+  ],
+  "containsRawPrivatePayload": false,
+  "delegatedRecompute": [
+    "sha256:35dde711015d8c6ac2cf60ed5d13655bb8d62074f0f11dcd3858b223a9682380",
+    "sha256:56b3a6cb6834572ba301da490f8b1a0aca8085c5b8db4a7fe6e344ac3df43171"
+  ],
+  "executableOnchainActionPresent": false,
+  "quarantined": [
+    "mem-intent-claim"
+  ],
+  "rawTextPresent": false,
+  "residueAtoms": [
+    "sha256:a213b36805bb56f8a368351cb12c52f20c1f6b3171cb4b13a2961a92a773391c",
+    "sha256:29b5fe651cbbeacb09cdcd65f4ae9e722c136dde9c5c5360fe68e5d1e5f22bcd"
+  ],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.agent_working_memory_after_fission.v0",
+  "triggerPulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+  "unsupportedIntentInferencePresent": false
+}

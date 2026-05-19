@@ -1,0 +1,10 @@
+﻿{
+    "boundaryPulseHash":  "sha256:dc6cc28db1d7ae9086cc8005fbb3ad397936e696192a9b646a2e5e48cff29f81",
+    "branchAshId":  "sha256:64517264a9bbdc927c9a87102512e08102e2818404fb78005813b223966ba905",
+    "killedAction":  "submit_onchain_transaction",
+    "memoryId":  "plan-submit-swap",
+    "reason":  "preboundary_action_branch_lacks_current_flowpulse_parent",
+    "replacement":  "propose_unsigned_action",
+    "schema":  "flowmemory.branch_ash.v0",
+    "sourcePlanHash":  "sha256:1e55d9bdd7946ab03b573b81800f9be882517d8d49a01f1e0b0602961f6b5a13"
+}

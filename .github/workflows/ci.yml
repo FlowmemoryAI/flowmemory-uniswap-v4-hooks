@@ -68,8 +68,56 @@ jobs:
             docs/PUBLIC_CANARY_TEMPLATE.md
             docs/OFFICIAL_REFERENCES.md
             docs/EXPERT_REVIEW_PROMPT.md
+            docs/BEYOND_DEFI_MEMORY.md
+            docs/COMPUTE_PULSE.md
+            docs/PROOF_EXPLORER_CONCEPT.md
+            docs/PROOF_CARRIED_AGENT_MEMORY.md
+            docs/AXIOM_WRIT.md
+            docs/AXIOM_PATCH.md
+            docs/BOUNDARY_FISSION.md
+            specs/FlowPulse.v1.md
+            specs/ComputePulse.v0.md
+            specs/MachineMemoryTrace.v0.md
+            specs/AgentMemoryPack.v0.md
+            specs/AxiomWrit.v0.md
+            specs/CognitivePolicy.v0.md
+            specs/AxiomPatch.v0.md
+            specs/BoundaryFission.v0.md
+            specs/ResidueAtom.v0.md
+            examples/pulse-trace/README.md
+            examples/pulse-trace/trace.example.json
+            examples/pulse-trace/agent-memory-pack.example.json
+            examples/axiom-writ/README.md
+            examples/axiom-writ/flowpulse-evidence.fixture.json
+            examples/axiom-writ/claim.swap-boundary.json
+            examples/axiom-writ/policy.agent.json
+            examples/axiom-writ/plan.allowed-citation.json
+            examples/axiom-writ/plan.denied-action.json
+            examples/axiom-writ/axiomwrit.example.json
+            examples/axiom-writ/cognition-verdict.allowed.json
+            examples/axiom-writ/cognition-verdict.denied.json
+            examples/axiom-patch/README.md
+            examples/axiom-patch/flowpulse-evidence.fixture.json
+            examples/axiom-patch/claim.swap-boundary.json
+            examples/axiom-patch/policy.patch.json
+            examples/axiom-patch/plan.mixed-actions.json
+            examples/axiom-patch/axiompatch.example.json
+            examples/axiom-patch/verdict.allowed-downgraded-denied.json
+            examples/boundary-fission/README.md
+            examples/boundary-fission/flowpulse-evidence.fixture.json
+            examples/boundary-fission/agent-working-memory.before.json
+            examples/boundary-fission/fission-policy.fixture.json
+            examples/boundary-fission/fission-report.example.json
+            examples/boundary-fission/agent-working-memory.after.json
+            examples/boundary-fission/residue-atoms.example.json
+            examples/boundary-fission/branch-ash.example.json
+            examples/boundary-fission/delegated-recompute.example.json
             tools/README.md
             tools/read_flowpulse_logs.py
+            tools/memory_trace.py
+            tools/axiom_writ.py
+            tools/axiom_patch.py
+            tools/boundary_fission.py
             releases/base-sepolia/README.md
           )
 
@@ -108,3 +156,35 @@ jobs:
 
       - name: Test reader decoder
         run: python -m unittest tools.test_read_flowpulse_logs
+
+      - name: Test agent memory trace compiler
+        run: python -m unittest tools.test_memory_trace
+
+      - name: Check pulse trace example
+        run: python tools/memory_trace.py verify-trace examples/pulse-trace/trace.example.json --output /tmp/agent-memory-pack.json
+
+      - name: Test AxiomWrit
+        run: python -m unittest tools.test_axiom_writ
+
+      - name: Check AxiomWrit demo
+        run: |
+          python tools/axiom_writ.py verify --writ examples/axiom-writ/axiomwrit.example.json
+          python tools/axiom_writ.py apply --writ examples/axiom-writ/axiomwrit.example.json --plan examples/axiom-writ/plan.allowed-citation.json --out /tmp/allowed.json
+          python tools/axiom_writ.py apply --writ examples/axiom-writ/axiomwrit.example.json --plan examples/axiom-writ/plan.denied-action.json --out /tmp/denied.json && exit 1 || test "$?" = "2"
+
+      - name: Test AxiomPatch
+        run: python -m unittest tools.test_axiom_patch
+
+      - name: Check AxiomPatch demo
+        run: |
+          python tools/axiom_patch.py verify --patch examples/axiom-patch/axiompatch.example.json
+          python tools/axiom_patch.py apply --patch examples/axiom-patch/axiompatch.example.json --plan examples/axiom-patch/plan.mixed-actions.json --out /tmp/patch-verdict.json && exit 1 || test "$?" = "2"
+
+      - name: Test BoundaryFission
+        run: python -m unittest tools.test_boundary_fission
+
+      - name: Check BoundaryFission demo
+        run: |
+          python tools/boundary_fission.py demo
+          python tools/boundary_fission.py verify --report examples/boundary-fission/fission-report.example.json
+          python tools/boundary_fission.py apply --flowpulse examples/boundary-fission/flowpulse-evidence.fixture.json --memory examples/boundary-fission/agent-working-memory.before.json --policy examples/boundary-fission/fission-policy.fixture.json --report /tmp/fission-report.json --after /tmp/memory-after.json

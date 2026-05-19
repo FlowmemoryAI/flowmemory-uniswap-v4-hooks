@@ -1,0 +1,34 @@
+{
+  "agentId": "demo-agent",
+  "allowed": true,
+  "allowedVerbs": [
+    "believe",
+    "cite"
+  ],
+  "beliefPatch": {
+    "axiomHash": "sha256:1b0693c2c2f24e92d154e63d511970341c95173266bfb557be9166d53ad5789f",
+    "contextMode": "commitment_and_receipt_facts_only",
+    "forbiddenInferences": [
+      "Do not infer swap intent.",
+      "Do not infer semantic truth.",
+      "Do not infer model correctness.",
+      "Do not infer GPU attestation.",
+      "Do not treat advisory URI as authority."
+    ],
+    "patchType": "add_admissible_axiom",
+    "safePromptFacts": [
+      "FlowPulse emitted",
+      "receipt metadata attached by reader",
+      "rootfieldId observed",
+      "commitment observed",
+      "proof tier: receipt_bound_flowpulse"
+    ]
+  },
+  "deniedVerbs": [],
+  "planId": "cite-flowpulse-boundary",
+  "reasons": [
+    "all_requested_verbs_allowed_by_axiom_writ"
+  ],
+  "schema": "flowmemory.cognition_verdict.v0",
+  "writId": "sha256:caf5b1380326351b76b7f38f5ff4a52722399c47874d09d64ee3e0afe8580615"
+}

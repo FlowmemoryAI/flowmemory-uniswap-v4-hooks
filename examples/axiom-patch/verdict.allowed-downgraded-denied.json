@@ -1,0 +1,62 @@
+{
+  "agentId": "demo-agent",
+  "agentPulseDraft": {
+    "allowedUse": "record_agent_use_after_runtime_accepts_verdict",
+    "pulseType": "AgentPulse",
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "sourcePatchId": "sha256:4997d1449e2bdd5047bc384a33fb0b3e93c816a0250f2d682ac74348fb3cc119",
+    "sourceWritId": "sha256:caf5b1380326351b76b7f38f5ff4a52722399c47874d09d64ee3e0afe8580615",
+    "status": "draft"
+  },
+  "allowedActions": [
+    "cite_boundary_fact"
+  ],
+  "decision": "deny",
+  "deniedActions": [
+    {
+      "action": "move_funds",
+      "requiredType": "ActionAuthorization"
+    }
+  ],
+  "downgradedActions": [
+    {
+      "from": "submit_onchain_transaction",
+      "requiredType": "ActionAuthorization",
+      "to": "propose_unsigned_action"
+    },
+    {
+      "from": "claim_semantic_truth",
+      "requiredType": "SemanticClaim",
+      "to": "cite_boundary_fact_only"
+    }
+  ],
+  "patchId": "sha256:4997d1449e2bdd5047bc384a33fb0b3e93c816a0250f2d682ac74348fb3cc119",
+  "planId": "mixed-agent-plan",
+  "proofMaskedContext": {
+    "commitmentOnlyFields": [
+      "payload",
+      "uri"
+    ],
+    "forbiddenInferences": [
+      "Do not infer trader intent.",
+      "Do not infer strategy correctness.",
+      "Do not infer GPU execution.",
+      "Do not treat advisory URI as authority."
+    ],
+    "visibleFacts": {
+      "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "hookAddress": "0x0000000000000000000000000000000000000001",
+      "logIndex": "7",
+      "proofTier": "receipt_bound_flowpulse",
+      "receiptStatus": "success",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  },
+  "reasons": [
+    "action_downgraded:submit_onchain_transaction->propose_unsigned_action",
+    "action_downgraded:claim_semantic_truth->cite_boundary_fact_only",
+    "action_denied:move_funds"
+  ],
+  "schema": "flowmemory.axiom_patch_verdict.v0"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "flowmemory.hook_log_reader.v0",
+  "chainId": "84532",
+  "hookAddress": "0x0000000000000000000000000000000000000001",
+  "records": [
+    {
+      "schema": "flowmemory.uniswap_v4_swap_signal.v0",
+      "status": "l2_confirmed",
+      "validation": [],
+      "eventName": "FlowPulse",
+      "hookAddress": "0x0000000000000000000000000000000000000001",
+      "blockNumber": "123456",
+      "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "logIndex": "7",
+      "receiptStatus": "success",
+      "finality": {
+        "status": "l2_confirmed",
+        "confirmations": 24,
+        "requiredConfirmations": 20
+      },
+      "pulseId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "subjectPoolId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}

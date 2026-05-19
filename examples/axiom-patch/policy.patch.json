@@ -1,0 +1,48 @@
+{
+  "schema": "flowmemory.axiom_patch_policy.v0",
+  "verbGrantsByProofTier": {
+    "receipt_bound_flowpulse": {
+      "allow": [
+        "observe_boundary_fact",
+        "cite_boundary_fact",
+        "reuse_as_agent_context",
+        "summarize_with_receipt_citation",
+        "create_agentpulse_draft",
+        "propose_unsigned_action"
+      ],
+      "deny": [
+        "sign_transaction",
+        "move_funds"
+      ],
+      "downgrade": {
+        "submit_onchain_transaction": "propose_unsigned_action",
+        "claim_user_intent": "state_no_intent_inference_available",
+        "claim_semantic_truth": "cite_boundary_fact_only",
+        "claim_gpu_attestation": "state_compute_attestation_absent",
+        "claim_model_correctness": "state_model_correctness_unproven"
+      }
+    }
+  },
+  "writPolicy": {
+    "allowedVerbsByProofTier": {
+      "receipt_bound_flowpulse": [
+        "believe",
+        "cite",
+        "reuse_context",
+        "plan_with"
+      ]
+    },
+    "deniedVerbs": [
+      "claim_semantic_truth",
+      "claim_user_intent",
+      "claim_gpu_attestation",
+      "claim_model_correctness",
+      "execute_onchain_action"
+    ]
+  },
+  "scope": {
+    "validForRootfieldOnly": true,
+    "validForAgentOnly": true,
+    "maxDerivedDepth": 2
+  }
+}

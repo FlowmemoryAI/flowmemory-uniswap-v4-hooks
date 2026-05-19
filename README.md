@@ -156,6 +156,76 @@ The fastest GPU job is the one a system can prove it does not need to run again.
 
 See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
+## R&D Primitive: AxiomPatch
+
+AxiomPatch is proof-conditioned cognition for machine agents.
+
+A FlowPulse is remembered.
+
+An AxiomWrit is believed.
+
+An AxiomPatch changes what an agent is allowed to believe, cite, reuse, downgrade, or do.
+
+The key transition:
+
+```text
+submit_onchain_transaction -> propose_unsigned_action
+```
+
+That is not memory storage.
+
+That is not a vector wrapper.
+
+That is not a proof explorer.
+
+It is a cognitive state transition derived from a receipt-bound FlowPulse proof envelope.
+
+See [docs/AXIOM_PATCH.md](docs/AXIOM_PATCH.md), [specs/AxiomPatch.v0.md](specs/AxiomPatch.v0.md), and [examples/axiom-patch/](examples/axiom-patch/).
+
+## Frontier R&D Primitive: BoundaryFission
+
+BoundaryFission is proof-triggered forgetting.
+
+Most AI-memory projects chase more context, more retrieval, more summaries, and more graphs.
+
+FlowMemory asks a harder question:
+
+What must an autonomous system forget once a verified execution boundary proves the world has changed?
+
+A receipt-bound FlowPulse can rupture stale working memory into:
+
+- conserved receipt-bound facts;
+- ResidueAtoms that prove compression without retaining raw payloads;
+- quarantined claims that the proof envelope does not support;
+- BranchAsh for killed speculative on-chain action branches;
+- delegated recompute tasks for fresh analysis from the current boundary.
+
+This is not storage.
+
+This is not indexing.
+
+This is not RAG.
+
+This is not a proof explorer.
+
+It is memory physics for autonomous systems.
+
+```text
+receipt-bound FlowPulse
+  -> BoundaryFission
+  -> conserved facts
+  -> ResidueAtoms
+  -> quarantined claims
+  -> BranchAsh
+  -> delegated recompute
+```
+
+FlowMemory does not just help agents remember.
+
+It gives agents proof-triggered forgetting.
+
+See [docs/BOUNDARY_FISSION.md](docs/BOUNDARY_FISSION.md), [specs/BoundaryFission.v0.md](specs/BoundaryFission.v0.md), [specs/ResidueAtom.v0.md](specs/ResidueAtom.v0.md), and [examples/boundary-fission/](examples/boundary-fission/).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -254,6 +324,9 @@ docs/
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
   SECURITY_MODEL.md                # Threat model, invariants, non-goals
+  AXIOM_WRIT.md                    # AxiomWrit proof-conditioned cognition R&D primitive
+  AXIOM_PATCH.md                   # AxiomPatch operational cognitive state transition
+  BOUNDARY_FISSION.md              # Proof-triggered forgetting and memory release
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -267,14 +340,28 @@ docs/
   OFFICIAL_REFERENCES.md           # Upstream Uniswap docs and address assumptions
   EXPERT_REVIEW_PROMPT.md          # Prompt for external LLM/human architecture review
   HOW_IT_WORKS.md                  # Direct code-level walkthrough
+  PROOF_CARRIED_AGENT_MEMORY.md    # R&D direction for proof-backed AI-agent memory
 tools/
   read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
+  memory_trace.py                  # Builds proof-carried Agent Memory Packs from traces
+  axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
+  axiom_patch.py                   # Applies AxiomPatch allow/deny/downgrade decisions
+  boundary_fission.py              # Applies proof-triggered working-memory fission
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
+  AgentMemoryPack.v0.md            # Draft proof-carried agent memory pack spec
+  AxiomWrit.v0.md                  # Draft proof-conditioned belief object spec
+  CognitivePolicy.v0.md            # Draft policy mapping proof tier to cognitive verbs
+  AxiomPatch.v0.md                 # Draft proof-conditioned cognitive state transition
+  BoundaryFission.v0.md            # Draft proof-triggered memory release spec
+  ResidueAtom.v0.md                # Draft compression residue spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
+  axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
+  axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action
+  boundary-fission/                # Example FlowPulse -> memory release products
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

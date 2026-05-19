@@ -1,0 +1,25 @@
+{
+  "schema": "flowmemory.boundary_fission_policy.v0",
+  "eraseRawPayloadsAfterBoundary": true,
+  "quarantineReceiptMetadataSmuggling": true,
+  "highRiskActions": [
+    "submit_onchain_transaction",
+    "sign_transaction",
+    "move_funds"
+  ],
+  "draftProofTiers": [
+    "local_draft",
+    "rd_mock",
+    "unverified"
+  ],
+  "computeDraftTypes": [
+    "ModelPulseDraft",
+    "ComputePulseDraft",
+    "CacheHint"
+  ],
+  "replacementActions": {
+    "submit_onchain_transaction": "propose_unsigned_action",
+    "sign_transaction": "request_human_or_policy_authorization",
+    "move_funds": "request_human_or_policy_authorization"
+  }
+}
