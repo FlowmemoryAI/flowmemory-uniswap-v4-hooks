@@ -1,0 +1,25 @@
+{
+  "blockedJoinUntilQuiescent": [
+    "output-001"
+  ],
+  "epochId": "sha256:474e7f92d69a507b2f771975d046d2296df5bf2acec4018a3c008085836263b7",
+  "requestId": "sha256:3479a460fc3fbacd58b526b27e6931f3c93cf070e591e89bd8f862d3eb28e2db",
+  "requiredFrames": [
+    {
+      "frameId": "frame-001",
+      "pendingOutputs": [
+        "output-001"
+      ],
+      "reason": "active_pre_boundary_reader_for_rootfield",
+      "requiredSafePoint": "quiesce | revalidate | fork | abandon"
+    }
+  ],
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.quiescence_request.v0",
+  "unaffectedFrames": [
+    {
+      "frameId": "frame-002",
+      "reason": "different_rootfield_or_already_quiescent"
+    }
+  ]
+}

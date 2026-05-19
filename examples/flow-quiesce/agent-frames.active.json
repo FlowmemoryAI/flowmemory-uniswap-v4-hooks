@@ -1,0 +1,41 @@
+{
+  "schema": "flowmemory.agent_frames.v0",
+  "frames": [
+    {
+      "schema": "flowmemory.agent_frame.v0",
+      "frameId": "frame-001",
+      "agentId": "demo-agent",
+      "frameType": "agent",
+      "state": "active",
+      "openedAtEpochId": "sha256:epoch-0",
+      "rootfieldReads": [
+        "0x1111111111111111111111111111111111111111111111111111111111111111"
+      ],
+      "pendingOutputs": [
+        {
+          "outputId": "output-001",
+          "type": "ModelPulseDraft",
+          "commitment": "sha256:aaaaaaaa"
+        }
+      ]
+    },
+    {
+      "schema": "flowmemory.agent_frame.v0",
+      "frameId": "frame-002",
+      "agentId": "demo-agent",
+      "frameType": "gpu_workflow",
+      "state": "active",
+      "openedAtEpochId": "sha256:epoch-0",
+      "rootfieldReads": [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      ],
+      "pendingOutputs": [
+        {
+          "outputId": "output-002",
+          "type": "ComputePulseDraft",
+          "commitment": "sha256:bbbbbbbb"
+        }
+      ]
+    }
+  ]
+}

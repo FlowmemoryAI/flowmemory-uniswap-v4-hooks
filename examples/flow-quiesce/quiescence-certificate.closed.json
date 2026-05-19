@@ -1,0 +1,20 @@
+{
+  "ackedFrameCount": 1,
+  "blockedFrames": [],
+  "certificateId": "sha256:2bbfafbc0370e2a28a31454035b73b8f22f5261e569ae57dd5eecf5c7d7d9843",
+  "checks": {
+    "allRequiredFramesAcked": true,
+    "certificateIdMatches": true,
+    "noActivePreBoundaryReaders": true
+  },
+  "epochId": "sha256:474e7f92d69a507b2f771975d046d2296df5bf2acec4018a3c008085836263b7",
+  "requestId": "sha256:3479a460fc3fbacd58b526b27e6931f3c93cf070e591e89bd8f862d3eb28e2db",
+  "requiredFrameCount": 1,
+  "safeOutputs": [
+    "output-001"
+  ],
+  "safeToJoinPostBoundaryState": true,
+  "schema": "flowmemory.quiescence_certificate.v0",
+  "status": "grace_period_closed",
+  "unsafeOutputs": []
+}

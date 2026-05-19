@@ -135,6 +135,7 @@ new proof boundary
   -> run BoundaryFission release
   -> retire eligible speculative artifacts through PulseRetire
   -> map receipt facts through FlowMMU
+  -> require active pre-boundary frames to quiesce through FlowQuiesce
   -> emit AgentPulse for what survived, changed, or died
 ```
 
@@ -148,6 +149,10 @@ agents a reorder buffer for reality.
 FlowMMU handles dereference: expected boundary facts and receipt-settled facts
 are not the same memory state. If an agent tries to read receipt-only fields too
 early, it gets a deterministic `ReceiptPageFault`.
+
+FlowQuiesce handles active work already in progress. If a frame read the old
+rootfield epoch, its outputs cannot join the post-boundary world until it
+revalidates, forks, abandons, or otherwise reaches a safe point.
 
 ## Line To Use
 

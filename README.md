@@ -282,6 +282,31 @@ It is a runtime primitive for external reality: agents can point at a boundary b
 
 See [docs/FLOW_MMU.md](docs/FLOW_MMU.md), [specs/FlowMMU.v0.md](specs/FlowMMU.v0.md), [specs/ReceiptPageFault.v0.md](specs/ReceiptPageFault.v0.md), and [examples/flow-mmu/](examples/flow-mmu/).
 
+## Frontier R&D Primitive: FlowQuiesce
+
+FlowQuiesce is receipt-triggered quiescence for autonomous agents and GPU workflows.
+
+FlowMemory gives agents a grace period for reality.
+
+A FlowPulse receipt advances a rootfield epoch. Any active agent or compute frame that read the old rootfield epoch must reach a safe point before its pending output can join post-boundary state.
+
+```text
+FlowPulse receipt
+  -> ReceiptEpoch advances
+  -> active pre-boundary readers are identified
+  -> grace period opens
+  -> required frames quiesce / revalidate / fork / abandon
+  -> grace period closes
+```
+
+This is not workflow orchestration.
+This is not action permission.
+This is not cache invalidation.
+
+It is a public safe-point protocol for machine cognition.
+
+See [docs/FLOW_QUIESCE.md](docs/FLOW_QUIESCE.md), [specs/FlowQuiesce.v0.md](specs/FlowQuiesce.v0.md), and [examples/flow-quiesce/](examples/flow-quiesce/).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -385,6 +410,7 @@ docs/
   BOUNDARY_FISSION.md              # Proof-triggered forgetting and memory release
   PULSE_RETIRE.md                  # Receipt-driven retirement for speculative cognition
   FLOW_MMU.md                      # Receipt-backed dereference semantics for agents
+  FLOW_QUIESCE.md                  # Receipt-triggered quiescence epochs for agent runtimes
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -407,6 +433,7 @@ tools/
   boundary_fission.py              # Applies proof-triggered working-memory fission
   pulse_retire.py                  # Retires or squashes speculative artifacts with FlowPulse receipts
   flow_mmu.py                      # Maps virtual FlowPulse pointers into read-only receipt pages
+  flow_quiesce.py                  # Requires active pre-boundary frames to quiesce after FlowPulse receipts
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
@@ -420,6 +447,7 @@ specs/
   PulseRetire.v0.md                # Draft receipt-driven speculative retirement spec
   FlowMMU.v0.md                    # Draft receipt-backed virtual memory spec
   ReceiptPageFault.v0.md           # Draft runtime fault spec for early receipt reads
+  FlowQuiesce.v0.md                # Draft receipt-triggered quiescence epoch spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
@@ -427,6 +455,7 @@ examples/
   boundary-fission/                # Example FlowPulse -> memory release products
   pulse-retire/                    # Example speculative artifacts -> FlowPulse retirement
   flow-mmu/                        # Example PulsePointer -> ReceiptPageFault -> ReceiptPage
+  flow-quiesce/                    # Example active frame -> quiescence request -> certificate
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

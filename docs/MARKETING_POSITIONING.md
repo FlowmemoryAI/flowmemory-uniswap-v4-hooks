@@ -29,6 +29,7 @@ Most hooks modify execution. FlowMemory emits memory.
 - The agent can speculate. The receipt decides what becomes real.
 - FlowMemory gives AI agents a reorder buffer for reality.
 - FlowMemory gives agents a page fault for reality.
+- FlowMemory gives agents a grace period for reality.
 
 ## Category Framing
 
@@ -78,6 +79,7 @@ FlowMemory can connect:
 - proof-triggered forgetting;
 - receipt-driven retirement for speculative machine cognition;
 - receipt-backed dereference semantics for external proof coordinates;
+- receipt-triggered quiescence epochs for active agent frames;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -98,6 +100,7 @@ Use these lines for the broader vision:
 - BoundaryFission turns proof into memory release: conserve facts, compress stale context, quarantine unsupported claims, kill unsafe branches, and delegate fresh compute.
 - PulseRetire lets agents compute ahead while preventing speculative outputs from becoming live until a matching FlowPulse receipt retires them.
 - FlowMMU turns blockchain receipts into virtual-memory mappings for machine cognition.
+- FlowQuiesce turns receipt-bound FlowPulses into safe points for in-flight cognition.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -138,3 +141,13 @@ The Uniswap v4 hook emits a FlowPulse at the `afterSwap` boundary. The swap is n
 FlowMMU is a receipt-backed memory-management unit for agents. A machine can hold a virtual pointer to an expected FlowPulse, but if it tries to read `txHash` or `logIndex` before the reader maps the receipt, it gets a page fault. Once the matching FlowPulse evidence arrives, FlowMMU maps a read-only proof page.
 
 The agent can point at reality before proof exists, but it cannot dereference reality until the chain maps it.
+
+## FlowQuiesce Founder Script
+
+AI agents do not just need memory. They need safe points. A model can be halfway through a plan when the external world crosses a boundary. Today that output usually lands in context as if nothing happened.
+
+FlowMemory changes that. A Uniswap v4 `afterSwap` hook emits a FlowPulse. The swap is not memory. The transaction is the proof envelope. The FlowPulse is the memory artifact, and the reader attaches receipt facts like `txHash` and `logIndex` later.
+
+FlowQuiesce turns that receipt-bound FlowPulse into a runtime epoch. Any in-flight agent or GPU frame that read the old epoch must reach a quiescent point before its output joins the new world.
+
+This is not memory retrieval or proof exploration. It is a grace period for reality.

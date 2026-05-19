@@ -1,0 +1,6 @@
+{
+  "schema": "flowmemory.receipt_epoch.v0",
+  "epochId": "sha256:epoch-0",
+  "epochNumber": 0,
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111"
+}

@@ -276,3 +276,27 @@ Tests:
 ```bash
 python -m unittest tools.test_flow_mmu
 ```
+
+## `flow_quiesce.py`
+
+Builds receipt-triggered quiescence epochs for agent runtimes.
+
+FlowQuiesce gives agents a grace period for reality:
+
+- a FlowPulse receipt advances a rootfield epoch;
+- active frames that read that rootfield are required to quiesce;
+- unrelated frames are unaffected;
+- pending outputs stay unsafe until required frames acknowledge a safe point;
+- a quiescence certificate closes the grace period.
+
+Run the demo:
+
+```bash
+python tools/flow_quiesce.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flow_quiesce
+```

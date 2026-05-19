@@ -77,6 +77,7 @@ jobs:
             docs/BOUNDARY_FISSION.md
             docs/PULSE_RETIRE.md
             docs/FLOW_MMU.md
+            docs/FLOW_QUIESCE.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -89,6 +90,7 @@ jobs:
             specs/PulseRetire.v0.md
             specs/FlowMMU.v0.md
             specs/ReceiptPageFault.v0.md
+            specs/FlowQuiesce.v0.md
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
@@ -143,6 +145,17 @@ jobs:
             examples/flow-mmu/fault.address-mismatch.json
             examples/flow-mmu/fault.illegal-write.json
             examples/flow-mmu/read.txhash.example.json
+            examples/flow-quiesce/README.md
+            examples/flow-quiesce/epoch.0.json
+            examples/flow-quiesce/epoch.1.json
+            examples/flow-quiesce/flowpulse.matching.json
+            examples/flow-quiesce/flowpulse.missing-txhash.json
+            examples/flow-quiesce/flowpulse.missing-logindex.json
+            examples/flow-quiesce/agent-frames.active.json
+            examples/flow-quiesce/quiescence-request.example.json
+            examples/flow-quiesce/ack.frame-001.json
+            examples/flow-quiesce/quiescence-certificate.open.json
+            examples/flow-quiesce/quiescence-certificate.closed.json
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -151,6 +164,7 @@ jobs:
             tools/boundary_fission.py
             tools/pulse_retire.py
             tools/flow_mmu.py
+            tools/flow_quiesce.py
             releases/base-sepolia/README.md
           )
 
@@ -238,3 +252,9 @@ jobs:
         run: |
           python tools/flow_mmu.py demo
           python tools/flow_mmu.py verify-page --page examples/flow-mmu/receipt-page.example.json
+
+      - name: Test FlowQuiesce
+        run: python -m unittest tools.test_flow_quiesce
+
+      - name: Check FlowQuiesce demo
+        run: python tools/flow_quiesce.py demo

@@ -1,0 +1,17 @@
+{
+  "ackId": "sha256:6a752b77599bdea3ed4d68e9302cceb7ec17cf0ebe41524fa810364661104729",
+  "ackMode": "revalidated",
+  "checks": {
+    "ackIdMatches": true,
+    "epochMatches": true,
+    "frameWasRequired": true
+  },
+  "epochId": "sha256:474e7f92d69a507b2f771975d046d2296df5bf2acec4018a3c008085836263b7",
+  "frameId": "frame-001",
+  "frameStateAfter": "quiescent",
+  "outputDisposition": {
+    "output-001": "revalidated_for_epoch"
+  },
+  "requestId": "sha256:3479a460fc3fbacd58b526b27e6931f3c93cf070e591e89bd8f862d3eb28e2db",
+  "schema": "flowmemory.quiescence_ack.v0"
+}
