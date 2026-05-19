@@ -191,9 +191,9 @@ through:
 - seller work for the wrong task;
 - payment requirement drift;
 - missing seller-side FlowSerial evidence;
-- compute reuse that contradicts the paid work claim.
+- compute reuse that contradicts the paid work claim;
 - stale seller memory;
-- duplicate buyer intents replayed into an exchange.
+- duplicate buyer intents replayed into an exchange;
 - counterparty-payee rebinding;
 - work replay across buyers;
 - double-consumed payment requirements;
