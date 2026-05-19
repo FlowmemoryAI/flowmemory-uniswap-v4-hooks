@@ -375,3 +375,34 @@ Tests:
 ```bash
 python -m unittest tools.test_flow_litmus
 ```
+
+## `launch_reality_check.py`
+
+Runs the screenshot-ready launch harness.
+
+The Reality Check prints:
+
+- the boundary model;
+- the hook invariant surface;
+- required launch artifacts;
+- the FlowLitmus forbidden-outcome table;
+- the safe public launch claim and non-claims.
+
+Run:
+
+```bash
+python tools/launch_reality_check.py --pretty
+```
+
+Write the screenshot text:
+
+```bash
+python tools/launch_reality_check.py --pretty \
+  --write examples/launch-reality-check/latest-output.txt
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_launch_reality_check
+```

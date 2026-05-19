@@ -81,6 +81,7 @@ jobs:
             docs/FLOW_SERIAL.md
             docs/FLOWMEMORY_RUNTIME_MODEL.md
             docs/FLOWLITMUS_LAUNCH_DEMO.md
+            docs/LAUNCH_REALITY_CHECK.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -190,6 +191,9 @@ jobs:
             examples/flow-litmus/expected/FM-SER-003.result.json
             examples/flow-litmus/expected/FM-OK-001.result.json
             examples/flow-litmus/diagrams/impossible-agent-trace.mmd
+            examples/launch-reality-check/screenshot-guide.md
+            examples/launch-reality-check/expected-output.txt
+            examples/launch-reality-check/latest-output.txt
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -201,6 +205,7 @@ jobs:
             tools/flow_quiesce.py
             tools/flow_serial.py
             tools/flow_litmus.py
+            tools/launch_reality_check.py
             releases/base-sepolia/README.md
           )
 
@@ -308,3 +313,9 @@ jobs:
 
       - name: Check FlowLitmus suite
         run: python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json
+
+      - name: Test launch reality check
+        run: python -m unittest tools.test_launch_reality_check
+
+      - name: Check launch reality check
+        run: python tools/launch_reality_check.py --pretty

@@ -1,0 +1,56 @@
+FlowMemory Reality Check
+
+Boundary model
+  PASS  swap != memory
+  PASS  transaction = proof envelope
+  PASS  FlowPulse = memory artifact
+  PASS  hook does not know txHash/logIndex
+  PASS  reader/verifier attaches receipt metadata later
+
+Hook invariant surface
+  PASS  afterSwap-only
+  PASS  PoolManager-gated
+  PASS  required hookData
+  PASS  required rootfieldId
+  PASS  required commitment
+  PASS  zero hook delta
+  PASS  no custody / no fees / no routing / no custom accounting
+
+Runtime model
+  PASS  FlowSerial: receipt-linearizability for machine cognition
+  PASS  FlowLitmus: executable forbidden outcomes
+
+Required launch artifacts
+  PASS  README.md
+  PASS  contracts/FlowMemoryAfterSwapHook.sol
+  PASS  contracts/FlowPulse.sol
+  PASS  docs/FLOW_SERIAL.md
+  PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
+  PASS  docs/FLOWMEMORY_RUNTIME_MODEL.md
+  PASS  examples/flow-litmus/litmus.manifest.json
+  PASS  tools/flow_litmus.py
+
+FlowLitmus Runtime Consistency Suite
+
+FM-LB-001   pre-receipt txHash read                PASS  forbidden_pre_receipt_read
+FM-SER-001  retrocausal receipt claim              PASS  retrocausal_receipt_claim
+FM-QS-001   unquiesced post-boundary output        PASS  QuiescenceViolation
+FM-RT-001   speculative output escaped             PASS  RetirementViolation
+FM-FIS-001  stale output survived boundary         PASS  BoundaryFissionViolation
+FM-SER-002  rootfield rollback                     PASS  rootfield_rollback
+FM-SER-003  split-brain canonical write            PASS  split_brain_write
+FM-OK-001   valid boundary history                 PASS  Serializable
+
+8/8 passed
+
+Result: FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
+
+Do not claim
+  no live mainnet deployment claim
+  no audited production claim
+  no custody
+  no swap control
+  no semantic truth
+  no model correctness
+  no GPU acceleration
+  no production verifier claim

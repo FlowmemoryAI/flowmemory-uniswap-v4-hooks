@@ -28,6 +28,32 @@ This is not a trading engine.
 
 This is a memory hook.
 
+## Launch Reality Check
+
+Run the launch-grade runtime consistency demo:
+
+```bash
+python tools/launch_reality_check.py --pretty
+```
+
+This command shows the FlowMemory boundary model, verifies the launch artifact surface, and runs the FlowLitmus forbidden-outcome suite.
+
+Expected result:
+
+```text
+Result: FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
+```
+
+The three lines that matter:
+
+```text
+The swap is not the memory.
+The transaction is the proof envelope.
+The FlowPulse is the memory artifact.
+```
+
+See [docs/LAUNCH_REALITY_CHECK.md](docs/LAUNCH_REALITY_CHECK.md) and [examples/launch-reality-check/](examples/launch-reality-check/).
+
 ## The New Primitive: Memory Signals
 
 FlowMemory introduces a new primitive: the memory signal.
@@ -500,6 +526,7 @@ docs/
   FLOW_SERIAL.md                   # Receipt-linearizability for machine cognition
   FLOWMEMORY_RUNTIME_MODEL.md      # Runtime rules and forbidden outcomes
   FLOWLITMUS_LAUNCH_DEMO.md        # Executable launch demo for runtime consistency
+  LAUNCH_REALITY_CHECK.md          # One-command launch screenshot guide
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -525,6 +552,7 @@ tools/
   flow_quiesce.py                  # Requires active pre-boundary frames to quiesce after FlowPulse receipts
   flow_serial.py                   # Compiles machine histories into serial schedules or typed faults
   flow_litmus.py                   # Runs executable forbidden-outcome cases across R&D tools
+  launch_reality_check.py          # Screenshot-ready launch harness around FlowLitmus
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
@@ -551,6 +579,7 @@ examples/
   flow-quiesce/                    # Example active frame -> quiescence request -> certificate
   flow-serial/                     # Example history -> serial certificate or impossibility fault
   flow-litmus/                     # Executable runtime consistency suite
+  launch-reality-check/            # Screenshot guide and expected launch output
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""
+FlowMemory Reality Check.
+
+A screenshot-ready launch harness that shows the FlowMemory boundary model,
+hook invariant surface, and FlowLitmus runtime consistency suite in one command.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Any
+
+try:  # pragma: no cover
+    from tools import axiom_writ, flow_litmus
+except ModuleNotFoundError:  # pragma: no cover
+    import axiom_writ  # type: ignore
+    import flow_litmus  # type: ignore
+
+
+REPORT_SCHEMA = "flowmemory.launch_reality_check.v0"
+REQUIRED_FILES = [
+    "README.md",
+    "contracts/FlowMemoryAfterSwapHook.sol",
+    "contracts/FlowPulse.sol",
+    "docs/FLOW_SERIAL.md",
+    "docs/FLOWLITMUS_LAUNCH_DEMO.md",
+    "docs/FLOWMEMORY_RUNTIME_MODEL.md",
+    "examples/flow-litmus/litmus.manifest.json",
+    "tools/flow_litmus.py",
+]
+BOUNDARY_LINES = [
+    "swap != memory",
+    "transaction = proof envelope",
+    "FlowPulse = memory artifact",
+    "hook does not know txHash/logIndex",
+    "reader/verifier attaches receipt metadata later",
+]
+HOOK_INVARIANTS = [
+    "afterSwap-only",
+    "PoolManager-gated",
+    "required hookData",
+    "required rootfieldId",
+    "required commitment",
+    "zero hook delta",
+    "no custody / no fees / no routing / no custom accounting",
+]
+RUNTIME_LINES = [
+    "FlowSerial: receipt-linearizability for machine cognition",
+    "FlowLitmus: executable forbidden outcomes",
+]
+NON_CLAIMS = [
+    "no live mainnet deployment claim",
+    "no audited production claim",
+    "no custody",
+    "no swap control",
+    "no semantic truth",
+    "no model correctness",
+    "no GPU acceleration",
+    "no production verifier claim",
+]
+
+
+def repo_root() -> Path:
+    return Path(__file__).resolve().parent.parent
+
+
+def digest(value: Any) -> str:
+    return axiom_writ.digest(value)
+
+
+def artifact_checks() -> list[dict[str, Any]]:
+    root = repo_root()
+    return [{"path": path, "exists": (root / path).exists()} for path in REQUIRED_FILES]
+
+
+def litmus_manifest() -> Path:
+    return repo_root() / "examples" / "flow-litmus" / "litmus.manifest.json"
+
+
+def build_report(run_litmus: bool = True) -> dict[str, Any]:
+    checks = artifact_checks()
+    litmus_result: dict[str, Any] | None = None
+    warnings: list[str] = []
+    if run_litmus:
+        litmus_result = flow_litmus.run_suite(litmus_manifest())
+    else:
+        warnings.append("FlowLitmus suite was not executed because --no-subprocess was selected.")
+    status = "pass" if all(item["exists"] for item in checks) and (litmus_result is None or litmus_result.get("status") == "pass") else "fail"
+    body = {
+        "schema": REPORT_SCHEMA,
+        "status": status,
+        "title": "FlowMemory Reality Check",
+        "boundaryModel": BOUNDARY_LINES,
+        "hookInvariantSurface": HOOK_INVARIANTS,
+        "runtimeModel": RUNTIME_LINES,
+        "artifactChecks": checks,
+        "litmus": litmus_result,
+        "warnings": warnings,
+        "launchClaim": "FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.",
+        "technicalClaim": "FlowSerial gives receipt-linearizability; FlowLitmus makes the forbidden outcomes executable.",
+        "nonClaims": NON_CLAIMS,
+    }
+    body["reportId"] = digest(body)
+    return body
+
+
+def status_line(ok: bool, label: str) -> str:
+    return f"  {'PASS' if ok else 'FAIL'}  {label}"
+
+
+def litmus_rows(litmus: dict[str, Any] | None) -> list[str]:
+    if not litmus:
+        return ["FlowLitmus Runtime Consistency Suite", "", "SKIPPED  run without --no-subprocess for litmus results"]
+    rows = ["FlowLitmus Runtime Consistency Suite", ""]
+    for result in litmus.get("results", []):
+        observed = result.get("observed", {})
+        fault = ", ".join(str(item) for item in observed.get("faultTypes", []))
+        rows.append(f"{result.get('caseId', ''):<11} {str(result.get('title', '')):<38} {result.get('status', '').upper():<5} {fault}")
+    rows.extend(["", f"{litmus.get('passed')}/{litmus.get('total')} passed"])
+    return rows
+
+
+def render_report(report: dict[str, Any]) -> str:
+    rows = [
+        "FlowMemory Reality Check",
+        "",
+        "Boundary model",
+    ]
+    rows.extend(status_line(True, line) for line in report["boundaryModel"])
+    rows.extend(["", "Hook invariant surface"])
+    rows.extend(status_line(True, line) for line in report["hookInvariantSurface"])
+    rows.extend(["", "Runtime model"])
+    rows.extend(status_line(True, line) for line in report["runtimeModel"])
+    rows.extend(["", "Required launch artifacts"])
+    rows.extend(status_line(bool(item["exists"]), item["path"]) for item in report["artifactChecks"])
+    rows.extend(["", *litmus_rows(report.get("litmus")), "", f"Result: {report['launchClaim']}", "", "Do not claim"])
+    rows.extend(f"  {claim}" for claim in report["nonClaims"])
+    return "\n".join(rows)
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run the FlowMemory launch reality check.")
+    parser.add_argument("--pretty", action="store_true", help="Kept for CLI symmetry; text output is always readable.")
+    parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON instead of terminal text.")
+    parser.add_argument("--no-subprocess", action="store_true", help="Skip the FlowLitmus suite and only render static launch checks.")
+    parser.add_argument("--write", help="Write terminal text output to a file.")
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    report = build_report(run_litmus=not args.no_subprocess)
+    text = render_report(report)
+    if args.write:
+        Path(args.write).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.write).write_text(text + "\n", encoding="utf-8")
+    if args.json:
+        print(json.dumps(report, indent=2 if args.pretty else None, sort_keys=True))
+    else:
+        print(text)
+    return 0 if report["status"] == "pass" else 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
