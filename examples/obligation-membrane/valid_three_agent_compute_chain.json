@@ -1,0 +1,6 @@
+{
+  "caseId": "OM-OK-001",
+  "expectedDecision": "MEMBRANE_ACCEPTED",
+  "schema": "flowmemory.obligation_membrane_case.v0",
+  "title": "valid three agent compute chain"
+}

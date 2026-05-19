@@ -112,6 +112,57 @@ Wallets move funds. x402 moves payments. DuplexLine checks whether buyer spend
 and seller work can exist in the same legal machine history.
 ```
 
+### Agent Commerce Conservation
+
+Agent Commerce Conservation is obligation conservation for autonomous commerce.
+
+It checks whether the entire commerce episode balances after the spend, work,
+compute, refusal, and memory-state closures are considered together.
+
+It rejects:
+
+- orphan payments;
+- orphan work delivery;
+- double-paid obligations;
+- double-delivered work;
+- stale participant memory heads;
+- unsafe compute reuse closing a payment obligation;
+- rejected exchange paths without a refusal or repair state.
+
+Core line:
+
+```text
+Autonomous commerce does not only need payments that settle. It needs
+obligations that conserve.
+```
+
+### Obligation Membrane
+
+Obligation Membrane is no-laundering consistency for multi-agent commerce.
+
+It checks whether an obligation preserves its FMM-0, compute, payee, refusal,
+rootfield, aggregation, and payment-ordering constraints as it moves through
+subagents, brokers, and compute providers.
+
+It rejects:
+
+- downgraded FMM-0 requirements;
+- fresh compute requirements laundered into reuse;
+- missing child obligations;
+- broken payee spines;
+- parent closure over open child obligations;
+- swallowed child refusals;
+- rootfield drift across delegation;
+- silent aggregation that omits a failed child;
+- unsupported truth/correctness upgrades.
+
+Core line:
+
+```text
+Autonomous commerce does not only need payments that settle. It needs
+obligations that cannot be laundered.
+```
+
 ## What Comes Next
 
 These are follow-on primitives that fit the same memory-native agent-commerce

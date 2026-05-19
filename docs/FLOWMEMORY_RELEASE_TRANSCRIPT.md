@@ -23,6 +23,8 @@ What is explicitly not claimed?
 - Compute Reuse Consistency Harness.
 - SpendLine Harness.
 - DuplexLine Harness.
+- Agent Commerce Conservation.
+- Obligation Membrane.
 - Public Base Sepolia receipt evidence gate.
 
 The transcript is deterministic and does not depend on live RPC.
@@ -53,6 +55,8 @@ The repo is not only a hook demo. It now has:
 - an executable compute-reuse consistency harness;
 - an executable autonomous spend consistency harness;
 - an executable buyer/seller agent exchange consistency harness;
+- an executable agent-commerce obligation conservation harness;
+- an executable multi-agent obligation membrane harness;
 - a pending-safe public evidence path.
 
 The transcript makes that consumable in one artifact.

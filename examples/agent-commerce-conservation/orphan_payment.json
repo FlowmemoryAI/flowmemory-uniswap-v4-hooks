@@ -1,0 +1,16 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-BAD-001",
+  "title": "orphan payment",
+  "episode": {
+    "closures": [
+      {
+        "closureId": "close-orphan-pay",
+        "obligationId": "obl-missing-pay",
+        "closureType": "paid",
+        "spendLineVerdict": "ACCEPT_SPENDLINE"
+      }
+    ]
+  },
+  "expectedDecision": "REJECT_CONSERVATION"
+}

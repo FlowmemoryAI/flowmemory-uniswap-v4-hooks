@@ -1,0 +1,40 @@
+{
+  "caseId": "OM-BAD-004",
+  "chain": {
+    "childObligations": [
+      {
+        "authorAgent": "worker-agent-001",
+        "closeSequence": 1,
+        "computePolicy": "FRESH_COMPUTE",
+        "fmm0State": "FMM0_LIVE",
+        "modelCorrectnessGuaranteed": false,
+        "obligationId": "obl-child-work-001",
+        "owner": "worker-agent-001",
+        "payeeAgent": "stranger-agent-001",
+        "requiredFmm0State": "FMM0_LIVE",
+        "rootfieldId": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "semanticTruthVerified": false,
+        "status": "closed",
+        "type": "deliver_work"
+      },
+      {
+        "authorAgent": "compute-agent-001",
+        "closeSequence": 2,
+        "computePolicy": "FRESH_COMPUTE",
+        "fmm0State": "FMM0_LIVE",
+        "modelCorrectnessGuaranteed": false,
+        "obligationId": "obl-child-compute-001",
+        "owner": "compute-agent-001",
+        "payeeAgent": "compute-agent-001",
+        "requiredFmm0State": "FMM0_LIVE",
+        "rootfieldId": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "semanticTruthVerified": false,
+        "status": "closed",
+        "type": "provide_compute"
+      }
+    ]
+  },
+  "expectedDecision": "REJECTED",
+  "schema": "flowmemory.obligation_membrane_case.v0",
+  "title": "payee spine broken"
+}

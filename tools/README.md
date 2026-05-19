@@ -183,6 +183,44 @@ Tests:
 python -m unittest tools.test_duplexline_harness
 ```
 
+## `agent_commerce_conservation.py`
+
+Checks obligation conservation for autonomous commerce episodes.
+
+Agent Commerce Conservation composes declared payment/work obligations,
+closures, memory heads, compute reuse status, and refusal/repair state. It asks
+whether the episode balanced under the memory model. It does not escrow funds,
+authorize wallets, prove work quality, or guarantee semantic truth.
+
+```bash
+python tools/agent_commerce_conservation.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_agent_commerce_conservation
+```
+
+## `obligation_membrane.py`
+
+Checks whether delegated multi-agent obligations preserve their constraints.
+
+Obligation Membrane catches laundering across subagents, compute providers,
+aggregate work, payee changes, rootfield drift, refusal swallowing, and
+semantic upgrades. It does not custody funds, escrow payments, authorize
+wallets, prove work quality, or guarantee semantic truth.
+
+```bash
+python tools/obligation_membrane.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_obligation_membrane
+```
+
 ## `flowmemory_release_transcript.py`
 
 Builds one offline launch transcript from the local evidence gates.

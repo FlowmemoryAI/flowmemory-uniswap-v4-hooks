@@ -92,6 +92,15 @@ python tools/compute_reuse_router.py demo --pretty
 python tools/compute_reuse_consistency.py demo --pretty
 ```
 
+Check agent-commerce memory consistency:
+
+```bash
+python tools/spendline_harness.py demo --pretty
+python tools/duplexline_harness.py demo --pretty
+python tools/agent_commerce_conservation.py demo --pretty
+python tools/obligation_membrane.py demo --pretty
+```
+
 Build the FlowMemory Release Transcript:
 
 ```bash

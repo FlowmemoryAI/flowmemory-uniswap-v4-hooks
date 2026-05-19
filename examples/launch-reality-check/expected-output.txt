@@ -32,6 +32,8 @@ Runtime model
   PASS  Compute Reuse Consistency: cache, compute, and receipt-history gates
   PASS  SpendLine: memory-linearizable autonomous spend histories
   PASS  DuplexLine: co-serializable buyer/seller agent exchange
+  PASS  Agent Commerce Conservation: obligation conservation across spend, work, compute, refusal, and memory
+  PASS  Obligation Membrane: no obligation laundering through subagents, compute providers, or aggregate work
   PASS  Release Transcript: canonical launch state in one offline object
   PASS  Public Claim Gate: launch copy overclaims stay fenced as non-claims
 
@@ -55,6 +57,8 @@ Required launch artifacts
   PASS  specs/ComputeReuseRouter.v0.md
   PASS  specs/SpendLine.v0.md
   PASS  specs/DuplexLine.v0.md
+  PASS  specs/AgentCommerceConservation.v0.md
+  PASS  specs/ObligationMembrane.v0.md
   PASS  specs/FlowMemoryReleaseTranscript.v0.md
   PASS  docs/FLOW_SERIAL.md
   PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
@@ -76,6 +80,8 @@ Required launch artifacts
   PASS  docs/COMPUTE_REUSE_ROUTER.md
   PASS  docs/SPENDLINE.md
   PASS  docs/DUPLEXLINE.md
+  PASS  docs/AGENT_COMMERCE_CONSERVATION.md
+  PASS  docs/OBLIGATION_MEMBRANE.md
   PASS  docs/SKEPTIC_REVIEW_WALKTHROUGH.md
   PASS  docs/LAUNCH_CLAIM_LEDGER.md
   PASS  docs/REVIEWER_QUICKSTART.md
@@ -97,6 +103,8 @@ Required launch artifacts
   PASS  examples/compute-reuse-consistency/expected-output.txt
   PASS  examples/spendline/expected-output.txt
   PASS  examples/duplexline/expected-output.txt
+  PASS  examples/agent-commerce-conservation/expected-output.txt
+  PASS  examples/obligation-membrane/expected-output.txt
   PASS  examples/release-transcript/expected-output.txt
   PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
@@ -112,6 +120,8 @@ Required launch artifacts
   PASS  tools/compute_reuse_router.py
   PASS  tools/spendline_harness.py
   PASS  tools/duplexline_harness.py
+  PASS  tools/agent_commerce_conservation.py
+  PASS  tools/obligation_membrane.py
   PASS  tools/flowmemory_release_transcript.py
   PASS  tools/public_claim_gate.py
   PASS  tools/memory_consistency_card.py

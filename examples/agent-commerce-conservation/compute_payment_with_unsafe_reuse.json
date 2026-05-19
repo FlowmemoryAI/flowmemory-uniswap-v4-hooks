@@ -1,0 +1,30 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-BAD-006",
+  "title": "compute payment with unsafe reuse",
+  "episode": {
+    "obligations": [
+      {
+        "obligationId": "obl-compute-pay-001",
+        "type": "pay_for_compute",
+        "owner": "buyer-agent-001",
+        "beneficiary": "seller-agent-001",
+        "status": "open",
+        "paymentRequirementHash": "sha256:compute-payment-001"
+      }
+    ],
+    "closures": [
+      {
+        "closureId": "close-compute-pay-001",
+        "obligationId": "obl-compute-pay-001",
+        "closureType": "paid",
+        "spendLineVerdict": "ACCEPT_SPENDLINE"
+      }
+    ],
+    "computeContext": {
+      "computeReuseVerdict": "RECOMPUTE_REQUIRED",
+      "cacheLineageVerdict": "CACHE_REUSE_REJECTED"
+    }
+  },
+  "expectedDecision": "REJECT_CONSERVATION"
+}

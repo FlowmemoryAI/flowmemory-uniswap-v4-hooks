@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-BAD-007",
+  "title": "refusal required but missing",
+  "episode": {
+    "duplexLineVerdict": "REJECT_DUPLEXLINE"
+  },
+  "expectedDecision": "REJECT_CONSERVATION"
+}

@@ -1,0 +1,6 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-OK-001",
+  "title": "balanced buyer seller exchange",
+  "expectedDecision": "CONSERVED"
+}

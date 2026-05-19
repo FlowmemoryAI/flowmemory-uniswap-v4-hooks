@@ -34,6 +34,8 @@ Claims:
   FM-C21 Compute Reuse Consistency requires cache lineage, compute fingerprint, and receipt-bound history before reuse becomes live. PASS
   FM-C22 SpendLine makes autonomous spend histories memory-linearizable.        PASS
   FM-C23 DuplexLine makes buyer/seller agent exchange co-serializable across spend, work, payment, and memory state. PASS
+  FM-C24 Agent Commerce Conservation checks that autonomous commerce episodes conserve declared obligations across spend, work, compute, refusal, and memory state. PASS
+  FM-C25 Obligation Membrane checks that multi-agent obligation chains cannot launder away memory, compute, payee, refusal, rootfield, aggregation, or payment-ordering constraints. PASS
   FM-C19 FlowMemory Release Transcript gives one offline object for passed, pending, and non-claimed launch state. PASS
   FM-C10 Public Base Sepolia receipt evidence is pending.                       PENDING
   FM-C11 Production verifier infrastructure is not claimed.                     NOT_CLAIMED
@@ -44,4 +46,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:e9f4c6b0de7d0638ae0d50a8919bffddf3a8e0fcaaed0976cbff5f8df285e1ea
+Walkthrough ID: sha256:efa114a0ed3d9e2a538da5e91227b802b302f894a778bbc4b8ddadac0257d4df

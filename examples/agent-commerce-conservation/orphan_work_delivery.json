@@ -1,0 +1,16 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-BAD-002",
+  "title": "orphan work delivery",
+  "episode": {
+    "closures": [
+      {
+        "closureId": "close-orphan-work",
+        "obligationId": "obl-missing-work",
+        "closureType": "delivered",
+        "workCommitment": "sha256:work-001"
+      }
+    ]
+  },
+  "expectedDecision": "REJECT_CONSERVATION"
+}

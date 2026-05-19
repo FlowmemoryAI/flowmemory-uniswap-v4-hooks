@@ -30,6 +30,8 @@ PUBLIC_CLAIM_FILES = [
     "docs/AGENT_COMMERCE_MEMORY.md",
     "docs/SPENDLINE.md",
     "docs/DUPLEXLINE.md",
+    "docs/AGENT_COMMERCE_CONSERVATION.md",
+    "docs/OBLIGATION_MEMBRANE.md",
 ]
 
 GUARD_START_RE = re.compile(

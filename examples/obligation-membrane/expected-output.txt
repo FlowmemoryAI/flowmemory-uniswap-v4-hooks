@@ -1,0 +1,36 @@
+Obligation Membrane
+
+Valid chain:
+  OM-OK-001  valid three agent compute chain                  MEMBRANE_ACCEPTED
+
+Unsafe chains:
+  OM-BAD-001 downgraded fmm0 requirement                      REJECTED
+  OM-BAD-002 fresh compute requirement laundered              REJECTED
+  OM-BAD-003 missing child obligation                         REJECTED
+  OM-BAD-004 payee spine broken                               REJECTED
+  OM-BAD-005 unresolved child obligation closed parent        REJECTED
+  OM-BAD-006 child refusal swallowed                          REJECTED
+  OM-BAD-007 rootfield drift across delegation                REJECTED
+  OM-BAD-008 aggregate work omits failed child                REJECTED
+  OM-BAD-009 semantic truth upgrade                           REJECTED
+
+Invariant coverage:
+  OM-I1   Constraint Monotonicity                       PASS
+  OM-I2   Delegation Lineage Conservation               PASS
+  OM-I3   No Compute Policy Laundering                  PASS
+  OM-I4   No Memory Phase Laundering                    PASS
+  OM-I5   Payee Spine Integrity                         PASS
+  OM-I6   Child Refusal Propagation                     PASS
+  OM-I7   No Silent Aggregation                         PASS
+  OM-I8   Rootfield Firebreak                           PASS
+  OM-I9   No Semantic Upgrade                           PASS
+  OM-I10  Closure Before Payment                        PASS
+
+Summary:
+  obligation chains checked: 10
+  valid chains accepted: 1/1
+  unsafe chains rejected: 9/9
+  escaped unsafe chains: 0
+
+Result:
+  Obligations cannot be laundered through subagents, compute providers, or aggregate work.

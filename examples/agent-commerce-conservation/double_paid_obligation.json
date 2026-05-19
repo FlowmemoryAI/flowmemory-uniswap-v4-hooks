@@ -1,0 +1,28 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-BAD-003",
+  "title": "double paid obligation",
+  "episode": {
+    "closures": [
+      {
+        "closureId": "close-work-001",
+        "obligationId": "obl-work-001",
+        "closureType": "delivered",
+        "workCommitment": "sha256:work-001"
+      },
+      {
+        "closureId": "close-pay-001",
+        "obligationId": "obl-pay-001",
+        "closureType": "paid",
+        "spendLineVerdict": "ACCEPT_SPENDLINE"
+      },
+      {
+        "closureId": "close-pay-002",
+        "obligationId": "obl-pay-001",
+        "closureType": "paid",
+        "spendLineVerdict": "ACCEPT_SPENDLINE"
+      }
+    ]
+  },
+  "expectedDecision": "REJECT_CONSERVATION"
+}

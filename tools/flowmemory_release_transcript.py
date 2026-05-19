@@ -18,23 +18,27 @@ from typing import Any
 try:  # pragma: no cover
     from tools import (
         axiom_writ,
+        agent_commerce_conservation,
         cache_lineage_gate,
         compute_reuse_consistency,
         compute_reuse_router,
         duplexline_harness,
         fmm0_witness_pack,
         launch_reality_check,
+        obligation_membrane,
         spendline_harness,
         verify_release_evidence,
     )
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
+    import agent_commerce_conservation  # type: ignore
     import cache_lineage_gate  # type: ignore
     import compute_reuse_consistency  # type: ignore
     import compute_reuse_router  # type: ignore
     import duplexline_harness  # type: ignore
     import fmm0_witness_pack  # type: ignore
     import launch_reality_check  # type: ignore
+    import obligation_membrane  # type: ignore
     import spendline_harness  # type: ignore
     import verify_release_evidence  # type: ignore
 
@@ -86,6 +90,8 @@ def build_transcript() -> dict[str, Any]:
     consistency = compute_reuse_consistency.build_report()
     spendline = spendline_harness.build_report()
     duplexline = duplexline_harness.build_report()
+    conservation = agent_commerce_conservation.build_report()
+    membrane = obligation_membrane.build_report()
     release = verify_release_evidence.build_report()
 
     local_items = [
@@ -130,6 +136,18 @@ def build_transcript() -> dict[str, Any]:
             status_from_bool(duplexline["status"] == "pass"),
             f"{duplexline['validExchangesAccepted']}/{duplexline['validExchangesTotal']} valid exchange, {duplexline['unsafeExchangesRejected']}/{duplexline['unsafeExchangesTotal']} unsafe exchanges rejected",
             duplexline,
+        ),
+        evidence_item(
+            "Agent Commerce Conservation",
+            status_from_bool(conservation["status"] == "pass"),
+            f"{conservation['validEpisodesConserved']}/{conservation['validEpisodesTotal']} valid episode, {conservation['invalidEpisodesRejected']}/{conservation['invalidEpisodesTotal']} invalid episodes rejected",
+            conservation,
+        ),
+        evidence_item(
+            "Obligation Membrane",
+            status_from_bool(membrane["status"] == "pass"),
+            f"{membrane['validChainsAccepted']}/{membrane['validChainsTotal']} valid chain, {membrane['unsafeChainsRejected']}/{membrane['unsafeChainsTotal']} unsafe chains rejected",
+            membrane,
         ),
     ]
     public_status = release["verdict"]["publicBaseSepoliaReceiptEvidence"]

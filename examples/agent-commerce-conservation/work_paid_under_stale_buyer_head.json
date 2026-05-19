@@ -1,0 +1,24 @@
+{
+  "schema": "flowmemory.agent_commerce_conservation_case.v0",
+  "caseId": "ACC-BAD-005",
+  "title": "work paid under stale buyer head",
+  "episode": {
+    "participants": [
+      {
+        "agentId": "buyer-agent-001",
+        "role": "buyer",
+        "memoryHead": "flowpulse-stale-buyer",
+        "expectedMemoryHead": "flowpulse-buyer-001",
+        "fmm0State": "FMM0_LIVE"
+      },
+      {
+        "agentId": "seller-agent-001",
+        "role": "seller",
+        "memoryHead": "flowpulse-seller-001",
+        "expectedMemoryHead": "flowpulse-seller-001",
+        "fmm0State": "FMM0_LIVE"
+      }
+    ]
+  },
+  "expectedDecision": "REJECT_CONSERVATION"
+}

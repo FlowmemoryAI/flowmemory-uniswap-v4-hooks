@@ -440,6 +440,57 @@
       ]
     },
     {
+      "id": "FM-C24",
+      "category": "agent_commerce_memory",
+      "claim": "Agent Commerce Conservation checks that autonomous commerce episodes conserve declared obligations across spend, work, compute, refusal, and memory state.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/AgentCommerceConservation.v0.md",
+        "docs/AGENT_COMMERCE_CONSERVATION.md",
+        "tools/agent_commerce_conservation.py",
+        "examples/agent-commerce-conservation/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/agent_commerce_conservation.py demo --pretty",
+        "python -m unittest tools.test_agent_commerce_conservation"
+      ],
+      "expected": "Agent Commerce Conservation accepts 1/1 valid episode, rejects 7/7 invalid episodes, and reports 0 escaped invalid episodes.",
+      "nonClaims": [
+        "not_escrow",
+        "not_wallet_authorization",
+        "not_work_quality_proof",
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_fund_protection"
+      ]
+    },
+    {
+      "id": "FM-C25",
+      "category": "agent_commerce_memory",
+      "claim": "Obligation Membrane checks that multi-agent obligation chains cannot launder away memory, compute, payee, refusal, rootfield, aggregation, or payment-ordering constraints.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/ObligationMembrane.v0.md",
+        "docs/OBLIGATION_MEMBRANE.md",
+        "tools/obligation_membrane.py",
+        "examples/obligation-membrane/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/obligation_membrane.py demo --pretty",
+        "python -m unittest tools.test_obligation_membrane"
+      ],
+      "expected": "Obligation Membrane accepts 1/1 valid chain, rejects 9/9 unsafe chains, and reports 0 escaped unsafe chains.",
+      "nonClaims": [
+        "not_escrow",
+        "not_wallet_authorization",
+        "not_work_quality_proof",
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_gpu_acceleration",
+        "not_fund_protection"
+      ]
+    },
+    {
       "id": "FM-C19",
       "category": "launch_packaging",
       "claim": "FlowMemory Release Transcript gives one offline object for passed, pending, and non-claimed launch state.",

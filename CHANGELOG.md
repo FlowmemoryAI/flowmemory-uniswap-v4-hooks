@@ -24,13 +24,15 @@ What this release-prep surface includes:
 - Cache Lineage Gate, Compute Reuse Router, and Compute Reuse Consistency for proof-backed AI/GPU workflow reuse discipline.
 - SpendLine Harness for memory-linearizable autonomous agent spend histories.
 - DuplexLine Harness for co-serializable buyer/seller agent exchange histories.
+- Agent Commerce Conservation Lab for obligation conservation across spend, work, compute, refusal, and memory state.
+- Obligation Membrane for no-laundering checks across subagents, compute providers, aggregate work, refusal, and payment closure.
 - Public Claim Gate, Release Transcript, Reviewer Quickstart, Skeptic Walkthrough, and Launch Reality Check.
 - Public Technical Report: a publication-style Markdown source and PDF for reviewers, journals, and public launch readers.
 - External Review Packet: a simple plus technical review handoff, with PDF, for outside security and architecture review.
 
 Verified locally before this entry:
 
-- `python -m unittest discover -s tools -p 'test_*.py'`: 311 tests passed.
+- `python -m unittest discover -s tools -p 'test_*.py'`: 343 tests passed.
 - `forge fmt --check`: passed.
 - `forge build`: passed.
 - `forge test -vvv`: 12 tests passed.

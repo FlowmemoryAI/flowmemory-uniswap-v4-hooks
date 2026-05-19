@@ -601,12 +601,47 @@ payment requirement consumption, buyer compute policy dominance, impossible
 exchange schedule detection, payment receipt smuggling rejection, endpoint
 drift rejection, and seller FMM-0 state checks.
 
+For autonomous commerce episodes:
+
+```text
+obligations + closures + memory heads + compute/refusal state -> Agent Commerce Conservation -> CONSERVED or REJECT_CONSERVATION
+```
+
+Agent Commerce Conservation checks whether the whole episode balances. Wallets
+can authorize a spend, payment rails can move value, and DuplexLine can prove a
+buyer/seller exchange is co-serializable. Conservation Lab asks whether the
+declared obligations actually conserved across spend, work, compute, refusal,
+and receipt-bound memory state.
+
+It rejects orphan payments, orphan work delivery, double-paid obligations,
+double-delivered work, stale memory heads, unsafe compute reuse closing payment,
+and rejected exchanges that fail to produce a refusal or repair state.
+
+For multi-agent obligation supply chains:
+
+```text
+delegated obligations + child work/compute + rootfields + payee spine -> Obligation Membrane -> MEMBRANE_ACCEPTED or REJECTED
+```
+
+Obligation Membrane checks whether an obligation survives being passed through
+subagents, compute providers, and aggregate work without laundering away its
+memory constraints. Agent-to-agent work is not safe just because each step looks
+valid locally. The chain has to preserve FMM-0 requirements, compute policy,
+payee lineage, refusal state, rootfield boundaries, aggregation, and payment
+ordering end to end.
+
+It rejects downgraded FMM-0 requirements, fresh-compute laundering, missing
+child obligations, broken payee spines, parent closure over open children,
+swallowed refusals, rootfield drift, silent aggregation, and semantic upgrades.
+
 ```bash
 python tools/cache_lineage_gate.py demo --pretty
 python tools/compute_reuse_router.py demo --pretty
 python tools/compute_reuse_consistency.py demo --pretty
 python tools/spendline_harness.py demo --pretty
 python tools/duplexline_harness.py demo --pretty
+python tools/agent_commerce_conservation.py demo --pretty
+python tools/obligation_membrane.py demo --pretty
 ```
 
 Expected launch signal:
@@ -623,6 +658,10 @@ valid spends accepted: 1/1
 unsafe spends rejected: 8/8
 valid exchanges accepted: 1/1
 unsafe exchanges rejected: 15/15
+valid episodes conserved: 1/1
+invalid episodes rejected: 7/7
+valid chains accepted: 1/1
+unsafe chains rejected: 9/9
 ```
 
 ## Release Transcript
@@ -641,7 +680,7 @@ Expected launch line:
 FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
 ```
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Surfaces
 
@@ -992,6 +1031,8 @@ docs/
   COMPUTE_REUSE_ROUTER.md          # Proof-backed scheduler decisions for reusable compute
   SPENDLINE.md                     # Memory-linearizable autonomous spend histories
   DUPLEXLINE.md                    # Co-serializable buyer/seller agent exchange
+  AGENT_COMMERCE_CONSERVATION.md   # Obligation conservation for autonomous commerce episodes
+  OBLIGATION_MEMBRANE.md           # No obligation laundering through multi-agent supply chains
   PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
@@ -1040,6 +1081,8 @@ tools/
   compute_reuse_router.py          # Routes safe reuse of committed AI/GPU work
   spendline_harness.py             # Checks autonomous spend history consistency
   duplexline_harness.py            # Checks buyer/seller exchange consistency
+  agent_commerce_conservation.py   # Checks obligation conservation across agent commerce episodes
+  obligation_membrane.py           # Checks delegated obligation chains for laundering
   flowmemory_release_transcript.py # Builds the canonical offline launch transcript
   public_claim_gate.py             # Checks public launch copy for unguarded overclaims
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
@@ -1065,6 +1108,8 @@ specs/
   ComputeReuseRouter.v0.md         # Draft scheduler-facing compute reuse spec
   SpendLine.v0.md                  # Draft autonomous spend history consistency spec
   DuplexLine.v0.md                 # Draft buyer/seller exchange consistency spec
+  AgentCommerceConservation.v0.md  # Draft obligation-conservation spec for agent commerce
+  ObligationMembrane.v0.md         # Draft multi-agent obligation membrane spec
   FlowMemoryReleaseTranscript.v0.md # Draft offline release transcript spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
   AgentMemoryPack.v0.md            # Draft proof-carried agent memory pack spec
@@ -1086,6 +1131,8 @@ examples/
   compute-reuse-consistency/       # Example cache + compute + history consistency harness
   spendline/                       # Example memory-linearizable agent spend harness
   duplexline/                      # Example co-serializable buyer/seller exchange harness
+  agent-commerce-conservation/     # Example obligation conservation harness
+  obligation-membrane/             # Example multi-agent obligation membrane harness
   release-transcript/              # Example canonical launch transcript output
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action
