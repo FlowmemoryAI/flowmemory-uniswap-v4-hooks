@@ -91,6 +91,7 @@ python tools/cache_lineage_gate.py demo --pretty
 python tools/compute_reuse_router.py demo --pretty
 python tools/compute_reuse_consistency.py demo --pretty
 python tools/compute_chargeline.py demo --pretty
+python tools/dischargeline_harness.py demo --pretty
 ```
 
 Check agent-commerce memory consistency:

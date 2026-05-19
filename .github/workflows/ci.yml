@@ -92,6 +92,7 @@ jobs:
             docs/COMPUTE_REUSE_CONSISTENCY.md
             docs/COMPUTE_REUSE_ROUTER.md
             docs/COMPUTE_CHARGELINE.md
+            docs/DISCHARGELINE.md
             docs/SPENDLINE.md
             docs/DUPLEXLINE.md
             docs/OBLIGATION_MEMBRANE.md
@@ -134,6 +135,7 @@ jobs:
             specs/ComputeReuseConsistency.v0.md
             specs/ComputeReuseRouter.v0.md
             specs/ComputeChargeLine.v0.md
+            specs/DischargeLine.v0.md
             specs/SpendLine.v0.md
             specs/DuplexLine.v0.md
             specs/AgentCommerceConservation.v0.md
@@ -181,6 +183,20 @@ jobs:
             examples/compute-chargeline/payment_requirement_drift.json
             examples/compute-chargeline/stale_buyer_memory_head.json
             examples/compute-chargeline/expected-output.txt
+            examples/dischargeline/README.md
+            examples/dischargeline/valid_x402_work_discharge.json
+            examples/dischargeline/valid_compute_discharge.json
+            examples/dischargeline/wrong_obligation_receipt.json
+            examples/dischargeline/wrong_recipient_discharge.json
+            examples/dischargeline/stale_quote_discharge.json
+            examples/dischargeline/duplicate_discharge.json
+            examples/dischargeline/discharge_without_receipt.json
+            examples/dischargeline/discharge_after_child_refusal.json
+            examples/dischargeline/compute_route_mismatch_discharge.json
+            examples/dischargeline/missing_post_spend_flowpulse.json
+            examples/dischargeline/semantic_completion_overclaim.json
+            examples/dischargeline/receipt_fields_in_obligation.json
+            examples/dischargeline/expected-output.txt
             examples/spendline/README.md
             examples/spendline/valid_spend_after_memory_head.json
             examples/spendline/stale_memory_head_spend.json
@@ -368,6 +384,7 @@ jobs:
             tools/compute_reuse_consistency.py
             tools/compute_reuse_router.py
             tools/compute_chargeline.py
+            tools/dischargeline_harness.py
             tools/spendline_harness.py
             tools/duplexline_harness.py
             tools/agent_commerce_conservation.py
@@ -471,6 +488,12 @@ jobs:
 
       - name: Check Compute ChargeLine demo
         run: python tools/compute_chargeline.py demo --pretty
+
+      - name: Test DischargeLine Harness
+        run: python -m unittest tools.test_dischargeline_harness
+
+      - name: Check DischargeLine Harness demo
+        run: python tools/dischargeline_harness.py demo --pretty
 
       - name: Test SpendLine Harness
         run: python -m unittest tools.test_spendline_harness

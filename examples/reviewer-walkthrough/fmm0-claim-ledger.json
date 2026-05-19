@@ -418,6 +418,31 @@
       ]
     },
     {
+      "id": "FM-C27",
+      "category": "agent_obligation_discharge",
+      "claim": "DischargeLine checks that a receipt closes the right obligation rather than treating payment settlement as obligation completion.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/DischargeLine.v0.md",
+        "docs/DISCHARGELINE.md",
+        "tools/dischargeline_harness.py",
+        "examples/dischargeline/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/dischargeline_harness.py demo --pretty",
+        "python -m unittest tools.test_dischargeline_harness"
+      ],
+      "expected": "DischargeLine accepts 2/2 valid discharges, rejects 10/10 invalid discharges, and reports 0 escaped invalid discharges.",
+      "nonClaims": [
+        "not_escrow",
+        "not_wallet_authorization",
+        "not_work_quality_proof",
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_fund_protection"
+      ]
+    },
+    {
       "id": "FM-C22",
       "category": "agent_money_memory",
       "claim": "SpendLine makes autonomous spend histories memory-linearizable.",

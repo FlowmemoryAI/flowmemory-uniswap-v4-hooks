@@ -1,0 +1,39 @@
+{
+  "caseId": "DCL-BAD-008",
+  "discharge": {
+    "alreadyDischarged": false,
+    "childRefusalOpen": false,
+    "computeChargeLineVerdict": "NOT_APPLICABLE",
+    "conservationVerdict": "CONSERVED",
+    "dischargeId": "discharge-001",
+    "expectedObligationId": "obl-agent-work-001",
+    "expectedPaymentRequirementHash": "sha256:x402-payment-001",
+    "expectedRecipient": "seller-agent-001",
+    "expectedSpendIntentCommitment": "sha256:spend-intent-001",
+    "fmm0State": "FMM0_LIVE",
+    "kind": "work_payment",
+    "membraneVerdict": "MEMBRANE_ACCEPTED",
+    "modelCorrectnessGuaranteed": false,
+    "obligationFields": {},
+    "obligationId": "obl-agent-work-001",
+    "paymentRequirementHash": "sha256:x402-payment-001",
+    "postSpendFlowPulseId": null,
+    "receiptEnvelope": {
+      "logIndex": 7,
+      "obligationId": "obl-agent-work-001",
+      "paymentRequirementHash": "sha256:x402-payment-001",
+      "receiptStatus": "success",
+      "recipient": "seller-agent-001",
+      "spendIntentCommitment": "sha256:spend-intent-001",
+      "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "recipient": "seller-agent-001",
+    "schema": "flowmemory.dischargeline_discharge.v0",
+    "semanticTruthVerified": false,
+    "spendIntentCommitment": "sha256:spend-intent-001",
+    "workQualityProven": false
+  },
+  "expectedDecision": "REJECTED",
+  "schema": "flowmemory.dischargeline_case.v0",
+  "title": "missing post spend flowpulse"
+}

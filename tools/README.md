@@ -166,6 +166,25 @@ Tests:
 python -m unittest tools.test_compute_chargeline
 ```
 
+## `dischargeline_harness.py`
+
+Checks receipt-bound obligation discharge.
+
+DischargeLine keeps payment settlement separate from obligation completion. It
+requires the receipt to bind to the right obligation, spend intent, recipient,
+payment requirement, post-spend FlowPulse, conservation verdict, membrane
+verdict, and compute-route verdict.
+
+```bash
+python tools/dischargeline_harness.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_dischargeline_harness
+```
+
 ## `spendline_harness.py`
 
 Checks memory-linearizability for autonomous agent spending.

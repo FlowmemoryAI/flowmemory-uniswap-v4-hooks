@@ -1,0 +1,38 @@
+DischargeLine Harness
+
+Valid discharges:
+  DCL-OK-001  valid x402 work discharge              DISCHARGE_ACCEPTED
+  DCL-OK-002  valid compute discharge                DISCHARGE_ACCEPTED
+
+Invalid discharges:
+  DCL-BAD-001 wrong obligation receipt               REJECTED
+  DCL-BAD-002 wrong recipient discharge              REJECTED
+  DCL-BAD-003 stale quote discharge                  REJECTED
+  DCL-BAD-004 duplicate discharge                    REJECTED
+  DCL-BAD-005 discharge without receipt              REJECTED
+  DCL-BAD-006 discharge after child refusal          REJECTED
+  DCL-BAD-007 compute route mismatch discharge       REJECTED
+  DCL-BAD-008 missing post spend flowpulse           REJECTED
+  DCL-BAD-009 semantic completion overclaim          REJECTED
+  DCL-BAD-010 receipt fields in obligation           REJECTED
+
+Invariant coverage:
+  DCL-I1   Receipt Required                           PASS
+  DCL-I2   Receipt-Obligation Binding                 PASS
+  DCL-I3   Post-Spend Memory Boundary                 PASS
+  DCL-I4   FMM-0 Discharge State                      PASS
+  DCL-I5   Conservation Compatibility                 PASS
+  DCL-I6   Membrane Compatibility                     PASS
+  DCL-I7   Compute Route Compatibility                PASS
+  DCL-I8   Single Discharge                           PASS
+  DCL-I9   No Semantic Completion Upgrade             PASS
+  DCL-I10  Receipt-Time Discipline                    PASS
+
+Summary:
+  discharge cases checked: 12
+  valid discharges accepted: 2/2
+  invalid discharges rejected: 10/10
+  escaped invalid discharges: 0
+
+Result:
+  A transaction receipt can settle payment without discharging the obligation.

@@ -22,6 +22,7 @@ What is explicitly not claimed?
 - Cache Lineage Gate.
 - Compute Reuse Consistency Harness.
 - Compute ChargeLine.
+- DischargeLine Harness.
 - SpendLine Harness.
 - DuplexLine Harness.
 - Agent Commerce Conservation.
@@ -55,6 +56,7 @@ The repo is not only a hook demo. It now has:
 - an executable cache-lineage reuse gate;
 - an executable compute-reuse consistency harness;
 - an executable compute-payment consistency harness;
+- an executable receipt-bound obligation discharge harness;
 - an executable autonomous spend consistency harness;
 - an executable buyer/seller agent exchange consistency harness;
 - an executable agent-commerce obligation conservation harness;

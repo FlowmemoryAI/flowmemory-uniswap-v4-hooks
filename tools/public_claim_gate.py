@@ -29,6 +29,7 @@ PUBLIC_CLAIM_FILES = [
     "docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md",
     "docs/AGENT_COMMERCE_MEMORY.md",
     "docs/COMPUTE_CHARGELINE.md",
+    "docs/DISCHARGELINE.md",
     "docs/SPENDLINE.md",
     "docs/DUPLEXLINE.md",
     "docs/AGENT_COMMERCE_CONSERVATION.md",

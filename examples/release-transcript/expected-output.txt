@@ -10,6 +10,7 @@ Local evidence:
   Cache Lineage Gate           PASS     1 cache reuse, 4/4 unsafe reuse rejected
   Compute Reuse Consistency    PASS     5/5 cases, 4/4 unsafe reuse blocked
   Compute ChargeLine           PASS     2/2 valid charges, 8/8 invalid charges rejected
+  DischargeLine Harness        PASS     2/2 valid discharges, 10/10 invalid discharges rejected
   SpendLine Harness            PASS     1/1 valid spend, 8/8 unsafe spends rejected
   DuplexLine Harness           PASS     1/1 valid exchange, 15/15 unsafe exchanges rejected
   Agent Commerce Conservation  PASS     1/1 valid episode, 7/7 invalid episodes rejected

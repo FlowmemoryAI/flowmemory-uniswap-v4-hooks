@@ -1,0 +1,6 @@
+{
+  "caseId": "DCL-OK-001",
+  "expectedDecision": "DISCHARGE_ACCEPTED",
+  "schema": "flowmemory.dischargeline_case.v0",
+  "title": "valid x402 work discharge"
+}

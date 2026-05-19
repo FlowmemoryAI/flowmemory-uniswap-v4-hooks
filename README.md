@@ -584,6 +584,22 @@ buyer memory heads.
 
 Compute billing without memory consistency is invoice optimism.
 
+For obligation completion:
+
+```text
+receipt envelope + obligation + post-spend FlowPulse + consistency verdicts -> DischargeLine -> DISCHARGE_ACCEPTED or REJECTED
+```
+
+DischargeLine checks whether a receipt closes the right obligation. Settlement
+is not discharge: a transaction can settle while the obligation remains open.
+It rejects wrong obligation receipts, wrong recipients, stale quotes, duplicate
+discharge, missing receipts, open child refusals, compute route mismatch,
+missing post-spend FlowPulse, semantic completion overclaims, and receipt facts
+smuggled into pre-discharge obligation fields.
+
+Wallets show that money moved. DischargeLine asks whether the right obligation
+actually closed.
+
 For autonomous money movement:
 
 ```text
@@ -654,6 +670,7 @@ python tools/cache_lineage_gate.py demo --pretty
 python tools/compute_reuse_router.py demo --pretty
 python tools/compute_reuse_consistency.py demo --pretty
 python tools/compute_chargeline.py demo --pretty
+python tools/dischargeline_harness.py demo --pretty
 python tools/spendline_harness.py demo --pretty
 python tools/duplexline_harness.py demo --pretty
 python tools/agent_commerce_conservation.py demo --pretty
@@ -672,6 +689,8 @@ cases passed: 5/5
 unsafe reuse blocked: 4/4
 valid charges accepted: 2/2
 invalid charges rejected: 8/8
+valid discharges accepted: 2/2
+invalid discharges rejected: 10/10
 valid spends accepted: 1/1
 unsafe spends rejected: 8/8
 valid exchanges accepted: 1/1
@@ -698,7 +717,7 @@ Expected launch line:
 FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
 ```
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/COMPUTE_CHARGELINE.md](docs/COMPUTE_CHARGELINE.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/COMPUTE_CHARGELINE.md](docs/COMPUTE_CHARGELINE.md), [docs/DISCHARGELINE.md](docs/DISCHARGELINE.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Surfaces
 
@@ -1048,6 +1067,7 @@ docs/
   COMPUTE_REUSE_CONSISTENCY.md     # Cache, compute, and receipt-history reuse harness
   COMPUTE_REUSE_ROUTER.md          # Proof-backed scheduler decisions for reusable compute
   COMPUTE_CHARGELINE.md            # Compute payment follows the memory-consistent route
+  DISCHARGELINE.md                 # Receipt-bound obligation discharge
   SPENDLINE.md                     # Memory-linearizable autonomous spend histories
   DUPLEXLINE.md                    # Co-serializable buyer/seller agent exchange
   AGENT_COMMERCE_CONSERVATION.md   # Obligation conservation for autonomous commerce episodes
@@ -1099,6 +1119,7 @@ tools/
   compute_reuse_consistency.py     # Tests cache, compute, and receipt-history reuse gates
   compute_reuse_router.py          # Routes safe reuse of committed AI/GPU work
   compute_chargeline.py            # Checks compute payment against the compute route
+  dischargeline_harness.py         # Checks receipt-bound obligation discharge
   spendline_harness.py             # Checks autonomous spend history consistency
   duplexline_harness.py            # Checks buyer/seller exchange consistency
   agent_commerce_conservation.py   # Checks obligation conservation across agent commerce episodes
@@ -1127,6 +1148,7 @@ specs/
   ComputeReuseConsistency.v0.md    # Draft cache/compute/history reuse consistency spec
   ComputeReuseRouter.v0.md         # Draft scheduler-facing compute reuse spec
   ComputeChargeLine.v0.md          # Draft compute payment consistency spec
+  DischargeLine.v0.md              # Draft receipt-bound discharge spec
   SpendLine.v0.md                  # Draft autonomous spend history consistency spec
   DuplexLine.v0.md                 # Draft buyer/seller exchange consistency spec
   AgentCommerceConservation.v0.md  # Draft obligation-conservation spec for agent commerce
@@ -1151,6 +1173,7 @@ examples/
   compute-reuse-router/            # Example proof-backed GPU workflow reuse decision
   compute-reuse-consistency/       # Example cache + compute + history consistency harness
   compute-chargeline/              # Example compute payment consistency harness
+  dischargeline/                   # Example receipt-bound obligation discharge harness
   spendline/                       # Example memory-linearizable agent spend harness
   duplexline/                      # Example co-serializable buyer/seller exchange harness
   agent-commerce-conservation/     # Example obligation conservation harness

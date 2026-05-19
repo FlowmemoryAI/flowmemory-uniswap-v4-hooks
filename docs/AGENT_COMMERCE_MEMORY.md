@@ -82,6 +82,33 @@ Core line:
 Compute billing without memory consistency is invoice optimism.
 ```
 
+### DischargeLine
+
+DischargeLine is receipt-bound obligation completion.
+
+It checks whether a receipt closes the right obligation after payment,
+post-spend memory emission, conservation, membrane, and compute-route checks are
+considered together.
+
+It rejects:
+
+- wrong obligation receipts;
+- wrong recipient discharge;
+- stale quote discharge;
+- duplicate discharge;
+- discharge without a receipt envelope;
+- discharge while a child refusal remains open;
+- compute route mismatch discharge;
+- missing post-spend FlowPulse;
+- semantic completion overclaims;
+- receipt fields smuggled into pre-discharge obligation fields.
+
+Core line:
+
+```text
+Settlement is not discharge.
+```
+
 ### SpendLine
 
 SpendLine is memory-linearizability for autonomous agent spending.
