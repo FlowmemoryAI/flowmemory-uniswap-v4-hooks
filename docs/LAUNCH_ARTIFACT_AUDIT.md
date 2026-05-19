@@ -31,6 +31,7 @@ The swap transaction is not the memory. The transaction is the proof envelope. T
 | Marketing language is controlled | `docs/MARKETING_POSITIONING.md` | Strong category language plus explicit forbidden claims. |
 | Frontier R&D artifact shows broader AI-agent value | `docs/FLOW_SERIAL.md`, `tools/flow_serial.py`, `examples/flow-serial/` | Demonstrates receipt-linearizable machine histories without claiming semantic truth, custody, swap control, or live production deployment. |
 | Launch demo makes the runtime model executable | `docs/FLOWLITMUS_LAUNCH_DEMO.md`, `tools/flow_litmus.py`, `examples/flow-litmus/` | Runs forbidden-outcome cases that show pre-receipt, stale-state, retirement, quiescence, rollback, and split-brain failures. |
+| Forbidden outcomes are explained | `docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md`, `examples/flow-litmus/flowlitmus-casebook.json`, `tools/render_flowlitmus_casebook.py` | Names each impossible machine history, why FlowPulse matters, and the fault that catches it. |
 | FMM-0 memory model is named and mapped | `specs/FMM-0.v0.md`, `docs/FLOWMEMORY_MEMORY_MODEL.md`, `docs/FMM_0_CONFORMANCE_MATRIX.md`, `examples/memory-model/fmm0.manifest.json` | Defines the draft FlowMemory Agent Memory Model and maps each rule to evidence. |
 | One-command launch screenshot exists | `docs/LAUNCH_REALITY_CHECK.md`, `tools/launch_reality_check.py`, `examples/launch-reality-check/` | Prints the boundary model, hook invariants, FlowLitmus table, and exact safe public claim. |
 | Claim-to-evidence scorecard exists | `docs/MEMORY_CONSISTENCY_CARD.md`, `tools/memory_consistency_card.py`, `examples/memory-consistency-card/` | Frames FlowMemory as a receipt-bound memory consistency model and marks public Base Sepolia evidence pending. |
@@ -62,6 +63,8 @@ python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
 python -m unittest tools.test_verify_release_evidence
 python tools/verify_release_evidence.py --pretty
+python -m unittest tools.test_flowlitmus_casebook
+python tools/render_flowlitmus_casebook.py --check
 git diff --check
 ```
 
@@ -84,6 +87,7 @@ GitHub Actions should show both jobs green:
 - Launch-day checklist.
 - FlowSerial R&D artifact for receipt-linearizable machine cognition.
 - FlowLitmus launch demo for executable forbidden outcomes.
+- FlowLitmus forbidden-outcomes casebook.
 - FMM-0 draft memory model and conformance matrix.
 - FlowMemory Reality Check for a screenshot-ready launch command.
 - Memory Consistency Card for claim-to-evidence launch positioning.

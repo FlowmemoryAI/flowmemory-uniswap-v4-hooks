@@ -529,3 +529,32 @@ Tests:
 ```bash
 python -m unittest tools.test_verify_release_evidence
 ```
+
+## `render_flowlitmus_casebook.py`
+
+Renders the FlowLitmus forbidden-outcomes casebook.
+
+This is the plain-language reviewer layer for each impossible machine history:
+
+```text
+FlowLitmus is the memory-model litmus suite for agent reality: each case names one impossible machine history and the FlowMemory fault that catches it.
+```
+
+Run:
+
+```bash
+python tools/render_flowlitmus_casebook.py --check
+```
+
+Regenerate the markdown casebook:
+
+```bash
+python tools/render_flowlitmus_casebook.py \
+  --out docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_flowlitmus_casebook
+```

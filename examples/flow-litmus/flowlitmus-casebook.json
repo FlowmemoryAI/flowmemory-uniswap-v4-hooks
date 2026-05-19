@@ -1,0 +1,96 @@
+{
+  "schema": "flowmemory.flowlitmus.casebook.v0",
+  "title": "FlowLitmus Forbidden Outcomes Casebook",
+  "thesis": "FlowLitmus is the memory-model litmus suite for agent reality: each case names one impossible machine history and the FlowMemory fault that catches it.",
+  "suite": "examples/flow-litmus/litmus.manifest.json",
+  "cases": [
+    {
+      "id": "FM-LB-001",
+      "title": "pre-receipt txHash read",
+      "category": "receipt_mapping",
+      "impossibleHistory": "An agent reads txHash before reader-attached receipt metadata exists.",
+      "whyFlowPulseMatters": "The hook can emit a FlowPulse boundary signal, but txHash is a receipt fact. It cannot be read as hook-time memory.",
+      "detectedBy": "FlowMMU",
+      "expected": "forbidden_pre_receipt_read",
+      "caseFile": "examples/flow-litmus/cases/FM-LB-001-pre-receipt-deref.json"
+    },
+    {
+      "id": "FM-SER-001",
+      "title": "retrocausal receipt claim",
+      "category": "serialization",
+      "impossibleHistory": "An agent event claims receipt facts before the FlowPulse boundary exists in the serial history.",
+      "whyFlowPulseMatters": "FMM-0 makes receipt-bound FlowPulses ordering anchors. The history cannot cite a receipt before that anchor exists.",
+      "detectedBy": "FlowSerial",
+      "expected": "retrocausal_receipt_claim",
+      "caseFile": "examples/flow-litmus/cases/FM-SER-001-retrocausal-claim.json"
+    },
+    {
+      "id": "FM-QS-001",
+      "title": "unquiesced post-boundary output",
+      "category": "quiescence",
+      "impossibleHistory": "A pre-boundary frame publishes into post-boundary state without quiescing or revalidating.",
+      "whyFlowPulseMatters": "The receipt-bound FlowPulse advances the rootfield epoch. Old readers must reach a safe point before joining the new world.",
+      "detectedBy": "FlowQuiesce",
+      "expected": "QuiescenceViolation",
+      "caseFile": "examples/flow-litmus/cases/FM-QS-001-unquiesced-output.json"
+    },
+    {
+      "id": "FM-RT-001",
+      "title": "speculative output escaped",
+      "category": "retirement",
+      "impossibleHistory": "A speculative model output becomes live before a matching FlowPulse receipt retires it.",
+      "whyFlowPulseMatters": "The FlowPulse receipt decides what can retire into live state. Speculation is allowed; unretired publication is not.",
+      "detectedBy": "PulseRetire",
+      "expected": "RetirementViolation",
+      "caseFile": "examples/flow-litmus/cases/FM-RT-001-unretired-output.json"
+    },
+    {
+      "id": "FM-FIS-001",
+      "title": "stale output survived boundary",
+      "category": "fission",
+      "impossibleHistory": "Raw stale model output survives a receipt boundary as if the world had not changed.",
+      "whyFlowPulseMatters": "The receipt-bound boundary triggers memory release: conserve facts, compress stale context, quarantine unsupported claims, and recompute from the new boundary.",
+      "detectedBy": "BoundaryFission",
+      "expected": "BoundaryFissionViolation",
+      "caseFile": "examples/flow-litmus/cases/FM-FIS-001-stale-output-survives.json"
+    },
+    {
+      "id": "FM-SER-002",
+      "title": "rootfield rollback",
+      "category": "serialization",
+      "impossibleHistory": "A canonical rootfield head moves backward after a receipt-bound FlowPulse advanced it.",
+      "whyFlowPulseMatters": "FlowPulse receipts are public ordering anchors. FMM-0 does not allow canonical memory to roll back beneath the proven boundary.",
+      "detectedBy": "FlowSerial",
+      "expected": "rootfield_rollback",
+      "caseFile": "examples/flow-litmus/cases/FM-SER-002-rootfield-rollback.json"
+    },
+    {
+      "id": "FM-SER-003",
+      "title": "split-brain canonical write",
+      "category": "serialization",
+      "impossibleHistory": "Two incompatible writers both claim canonical state under incompatible FlowPulse heads.",
+      "whyFlowPulseMatters": "The receipt-bound FlowPulse gives machine state a public ordering surface. Competing canonical writes must serialize or fault.",
+      "detectedBy": "FlowSerial",
+      "expected": "split_brain_write",
+      "caseFile": "examples/flow-litmus/cases/FM-SER-003-split-brain-write.json"
+    },
+    {
+      "id": "FM-OK-001",
+      "title": "valid boundary history",
+      "category": "valid_history",
+      "impossibleHistory": "None. This is the control case: a receipt-ordered history should serialize.",
+      "whyFlowPulseMatters": "The same boundary model that rejects impossible histories must accept a valid FlowPulse-ordered history.",
+      "detectedBy": "FlowSerial",
+      "expected": "Serializable",
+      "caseFile": "examples/flow-litmus/cases/FM-OK-001-valid-boundary-history.json"
+    }
+  ],
+  "nonClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_production_verifier_infrastructure",
+    "not_custody",
+    "not_swap_control",
+    "not_gpu_acceleration"
+  ]
+}

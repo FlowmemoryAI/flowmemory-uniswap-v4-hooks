@@ -36,6 +36,8 @@ The repo now presents a stack rather than a loose set of ideas:
   evidence, commands, expected results, status, and explicit non-claims.
 - `Base Sepolia Evidence Gate`: a pending-safe verifier for the public release
   evidence packet.
+- `FlowLitmus Forbidden Outcomes`: a casebook explaining each impossible
+  machine history and the FlowMemory fault that catches it.
 
 ## Launch Command
 
@@ -76,6 +78,12 @@ Public Base Sepolia receipt evidence: PENDING
 Production verifier infrastructure: NOT_CLAIMED
 ```
 
+Use this to explain each FlowLitmus case:
+
+```bash
+python tools/render_flowlitmus_casebook.py --check
+```
+
 Expected core thesis:
 
 ```text
@@ -97,6 +105,8 @@ python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
 python -m unittest tools.test_verify_release_evidence
 python tools/verify_release_evidence.py --pretty
+python -m unittest tools.test_flowlitmus_casebook
+python tools/render_flowlitmus_casebook.py --check
 git diff --check
 ```
 
@@ -120,6 +130,7 @@ FlowMemory Reality Check shows live histories pass and impossible histories faul
 Memory Consistency Card maps the launch claim to evidence and marks public-chain evidence pending.
 Skeptic Walkthrough maps every public claim to evidence, commands, expected result, and non-claims.
 Release Evidence Gate keeps public receipt evidence pending until a real Base Sepolia packet validates.
+FlowLitmus Forbidden Outcomes names each impossible history and the fault that catches it.
 ```
 
 ## What To Share First

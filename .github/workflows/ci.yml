@@ -90,6 +90,7 @@ jobs:
             docs/FLOWMEMORY_RUNTIME_MODEL.md
             docs/FLOWMEMORY_MEMORY_MODEL.md
             docs/FLOWLITMUS_LAUNCH_DEMO.md
+            docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
             docs/LAUNCH_REALITY_CHECK.md
             docs/FMM_0_CONFORMANCE_MATRIX.md
             docs/MEMORY_CONSISTENCY_CARD.md
@@ -187,6 +188,7 @@ jobs:
             examples/flow-serial/fault.split-brain.json
             examples/flow-litmus/README.md
             examples/flow-litmus/litmus.manifest.json
+            examples/flow-litmus/flowlitmus-casebook.json
             examples/flow-litmus/results.latest.json
             examples/flow-litmus/cases/FM-LB-001-pre-receipt-deref.json
             examples/flow-litmus/cases/FM-SER-001-retrocausal-claim.json
@@ -232,6 +234,7 @@ jobs:
             tools/render_fmm0_matrix.py
             tools/reviewer_walkthrough.py
             tools/verify_release_evidence.py
+            tools/render_flowlitmus_casebook.py
             releases/base-sepolia/README.md
             releases/base-sepolia/RELEASE_EVIDENCE.template.json
             releases/base-sepolia/expected-pending-output.txt
@@ -371,3 +374,9 @@ jobs:
 
       - name: Check release evidence gate
         run: python tools/verify_release_evidence.py --pretty
+
+      - name: Test FlowLitmus casebook
+        run: python -m unittest tools.test_flowlitmus_casebook
+
+      - name: Check FlowLitmus casebook
+        run: python tools/render_flowlitmus_casebook.py --check

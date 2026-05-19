@@ -29,12 +29,14 @@ REQUIRED_FILES = [
     "specs/FMM-0.v0.md",
     "docs/FLOW_SERIAL.md",
     "docs/FLOWLITMUS_LAUNCH_DEMO.md",
+    "docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md",
     "docs/FLOWMEMORY_RUNTIME_MODEL.md",
     "docs/FLOWMEMORY_MEMORY_MODEL.md",
     "docs/FMM_0_CONFORMANCE_MATRIX.md",
     "docs/SKEPTIC_REVIEW_WALKTHROUGH.md",
     "docs/LAUNCH_CLAIM_LEDGER.md",
     "examples/flow-litmus/litmus.manifest.json",
+    "examples/flow-litmus/flowlitmus-casebook.json",
     "examples/memory-model/fmm0.manifest.json",
     "examples/reviewer-walkthrough/fmm0-claim-ledger.json",
     "tools/flow_litmus.py",
@@ -42,6 +44,7 @@ REQUIRED_FILES = [
     "tools/render_fmm0_matrix.py",
     "tools/reviewer_walkthrough.py",
     "tools/verify_release_evidence.py",
+    "tools/render_flowlitmus_casebook.py",
     "releases/base-sepolia/RELEASE_EVIDENCE.template.json",
 ]
 BOUNDARY_LINES = [

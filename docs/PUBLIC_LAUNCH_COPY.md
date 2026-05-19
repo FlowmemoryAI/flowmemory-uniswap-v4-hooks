@@ -72,6 +72,14 @@ python tools/verify_release_evidence.py --pretty
 
 This stays `PENDING` until a real `RELEASE_EVIDENCE.json` packet validates.
 
+For the FlowLitmus casebook:
+
+```bash
+python tools/render_flowlitmus_casebook.py --check
+```
+
+This names each impossible machine history and the FlowMemory fault that catches it.
+
 ## Technical Thread
 
 1. FlowMemory is not another swap hook. It is a memory hook.
@@ -112,6 +120,9 @@ This stays `PENDING` until a real `RELEASE_EVIDENCE.json` packet validates.
 12. Public Base Sepolia receipt evidence stays `PENDING` until the release
     evidence gate validates the actual packet.
 
+13. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
+    a reviewer-readable memory-model casebook.
+
 ## Demo Caption
 
 ```text
@@ -128,6 +139,10 @@ FMM-0 Skeptic Walkthrough: every launch claim has a command, and every overclaim
 
 ```text
 Release Evidence Gate: public receipt evidence stays pending until the Base Sepolia packet validates.
+```
+
+```text
+FlowLitmus casebook: each impossible history has a name, a boundary reason, and a fault.
 ```
 
 ## Founder Script

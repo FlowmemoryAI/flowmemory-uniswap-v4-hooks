@@ -39,6 +39,12 @@ For the pending-safe public receipt evidence gate, run:
 python tools/verify_release_evidence.py --pretty
 ```
 
+For the forbidden-outcomes casebook, run:
+
+```bash
+python tools/render_flowlitmus_casebook.py --check
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around

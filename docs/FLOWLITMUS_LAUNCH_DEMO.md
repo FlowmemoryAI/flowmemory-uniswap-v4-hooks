@@ -32,6 +32,16 @@ FM-OK-001   valid boundary history                 PASS  Serializable
 8/8 passed
 ```
 
+## Casebook
+
+Explain each forbidden outcome:
+
+```bash
+python tools/render_flowlitmus_casebook.py --check
+```
+
+The casebook is [FLOWLITMUS_FORBIDDEN_OUTCOMES.md](FLOWLITMUS_FORBIDDEN_OUTCOMES.md).
+
 ## Why This Lands
 
 FlowLitmus speaks a systems language:

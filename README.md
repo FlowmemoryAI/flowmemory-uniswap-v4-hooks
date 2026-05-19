@@ -529,7 +529,13 @@ This is not a workflow engine.
 
 FlowLitmus is a conformance suite for reality.
 
-See [docs/FLOWLITMUS_LAUNCH_DEMO.md](docs/FLOWLITMUS_LAUNCH_DEMO.md), [docs/FLOWMEMORY_RUNTIME_MODEL.md](docs/FLOWMEMORY_RUNTIME_MODEL.md), [specs/FlowLitmus.v0.md](specs/FlowLitmus.v0.md), and [examples/flow-litmus/](examples/flow-litmus/).
+The forbidden-outcomes casebook explains each impossible history in plain engineering language:
+
+```bash
+python tools/render_flowlitmus_casebook.py --check
+```
+
+See [docs/FLOWLITMUS_LAUNCH_DEMO.md](docs/FLOWLITMUS_LAUNCH_DEMO.md), [docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md](docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md), [docs/FLOWMEMORY_RUNTIME_MODEL.md](docs/FLOWMEMORY_RUNTIME_MODEL.md), [specs/FlowLitmus.v0.md](specs/FlowLitmus.v0.md), and [examples/flow-litmus/](examples/flow-litmus/).
 
 ## What This Is
 
@@ -638,6 +644,7 @@ docs/
   FLOW_SERIAL.md                   # Receipt-linearizability for machine cognition
   FLOWMEMORY_RUNTIME_MODEL.md      # Runtime rules and forbidden outcomes
   FLOWLITMUS_LAUNCH_DEMO.md        # Executable launch demo for runtime consistency
+  FLOWLITMUS_FORBIDDEN_OUTCOMES.md # Casebook for each impossible history
   LAUNCH_REALITY_CHECK.md          # One-command launch screenshot guide
   FLOWMEMORY_MEMORY_MODEL.md       # FMM-0 memory model overview
   FMM_0_CONFORMANCE_MATRIX.md      # Generated FMM-0 rule/evidence matrix
@@ -676,6 +683,7 @@ tools/
   render_fmm0_matrix.py            # Renders the FMM-0 conformance matrix
   reviewer_walkthrough.py          # Renders the launch claim ledger for skeptics
   verify_release_evidence.py       # Pending-safe Base Sepolia evidence gate
+  render_flowlitmus_casebook.py    # Renders forbidden-outcome case explanations
 specs/
   FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
@@ -703,6 +711,7 @@ examples/
   flow-quiesce/                    # Example active frame -> quiescence request -> certificate
   flow-serial/                     # Example history -> serial certificate or impossibility fault
   flow-litmus/                     # Executable runtime consistency suite
+  flow-litmus/flowlitmus-casebook.json
   launch-reality-check/            # Screenshot guide and expected launch output
   memory-model/                    # FMM-0 manifest and conformance matrix inputs
   reviewer-walkthrough/            # Claim ledger and expected skeptic output

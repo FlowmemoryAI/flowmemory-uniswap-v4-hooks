@@ -26,6 +26,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
 - [ ] `python tools/reviewer_walkthrough.py --pretty` passes and shows each launch claim with evidence/status/non-claims.
 - [ ] `python tools/verify_release_evidence.py --pretty` passes and reports `PENDING` unless real public receipt evidence exists.
+- [ ] `python tools/render_flowlitmus_casebook.py --check` passes and explains every forbidden outcome.
 - [ ] Public launch copy uses [PUBLIC_LAUNCH_COPY.md](PUBLIC_LAUNCH_COPY.md).
 
 ## If Base Sepolia Evidence Is Ready
@@ -55,6 +56,7 @@ Allowed:
 - FlowMemory Memory Consistency Card;
 - FMM-0 draft memory model;
 - FMM-0 Skeptic Walkthrough;
+- FlowLitmus forbidden-outcomes casebook;
 - executable forbidden outcomes for machine histories.
 - receipt-bound memory consistency model.
 - public receipt evidence pending until `RELEASE_EVIDENCE.json` validates.
@@ -81,3 +83,4 @@ Not allowed:
 - Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
 - Every launch claim has a command, and every overclaim has a red line.
 - Public receipt evidence stays PENDING until `RELEASE_EVIDENCE.json` validates.
+- Each impossible machine history has a FlowLitmus case and a named fault.

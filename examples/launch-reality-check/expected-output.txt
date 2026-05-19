@@ -28,12 +28,14 @@ Required launch artifacts
   PASS  specs/FMM-0.v0.md
   PASS  docs/FLOW_SERIAL.md
   PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
+  PASS  docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
   PASS  docs/FLOWMEMORY_RUNTIME_MODEL.md
   PASS  docs/FLOWMEMORY_MEMORY_MODEL.md
   PASS  docs/FMM_0_CONFORMANCE_MATRIX.md
   PASS  docs/SKEPTIC_REVIEW_WALKTHROUGH.md
   PASS  docs/LAUNCH_CLAIM_LEDGER.md
   PASS  examples/flow-litmus/litmus.manifest.json
+  PASS  examples/flow-litmus/flowlitmus-casebook.json
   PASS  examples/memory-model/fmm0.manifest.json
   PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
@@ -41,6 +43,7 @@ Required launch artifacts
   PASS  tools/render_fmm0_matrix.py
   PASS  tools/reviewer_walkthrough.py
   PASS  tools/verify_release_evidence.py
+  PASS  tools/render_flowlitmus_casebook.py
   PASS  releases/base-sepolia/RELEASE_EVIDENCE.template.json
 
 FlowLitmus Runtime Consistency Suite
