@@ -37,6 +37,10 @@ Most hooks modify execution. FlowMemory emits memory.
 - FlowMemory defines a receipt-bound memory consistency model for machine histories.
 - Retrieval asks what context is relevant. FlowMemory asks whether the history is possible.
 - Every launch claim has a command, and every overclaim has a red line.
+- Retrieval treats memory as text. FMM-0 treats machine history as a phase space with forbidden transitions.
+- FlowMemory gives machine state a phase diagram.
+- A local output cannot jump straight into live machine history.
+- The receipt decides when a machine artifact changes phase.
 
 ## Category Framing
 
@@ -89,6 +93,7 @@ FlowMemory can connect:
 - receipt-triggered quiescence epochs for active agent frames;
 - receipt-linearizable machine histories;
 - executable forbidden outcomes for agent runtime consistency;
+- reality phase tables that classify local-only, reader-derived, FMM-0-conforming, quarantined, and extinct machine artifacts;
 - memory consistency cards that map public claims to executable evidence;
 - FMM-0 conformance matrices for receipt-bound machine histories;
 - skeptic claim ledgers that map launch claims to evidence, commands, and non-claims;
@@ -120,6 +125,7 @@ Use these lines for the broader vision:
 - The Memory Consistency Card is the launch scoreboard: local consistency evidence passes, public Base Sepolia receipt evidence remains pending until the release record is filled.
 - FMM-0 is the name of the draft launch model: a receipt-bound consistency model for agent memory.
 - The FMM-0 Skeptic Walkthrough is the launch credibility layer: every claim maps to evidence, status, expected output, and red-line non-claims.
+- FMM-0 Phase Space is the launch phase-space layer: it catches illegal state jumps before they become live machine history.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -214,3 +220,19 @@ The launch anchor is a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The s
 FMM-0 is the memory model. The Skeptic Walkthrough maps each public claim to files, commands, expected results, status, and explicit non-claims. Local FMM-0 consistency surface: PASS. FlowLitmus forbidden outcomes: PASS. Public Base Sepolia receipt evidence: PENDING. Production verifier infrastructure: NOT CLAIMED.
 
 Every launch claim has a command, and every overclaim has a red line.
+
+## FMM-0 Phase Space Founder Script
+
+Everyone treated agent memory like retrieval. FlowMemory treats it like phase
+space.
+
+A Uniswap v4 `afterSwap` hook emits a FlowPulse. The swap is not the memory.
+The transaction is the proof envelope. The FlowPulse is the memory artifact. The
+hook does not know `txHash` or `logIndex`; the reader attaches those later.
+
+FMM-0 Phase Space makes that boundary visible. A machine artifact
+can be local-only, reader-derived, FMM-0-conforming, quarantined, or extinct. It
+cannot jump phases illegally. It cannot claim receipt fields before the receipt
+exists. It cannot pretend local text is live machine history.
+
+Retrieval gives agents context. FlowMemory gives their memories a state model.

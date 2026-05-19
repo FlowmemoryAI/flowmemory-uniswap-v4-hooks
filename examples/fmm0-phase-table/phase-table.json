@@ -1,0 +1,169 @@
+{
+  "schema": "flowmemory.fmm0_phase_table.v0",
+  "title": "FMM-0 Phase Space",
+  "subtitle": "The Reality Phase Table for machine state",
+  "categorySentence": "FMM-0 Phase Space classifies machine artifacts by receipt stage, reality phase, operation surface, and authority level, then rejects impossible phase transitions around FlowPulse boundaries.",
+  "coreRule": "No artifact may jump from local-only speculative state into FMM-0-conforming live state without reader-derived receipt metadata and consistency checks.",
+  "axes": {
+    "receiptStage": [
+      "before_receipt",
+      "after_receipt"
+    ],
+    "realityPhase": [
+      "speculative",
+      "live",
+      "quarantined",
+      "extinct"
+    ],
+    "operationSurface": [
+      "cite",
+      "act",
+      "forget",
+      "recompute",
+      "refuse",
+      "split",
+      "merge",
+      "publish"
+    ],
+    "authorityLevel": [
+      "local_only",
+      "public_boundary",
+      "reader_derived",
+      "fmm0_conforming"
+    ]
+  },
+  "cells": [
+    {
+      "cellId": "PRE-LOCAL-SPEC",
+      "name": "Pre-receipt local speculation",
+      "receiptStage": "before_receipt",
+      "realityPhase": "speculative",
+      "authorityLevel": "local_only",
+      "allowedOperations": [
+        "cite_local",
+        "recompute",
+        "refuse"
+      ],
+      "forbiddenOperations": [
+        "publish_as_live",
+        "claim_txHash",
+        "claim_logIndex",
+        "merge_fmm0"
+      ]
+    },
+    {
+      "cellId": "HOOK-PUBLIC-SIGNAL",
+      "name": "Hook-time public boundary signal",
+      "receiptStage": "before_receipt",
+      "realityPhase": "speculative",
+      "authorityLevel": "public_boundary",
+      "allowedOperations": [
+        "emit_boundary_signal",
+        "await_receipt",
+        "refuse_receipt_claim"
+      ],
+      "forbiddenOperations": [
+        "claim_txHash",
+        "claim_logIndex",
+        "claim_finality"
+      ]
+    },
+    {
+      "cellId": "POST-READER-LIVE",
+      "name": "Reader-derived live FlowPulse",
+      "receiptStage": "after_receipt",
+      "realityPhase": "live",
+      "authorityLevel": "reader_derived",
+      "allowedOperations": [
+        "cite_receipt_fact",
+        "recompute",
+        "merge_candidate"
+      ],
+      "forbiddenOperations": [
+        "claim_semantic_truth",
+        "claim_model_correctness",
+        "claim_gpu_acceleration"
+      ]
+    },
+    {
+      "cellId": "FMM0-LIVE",
+      "name": "FMM-0-conforming live history",
+      "receiptStage": "after_receipt",
+      "realityPhase": "live",
+      "authorityLevel": "fmm0_conforming",
+      "allowedOperations": [
+        "cite_receipt_fact",
+        "publish_consistency_checked",
+        "merge_fmm0"
+      ],
+      "forbiddenOperations": [
+        "rollback_rootfield",
+        "split_brain_write",
+        "retrocausal_claim"
+      ]
+    },
+    {
+      "cellId": "QUARANTINED",
+      "name": "Quarantined unsupported artifact",
+      "receiptStage": "any",
+      "realityPhase": "quarantined",
+      "authorityLevel": "any",
+      "allowedOperations": [
+        "refuse",
+        "split",
+        "recompute"
+      ],
+      "forbiddenOperations": [
+        "publish_as_live",
+        "merge_fmm0",
+        "act_onchain"
+      ]
+    },
+    {
+      "cellId": "EXTINCT",
+      "name": "Extinct artifact",
+      "receiptStage": "any",
+      "realityPhase": "extinct",
+      "authorityLevel": "fmm0_conforming",
+      "allowedOperations": [
+        "cite_tombstone",
+        "refuse"
+      ],
+      "forbiddenOperations": [
+        "publish_as_live",
+        "act_onchain",
+        "merge_fmm0"
+      ]
+    }
+  ],
+  "forbiddenTransitions": [
+    {
+      "from": "PRE-LOCAL-SPEC",
+      "to": "FMM0-LIVE",
+      "fault": "missing_reader_derived_receipt_metadata",
+      "reason": "local-only speculative state cannot become FMM-0-conforming live state without receipt metadata and consistency checks"
+    },
+    {
+      "from": "PRE-LOCAL-SPEC",
+      "operation": "claim_txHash",
+      "fault": "receipt_field_smuggled_before_reader_attachment",
+      "reason": "txHash is reader-derived receipt metadata, not a hook-time field"
+    },
+    {
+      "from": "PRE-LOCAL-SPEC",
+      "operation": "claim_logIndex",
+      "fault": "receipt_field_smuggled_before_reader_attachment",
+      "reason": "logIndex is reader-derived receipt metadata, not a hook-time field"
+    }
+  ],
+  "notClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_acceleration",
+    "not_custody",
+    "not_fund_protection",
+    "not_base_mainnet",
+    "not_audited_infrastructure",
+    "not_production_verifier_infrastructure"
+  ]
+}

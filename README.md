@@ -78,6 +78,38 @@ FMM-0 is not a production standard, not semantic truth, and not a mainnet deploy
 
 See [specs/FMM-0.v0.md](specs/FMM-0.v0.md), [docs/FLOWMEMORY_MEMORY_MODEL.md](docs/FLOWMEMORY_MEMORY_MODEL.md), and [docs/FMM_0_CONFORMANCE_MATRIX.md](docs/FMM_0_CONFORMANCE_MATRIX.md).
 
+## FMM-0 Phase Space
+
+Everyone treated agent memory like retrieval. FlowMemory treats it like phase space.
+
+The Reality Phase Table is the rendered view of FMM-0 Phase Space. It classifies machine artifacts by four axes:
+
+- receipt stage: before receipt or after receipt;
+- reality phase: speculative, live, quarantined, or extinct;
+- operation surface: cite, act, forget, recompute, refuse, split, merge, publish;
+- authority level: local-only, public-boundary, reader-derived, or FMM-0-conforming.
+
+This gives FlowMemory a machine-state periodic table.
+
+A local model output cannot jump directly into FMM-0-conforming live state.
+A pre-receipt artifact cannot claim `txHash` or `logIndex`.
+A reader-derived FlowPulse can become eligible for FlowSerial and FlowLitmus checks.
+Receipt evidence alone is not FMM-0 live history; the history still has to pass consistency checks.
+
+Run:
+
+```bash
+python tools/fmm0_phase_table.py demo --pretty
+```
+
+Expected result:
+
+```text
+FMM-0 treats machine memory as phase space, not retrieval text.
+```
+
+See [specs/FMM-0-PhaseTable.v0.md](specs/FMM-0-PhaseTable.v0.md), [docs/FMM_0_PHASE_TABLE.md](docs/FMM_0_PHASE_TABLE.md), and [examples/fmm0-phase-table/](examples/fmm0-phase-table/).
+
 ## 10-Minute Skeptic Review
 
 FlowMemory's launch claim is reviewable.

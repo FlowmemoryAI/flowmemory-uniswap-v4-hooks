@@ -17,9 +17,10 @@ from pathlib import Path
 from typing import Any
 
 try:  # pragma: no cover
-    from tools import axiom_writ, launch_reality_check, verify_release_evidence
+    from tools import axiom_writ, fmm0_phase_table, launch_reality_check, verify_release_evidence
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
+    import fmm0_phase_table  # type: ignore
     import launch_reality_check  # type: ignore
     import verify_release_evidence  # type: ignore
 
@@ -73,6 +74,13 @@ CONSISTENCY_LEVELS = [
     },
     {
         "id": "FM-C6",
+        "name": "FMM-0 phase space",
+        "claim": "Machine artifacts cannot illegally jump phases around FlowPulse receipt boundaries.",
+        "evidence": ["tools/fmm0_phase_table.py", "docs/FMM_0_PHASE_TABLE.md", "examples/fmm0-phase-table/phase-table.json"],
+        "requiresPhaseTable": True,
+    },
+    {
+        "id": "FM-C7",
         "name": "Public Base Sepolia evidence",
         "claim": "A public release record can attach txHash/logIndex evidence from a real deployed hook.",
         "evidence": [PUBLIC_RELEASE_EVIDENCE],
@@ -103,11 +111,35 @@ def path_exists(root: Path, path: str) -> bool:
     return (root / path).exists()
 
 
-def level_status(level: dict[str, Any], root: Path, litmus_status: str | None) -> str:
+def phase_table_status() -> str:
+    try:
+        table = fmm0_phase_table.load_table()
+        demo = fmm0_phase_table.build_demo(table)
+    except Exception:
+        return "fail"
+    classifications = {item["artifactId"]: item["cellId"] for item in demo["classifications"]}
+    expected = {
+        "pre_receipt_local_output": "PRE-LOCAL-SPEC",
+        "reader_derived_flowpulse": "POST-READER-LIVE",
+        "fmm0_conforming_history": "FMM0-LIVE",
+        "illegal_receipt_smuggle": "INVALID",
+    }
+    if classifications != expected:
+        return "fail"
+    invalid = next(item for item in demo["classifications"] if item["artifactId"] == "illegal_receipt_smuggle")
+    if invalid.get("fault") != "receipt_field_smuggled_before_reader_attachment":
+        return "fail"
+    forbidden = [item for item in demo["transitions"] if item["status"] == "forbidden" and item["expectationMet"]]
+    return "pass" if forbidden else "fail"
+
+
+def level_status(level: dict[str, Any], root: Path, litmus_status: str | None, phase_status: str | None) -> str:
     if level.get("publicChainEvidence"):
         status = verify_release_evidence.build_report()["verdict"]["publicBaseSepoliaReceiptEvidence"].lower()
         return status
     if level.get("requiresLitmus") and litmus_status != "pass":
+        return "fail"
+    if level.get("requiresPhaseTable") and phase_status != "pass":
         return "fail"
     return "pass" if all(path_exists(root, path) for path in level["evidence"]) else "fail"
 
@@ -117,9 +149,10 @@ def build_card(run_litmus: bool = True) -> dict[str, Any]:
     reality = launch_reality_check.build_report(run_litmus=run_litmus)
     litmus = reality.get("litmus")
     litmus_status = litmus.get("status") if isinstance(litmus, dict) else None
+    phase_status = phase_table_status()
     levels = []
     for item in CONSISTENCY_LEVELS:
-        status = level_status(item, root, litmus_status)
+        status = level_status(item, root, litmus_status, phase_status)
         evidence = [{"path": path, "exists": path_exists(root, path)} for path in item["evidence"]]
         levels.append({**item, "status": status, "evidence": evidence})
 

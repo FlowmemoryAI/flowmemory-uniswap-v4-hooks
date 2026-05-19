@@ -1,0 +1,22 @@
+{
+  "schema": "flowmemory.phase_artifact.v0",
+  "artifactId": "fmm0_conforming_history",
+  "artifactType": "MachineMemoryTrace",
+  "receiptStage": "after_receipt",
+  "realityPhase": "live",
+  "authorityLevel": "fmm0_conforming",
+  "fields": {
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "flowSerialCertificateId": "sha256:4f6d6d302d6c6976652d686973746f72792d6578616d706c652d63657274",
+    "flowLitmusStatus": "pass",
+    "sourceFlowPulse": {
+      "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "logIndex": 7
+    }
+  },
+  "requestedOperations": [
+    "publish_consistency_checked",
+    "merge_fmm0"
+  ]
+}

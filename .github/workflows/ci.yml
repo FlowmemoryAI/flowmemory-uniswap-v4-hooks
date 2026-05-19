@@ -93,10 +93,12 @@ jobs:
             docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
             docs/LAUNCH_REALITY_CHECK.md
             docs/FMM_0_CONFORMANCE_MATRIX.md
+            docs/FMM_0_PHASE_TABLE.md
             docs/MEMORY_CONSISTENCY_CARD.md
             docs/SKEPTIC_REVIEW_WALKTHROUGH.md
             docs/LAUNCH_CLAIM_LEDGER.md
             specs/FMM-0.v0.md
+            specs/FMM-0-PhaseTable.v0.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -212,6 +214,17 @@ jobs:
             examples/launch-reality-check/latest-output.txt
             examples/memory-model/README.md
             examples/memory-model/fmm0.manifest.json
+            examples/fmm0-phase-table/README.md
+            examples/fmm0-phase-table/phase-table.json
+            examples/fmm0-phase-table/expected-output.txt
+            examples/fmm0-phase-table/artifacts/pre_receipt_local_output.json
+            examples/fmm0-phase-table/artifacts/reader_derived_flowpulse.json
+            examples/fmm0-phase-table/artifacts/fmm0_conforming_history.json
+            examples/fmm0-phase-table/artifacts/illegal_receipt_smuggle.json
+            examples/fmm0-phase-table/transitions/valid_reader_attachment.json
+            examples/fmm0-phase-table/transitions/valid_reader_to_fmm0.json
+            examples/fmm0-phase-table/transitions/invalid_local_to_fmm0.json
+            examples/fmm0-phase-table/transitions/invalid_reader_to_fmm0_missing_checks.json
             examples/memory-consistency-card/README.md
             examples/memory-consistency-card/expected-output.txt
             examples/memory-consistency-card/latest-output.txt
@@ -230,6 +243,7 @@ jobs:
             tools/flow_serial.py
             tools/flow_litmus.py
             tools/launch_reality_check.py
+            tools/fmm0_phase_table.py
             tools/memory_consistency_card.py
             tools/render_fmm0_matrix.py
             tools/reviewer_walkthrough.py
@@ -356,6 +370,12 @@ jobs:
 
       - name: Check FMM-0 matrix
         run: python tools/render_fmm0_matrix.py --check
+
+      - name: Test FMM-0 phase table
+        run: python -m unittest tools.test_fmm0_phase_table
+
+      - name: Check FMM-0 phase table
+        run: python tools/fmm0_phase_table.py demo --pretty
 
       - name: Test memory consistency card
         run: python -m unittest tools.test_memory_consistency_card

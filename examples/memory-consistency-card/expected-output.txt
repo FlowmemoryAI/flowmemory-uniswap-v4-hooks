@@ -22,7 +22,8 @@ Consistency ladder
   PASS    FM-C3  Reader-derived proof envelope: Reader infrastructure attaches receipt metadata after the transaction lands.
   PASS    FM-C4  Receipt-linearizable histories: Machine histories can be serialized around receipt-bound FlowPulse boundaries.
   PASS    FM-C5  Executable forbidden outcomes: Impossible agent histories fault under FlowLitmus.
-  PENDING FM-C6  Public Base Sepolia evidence: A public release record can attach txHash/logIndex evidence from a real deployed hook.
+  PASS    FM-C6  FMM-0 phase space: Machine artifacts cannot illegally jump phases around FlowPulse receipt boundaries.
+  PENDING FM-C7  Public Base Sepolia evidence: A public release record can attach txHash/logIndex evidence from a real deployed hook.
 
 Executable checks
   PASS    local consistency surface
@@ -40,4 +41,4 @@ Do not claim
   no GPU acceleration
   no txHash/logIndex at hook time
 
-Card ID: sha256:8c88efa74512503e055ce199f7e0d6acf33aa57aede2d6a2de0a8dca47308ae3
+Card ID: sha256:4f13d11bb4bac556ad7f1da31afda64edff811eb3d29e6a6ad0c8d3a5452a053

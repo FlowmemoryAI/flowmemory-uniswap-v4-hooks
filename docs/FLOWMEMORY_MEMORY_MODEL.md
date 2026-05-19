@@ -45,6 +45,7 @@ Uniswap v4 afterSwap boundary
   -> FlowPulse memory artifact
   -> transaction proof envelope
   -> reader-attached receipt facts
+  -> FMM-0 Phase Space
   -> FlowSerial serial history
   -> FlowLitmus forbidden outcomes
   -> Memory Consistency Card
@@ -71,6 +72,12 @@ Run the public launch card:
 python tools/memory_consistency_card.py --pretty
 ```
 
+Run the phase table:
+
+```bash
+python tools/fmm0_phase_table.py demo --pretty
+```
+
 Run the executable forbidden outcomes:
 
 ```bash
@@ -89,6 +96,12 @@ Then:
 
 ```text
 The Uniswap v4 hook emits the FlowPulse boundary signal. The reader attaches receipt metadata. FlowSerial gives receipt-linearizability. FlowLitmus makes forbidden outcomes executable.
+```
+
+And:
+
+```text
+FMM-0 Phase Space shows which machine artifacts are local-only, reader-derived, FMM-0-conforming, quarantined, or extinct.
 ```
 
 ## What FMM-0 Is Not

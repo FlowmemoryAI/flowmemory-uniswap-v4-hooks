@@ -1,0 +1,15 @@
+{
+  "schema": "flowmemory.phase_transition.v0",
+  "transitionId": "invalid-reader-to-fmm0-missing-checks",
+  "fromArtifact": "reader_derived_flowpulse",
+  "fromCell": "POST-READER-LIVE",
+  "toArtifact": "fmm0_conforming_history",
+  "toCell": "FMM0-LIVE",
+  "receiptEvidenceAttached": true,
+  "flowSerialCertificatePresent": false,
+  "consistencyChecksPassed": false,
+  "expected": {
+    "status": "forbidden",
+    "fault": "missing_fmm0_consistency_checks"
+  }
+}

@@ -6,7 +6,10 @@ It gives a reviewer one terminal screenshot that connects the hook, the
 FlowPulse boundary model, receipt metadata separation, FlowSerial, and
 FlowLitmus.
 
-It now also names the runtime model: **FMM-0: FlowMemory Agent Memory Model**.
+It now also names the runtime model and its state surface:
+
+- **FMM-0: FlowMemory Agent Memory Model**;
+- **FMM-0 Phase Space**.
 
 ## Command
 
@@ -45,6 +48,12 @@ For the forbidden-outcomes casebook, run:
 python tools/render_flowlitmus_casebook.py --check
 ```
 
+For the phase-space demo, run:
+
+```bash
+python tools/fmm0_phase_table.py demo --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around
@@ -55,6 +64,7 @@ It checks:
 - the boundary model;
 - the narrow hook invariant surface;
 - required launch artifacts;
+- FMM-0 Phase Space;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:
@@ -71,7 +81,8 @@ flowchart LR
     Hook --> Pulse["FlowPulse memory artifact"]
     Pulse --> Receipt["transaction proof envelope"]
     Receipt --> Reader["reader attaches txHash/logIndex"]
-    Reader --> Serial["FlowSerial checks serial history"]
+    Reader --> Phase["FMM-0 Phase Space"]
+    Phase --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
 
@@ -144,6 +155,12 @@ For the AI-memory angle, use:
 Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
 ```
 
+For the phase-table angle, use:
+
+```text
+Retrieval treats memory as text; FMM-0 treats machine history as a phase space with forbidden transitions.
+```
+
 ## 30-Second Founder Script
 
 FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse.
@@ -155,6 +172,12 @@ distributed systems: model calls, tool calls, state writes, caches, and compute
 jobs all crossing external events. FlowLitmus is our executable
 forbidden-outcome suite. It tests whether an agent history respects FlowPulse
 receipt boundaries or becomes impossible.
+
+FMM-0 Phase Space makes the boundary visible before the litmus suite runs. A
+local output, a reader-derived FlowPulse, and an
+FMM-0-conforming history are different phases of machine state. A pre-receipt
+artifact cannot claim `txHash` or `logIndex`, and a local artifact cannot jump
+straight into live FMM-0 state.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.

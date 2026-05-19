@@ -1,0 +1,14 @@
+{
+  "schema": "flowmemory.phase_transition.v0",
+  "transitionId": "invalid-local-to-fmm0",
+  "fromArtifact": "pre_receipt_local_output",
+  "fromCell": "PRE-LOCAL-SPEC",
+  "toArtifact": "fmm0_conforming_history",
+  "toCell": "FMM0-LIVE",
+  "receiptEvidenceAttached": false,
+  "consistencyChecksPassed": false,
+  "expected": {
+    "status": "forbidden",
+    "fault": "missing_reader_derived_receipt_metadata"
+  }
+}

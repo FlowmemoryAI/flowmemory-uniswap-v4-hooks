@@ -1,0 +1,23 @@
+{
+  "schema": "flowmemory.phase_artifact.v0",
+  "artifactId": "reader_derived_flowpulse",
+  "artifactType": "FlowPulse",
+  "receiptStage": "after_receipt",
+  "realityPhase": "live",
+  "authorityLevel": "reader_derived",
+  "boundary": "uniswap_v4_afterSwap",
+  "fields": {
+    "chainId": "84532",
+    "hookAddress": "0x0000000000000000000000000000000000000001",
+    "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "logIndex": 7,
+    "transactionIndex": 3,
+    "receiptStatus": "success",
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "requestedOperations": [
+    "cite_receipt_fact",
+    "merge_candidate"
+  ]
+}

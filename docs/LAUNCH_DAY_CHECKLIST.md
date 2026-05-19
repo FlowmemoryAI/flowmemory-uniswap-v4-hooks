@@ -23,6 +23,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] Release language does not claim the hook controls swaps or protects funds.
 - [ ] Release language does not claim txHash/logIndex are known during hook execution.
 - [ ] `python tools/launch_reality_check.py --pretty` passes and produces the screenshot text.
+- [ ] `python tools/fmm0_phase_table.py demo --pretty` passes and catches illegal phase transitions.
 - [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
 - [ ] `python tools/reviewer_walkthrough.py --pretty` passes and shows each launch claim with evidence/status/non-claims.
 - [ ] `python tools/verify_release_evidence.py --pretty` passes and reports `PENDING` unless real public receipt evidence exists.
@@ -55,6 +56,7 @@ Allowed:
 - FlowMemory Reality Check;
 - FlowMemory Memory Consistency Card;
 - FMM-0 draft memory model;
+- FMM-0 Phase Space;
 - FMM-0 Skeptic Walkthrough;
 - FlowLitmus forbidden-outcomes casebook;
 - executable forbidden outcomes for machine histories.
@@ -82,5 +84,6 @@ Not allowed:
 - Agent memory should be checked like a consistency model, not retrieved like text.
 - Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
 - Every launch claim has a command, and every overclaim has a red line.
+- Retrieval treats memory as text. FMM-0 treats machine history as phase space.
 - Public receipt evidence stays PENDING until `RELEASE_EVIDENCE.json` validates.
 - Each impossible machine history has a FlowLitmus case and a named fault.

@@ -22,8 +22,9 @@ Claims:
   FM-C06 FMM-0 defines legal and impossible machine histories around FlowPulse receipt boundaries. PASS
   FM-C07 FlowSerial catches impossible schedules.                               PASS
   FM-C08 FlowLitmus makes forbidden outcomes executable.                        PASS
-  FM-C09 Public Base Sepolia receipt evidence is pending.                       PENDING
-  FM-C10 Production verifier infrastructure is not claimed.                     NOT_CLAIMED
+  FM-C09 FMM-0 Phase Space catches illegal machine-state phase jumps.           PASS
+  FM-C10 Public Base Sepolia receipt evidence is pending.                       PENDING
+  FM-C11 Production verifier infrastructure is not claimed.                     NOT_CLAIMED
 
 Launch-safe wording:
   FlowMemory defines FMM-0, a receipt-bound memory consistency model for machine histories.
@@ -31,4 +32,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:caac38b83557d251de80f74151fd87f124baae5978c8a40e76e2fff7c749198b
+Walkthrough ID: sha256:8e1c531b9179aa811bfe3c2fff07b116c8d15eb9035b85676c8aa983c52abc6d

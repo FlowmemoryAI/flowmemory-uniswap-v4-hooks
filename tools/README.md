@@ -439,6 +439,42 @@ Tests:
 python -m unittest tools.test_memory_consistency_card
 ```
 
+## `fmm0_phase_table.py`
+
+Classifies machine artifacts by FMM-0 Phase Space.
+
+This is the phase-space layer:
+
+```text
+Retrieval treats memory as text; FMM-0 treats machine history as a phase space with forbidden transitions.
+```
+
+Run the screenshot demo:
+
+```bash
+python tools/fmm0_phase_table.py demo --pretty
+```
+
+Render the phase table:
+
+```bash
+python tools/fmm0_phase_table.py render --pretty
+```
+
+Classify a specific artifact:
+
+```bash
+python tools/fmm0_phase_table.py classify \
+  --artifact examples/fmm0-phase-table/artifacts/illegal_receipt_smuggle.json \
+  --pretty
+```
+
+Test the phase-table invariants:
+
+```bash
+python -m unittest tools.test_fmm0_phase_table
+```
+
 ## `render_fmm0_matrix.py`
 
 Renders the FMM-0 conformance matrix from `examples/memory-model/fmm0.manifest.json`.

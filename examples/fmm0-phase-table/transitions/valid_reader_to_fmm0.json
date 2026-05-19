@@ -1,0 +1,15 @@
+{
+  "schema": "flowmemory.phase_transition.v0",
+  "transitionId": "valid-reader-to-fmm0",
+  "fromArtifact": "reader_derived_flowpulse",
+  "fromCell": "POST-READER-LIVE",
+  "toArtifact": "fmm0_conforming_history",
+  "toCell": "FMM0-LIVE",
+  "receiptEvidenceAttached": true,
+  "flowSerialCertificatePresent": true,
+  "consistencyChecksPassed": true,
+  "expected": {
+    "status": "allowed",
+    "reason": "reader-derived FlowPulse can become FMM-0-conforming after consistency checks"
+  }
+}

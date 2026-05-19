@@ -42,6 +42,12 @@ Check the public release evidence gate:
 python tools/verify_release_evidence.py --pretty
 ```
 
+Check FMM-0 Phase Space:
+
+```bash
+python tools/fmm0_phase_table.py demo --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or
@@ -77,6 +83,12 @@ Use:
 
 ```text
 Every launch claim has a command, and every overclaim has a red line.
+```
+
+Use:
+
+```text
+Retrieval treats memory as text; FMM-0 treats machine history as a phase space with forbidden transitions.
 ```
 
 Do not lead with "AI memory on Uniswap." Lead with the stronger systems claim:

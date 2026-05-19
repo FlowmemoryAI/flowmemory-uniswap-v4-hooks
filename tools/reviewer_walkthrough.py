@@ -37,6 +37,7 @@ REQUIRED_CLAIM_IDS = {
     "FM-C08",
     "FM-C09",
     "FM-C10",
+    "FM-C11",
 }
 FORBIDDEN_PASS_PHRASES = [
     "audited custody",

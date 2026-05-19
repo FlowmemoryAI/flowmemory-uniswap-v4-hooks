@@ -1,0 +1,14 @@
+FMM-0 Phase Space
+
+1. pre_receipt_local_output        PRE-LOCAL-SPEC     PASS
+2. reader_derived_flowpulse        POST-READER-LIVE   PASS
+3. fmm0_conforming_history         FMM0-LIVE          PASS
+4. illegal_receipt_smuggle         INVALID            PASS
+
+Forbidden transitions:
+  local_only/speculative -> fmm0_conforming/live without reader metadata   CAUGHT
+  reader_derived/live -> fmm0_conforming/live without consistency checks   CAUGHT
+  before_receipt -> claim_txHash                                           CAUGHT
+  before_receipt -> claim_logIndex                                         CAUGHT
+
+Result: FMM-0 treats machine memory as phase space, not retrieval text.

@@ -45,6 +45,16 @@ Everyone treated agent memory like retrieval. FlowMemory treats it like a memory
 
 The model name is FMM-0: FlowMemory Agent Memory Model.
 
+For the phase-space demo:
+
+```bash
+python tools/fmm0_phase_table.py demo --pretty
+```
+
+This shows the key transition: local-only speculative artifacts cannot jump
+directly into FMM-0-conforming live state, and pre-receipt artifacts cannot
+claim `txHash` or `logIndex`.
+
 For that, run the Memory Consistency Card:
 
 ```bash
@@ -105,22 +115,25 @@ This names each impossible machine history and the FlowMemory fault that catches
    pre-receipt reads, retrocausal receipt claims, unquiesced output, speculative
    output escaping, stale memory survival, rollback, and split-brain writes.
 
-8. The launch claim is not "we emitted an event." The launch claim is:
+8. FMM-0 Phase Space shows machine-state phases: local-only,
+   public-boundary, reader-derived, FMM-0-conforming, quarantined, and extinct.
+
+9. The launch claim is not "we emitted an event." The launch claim is:
    FlowMemory gives machines a way to tell live histories from impossible ones.
 
-9. The Memory Consistency Card makes the evidence surface explicit. Local
+10. The Memory Consistency Card makes the evidence surface explicit. Local
    consistency evidence passes. Public Base Sepolia receipt evidence remains
    pending until the release record is filled.
 
-10. The model name is FMM-0: FlowMemory Agent Memory Model.
+11. The model name is FMM-0: FlowMemory Agent Memory Model.
 
-11. The skeptic walkthrough makes the claim surface reviewable: every launch
+12. The skeptic walkthrough makes the claim surface reviewable: every launch
     claim has a command, and every overclaim has a red line.
 
-12. Public Base Sepolia receipt evidence stays `PENDING` until the release
+13. Public Base Sepolia receipt evidence stays `PENDING` until the release
     evidence gate validates the actual packet.
 
-13. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
+14. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
     a reviewer-readable memory-model casebook.
 
 ## Demo Caption
@@ -135,6 +148,10 @@ Memory Consistency Card: most AI memory retrieves context. FlowMemory checks whe
 
 ```text
 FMM-0 Skeptic Walkthrough: every launch claim has a command, and every overclaim has a red line.
+```
+
+```text
+FMM-0 Phase Space: retrieval treats memory as text; FMM-0 treats machine history as phase space.
 ```
 
 ```text
@@ -153,9 +170,11 @@ FlowPulse is the memory artifact.
 
 But the deeper launch claim is runtime consistency. Agents are becoming
 distributed systems: model calls, tool calls, state writes, caches, and compute
-jobs all crossing external events. FlowLitmus is our executable
-forbidden-outcome suite. It tests whether an agent history respects FlowPulse
-receipt boundaries or becomes impossible.
+jobs all crossing external events. FMM-0 Phase Space shows that
+machine artifacts have phases: local-only, reader-derived, FMM-0-conforming,
+quarantined, or extinct. FlowLitmus is our executable forbidden-outcome suite.
+It tests whether an agent history respects FlowPulse receipt boundaries or
+becomes impossible.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.
@@ -218,6 +237,8 @@ are attached by reader/verifier infrastructure.
 - executable forbidden outcomes for agent runtimes;
 - local R&D runtime conformance suite.
 - receipt-bound memory consistency model;
+- machine-state phase space;
+- forbidden phase transitions around FlowPulse receipt boundaries.
 - claim-to-evidence launch scorecard;
 - public Base Sepolia evidence pending until the release record is filled.
 - every launch claim has a command, and every overclaim has a red line.

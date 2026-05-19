@@ -26,6 +26,7 @@ class LaunchRealityCheckTest(unittest.TestCase):
         text = launch_reality_check.render_report(launch_reality_check.build_report(run_litmus=False))
         self.assertIn("FlowSerial", text)
         self.assertIn("FlowLitmus", text)
+        self.assertIn("FMM-0 Phase Space", text)
 
     def test_output_includes_litmus_case_ids_when_suite_runs(self):
         text = launch_reality_check.render_report(launch_reality_check.build_report(run_litmus=True))

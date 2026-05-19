@@ -1,0 +1,14 @@
+{
+  "schema": "flowmemory.phase_transition.v0",
+  "transitionId": "valid-reader-attachment",
+  "fromArtifact": "pre_receipt_local_output",
+  "fromCell": "PRE-LOCAL-SPEC",
+  "toArtifact": "reader_derived_flowpulse",
+  "toCell": "POST-READER-LIVE",
+  "receiptEvidenceAttached": true,
+  "consistencyChecksPassed": false,
+  "expected": {
+    "status": "allowed",
+    "reason": "reader-derived receipt metadata can move a matching local artifact into live reader-derived state"
+  }
+}

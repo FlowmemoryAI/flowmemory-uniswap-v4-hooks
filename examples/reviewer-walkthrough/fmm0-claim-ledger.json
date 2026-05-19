@@ -168,6 +168,28 @@
     },
     {
       "id": "FM-C09",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 Phase Space catches illegal machine-state phase jumps.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0-PhaseTable.v0.md",
+        "docs/FMM_0_PHASE_TABLE.md",
+        "tools/fmm0_phase_table.py",
+        "examples/fmm0-phase-table/phase-table.json"
+      ],
+      "commands": [
+        "python tools/fmm0_phase_table.py demo --pretty",
+        "python -m unittest tools.test_fmm0_phase_table"
+      ],
+      "expected": "The phase table catches pre-receipt txHash/logIndex smuggling, local-only to FMM-0 live jumps, and reader-derived to FMM-0 live jumps without consistency checks.",
+      "nonClaims": [
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_production_verifier_infrastructure"
+      ]
+    },
+    {
+      "id": "FM-C10",
       "category": "public_release_evidence",
       "claim": "Public Base Sepolia receipt evidence is pending.",
       "status": "PENDING",
@@ -184,7 +206,7 @@
       ]
     },
     {
-      "id": "FM-C10",
+      "id": "FM-C11",
       "category": "explicit_non_claim",
       "claim": "Production verifier infrastructure is not claimed.",
       "status": "NOT_CLAIMED",

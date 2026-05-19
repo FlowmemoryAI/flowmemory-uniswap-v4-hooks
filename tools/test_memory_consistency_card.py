@@ -11,7 +11,8 @@ class MemoryConsistencyCardTest(unittest.TestCase):
         card = memory_consistency_card.build_card(run_litmus=False)
         self.assertEqual(memory_consistency_card.CARD_SCHEMA, card["schema"])
         self.assertEqual("fail", next(level for level in card["levels"] if level["id"] == "FM-C5")["status"])
-        self.assertEqual("pending", next(level for level in card["levels"] if level["id"] == "FM-C6")["status"])
+        self.assertEqual("pass", next(level for level in card["levels"] if level["id"] == "FM-C6")["status"])
+        self.assertEqual("pending", next(level for level in card["levels"] if level["id"] == "FM-C7")["status"])
 
     def test_litmus_mode_passes_local_surface(self):
         card = memory_consistency_card.build_card(run_litmus=True)
@@ -25,10 +26,12 @@ class MemoryConsistencyCardTest(unittest.TestCase):
         self.assertIn("Agent memory should be checked like a consistency model", text)
         self.assertIn("not retrieved like text", text)
         self.assertIn("Uniswap v4 afterSwap", text)
+        self.assertIn("FMM-0 phase space", text)
 
     def test_output_marks_public_chain_evidence_pending(self):
         text = memory_consistency_card.render_card(memory_consistency_card.build_card(run_litmus=True))
-        self.assertIn("PENDING FM-C6", text)
+        self.assertIn("PASS    FM-C6", text)
+        self.assertIn("PENDING FM-C7", text)
         self.assertIn("public Base Sepolia receipt evidence", text)
 
     def test_json_mode_returns_parseable_card(self):
