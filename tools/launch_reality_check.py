@@ -61,6 +61,7 @@ REQUIRED_FILES = [
     "docs/SKEPTIC_REVIEW_WALKTHROUGH.md",
     "docs/LAUNCH_CLAIM_LEDGER.md",
     "docs/REVIEWER_QUICKSTART.md",
+    "docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md",
     "docs/PUBLIC_TECHNICAL_REPORT.css",
     "examples/flow-litmus/litmus.manifest.json",
     "examples/flow-litmus/flowlitmus-casebook.json",

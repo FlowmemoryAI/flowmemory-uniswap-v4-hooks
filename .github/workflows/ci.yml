@@ -72,6 +72,7 @@ jobs:
             docs/PUBLIC_RELEASE_PATH.md
             docs/PUBLIC_REVIEW_CHECKLIST.md
             docs/REVIEWER_QUICKSTART.md
+            docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md
             docs/PUBLIC_LAUNCH_COPY.md
             docs/BASE_SEPOLIA_PLAN.md
             docs/BASE_SEPOLIA_OPERATOR_RUNBOOK.md

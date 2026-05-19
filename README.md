@@ -110,6 +110,8 @@ Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUB
 
 For a short reviewer path, start with [docs/REVIEWER_QUICKSTART.md](docs/REVIEWER_QUICKSTART.md).
 
+For a senior external developer or security reviewer, send [docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md](docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md).
+
 For the public technical report, read [FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md](FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md) or the printable PDF at [FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf](FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf).
 
 For launch-prep release notes, see [CHANGELOG.md](CHANGELOG.md).
@@ -969,6 +971,7 @@ docs/
   FMM_0_CONFORMANCE_MATRIX.md      # Generated FMM-0 rule/evidence matrix
   SKEPTIC_REVIEW_WALKTHROUGH.md    # 10-minute claim-to-evidence review path
   LAUNCH_CLAIM_LEDGER.md           # Claim status, commands, and non-claims
+  EXTERNAL_DEVELOPER_REVIEW_PACKET.md # Simple plus technical packet for external review
   MEMORY_CONSISTENCY_CARD.md       # Claim-to-evidence consistency scorecard
   LAUNCH_SPRINT_SUMMARY.md         # Launch package summary and remaining evidence gaps
   PUBLIC_LAUNCH_COPY.md            # Public launch post, founder script, and skeptic replies
