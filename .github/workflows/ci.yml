@@ -88,6 +88,7 @@ jobs:
             docs/AGENT_COMMERCE_MEMORY.md
             docs/AGENT_COMMERCE_STACK.md
             docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md
+            docs/AGENT_COMMERCE_DIFFERENTIAL.md
             docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md
             docs/AGENT_COMMERCE_INVARIANTS.md
             docs/LAUNCH_REVIEW_FAQ.md
@@ -145,6 +146,7 @@ jobs:
             specs/DuplexLine.v0.md
             specs/AgentCommerceConservation.v0.md
             specs/ObligationMembrane.v0.md
+            specs/AgentCommerceDifferential.v0.md
             specs/FlowMemoryReleaseTranscript.v0.md
             specs/MachineMemoryTrace.v0.md
             specs/AgentMemoryPack.v0.md
@@ -253,6 +255,19 @@ jobs:
             examples/obligation-membrane/aggregate_work_omits_failed_child.json
             examples/obligation-membrane/semantic_truth_upgrade.json
             examples/obligation-membrane/expected-output.txt
+            examples/agent-commerce-differential/README.md
+            examples/agent-commerce-differential/differential-cases.json
+            examples/agent-commerce-differential/dif-ok-001.json
+            examples/agent-commerce-differential/dif-bad-001.json
+            examples/agent-commerce-differential/dif-bad-002.json
+            examples/agent-commerce-differential/dif-bad-003.json
+            examples/agent-commerce-differential/dif-bad-004.json
+            examples/agent-commerce-differential/dif-bad-005.json
+            examples/agent-commerce-differential/dif-bad-006.json
+            examples/agent-commerce-differential/dif-bad-007.json
+            examples/agent-commerce-differential/dif-bad-008.json
+            examples/agent-commerce-differential/dif-bad-009.json
+            examples/agent-commerce-differential/expected-output.txt
             examples/release-transcript/README.md
             examples/release-transcript/expected-output.txt
             examples/axiom-writ/README.md
@@ -394,6 +409,7 @@ jobs:
             tools/duplexline_harness.py
             tools/agent_commerce_conservation.py
             tools/obligation_membrane.py
+            tools/agent_commerce_differential.py
             tools/flowmemory_release_transcript.py
             tools/public_claim_gate.py
             tools/axiom_writ.py
@@ -523,6 +539,14 @@ jobs:
 
       - name: Check Obligation Membrane demo
         run: python tools/obligation_membrane.py demo --pretty
+
+      - name: Test Agent Commerce Differential
+        run: python -m unittest tools.test_agent_commerce_differential
+
+      - name: Check Agent Commerce Differential demo
+        run: |
+          python tools/agent_commerce_differential.py demo --pretty
+          python tools/agent_commerce_differential.py run --cases examples/agent-commerce-differential/differential-cases.json --pretty
 
       - name: Test FlowMemory release transcript
         run: python -m unittest tools.test_flowmemory_release_transcript

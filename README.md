@@ -600,6 +600,20 @@ smuggled into pre-discharge obligation fields.
 Wallets show that money moved. DischargeLine asks whether the right obligation
 actually closed.
 
+For the agent-commerce category delta:
+
+```text
+ordinary rails + accepted action surface + FlowMemory checks -> Agent Commerce Differential -> ORDINARY_ACCEPT / FMM0_REJECT
+```
+
+Agent Commerce Differential shows the exact gap this repo is opening: a valid
+signature, satisfied payment requirement, observed receipt, present identity,
+or matching cache fingerprint can still belong to an impossible machine
+history.
+
+Normal rails answer whether an action can execute. FlowMemory asks whether the
+machine history that produced it is legal.
+
 For autonomous money movement:
 
 ```text
@@ -717,7 +731,7 @@ Expected launch line:
 FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
 ```
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_STACK.md](docs/AGENT_COMMERCE_STACK.md), [docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md](docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md), [docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md](docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md), [docs/AGENT_COMMERCE_INVARIANTS.md](docs/AGENT_COMMERCE_INVARIANTS.md), [docs/LAUNCH_REVIEW_FAQ.md](docs/LAUNCH_REVIEW_FAQ.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/COMPUTE_CHARGELINE.md](docs/COMPUTE_CHARGELINE.md), [docs/DISCHARGELINE.md](docs/DISCHARGELINE.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/AGENT_COMMERCE_MEMORY.md](docs/AGENT_COMMERCE_MEMORY.md), [docs/AGENT_COMMERCE_STACK.md](docs/AGENT_COMMERCE_STACK.md), [docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md](docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md), [docs/AGENT_COMMERCE_DIFFERENTIAL.md](docs/AGENT_COMMERCE_DIFFERENTIAL.md), [docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md](docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md), [docs/AGENT_COMMERCE_INVARIANTS.md](docs/AGENT_COMMERCE_INVARIANTS.md), [docs/LAUNCH_REVIEW_FAQ.md](docs/LAUNCH_REVIEW_FAQ.md), [docs/AGENT_COMMERCE_CONSERVATION.md](docs/AGENT_COMMERCE_CONSERVATION.md), [docs/OBLIGATION_MEMBRANE.md](docs/OBLIGATION_MEMBRANE.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/COMPUTE_CHARGELINE.md](docs/COMPUTE_CHARGELINE.md), [docs/DISCHARGELINE.md](docs/DISCHARGELINE.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Surfaces
 
@@ -1064,6 +1078,7 @@ docs/
   AGENT_COMMERCE_MEMORY.md         # Memory-native commerce model for Base agents
   AGENT_COMMERCE_STACK.md          # Layered memory-native agent commerce architecture
   AGENT_COMMERCE_SKEPTIC_RESPONSES.md # Direct responses to reviewer attacks
+  AGENT_COMMERCE_DIFFERENTIAL.md   # Ordinary rails vs FlowMemory category-delta harness
   LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md # Launch boundary: local conformance, not enforcement
   AGENT_COMMERCE_INVARIANTS.md     # One-table invariant map for agent commerce
   LAUNCH_REVIEW_FAQ.md             # Direct answers for launch-day reviewers
@@ -1129,6 +1144,7 @@ tools/
   duplexline_harness.py            # Checks buyer/seller exchange consistency
   agent_commerce_conservation.py   # Checks obligation conservation across agent commerce episodes
   obligation_membrane.py           # Checks delegated obligation chains for laundering
+  agent_commerce_differential.py   # Compares ordinary rails against FlowMemory consistency
   flowmemory_release_transcript.py # Builds the canonical offline launch transcript
   public_claim_gate.py             # Checks public launch copy for unguarded overclaims
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
@@ -1158,6 +1174,7 @@ specs/
   DuplexLine.v0.md                 # Draft buyer/seller exchange consistency spec
   AgentCommerceConservation.v0.md  # Draft obligation-conservation spec for agent commerce
   ObligationMembrane.v0.md         # Draft multi-agent obligation membrane spec
+  AgentCommerceDifferential.v0.md  # Draft ordinary-rails vs FlowMemory differential spec
   FlowMemoryReleaseTranscript.v0.md # Draft offline release transcript spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
   AgentMemoryPack.v0.md            # Draft proof-carried agent memory pack spec
@@ -1183,6 +1200,7 @@ examples/
   duplexline/                      # Example co-serializable buyer/seller exchange harness
   agent-commerce-conservation/     # Example obligation conservation harness
   obligation-membrane/             # Example multi-agent obligation membrane harness
+  agent-commerce-differential/     # Example ordinary-rails vs FlowMemory differential harness
   release-transcript/              # Example canonical launch transcript output
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action

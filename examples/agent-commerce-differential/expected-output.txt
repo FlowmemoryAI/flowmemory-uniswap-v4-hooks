@@ -1,0 +1,28 @@
+Agent Commerce Differential Harness
+
+Valid case:
+  DIF-OK-001  valid_all_rails_and_fmm0                         ORDINARY_ACCEPT FMM0_ACCEPT PASS
+
+Differential cases:
+  DIF-BAD-001 valid_signature_stale_memory_head                ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-002 x402_payment_wrong_obligation                    ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-003 identity_valid_payee_spine_broken                ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-004 spend_permission_in_scope_duplicate_intent       ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-005 cache_fingerprint_match_memory_inconsistent      ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-006 indexer_receipt_missing_post_spend_flowpulse     ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-007 session_key_in_scope_axiompatch_downgrade        ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-008 compute_payment_receipt_route_mismatch           ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+  DIF-BAD-009 child_permission_valid_refusal_swallowed         ORDINARY_ACCEPT FMM0_REJECT CAUGHT
+
+Summary:
+  cases checked: 10
+  valid cases accepted by both: 1/1
+  differential failures caught by FlowMemory: 9/9
+  unsafe histories accepted by ordinary baseline only: 9
+  escaped unsafe histories: 0
+
+Result:
+  Ordinary rails can accept an action surface while FlowMemory rejects the machine history.
+
+Non-claims:
+  local baseline simulator only; no custody, no escrow, no wallet authorization, no fund protection, no semantic truth, no model correctness, no GPU acceleration, no live mainnet claim, no production verifier infrastructure.

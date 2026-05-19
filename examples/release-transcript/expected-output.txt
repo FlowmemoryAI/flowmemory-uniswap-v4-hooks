@@ -15,6 +15,7 @@ Local evidence:
   DuplexLine Harness           PASS     1/1 valid exchange, 15/15 unsafe exchanges rejected
   Agent Commerce Conservation  PASS     1/1 valid episode, 7/7 invalid episodes rejected
   Obligation Membrane          PASS     1/1 valid chain, 9/9 unsafe chains rejected
+  Agent Commerce Differential  PASS     1/1 valid case, 9/9 differential failures caught
 
 Public evidence:
   Public Base Sepolia Receipt Evidence PENDING  pending-safe public release evidence gate

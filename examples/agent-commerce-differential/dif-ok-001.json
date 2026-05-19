@@ -1,0 +1,42 @@
+{
+  "caseId": "DIF-OK-001",
+  "description": "Ordinary rails accept and FlowMemory accepts the same admissible machine history.",
+  "expected": {
+    "differentialReason": "all_rails_and_fmm0_consistent",
+    "flowmemoryDecision": "ACCEPT",
+    "ordinaryRailDecision": "ACCEPT"
+  },
+  "flowmemoryChecks": {
+    "commerceConservationDecision": "CONSERVATION_ACCEPTED",
+    "computeChargeLineDecision": "CHARGE_ACCEPTED",
+    "dischargeLineDecision": "DISCHARGE_ACCEPTED",
+    "duplexLineDecision": "DUPLEXLINE_ACCEPTED",
+    "fmm0Faults": [],
+    "obligationMembraneDecision": "MEMBRANE_ACCEPTED",
+    "spendLineDecision": "SPENDLINE_ACCEPTED"
+  },
+  "name": "valid_all_rails_and_fmm0",
+  "notClaims": [
+    "not_a_real_wallet_implementation",
+    "not_x402_implementation",
+    "not_custody",
+    "not_escrow",
+    "not_wallet_authorization",
+    "not_fund_protection",
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_acceleration",
+    "not_live_mainnet_claim",
+    "not_production_verifier_infrastructure"
+  ],
+  "ordinaryRails": {
+    "cacheFingerprintMatches": true,
+    "identityPresent": true,
+    "receiptObservedByIndexer": true,
+    "sessionKeyInScope": true,
+    "spendPermissionInScope": true,
+    "walletSignatureValid": true,
+    "x402PaymentRequirementSatisfied": true
+  },
+  "schema": "flowmemory.agent_commerce_differential_case.v0"
+}

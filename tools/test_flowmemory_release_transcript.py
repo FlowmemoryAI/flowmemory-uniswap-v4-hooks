@@ -29,6 +29,7 @@ class FlowMemoryReleaseTranscriptTest(unittest.TestCase):
         self.assertIn("DuplexLine Harness", local_names)
         self.assertIn("Agent Commerce Conservation", local_names)
         self.assertIn("Obligation Membrane", local_names)
+        self.assertIn("Agent Commerce Differential", local_names)
         self.assertIn("Public Base Sepolia Receipt Evidence", public_names)
 
     def test_evidence_items_are_digest_bound(self):
@@ -55,6 +56,7 @@ class FlowMemoryReleaseTranscriptTest(unittest.TestCase):
         self.assertIn("DischargeLine Harness", completed.stdout)
         self.assertIn("Agent Commerce Conservation", completed.stdout)
         self.assertIn("Obligation Membrane", completed.stdout)
+        self.assertIn("Agent Commerce Differential", completed.stdout)
         self.assertIn("public receipt evidence remains pending", completed.stdout)
 
     def test_json_cli_is_parseable(self):

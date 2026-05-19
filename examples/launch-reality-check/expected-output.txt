@@ -36,6 +36,7 @@ Runtime model
   PASS  DuplexLine: co-serializable buyer/seller agent exchange
   PASS  Agent Commerce Conservation: obligation conservation across spend, work, compute, refusal, and memory
   PASS  Obligation Membrane: no obligation laundering through subagents, compute providers, or aggregate work
+  PASS  Agent Commerce Differential: ordinary rails accept, FlowMemory rejects impossible histories
   PASS  Release Transcript: canonical launch state in one offline object
   PASS  Public Claim Gate: launch copy overclaims stay fenced as non-claims
 
@@ -63,6 +64,7 @@ Required launch artifacts
   PASS  specs/DuplexLine.v0.md
   PASS  specs/AgentCommerceConservation.v0.md
   PASS  specs/ObligationMembrane.v0.md
+  PASS  specs/AgentCommerceDifferential.v0.md
   PASS  specs/FlowMemoryReleaseTranscript.v0.md
   PASS  docs/FLOW_SERIAL.md
   PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
@@ -81,6 +83,7 @@ Required launch artifacts
   PASS  docs/AGENT_COMMERCE_MEMORY.md
   PASS  docs/AGENT_COMMERCE_STACK.md
   PASS  docs/AGENT_COMMERCE_SKEPTIC_RESPONSES.md
+  PASS  docs/AGENT_COMMERCE_DIFFERENTIAL.md
   PASS  docs/LOCAL_CONFORMANCE_NOT_ENFORCEMENT.md
   PASS  docs/AGENT_COMMERCE_INVARIANTS.md
   PASS  docs/LAUNCH_REVIEW_FAQ.md
@@ -118,6 +121,9 @@ Required launch artifacts
   PASS  examples/duplexline/expected-output.txt
   PASS  examples/agent-commerce-conservation/expected-output.txt
   PASS  examples/obligation-membrane/expected-output.txt
+  PASS  examples/agent-commerce-differential/README.md
+  PASS  examples/agent-commerce-differential/differential-cases.json
+  PASS  examples/agent-commerce-differential/expected-output.txt
   PASS  examples/release-transcript/expected-output.txt
   PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
@@ -137,6 +143,7 @@ Required launch artifacts
   PASS  tools/duplexline_harness.py
   PASS  tools/agent_commerce_conservation.py
   PASS  tools/obligation_membrane.py
+  PASS  tools/agent_commerce_differential.py
   PASS  tools/flowmemory_release_transcript.py
   PASS  tools/public_claim_gate.py
   PASS  tools/memory_consistency_card.py

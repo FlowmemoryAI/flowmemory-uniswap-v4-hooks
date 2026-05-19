@@ -18,6 +18,7 @@ from typing import Any
 try:  # pragma: no cover
     from tools import (
         axiom_writ,
+        agent_commerce_differential,
         agent_commerce_conservation,
         cache_lineage_gate,
         compute_reuse_consistency,
@@ -33,6 +34,7 @@ try:  # pragma: no cover
     )
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
+    import agent_commerce_differential  # type: ignore
     import agent_commerce_conservation  # type: ignore
     import cache_lineage_gate  # type: ignore
     import compute_reuse_consistency  # type: ignore
@@ -98,6 +100,7 @@ def build_transcript() -> dict[str, Any]:
     duplexline = duplexline_harness.build_report()
     conservation = agent_commerce_conservation.build_report()
     membrane = obligation_membrane.build_report()
+    differential = agent_commerce_differential.build_report()
     release = verify_release_evidence.build_report()
 
     local_items = [
@@ -166,6 +169,12 @@ def build_transcript() -> dict[str, Any]:
             status_from_bool(membrane["status"] == "pass"),
             f"{membrane['validChainsAccepted']}/{membrane['validChainsTotal']} valid chain, {membrane['unsafeChainsRejected']}/{membrane['unsafeChainsTotal']} unsafe chains rejected",
             membrane,
+        ),
+        evidence_item(
+            "Agent Commerce Differential",
+            status_from_bool(differential["status"] == "pass"),
+            f"{differential['validCasesAcceptedByBoth']}/{differential['validCasesTotal']} valid case, {differential['differentialFailuresCaught']}/{differential['differentialFailuresTotal']} differential failures caught",
+            differential,
         ),
     ]
     public_status = release["verdict"]["publicBaseSepoliaReceiptEvidence"]

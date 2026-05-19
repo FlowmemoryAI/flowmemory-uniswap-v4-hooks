@@ -1,0 +1,44 @@
+{
+  "caseId": "DIF-BAD-001",
+  "description": "Ordinary rails accept the action surface, but FlowMemory rejects: valid_signature_does_not_imply_memory_currentness.",
+  "expected": {
+    "differentialReason": "valid_signature_does_not_imply_memory_currentness",
+    "flowmemoryDecision": "REJECT",
+    "ordinaryRailDecision": "ACCEPT"
+  },
+  "flowmemoryChecks": {
+    "commerceConservationDecision": "NOT_APPLICABLE",
+    "computeChargeLineDecision": "NOT_APPLICABLE",
+    "dischargeLineDecision": "NOT_APPLICABLE",
+    "duplexLineDecision": "NOT_APPLICABLE",
+    "fmm0Faults": [
+      "stale_rootfield_head"
+    ],
+    "obligationMembraneDecision": "NOT_APPLICABLE",
+    "spendLineDecision": "SPENDLINE_REJECTED"
+  },
+  "name": "valid_signature_stale_memory_head",
+  "notClaims": [
+    "not_a_real_wallet_implementation",
+    "not_x402_implementation",
+    "not_custody",
+    "not_escrow",
+    "not_wallet_authorization",
+    "not_fund_protection",
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_gpu_acceleration",
+    "not_live_mainnet_claim",
+    "not_production_verifier_infrastructure"
+  ],
+  "ordinaryRails": {
+    "cacheFingerprintMatches": true,
+    "identityPresent": true,
+    "receiptObservedByIndexer": true,
+    "sessionKeyInScope": true,
+    "spendPermissionInScope": true,
+    "walletSignatureValid": true,
+    "x402PaymentRequirementSatisfied": true
+  },
+  "schema": "flowmemory.agent_commerce_differential_case.v0"
+}
