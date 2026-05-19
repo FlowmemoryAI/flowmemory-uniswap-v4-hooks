@@ -1,0 +1,8 @@
+{
+  "allowed": true,
+  "artifactId": "model-output-001",
+  "artifactState": "live",
+  "causalNonce": "sha256:00aa462c37155b8b49eb3dec191f02fcbca26c5c35241aeb65758ff07be99d18",
+  "reason": "artifact_retired_by_flowpulse",
+  "schema": "flowmemory.pulse_retire_enforcement.v0"
+}

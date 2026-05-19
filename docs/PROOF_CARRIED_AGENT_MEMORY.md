@@ -133,11 +133,16 @@ new proof boundary
   -> compile AgentMemoryPacks
   -> apply AxiomPatch permissions
   -> run BoundaryFission release
+  -> retire eligible speculative artifacts through PulseRetire
   -> emit AgentPulse for what survived, changed, or died
 ```
 
 That runtime does not just recall memory. It changes the agent's working state
 when receipt-bound evidence arrives.
+
+PulseRetire handles the other side of agent memory: not what must be released
+after a boundary, but what must stay speculative before a boundary. It gives
+agents a reorder buffer for reality.
 
 ## Line To Use
 

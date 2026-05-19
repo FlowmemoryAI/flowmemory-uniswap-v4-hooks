@@ -1,0 +1,8 @@
+{
+  "allowed": false,
+  "artifactId": "model-output-001",
+  "artifactState": "speculative",
+  "causalNonce": null,
+  "reason": "artifact_not_retired",
+  "schema": "flowmemory.pulse_retire_enforcement.v0"
+}

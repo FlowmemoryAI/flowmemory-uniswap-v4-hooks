@@ -226,6 +226,34 @@ It gives agents proof-triggered forgetting.
 
 See [docs/BOUNDARY_FISSION.md](docs/BOUNDARY_FISSION.md), [specs/BoundaryFission.v0.md](specs/BoundaryFission.v0.md), [specs/ResidueAtom.v0.md](specs/ResidueAtom.v0.md), and [examples/boundary-fission/](examples/boundary-fission/).
 
+## Frontier R&D Primitive: PulseRetire Queue
+
+PulseRetire Queue is receipt-driven retirement for speculative machine cognition.
+
+AI agents and GPU workflows can compute ahead of the world. They can draft outputs, warm context, prepare next actions, and stage cache reuse before an external boundary has actually settled.
+
+FlowMemory gives those artifacts a retirement discipline.
+
+The agent can speculate. The receipt decides what becomes real.
+
+```text
+speculative model output
+  -> PulseRetire Queue
+  -> matching FlowPulse receipt?
+      -> yes: retire into live agent state
+      -> no: squash / withhold / recompute
+```
+
+The queued artifact can depend on `rootfieldId`, `commitment`, `hookAddress`, `subjectPoolId`, and `parentPulseId`.
+
+It cannot smuggle `txHash`, `logIndex`, `transactionIndex`, or `blockHash` at enqueue time because the hook does not know those facts during execution.
+
+When the reader later attaches receipt metadata to a matching FlowPulse, the artifact retires and receives a causal nonce. If the FlowPulse mismatches, the artifact is squashed.
+
+FlowMemory gives AI agents a reorder buffer for reality: they can compute speculatively, but only receipt-bound FlowPulses can retire those thoughts into live action.
+
+See [docs/PULSE_RETIRE.md](docs/PULSE_RETIRE.md), [specs/PulseRetire.v0.md](specs/PulseRetire.v0.md), and [examples/pulse-retire/](examples/pulse-retire/).
+
 ## What This Is
 
 - A memory-native Uniswap v4 hook primitive.
@@ -327,6 +355,7 @@ docs/
   AXIOM_WRIT.md                    # AxiomWrit proof-conditioned cognition R&D primitive
   AXIOM_PATCH.md                   # AxiomPatch operational cognitive state transition
   BOUNDARY_FISSION.md              # Proof-triggered forgetting and memory release
+  PULSE_RETIRE.md                  # Receipt-driven retirement for speculative cognition
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates
@@ -347,6 +376,7 @@ tools/
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
   axiom_patch.py                   # Applies AxiomPatch allow/deny/downgrade decisions
   boundary_fission.py              # Applies proof-triggered working-memory fission
+  pulse_retire.py                  # Retires or squashes speculative artifacts with FlowPulse receipts
 specs/
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
@@ -357,11 +387,13 @@ specs/
   AxiomPatch.v0.md                 # Draft proof-conditioned cognitive state transition
   BoundaryFission.v0.md            # Draft proof-triggered memory release spec
   ResidueAtom.v0.md                # Draft compression residue spec
+  PulseRetire.v0.md                # Draft receipt-driven speculative retirement spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action
   boundary-fission/                # Example FlowPulse -> memory release products
+  pulse-retire/                    # Example speculative artifacts -> FlowPulse retirement
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

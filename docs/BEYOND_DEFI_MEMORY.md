@@ -172,6 +172,15 @@ It turns a FlowPulse into a boundary event for autonomous working memory:
 
 This is memory physics, not memory storage.
 
+PulseRetire pushes the same thesis in the opposite time direction:
+
+```text
+speculative output -> PulseRetire Queue -> matching FlowPulse receipt -> live artifact
+```
+
+It lets machines compute ahead without letting speculative outputs become live
+until a public execution boundary retires them.
+
 ## The AI And GPU Angle
 
 FlowMemory does not make a GPU chip physically faster.
@@ -234,10 +243,11 @@ That is execution becoming memory.
 5. **Memory Market**: a marketplace for reusable, permissioned memory artifacts such as context bundles, embeddings, and verified outputs.
 6. **Proof-Backed Agent Memory**: agent memory that cites pulse IDs instead of vague internal notes.
 7. **BoundaryFission**: proof-triggered forgetting where a receipt-bound FlowPulse forces stale agent working memory into conserved facts, residue, quarantine, branch ash, and delegated recompute.
-8. **Compute Reuse Router**: a system that checks whether a committed output or context already exists before scheduling GPU work.
-9. **KV Lineage Ledger**: off-chain commitments for KV-cache/context artifacts so long-running agent systems can identify reusable context without putting private data on-chain.
-10. **DePIN Compute Receipts**: a receipt model for GPU marketplaces where paid work emits a ComputePulse tied to model, input, output, executor, and attestation references.
-11. **Memory-Native Wallets**: wallets that show not just transactions, but verified memory timelines connected to protocols, agents, compute, and intent.
+8. **PulseRetire Queue**: receipt-driven retirement for speculative model outputs, cache reuse, and next actions.
+9. **Compute Reuse Router**: a system that checks whether a committed output or context already exists before scheduling GPU work.
+10. **KV Lineage Ledger**: off-chain commitments for KV-cache/context artifacts so long-running agent systems can identify reusable context without putting private data on-chain.
+11. **DePIN Compute Receipts**: a receipt model for GPU marketplaces where paid work emits a ComputePulse tied to model, input, output, executor, and attestation references.
+12. **Memory-Native Wallets**: wallets that show not just transactions, but verified memory timelines connected to protocols, agents, compute, and intent.
 
 ## The Most Impressive Near-Term Demo
 

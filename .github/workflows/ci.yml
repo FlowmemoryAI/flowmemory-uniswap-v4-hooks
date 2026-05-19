@@ -75,6 +75,7 @@ jobs:
             docs/AXIOM_WRIT.md
             docs/AXIOM_PATCH.md
             docs/BOUNDARY_FISSION.md
+            docs/PULSE_RETIRE.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -84,6 +85,7 @@ jobs:
             specs/AxiomPatch.v0.md
             specs/BoundaryFission.v0.md
             specs/ResidueAtom.v0.md
+            specs/PulseRetire.v0.md
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
@@ -112,12 +114,26 @@ jobs:
             examples/boundary-fission/residue-atoms.example.json
             examples/boundary-fission/branch-ash.example.json
             examples/boundary-fission/delegated-recompute.example.json
+            examples/pulse-retire/README.md
+            examples/pulse-retire/queue.initial.json
+            examples/pulse-retire/speculative-model-output.json
+            examples/pulse-retire/speculative-cache-reuse.json
+            examples/pulse-retire/speculative-agent-action.json
+            examples/pulse-retire/flowpulse.matching.json
+            examples/pulse-retire/flowpulse.mismatched.json
+            examples/pulse-retire/queue.after-enqueue.json
+            examples/pulse-retire/queue.after-retire.json
+            examples/pulse-retire/retirement.retired.example.json
+            examples/pulse-retire/retirement.squashed.example.json
+            examples/pulse-retire/enforcement.retired.example.json
+            examples/pulse-retire/enforcement.speculative.example.json
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
             tools/axiom_writ.py
             tools/axiom_patch.py
             tools/boundary_fission.py
+            tools/pulse_retire.py
             releases/base-sepolia/README.md
           )
 
@@ -188,3 +204,12 @@ jobs:
           python tools/boundary_fission.py demo
           python tools/boundary_fission.py verify --report examples/boundary-fission/fission-report.example.json
           python tools/boundary_fission.py apply --flowpulse examples/boundary-fission/flowpulse-evidence.fixture.json --memory examples/boundary-fission/agent-working-memory.before.json --policy examples/boundary-fission/fission-policy.fixture.json --report /tmp/fission-report.json --after /tmp/memory-after.json
+
+      - name: Test PulseRetire
+        run: python -m unittest tools.test_pulse_retire
+
+      - name: Check PulseRetire demo
+        run: |
+          python tools/pulse_retire.py demo
+          python tools/pulse_retire.py verify --retirement examples/pulse-retire/retirement.retired.example.json
+          python tools/pulse_retire.py enforce --queue examples/pulse-retire/queue.after-retire.json --artifact-id model-output-001

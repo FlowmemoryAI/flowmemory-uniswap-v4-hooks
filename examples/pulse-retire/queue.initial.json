@@ -1,0 +1,18 @@
+{
+  "agentId": "demo-agent",
+  "entries": [],
+  "notClaims": [
+    "not_financial_debt",
+    "not_token",
+    "not_custody",
+    "not_swap_control",
+    "not_semantic_truth",
+    "not_gpu_attestation",
+    "not_hardware_acceleration"
+  ],
+  "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+  "queueType": "receipt_driven_retirement_queue",
+  "retirementMode": "in_order",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.pulse_retire_queue.v0"
+}

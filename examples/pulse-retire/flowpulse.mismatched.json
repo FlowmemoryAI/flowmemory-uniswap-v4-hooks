@@ -1,0 +1,21 @@
+{
+  "schema": "flowmemory.hook_log_reader.v0",
+  "chainId": "84532",
+  "records": [
+    {
+      "eventName": "FlowPulse",
+      "chainId": "84532",
+      "hookAddress": "0x0000000000000000000000000000000000000001",
+      "txHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "logIndex": "9",
+      "blockNumber": "123457",
+      "receiptStatus": "success",
+      "pulseId": "0x5555555555555555555555555555555555555555555555555555555555555555",
+      "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "commitment": "0x9999999999999999999999999999999999999999999999999999999999999999",
+      "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "validation": []
+    }
+  ]
+}

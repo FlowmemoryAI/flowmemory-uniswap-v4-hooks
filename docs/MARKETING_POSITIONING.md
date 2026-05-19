@@ -26,6 +26,8 @@ Most hooks modify execution. FlowMemory emits memory.
 - FlowMemory gives DeFi a way to remember.
 - FlowMemory does not just help agents remember. It gives agents proof-triggered forgetting.
 - A FlowPulse is not context. It is a boundary event that can rupture stale cognition.
+- The agent can speculate. The receipt decides what becomes real.
+- FlowMemory gives AI agents a reorder buffer for reality.
 
 ## Category Framing
 
@@ -73,6 +75,7 @@ FlowMemory can connect:
 - autonomous workflow memory;
 - proof-backed agent memory;
 - proof-triggered forgetting;
+- receipt-driven retirement for speculative machine cognition;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -91,6 +94,7 @@ Use these lines for the broader vision:
 - Every autonomous system needs a black box recorder. FlowMemory is building it.
 - Rootflow is the graph where execution becomes memory.
 - BoundaryFission turns proof into memory release: conserve facts, compress stale context, quarantine unsupported claims, kill unsafe branches, and delegate fresh compute.
+- PulseRetire lets agents compute ahead while preventing speculative outputs from becoming live until a matching FlowPulse receipt retires them.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -111,3 +115,13 @@ Logs tell humans what happened. FlowMemory gives machines artifacts they can ver
 ## BoundaryFission Founder Script
 
 FlowMemory does not just make agents remember. It gives them proof-triggered forgetting. A Uniswap v4 `afterSwap` hook emits a FlowPulse after execution; the transaction receipt is the proof envelope, and the FlowPulse is the memory artifact. BoundaryFission is the next primitive: when that receipt-bound FlowPulse lands, an agent's working memory splits. Receipt facts are conserved. Stale model outputs are compressed into residues. Unsupported claims are quarantined. Pre-boundary action plans are killed. Fresh compute can be delegated. This is not memory storage. This is memory physics for autonomous systems.
+
+## PulseRetire Founder Script
+
+AI agents and GPU workflows increasingly compute ahead of the world. They draft outputs, warm context, prepare actions, and reuse caches before external events have actually settled. The missing primitive is not more memory. It is retirement.
+
+FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse. The swap is not the memory. The transaction is the proof envelope. The FlowPulse is the memory artifact.
+
+PulseRetire Queue lets an agent compute speculatively, but the result cannot become live until a matching FlowPulse arrives with reader-attached receipt metadata like `txHash` and `logIndex`. If the FlowPulse matches, the artifact retires. If it mismatches, the artifact is squashed.
+
+This gives agents a reorder buffer for reality. They can think ahead, but the receipt decides what becomes real.

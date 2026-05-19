@@ -189,3 +189,50 @@ Tests:
 ```bash
 python -m unittest tools.test_boundary_fission
 ```
+
+## `pulse_retire.py`
+
+Manages PulseRetire Queues.
+
+PulseRetire is receipt-driven retirement for speculative machine cognition:
+
+- agents and GPU workflows can compute ahead;
+- speculative artifacts remain non-live until a matching FlowPulse receipt arrives;
+- matching evidence retires artifacts and mints a causal nonce;
+- mismatched evidence squashes artifacts;
+- missing receipt metadata leaves artifacts speculative.
+
+Run the demo:
+
+```bash
+python tools/pulse_retire.py demo --pretty
+```
+
+Regenerate example artifacts:
+
+```bash
+python tools/pulse_retire.py init \
+  --agent-id demo-agent \
+  --rootfield-id 0x1111111111111111111111111111111111111111111111111111111111111111 \
+  --out examples/pulse-retire/queue.initial.json \
+  --pretty
+
+python tools/pulse_retire.py enqueue \
+  --queue examples/pulse-retire/queue.initial.json \
+  --artifact examples/pulse-retire/speculative-model-output.json \
+  --out examples/pulse-retire/queue.after-one.json \
+  --pretty
+
+python tools/pulse_retire.py retire \
+  --queue examples/pulse-retire/queue.after-enqueue.json \
+  --flowpulse examples/pulse-retire/flowpulse.matching.json \
+  --out examples/pulse-retire/retirement.retired.example.json \
+  --queue-out examples/pulse-retire/queue.after-retire.json \
+  --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_pulse_retire
+```

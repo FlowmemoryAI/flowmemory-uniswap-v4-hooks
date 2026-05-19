@@ -1,0 +1,131 @@
+{
+  "batchId": "sha256:d1b3d5f0776970ded701d732075f2317ac47a12051051f2a477f1bbe4b55a68d",
+  "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+  "retiredCount": 3,
+  "retirements": [
+    {
+      "artifactId": "model-output-001",
+      "causalNonce": "sha256:00aa462c37155b8b49eb3dec191f02fcbca26c5c35241aeb65758ff07be99d18",
+      "checks": {
+        "commitmentMatches": true,
+        "flowPulseRecordFound": true,
+        "hookAddressMatches": true,
+        "noReceiptFieldsAtEnqueue": true,
+        "readerAttachedLogIndex": true,
+        "readerAttachedTxHash": true,
+        "receiptStatusSuccess": true,
+        "rootfieldMatches": true,
+        "subjectPoolMatches": true
+      },
+      "effects": [
+        "release_model_output",
+        "allow_as_live_context"
+      ],
+      "entryId": "sha256:d865bdf534e823c3425c17b8d9894c3191b44914b8e6905b88589b36da7946c9",
+      "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+      "retiredBy": {
+        "artifactType": "FlowPulse",
+        "blockNumber": "123456",
+        "boundary": "uniswap_v4_afterSwap",
+        "chainId": "84532",
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "hookAddress": "0x0000000000000000000000000000000000000001",
+        "logIndex": "7",
+        "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "pulseId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+        "receiptStatus": "success",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "retirementId": "sha256:8649d6cdaea395d075eca71edb19136c376f5e46b215252f654979915fb83a79",
+      "schema": "flowmemory.pulse_retirement.v0",
+      "squashReasons": [],
+      "status": "retired"
+    },
+    {
+      "artifactId": "cache-reuse-001",
+      "causalNonce": "sha256:00aa462c37155b8b49eb3dec191f02fcbca26c5c35241aeb65758ff07be99d18",
+      "checks": {
+        "commitmentMatches": true,
+        "flowPulseRecordFound": true,
+        "hookAddressMatches": true,
+        "noReceiptFieldsAtEnqueue": true,
+        "readerAttachedLogIndex": true,
+        "readerAttachedTxHash": true,
+        "receiptStatusSuccess": true,
+        "rootfieldMatches": true,
+        "subjectPoolMatches": true
+      },
+      "effects": [
+        "allow_cached_context_reuse",
+        "bind_cache_to_causal_nonce"
+      ],
+      "entryId": "sha256:524e566032f20413fc927caf76578326eb0d37169f7e46173c58a9b951c29315",
+      "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+      "retiredBy": {
+        "artifactType": "FlowPulse",
+        "blockNumber": "123456",
+        "boundary": "uniswap_v4_afterSwap",
+        "chainId": "84532",
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "hookAddress": "0x0000000000000000000000000000000000000001",
+        "logIndex": "7",
+        "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "pulseId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+        "receiptStatus": "success",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "retirementId": "sha256:287e7a6486a3665a1850fb5ed039a0f2681f21e462a5a8df4cdfe32d5bb6d411",
+      "schema": "flowmemory.pulse_retirement.v0",
+      "squashReasons": [],
+      "status": "retired"
+    },
+    {
+      "artifactId": "next-action-001",
+      "causalNonce": "sha256:00aa462c37155b8b49eb3dec191f02fcbca26c5c35241aeb65758ff07be99d18",
+      "checks": {
+        "commitmentMatches": true,
+        "flowPulseRecordFound": true,
+        "hookAddressMatches": true,
+        "noReceiptFieldsAtEnqueue": true,
+        "readerAttachedLogIndex": true,
+        "readerAttachedTxHash": true,
+        "receiptStatusSuccess": true,
+        "rootfieldMatches": true,
+        "subjectPoolMatches": true
+      },
+      "effects": [
+        "allow_agent_to_propose_next_step",
+        "allow_agent_to_cite_boundary"
+      ],
+      "entryId": "sha256:527e4646f7f04c33195ae1ae46e23e5d6d12a123838220fd5677f3f7511e75f1",
+      "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+      "retiredBy": {
+        "artifactType": "FlowPulse",
+        "blockNumber": "123456",
+        "boundary": "uniswap_v4_afterSwap",
+        "chainId": "84532",
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "hookAddress": "0x0000000000000000000000000000000000000001",
+        "logIndex": "7",
+        "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "pulseId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+        "receiptStatus": "success",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "txHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "retirementId": "sha256:7b890656be2e850f65587f60f948f86c70a03aa6cd49a0d66a35c88224bd3025",
+      "schema": "flowmemory.pulse_retirement.v0",
+      "squashReasons": [],
+      "status": "retired"
+    }
+  ],
+  "schema": "flowmemory.pulse_retirement_batch.v0",
+  "speculativeCount": 0,
+  "squashedCount": 0,
+  "status": "retired"
+}

@@ -1,0 +1,21 @@
+{
+  "artifactId": "model-output-001",
+  "artifactType": "ModelPulseDraft",
+  "artifactCommitment": "sha256:model-output-001",
+  "expectedPulse": {
+    "boundary": "uniswap_v4_afterSwap",
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "hookAddress": "0x0000000000000000000000000000000000000001",
+    "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "onRetire": [
+    "release_model_output",
+    "allow_as_live_context"
+  ],
+  "onSquash": [
+    "withhold_model_output",
+    "require_fresh_compute"
+  ]
+}

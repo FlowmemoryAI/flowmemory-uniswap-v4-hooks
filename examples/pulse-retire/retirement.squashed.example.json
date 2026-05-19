@@ -1,0 +1,95 @@
+{
+  "batchId": "sha256:4b0f04a06b288ac3e73403b45ebb6727d26b876bcb128cf6921529e1570e4fbd",
+  "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+  "retiredCount": 0,
+  "retirements": [
+    {
+      "artifactId": "model-output-001",
+      "causalNonce": null,
+      "checks": {
+        "commitmentMatches": false,
+        "flowPulseRecordFound": true,
+        "hookAddressMatches": true,
+        "noReceiptFieldsAtEnqueue": true,
+        "readerAttachedLogIndex": true,
+        "readerAttachedTxHash": true,
+        "receiptStatusSuccess": true,
+        "rootfieldMatches": true,
+        "subjectPoolMatches": true
+      },
+      "effects": [
+        "withhold_model_output",
+        "require_fresh_compute"
+      ],
+      "entryId": "sha256:d865bdf534e823c3425c17b8d9894c3191b44914b8e6905b88589b36da7946c9",
+      "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+      "retiredBy": null,
+      "retirementId": "sha256:5387aa5b5f3c4bf4b42572e6deb4175c9cc6163f794b8a329d02893927c32dc9",
+      "schema": "flowmemory.pulse_retirement.v0",
+      "squashReasons": [
+        "commitmentMatches"
+      ],
+      "status": "squashed"
+    },
+    {
+      "artifactId": "cache-reuse-001",
+      "causalNonce": null,
+      "checks": {
+        "commitmentMatches": false,
+        "flowPulseRecordFound": true,
+        "hookAddressMatches": true,
+        "noReceiptFieldsAtEnqueue": true,
+        "readerAttachedLogIndex": true,
+        "readerAttachedTxHash": true,
+        "receiptStatusSuccess": true,
+        "rootfieldMatches": true,
+        "subjectPoolMatches": true
+      },
+      "effects": [
+        "deny_cached_context_reuse",
+        "require_fresh_compute"
+      ],
+      "entryId": "sha256:524e566032f20413fc927caf76578326eb0d37169f7e46173c58a9b951c29315",
+      "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+      "retiredBy": null,
+      "retirementId": "sha256:012fd019202f5b653a346c08e06a96f0f75f6c3384981e3c32216ab142727bca",
+      "schema": "flowmemory.pulse_retirement.v0",
+      "squashReasons": [
+        "commitmentMatches"
+      ],
+      "status": "squashed"
+    },
+    {
+      "artifactId": "next-action-001",
+      "causalNonce": null,
+      "checks": {
+        "commitmentMatches": false,
+        "flowPulseRecordFound": true,
+        "hookAddressMatches": true,
+        "noReceiptFieldsAtEnqueue": true,
+        "readerAttachedLogIndex": true,
+        "readerAttachedTxHash": true,
+        "receiptStatusSuccess": true,
+        "rootfieldMatches": true,
+        "subjectPoolMatches": true
+      },
+      "effects": [
+        "withhold_next_action",
+        "require_boundary_refresh"
+      ],
+      "entryId": "sha256:527e4646f7f04c33195ae1ae46e23e5d6d12a123838220fd5677f3f7511e75f1",
+      "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+      "retiredBy": null,
+      "retirementId": "sha256:dde0469d5fdddb3e32edcf775a80a67f9ace0ddf311f5d372a4b643d3aef25e9",
+      "schema": "flowmemory.pulse_retirement.v0",
+      "squashReasons": [
+        "commitmentMatches"
+      ],
+      "status": "squashed"
+    }
+  ],
+  "schema": "flowmemory.pulse_retirement_batch.v0",
+  "speculativeCount": 0,
+  "squashedCount": 3,
+  "status": "squashed"
+}

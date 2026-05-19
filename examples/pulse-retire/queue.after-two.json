@@ -1,0 +1,81 @@
+{
+  "agentId": "demo-agent",
+  "entries": [
+    {
+      "artifactCommitment": "sha256:model-output-001",
+      "artifactId": "model-output-001",
+      "artifactState": "speculative",
+      "artifactType": "ModelPulseDraft",
+      "createdBeforeReceipt": true,
+      "entryId": "sha256:d865bdf534e823c3425c17b8d9894c3191b44914b8e6905b88589b36da7946c9",
+      "expectedPulse": {
+        "boundary": "uniswap_v4_afterSwap",
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "hookAddress": "0x0000000000000000000000000000000000000001",
+        "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333"
+      },
+      "forbiddenAtEnqueue": [
+        "txHash",
+        "logIndex",
+        "transactionIndex",
+        "blockHash"
+      ],
+      "onRetire": [
+        "release_model_output",
+        "allow_as_live_context"
+      ],
+      "onSquash": [
+        "withhold_model_output",
+        "require_fresh_compute"
+      ],
+      "queuePosition": 0
+    },
+    {
+      "artifactCommitment": "sha256:cache-reuse-001",
+      "artifactId": "cache-reuse-001",
+      "artifactState": "speculative",
+      "artifactType": "CacheReuseClaim",
+      "createdBeforeReceipt": true,
+      "entryId": "sha256:524e566032f20413fc927caf76578326eb0d37169f7e46173c58a9b951c29315",
+      "expectedPulse": {
+        "boundary": "uniswap_v4_afterSwap",
+        "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "hookAddress": "0x0000000000000000000000000000000000000001",
+        "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333"
+      },
+      "forbiddenAtEnqueue": [
+        "txHash",
+        "logIndex",
+        "transactionIndex",
+        "blockHash"
+      ],
+      "onRetire": [
+        "allow_cached_context_reuse",
+        "bind_cache_to_causal_nonce"
+      ],
+      "onSquash": [
+        "deny_cached_context_reuse",
+        "require_fresh_compute"
+      ],
+      "queuePosition": 1
+    }
+  ],
+  "notClaims": [
+    "not_financial_debt",
+    "not_token",
+    "not_custody",
+    "not_swap_control",
+    "not_semantic_truth",
+    "not_gpu_attestation",
+    "not_hardware_acceleration"
+  ],
+  "queueId": "sha256:f8ff6ab6250fb048fe7c35356bfd6533ba58c4f76fa7267a31863e3f0c9976ce",
+  "queueType": "receipt_driven_retirement_queue",
+  "retirementMode": "in_order",
+  "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+  "schema": "flowmemory.pulse_retire_queue.v0"
+}

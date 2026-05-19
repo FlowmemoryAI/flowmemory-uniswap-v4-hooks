@@ -1,0 +1,21 @@
+{
+  "artifactId": "next-action-001",
+  "artifactType": "AgentActionDraft",
+  "artifactCommitment": "sha256:next-action-001",
+  "expectedPulse": {
+    "boundary": "uniswap_v4_afterSwap",
+    "rootfieldId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+    "commitment": "0x2222222222222222222222222222222222222222222222222222222222222222",
+    "hookAddress": "0x0000000000000000000000000000000000000001",
+    "subjectPoolId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+    "parentPulseId": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "onRetire": [
+    "allow_agent_to_propose_next_step",
+    "allow_agent_to_cite_boundary"
+  ],
+  "onSquash": [
+    "withhold_next_action",
+    "require_boundary_refresh"
+  ]
+}
