@@ -1,0 +1,142 @@
+@page {
+  size: Letter;
+  margin: 0.72in;
+}
+
+:root {
+  color-scheme: light;
+  --ink: #111827;
+  --muted: #4b5563;
+  --line: #d1d5db;
+  --panel: #f8fafc;
+  --accent: #0f766e;
+}
+
+html {
+  font-size: 12.5pt;
+}
+
+body {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.48;
+  max-width: 8in;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  color: #0f172a;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+h1 {
+  border-bottom: 3px solid var(--accent);
+  font-size: 28pt;
+  margin: 0 0 0.22in;
+  padding-bottom: 0.12in;
+}
+
+h2 {
+  border-bottom: 1px solid var(--line);
+  font-size: 18pt;
+  margin-top: 0.34in;
+  padding-bottom: 0.06in;
+}
+
+h3 {
+  font-size: 13.5pt;
+  margin-top: 0.22in;
+}
+
+p {
+  margin: 0.08in 0;
+}
+
+a {
+  color: #0f766e;
+  text-decoration: none;
+}
+
+blockquote,
+pre,
+table {
+  break-inside: avoid;
+}
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: #0f172a;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 9.2pt;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  padding: 0.1in 0.13in;
+  white-space: pre-wrap;
+}
+
+code {
+  color: #0f172a;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 0.92em;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9.5pt;
+  margin: 0.14in 0;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 0.06in 0.08in;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #eef2f7;
+  color: #111827;
+}
+
+ul,
+ol {
+  margin-top: 0.08in;
+  padding-left: 0.24in;
+}
+
+li {
+  margin: 0.035in 0;
+}
+
+.subtitle,
+.author,
+.date {
+  color: var(--muted);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#TOC {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0.18in 0 0.28in;
+  padding: 0.14in 0.18in;
+}
+
+#TOC > ul {
+  columns: 2;
+  padding-left: 0.18in;
+}
+
+#references li {
+  font-size: 10pt;
+}

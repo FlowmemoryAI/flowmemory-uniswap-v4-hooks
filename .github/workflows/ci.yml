@@ -42,6 +42,8 @@ jobs:
           required=(
             README.md
             CHANGELOG.md
+            FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md
+            FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf
             CONTRIBUTING.md
             SECURITY.md
             .github/pull_request_template.md
@@ -55,6 +57,7 @@ jobs:
             contracts/interfaces/IFlowMemoryHookData.sol
             specs/FlowPulse-BoundaryABI.v0.md
             docs/MARKETING_POSITIONING.md
+            docs/PUBLIC_TECHNICAL_REPORT.css
             contracts/interfaces/IUniswapV4SwapHookLike.sol
             test/FlowMemoryAfterSwapHook.t.sol
             docs/ARCHITECTURE.md

@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_CLAIM_FILES = [
     "README.md",
     "CHANGELOG.md",
+    "FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md",
     "docs/PUBLIC_LAUNCH_COPY.md",
     "docs/MARKETING_POSITIONING.md",
     "docs/PUBLIC_RELEASE_PATH.md",

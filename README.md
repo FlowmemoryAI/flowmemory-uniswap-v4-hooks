@@ -110,6 +110,8 @@ Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUB
 
 For a short reviewer path, start with [docs/REVIEWER_QUICKSTART.md](docs/REVIEWER_QUICKSTART.md).
 
+For the public technical report, read [FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md](FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md) or the printable PDF at [FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf](FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf).
+
 For launch-prep release notes, see [CHANGELOG.md](CHANGELOG.md).
 
 ## FMM-0: FlowMemory Agent Memory Model
@@ -1057,6 +1059,8 @@ Root files:
 
 ```text
 CHANGELOG.md                       # Launch-prep release notes and non-claims
+FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md # Public technical report source
+FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf # Printable public technical report
 README.md                          # Public project landing page
 LICENSE                            # MIT license
 ```

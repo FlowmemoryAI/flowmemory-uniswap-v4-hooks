@@ -23,6 +23,7 @@ What this release-prep surface includes:
 - FlowPulse Boundary ABI gate for hook-time and receipt-time schema separation.
 - Cache Lineage Gate, Compute Reuse Router, and Compute Reuse Consistency for proof-backed AI/GPU workflow reuse discipline.
 - Public Claim Gate, Release Transcript, Reviewer Quickstart, Skeptic Walkthrough, and Launch Reality Check.
+- Public Technical Report: a publication-style Markdown source and PDF for reviewers, journals, and public launch readers.
 
 Verified locally before this entry:
 

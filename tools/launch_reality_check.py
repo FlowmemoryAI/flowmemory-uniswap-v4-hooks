@@ -25,6 +25,8 @@ REPORT_SCHEMA = "flowmemory.launch_reality_check.v0"
 REQUIRED_FILES = [
     "README.md",
     "CHANGELOG.md",
+    "FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md",
+    "FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf",
     "contracts/FlowMemoryAfterSwapHook.sol",
     "contracts/FlowPulse.sol",
     "specs/FlowPulse-BoundaryABI.v0.md",
@@ -59,6 +61,7 @@ REQUIRED_FILES = [
     "docs/SKEPTIC_REVIEW_WALKTHROUGH.md",
     "docs/LAUNCH_CLAIM_LEDGER.md",
     "docs/REVIEWER_QUICKSTART.md",
+    "docs/PUBLIC_TECHNICAL_REPORT.css",
     "examples/flow-litmus/litmus.manifest.json",
     "examples/flow-litmus/flowlitmus-casebook.json",
     "examples/memory-model/fmm0.manifest.json",
