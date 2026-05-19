@@ -26,7 +26,7 @@ What this release-prep surface includes:
 
 Verified locally before this entry:
 
-- `python -m unittest discover -s tools -p 'test_*.py'`: 271 tests passed.
+- `python -m unittest discover -s tools -p 'test_*.py'`: 276 tests passed.
 - `forge fmt --check`: passed.
 - `forge build`: passed.
 - `forge test -vvv`: 12 tests passed.
