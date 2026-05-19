@@ -56,6 +56,62 @@ See [docs/LAUNCH_REALITY_CHECK.md](docs/LAUNCH_REALITY_CHECK.md) and [examples/l
 
 Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUBLIC_LAUNCH_COPY.md](docs/PUBLIC_LAUNCH_COPY.md). The sprint-level launch summary lives in [docs/LAUNCH_SPRINT_SUMMARY.md](docs/LAUNCH_SPRINT_SUMMARY.md).
 
+## FMM-0: FlowMemory Agent Memory Model
+
+Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+
+FMM-0 is the launch model for this repo: a receipt-bound consistency model for machine histories anchored in FlowPulse boundaries.
+
+It asks the question most AI-memory systems skip:
+
+```text
+Could this memory history have happened?
+```
+
+The Uniswap v4 hook is the public anchor:
+
+```text
+afterSwap boundary -> FlowPulse -> transaction receipt -> reader metadata -> serial history -> forbidden outcomes
+```
+
+FMM-0 is not a production standard, not semantic truth, and not a mainnet deployment claim. It is the local R&D model that makes the FlowMemory thesis concrete: memory for agents should have consistency rules, not only retrieval.
+
+See [specs/FMM-0.v0.md](specs/FMM-0.v0.md), [docs/FLOWMEMORY_MEMORY_MODEL.md](docs/FLOWMEMORY_MEMORY_MODEL.md), and [docs/FMM_0_CONFORMANCE_MATRIX.md](docs/FMM_0_CONFORMANCE_MATRIX.md).
+
+## Memory Consistency Card
+
+Run the claim-to-evidence scorecard:
+
+```bash
+python tools/memory_consistency_card.py --pretty
+```
+
+This is the sharper AI-infrastructure framing:
+
+```text
+Agent memory should be checked like a consistency model, not retrieved like text.
+```
+
+The card maps the launch claim onto the repo's executable evidence:
+
+- the Uniswap v4 `afterSwap` boundary;
+- intentional FlowPulse emission;
+- receipt metadata separation;
+- reader-derived proof envelopes;
+- FlowSerial receipt-linearizability;
+- FlowLitmus forbidden outcomes;
+- pending public Base Sepolia release evidence.
+
+Safe launch claim:
+
+```text
+FlowMemory defines FMM-0, a receipt-bound memory consistency model for machine histories.
+```
+
+Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
+
+See [docs/MEMORY_CONSISTENCY_CARD.md](docs/MEMORY_CONSISTENCY_CARD.md) and [examples/memory-consistency-card/](examples/memory-consistency-card/).
+
 ## The New Primitive: Memory Signals
 
 FlowMemory introduces a new primitive: the memory signal.
@@ -529,6 +585,9 @@ docs/
   FLOWMEMORY_RUNTIME_MODEL.md      # Runtime rules and forbidden outcomes
   FLOWLITMUS_LAUNCH_DEMO.md        # Executable launch demo for runtime consistency
   LAUNCH_REALITY_CHECK.md          # One-command launch screenshot guide
+  FLOWMEMORY_MEMORY_MODEL.md       # FMM-0 memory model overview
+  FMM_0_CONFORMANCE_MATRIX.md      # Generated FMM-0 rule/evidence matrix
+  MEMORY_CONSISTENCY_CARD.md       # Claim-to-evidence consistency scorecard
   LAUNCH_SPRINT_SUMMARY.md         # Launch package summary and remaining evidence gaps
   PUBLIC_LAUNCH_COPY.md            # Public launch post, founder script, and skeptic replies
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
@@ -557,7 +616,10 @@ tools/
   flow_serial.py                   # Compiles machine histories into serial schedules or typed faults
   flow_litmus.py                   # Runs executable forbidden-outcome cases across R&D tools
   launch_reality_check.py          # Screenshot-ready launch harness around FlowLitmus
+  memory_consistency_card.py       # Maps launch claims to executable consistency evidence
+  render_fmm0_matrix.py            # Renders the FMM-0 conformance matrix
 specs/
+  FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
@@ -584,6 +646,8 @@ examples/
   flow-serial/                     # Example history -> serial certificate or impossibility fault
   flow-litmus/                     # Executable runtime consistency suite
   launch-reality-check/            # Screenshot guide and expected launch output
+  memory-model/                    # FMM-0 manifest and conformance matrix inputs
+  memory-consistency-card/          # Claim-to-evidence card output
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
 ```

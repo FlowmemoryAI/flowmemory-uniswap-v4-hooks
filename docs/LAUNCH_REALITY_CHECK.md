@@ -6,6 +6,8 @@ It gives a reviewer one terminal screenshot that connects the hook, the
 FlowPulse boundary model, receipt metadata separation, FlowSerial, and
 FlowLitmus.
 
+It now also names the runtime model: **FMM-0: FlowMemory Agent Memory Model**.
+
 ## Command
 
 ```bash
@@ -17,6 +19,12 @@ Optional screenshot artifact:
 ```bash
 python tools/launch_reality_check.py --pretty \
   --write examples/launch-reality-check/latest-output.txt
+```
+
+For the claim-to-evidence launch scorecard, run:
+
+```bash
+python tools/memory_consistency_card.py --pretty
 ```
 
 ## What This Demo Proves
@@ -110,6 +118,12 @@ Then add:
 
 ```text
 FlowLitmus shows why this matters: agents can now fault impossible histories around receipt-bound execution boundaries.
+```
+
+For the AI-memory angle, use:
+
+```text
+Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
 ```
 
 ## 30-Second Founder Script

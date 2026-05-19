@@ -88,8 +88,12 @@ jobs:
             docs/FLOW_QUIESCE.md
             docs/FLOW_SERIAL.md
             docs/FLOWMEMORY_RUNTIME_MODEL.md
+            docs/FLOWMEMORY_MEMORY_MODEL.md
             docs/FLOWLITMUS_LAUNCH_DEMO.md
             docs/LAUNCH_REALITY_CHECK.md
+            docs/FMM_0_CONFORMANCE_MATRIX.md
+            docs/MEMORY_CONSISTENCY_CARD.md
+            specs/FMM-0.v0.md
             specs/FlowPulse.v1.md
             specs/ComputePulse.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -202,6 +206,11 @@ jobs:
             examples/launch-reality-check/screenshot-guide.md
             examples/launch-reality-check/expected-output.txt
             examples/launch-reality-check/latest-output.txt
+            examples/memory-model/README.md
+            examples/memory-model/fmm0.manifest.json
+            examples/memory-consistency-card/README.md
+            examples/memory-consistency-card/expected-output.txt
+            examples/memory-consistency-card/latest-output.txt
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
@@ -214,6 +223,8 @@ jobs:
             tools/flow_serial.py
             tools/flow_litmus.py
             tools/launch_reality_check.py
+            tools/memory_consistency_card.py
+            tools/render_fmm0_matrix.py
             releases/base-sepolia/README.md
           )
 
@@ -327,3 +338,15 @@ jobs:
 
       - name: Check launch reality check
         run: python tools/launch_reality_check.py --pretty
+
+      - name: Test FMM-0 manifest
+        run: python -m unittest tools.test_fmm0_manifest
+
+      - name: Check FMM-0 matrix
+        run: python tools/render_fmm0_matrix.py --check
+
+      - name: Test memory consistency card
+        run: python -m unittest tools.test_memory_consistency_card
+
+      - name: Check memory consistency card
+        run: python tools/memory_consistency_card.py --pretty

@@ -30,6 +30,12 @@ Most hooks modify execution. FlowMemory emits memory.
 - FlowMemory gives AI agents a reorder buffer for reality.
 - FlowMemory gives agents a page fault for reality.
 - FlowMemory gives agents a grace period for reality.
+- Agent memory should be checked like a consistency model, not retrieved like text.
+- Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+- FMM-0 is the FlowMemory Agent Memory Model.
+- Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
+- FlowMemory defines a receipt-bound memory consistency model for machine histories.
+- Retrieval asks what context is relevant. FlowMemory asks whether the history is possible.
 
 ## Category Framing
 
@@ -82,6 +88,8 @@ FlowMemory can connect:
 - receipt-triggered quiescence epochs for active agent frames;
 - receipt-linearizable machine histories;
 - executable forbidden outcomes for agent runtime consistency;
+- memory consistency cards that map public claims to executable evidence;
+- FMM-0 conformance matrices for receipt-bound machine histories;
 - Rootflow memory graphs.
 
 Use these lines for the broader vision:
@@ -107,6 +115,8 @@ Use these lines for the broader vision:
 - A model can generate a story. FlowSerial decides whether that story could have happened.
 - FlowLitmus is a conformance suite for reality.
 - FlowMemory does not just give agents memory. It gives them forbidden outcomes.
+- The Memory Consistency Card is the launch scoreboard: local consistency evidence passes, public Base Sepolia receipt evidence remains pending until the release record is filled.
+- FMM-0 is the name of the draft launch model: a receipt-bound consistency model for agent memory.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -179,3 +189,15 @@ FlowLitmus makes that concrete. It is an executable suite of forbidden outcomes 
 If the history respects FlowPulse receipt boundaries, it passes. If the history is impossible, FlowLitmus catches it.
 
 FlowMemory gives agents memory signals. FlowLitmus proves the runtime knows what histories are impossible.
+
+## Memory Consistency Card Founder Script
+
+Most AI memory is framed as retrieval: more context, better search, longer sessions, bigger graphs. FlowMemory frames memory differently. Agent memory should be checked like a consistency model, not retrieved like text.
+
+The model is FMM-0: FlowMemory Agent Memory Model.
+
+The launch anchor is still the Uniswap v4 `afterSwap` hook. The swap is not the memory. The transaction is the proof envelope. The FlowPulse is the memory artifact.
+
+The Memory Consistency Card maps that claim to evidence. It shows the afterSwap boundary, intentional FlowPulse emission, receipt metadata separation, reader-derived proof envelopes, FlowSerial receipt-linearizability, and FlowLitmus forbidden outcomes. Then it marks the public Base Sepolia release evidence as pending until the release record is filled.
+
+The short version: most AI memory retrieves context. FlowMemory checks whether the memory could have happened.

@@ -15,6 +15,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] `main` is green in GitHub Actions.
 - [ ] `forge test -vvv` passes locally.
 - [ ] README opens with the memory-native primitive category claim.
+- [ ] README names FMM-0 as the FlowMemory Agent Memory Model.
 - [ ] No private keys, RPC URLs, signed transactions, API keys, or secrets are committed.
 - [ ] Base Sepolia PoolManager is re-checked against official Uniswap deployments.
 - [ ] Release language does not claim Base mainnet.
@@ -22,6 +23,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] Release language does not claim the hook controls swaps or protects funds.
 - [ ] Release language does not claim txHash/logIndex are known during hook execution.
 - [ ] `python tools/launch_reality_check.py --pretty` passes and produces the screenshot text.
+- [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
 - [ ] Public launch copy uses [PUBLIC_LAUNCH_COPY.md](PUBLIC_LAUNCH_COPY.md).
 
 ## If Base Sepolia Evidence Is Ready
@@ -47,7 +49,10 @@ Allowed:
 - CI-tested public implementation;
 - protocol-level memory signal primitive.
 - FlowMemory Reality Check;
+- FlowMemory Memory Consistency Card;
+- FMM-0 draft memory model;
 - executable forbidden outcomes for machine histories.
+- receipt-bound memory consistency model.
 
 Not allowed:
 
@@ -66,3 +71,6 @@ Not allowed:
 - This is not a trading hook. This is a memory hook.
 - FlowMemory gives DeFi a way to remember.
 - FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
+- Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+- Agent memory should be checked like a consistency model, not retrieved like text.
+- Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.

@@ -5,6 +5,8 @@ FlowMemory is not only a memory story.
 It is a runtime model for machine histories that cross public execution
 boundaries.
 
+The launch name for the draft model is **FMM-0: FlowMemory Agent Memory Model**.
+
 ## Core Split
 
 FlowMemory separates four layers:
@@ -54,3 +56,30 @@ The failure mode is impossible history.
 
 FlowMemory gives those systems public memory signals. FlowLitmus turns the
 signals into executable forbidden outcomes.
+
+## Memory Consistency Card
+
+The launch scorecard is:
+
+```bash
+python tools/memory_consistency_card.py --pretty
+```
+
+It packages the runtime model as a claim-to-evidence ladder:
+
+- `FM-C0`: execution boundary;
+- `FM-C1`: intentional memory emission;
+- `FM-C2`: receipt metadata separation;
+- `FM-C3`: reader-derived proof envelope;
+- `FM-C4`: receipt-linearizable histories;
+- `FM-C5`: executable forbidden outcomes;
+- `FM-C6`: public Base Sepolia receipt evidence.
+
+`FM-C0` through `FM-C5` are local repo evidence. `FM-C6` remains pending until a
+release record includes public receipt evidence.
+
+The line to remember:
+
+```text
+Most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
+```

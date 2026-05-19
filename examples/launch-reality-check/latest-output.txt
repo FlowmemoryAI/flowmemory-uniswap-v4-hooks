@@ -17,6 +17,7 @@ Hook invariant surface
   PASS  no custody / no fees / no routing / no custom accounting
 
 Runtime model
+  PASS  FMM-0: FlowMemory Agent Memory Model
   PASS  FlowSerial: receipt-linearizability for machine cognition
   PASS  FlowLitmus: executable forbidden outcomes
 
@@ -24,11 +25,17 @@ Required launch artifacts
   PASS  README.md
   PASS  contracts/FlowMemoryAfterSwapHook.sol
   PASS  contracts/FlowPulse.sol
+  PASS  specs/FMM-0.v0.md
   PASS  docs/FLOW_SERIAL.md
   PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
   PASS  docs/FLOWMEMORY_RUNTIME_MODEL.md
+  PASS  docs/FLOWMEMORY_MEMORY_MODEL.md
+  PASS  docs/FMM_0_CONFORMANCE_MATRIX.md
   PASS  examples/flow-litmus/litmus.manifest.json
+  PASS  examples/memory-model/fmm0.manifest.json
   PASS  tools/flow_litmus.py
+  PASS  tools/memory_consistency_card.py
+  PASS  tools/render_fmm0_matrix.py
 
 FlowLitmus Runtime Consistency Suite
 

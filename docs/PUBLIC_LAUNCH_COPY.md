@@ -37,6 +37,24 @@ Result:
 FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
 ```
 
+The sharper AI-infrastructure thesis:
+
+```text
+Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+```
+
+The model name is FMM-0: FlowMemory Agent Memory Model.
+
+For that, run the Memory Consistency Card:
+
+```bash
+python tools/memory_consistency_card.py --pretty
+```
+
+It maps the claim to evidence: hook boundary, FlowPulse emission, receipt
+metadata separation, reader-derived proof envelope, FlowSerial, FlowLitmus, and
+pending public Base Sepolia receipt evidence.
+
 ## Technical Thread
 
 1. FlowMemory is not another swap hook. It is a memory hook.
@@ -65,10 +83,20 @@ FlowMemory can tell impossible histories from live ones using receipt-bound Flow
 8. The launch claim is not "we emitted an event." The launch claim is:
    FlowMemory gives machines a way to tell live histories from impossible ones.
 
+9. The Memory Consistency Card makes the evidence surface explicit. Local
+   consistency evidence passes. Public Base Sepolia receipt evidence remains
+   pending until the release record is filled.
+
+10. The model name is FMM-0: FlowMemory Agent Memory Model.
+
 ## Demo Caption
 
 ```text
 FlowMemory Reality Check: live histories pass, impossible histories fault.
+```
+
+```text
+Memory Consistency Card: most AI memory retrieves context. FlowMemory checks whether the memory could have happened.
 ```
 
 ## Founder Script
@@ -85,6 +113,9 @@ receipt boundaries or becomes impossible.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.
+
+The Memory Consistency Card turns that into a scorecard. It shows which claims
+are supported by repo evidence and which release evidence is still pending.
 
 ## Skeptic Replies
 
@@ -137,3 +168,6 @@ are attached by reader/verifier infrastructure.
 - receipt-linearizable machine histories;
 - executable forbidden outcomes for agent runtimes;
 - local R&D runtime conformance suite.
+- receipt-bound memory consistency model;
+- claim-to-evidence launch scorecard;
+- public Base Sepolia evidence pending until the release record is filled.

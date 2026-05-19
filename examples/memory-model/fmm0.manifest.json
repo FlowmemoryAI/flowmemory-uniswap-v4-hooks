@@ -1,0 +1,120 @@
+{
+  "schema": "flowmemory.fmm0.manifest.v0",
+  "model": "FMM-0",
+  "title": "FlowMemory Agent Memory Model",
+  "thesis": "Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.",
+  "safeLaunchClaim": "FlowMemory defines FMM-0, a receipt-bound memory consistency model for machine histories.",
+  "anchor": {
+    "boundary": "Uniswap v4 afterSwap",
+    "signal": "FlowPulse",
+    "proofEnvelope": "transaction receipt",
+    "memoryArtifact": "FlowPulse"
+  },
+  "rules": [
+    {
+      "id": "FMM-0.R0",
+      "name": "Boundary Separation",
+      "invariant": "Swap execution, FlowPulse emission, and reader-derived receipt metadata are separate objects.",
+      "evidence": [
+        "README.md",
+        "contracts/FlowMemoryAfterSwapHook.sol",
+        "contracts/FlowPulse.sol",
+        "docs/EVENT_MODEL.md"
+      ]
+    },
+    {
+      "id": "FMM-0.R1",
+      "name": "Intentional Emission",
+      "invariant": "Memory emission requires explicit FlowMemory hookData with rootfieldId and commitment.",
+      "evidence": [
+        "contracts/interfaces/IFlowMemoryHookData.sol",
+        "test/FlowMemoryAfterSwapHook.t.sol"
+      ]
+    },
+    {
+      "id": "FMM-0.R2",
+      "name": "Receipt Mapping",
+      "invariant": "Receipt-only fields cannot be dereferenced before reader mapping.",
+      "evidence": [
+        "tools/flow_mmu.py",
+        "tools/test_flow_mmu.py",
+        "examples/flow-litmus/cases/FM-LB-001-pre-receipt-deref.json"
+      ],
+      "litmusCases": ["FM-LB-001"]
+    },
+    {
+      "id": "FMM-0.R3",
+      "name": "Retirement",
+      "invariant": "Speculative artifacts cannot become live until a matching FlowPulse receipt retires them.",
+      "evidence": [
+        "tools/pulse_retire.py",
+        "tools/test_pulse_retire.py",
+        "examples/flow-litmus/cases/FM-RT-001-unretired-output.json"
+      ],
+      "litmusCases": ["FM-RT-001"]
+    },
+    {
+      "id": "FMM-0.R4",
+      "name": "Quiescence",
+      "invariant": "Active pre-boundary frames must quiesce, revalidate, fork, or abandon before joining post-boundary state.",
+      "evidence": [
+        "tools/flow_quiesce.py",
+        "tools/test_flow_quiesce.py",
+        "examples/flow-litmus/cases/FM-QS-001-unquiesced-output.json"
+      ],
+      "litmusCases": ["FM-QS-001"]
+    },
+    {
+      "id": "FMM-0.R5",
+      "name": "Serialization",
+      "invariant": "Agent histories must serialize around the FlowPulse receipt boundaries they claim to observe.",
+      "evidence": [
+        "tools/flow_serial.py",
+        "tools/test_flow_serial.py",
+        "examples/flow-litmus/cases/FM-SER-001-retrocausal-claim.json",
+        "examples/flow-litmus/cases/FM-SER-002-rootfield-rollback.json",
+        "examples/flow-litmus/cases/FM-SER-003-split-brain-write.json"
+      ],
+      "litmusCases": ["FM-SER-001", "FM-SER-002", "FM-SER-003"]
+    },
+    {
+      "id": "FMM-0.R6",
+      "name": "Forbidden Outcomes",
+      "invariant": "A conforming runtime rejects impossible histories and accepts valid receipt-ordered histories.",
+      "evidence": [
+        "tools/flow_litmus.py",
+        "tools/test_flow_litmus.py",
+        "examples/flow-litmus/litmus.manifest.json",
+        "examples/flow-litmus/cases/FM-OK-001-valid-boundary-history.json"
+      ],
+      "litmusCases": [
+        "FM-LB-001",
+        "FM-SER-001",
+        "FM-QS-001",
+        "FM-RT-001",
+        "FM-FIS-001",
+        "FM-SER-002",
+        "FM-SER-003",
+        "FM-OK-001"
+      ]
+    },
+    {
+      "id": "FMM-0.R7",
+      "name": "Public Release Evidence",
+      "invariant": "A public Base Sepolia release record attaches receipt-derived txHash/logIndex evidence from a real deployed hook.",
+      "evidence": [
+        "releases/base-sepolia/flowpulse-evidence.json"
+      ],
+      "statusWhenMissing": "pending"
+    }
+  ],
+  "nonClaims": [
+    "not_semantic_truth",
+    "not_model_correctness",
+    "not_production_standard",
+    "not_audited_runtime",
+    "not_mainnet_proven",
+    "not_gpu_acceleration",
+    "not_hook_enforced_agent_runtime"
+  ]
+}

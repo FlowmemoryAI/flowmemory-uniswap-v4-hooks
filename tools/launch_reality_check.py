@@ -26,11 +26,17 @@ REQUIRED_FILES = [
     "README.md",
     "contracts/FlowMemoryAfterSwapHook.sol",
     "contracts/FlowPulse.sol",
+    "specs/FMM-0.v0.md",
     "docs/FLOW_SERIAL.md",
     "docs/FLOWLITMUS_LAUNCH_DEMO.md",
     "docs/FLOWMEMORY_RUNTIME_MODEL.md",
+    "docs/FLOWMEMORY_MEMORY_MODEL.md",
+    "docs/FMM_0_CONFORMANCE_MATRIX.md",
     "examples/flow-litmus/litmus.manifest.json",
+    "examples/memory-model/fmm0.manifest.json",
     "tools/flow_litmus.py",
+    "tools/memory_consistency_card.py",
+    "tools/render_fmm0_matrix.py",
 ]
 BOUNDARY_LINES = [
     "swap != memory",
@@ -49,6 +55,7 @@ HOOK_INVARIANTS = [
     "no custody / no fees / no routing / no custom accounting",
 ]
 RUNTIME_LINES = [
+    "FMM-0: FlowMemory Agent Memory Model",
     "FlowSerial: receipt-linearizability for machine cognition",
     "FlowLitmus: executable forbidden outcomes",
 ]

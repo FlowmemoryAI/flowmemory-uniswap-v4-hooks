@@ -28,6 +28,10 @@ The repo now presents a stack rather than a loose set of ideas:
 - `FlowLitmus`: executable forbidden outcomes for the runtime model.
 - `FlowMemory Reality Check`: one launch command that shows the boundary model,
   hook invariant surface, FlowLitmus suite, and safe public claim.
+- `FMM-0`: FlowMemory Agent Memory Model, the draft receipt-bound consistency
+  model for machine histories.
+- `FlowMemory Memory Consistency Card`: a claim-to-evidence scorecard that shows
+  FlowMemory is treating agent memory as a consistency model, not retrieval.
 
 ## Launch Command
 
@@ -43,6 +47,18 @@ Expected result:
 Result: FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
 ```
 
+Use this as the launch positioning scorecard:
+
+```bash
+python tools/memory_consistency_card.py --pretty
+```
+
+Expected core thesis:
+
+```text
+Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+```
+
 ## Verification
 
 Local verification should include:
@@ -51,8 +67,9 @@ Local verification should include:
 forge fmt --check
 forge build
 forge test -vvv
-python -m unittest tools.test_read_flowpulse_logs tools.test_memory_trace tools.test_axiom_writ tools.test_axiom_patch tools.test_boundary_fission tools.test_pulse_retire tools.test_flow_mmu tools.test_flow_quiesce tools.test_flow_serial tools.test_flow_litmus tools.test_launch_reality_check
+python -m unittest tools.test_read_flowpulse_logs tools.test_memory_trace tools.test_axiom_writ tools.test_axiom_patch tools.test_boundary_fission tools.test_pulse_retire tools.test_flow_mmu tools.test_flow_quiesce tools.test_flow_serial tools.test_flow_litmus tools.test_launch_reality_check tools.test_memory_consistency_card
 python tools/launch_reality_check.py --pretty
+python tools/memory_consistency_card.py --pretty
 git diff --check
 ```
 
@@ -69,9 +86,11 @@ FlowPulse boundaries.
 Short version:
 
 ```text
+FMM-0 is the FlowMemory Agent Memory Model.
 FlowSerial gives receipt-linearizability.
 FlowLitmus makes forbidden outcomes executable.
 FlowMemory Reality Check shows live histories pass and impossible histories fault.
+Memory Consistency Card maps the launch claim to evidence and marks public-chain evidence pending.
 ```
 
 ## What To Share First
@@ -79,7 +98,8 @@ FlowMemory Reality Check shows live histories pass and impossible histories faul
 1. Repository root.
 2. README `Launch Reality Check` section.
 3. Terminal screenshot from `python tools/launch_reality_check.py --pretty`.
-4. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
+4. Terminal screenshot from `python tools/memory_consistency_card.py --pretty`.
+5. `docs/PUBLIC_LAUNCH_COPY.md` for the exact public post and founder script.
 
 ## Remaining Launch Gaps
 

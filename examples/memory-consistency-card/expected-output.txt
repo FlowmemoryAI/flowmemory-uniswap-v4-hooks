@@ -1,0 +1,43 @@
+FlowMemory Memory Consistency Card
+
+Thesis
+  PASS     Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+  PASS     Agent memory should be checked like a consistency model, not retrieved like text.
+
+Model
+  PASS     FMM-0: FlowMemory Agent Memory Model
+
+Anchor
+  PASS     Uniswap v4 afterSwap emits a FlowPulse memory artifact.
+  PASS     swap != memory
+  PASS     transaction = proof envelope
+  PASS     FlowPulse = memory artifact
+  PASS     hook does not know txHash/logIndex
+  PASS     reader/verifier attaches receipt metadata later
+
+Consistency ladder
+  PASS    FM-C0  Execution boundary: Uniswap v4 reaches an afterSwap boundary.
+  PASS    FM-C1  Intentional memory emission: The hook emits FlowPulse only from explicit FlowMemory hookData.
+  PASS    FM-C2  Receipt metadata separation: txHash, transactionIndex, logIndex, block facts, and receipt status are not hook-time facts.
+  PASS    FM-C3  Reader-derived proof envelope: Reader infrastructure attaches receipt metadata after the transaction lands.
+  PASS    FM-C4  Receipt-linearizable histories: Machine histories can be serialized around receipt-bound FlowPulse boundaries.
+  PASS    FM-C5  Executable forbidden outcomes: Impossible agent histories fault under FlowLitmus.
+  PENDING FM-C6  Public Base Sepolia evidence: A public release record can attach txHash/logIndex evidence from a real deployed hook.
+
+Executable checks
+  PASS    local consistency surface
+  PASS    FlowLitmus 8/8 forbidden outcomes
+  PENDING public Base Sepolia receipt evidence
+
+Safe launch claim: FlowMemory defines FMM-0, a receipt-bound memory consistency model for machine histories.
+
+Do not claim
+  no semantic truth claim
+  no model correctness claim
+  no live mainnet deployment claim
+  no audited custody claim
+  no swap control
+  no GPU acceleration
+  no txHash/logIndex at hook time
+
+Card ID: sha256:ac27a0c2943206bed96e6a6898e2c46ba5e108a5f719d22312fc39117e8e28bc

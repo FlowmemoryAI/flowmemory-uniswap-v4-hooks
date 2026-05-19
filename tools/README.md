@@ -406,3 +406,65 @@ Tests:
 ```bash
 python -m unittest tools.test_launch_reality_check
 ```
+
+## `memory_consistency_card.py`
+
+Runs the launch-facing claim-to-evidence scorecard.
+
+The card frames FlowMemory as FMM-0, the FlowMemory Agent Memory Model:
+
+- the Uniswap v4 `afterSwap` boundary anchors the signal;
+- the FlowPulse is the memory artifact;
+- receipt metadata is reader-derived;
+- FlowSerial gives receipt-linearizability;
+- FlowLitmus makes impossible histories executable;
+- public Base Sepolia receipt evidence remains pending until the release record is filled.
+
+Run:
+
+```bash
+python tools/memory_consistency_card.py --pretty
+```
+
+Write the screenshot text:
+
+```bash
+python tools/memory_consistency_card.py --pretty \
+  --write examples/memory-consistency-card/latest-output.txt
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_memory_consistency_card
+```
+
+## `render_fmm0_matrix.py`
+
+Renders the FMM-0 conformance matrix from `examples/memory-model/fmm0.manifest.json`.
+
+FMM-0 is the draft launch model:
+
+```text
+Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+```
+
+Generate the matrix:
+
+```bash
+python tools/render_fmm0_matrix.py \
+  --manifest examples/memory-model/fmm0.manifest.json \
+  --out docs/FMM_0_CONFORMANCE_MATRIX.md
+```
+
+Check local evidence paths while allowing public Base Sepolia release evidence to remain pending:
+
+```bash
+python tools/render_fmm0_matrix.py --check
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_fmm0_manifest
+```

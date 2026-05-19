@@ -14,7 +14,7 @@ This repo keeps external protocol assumptions explicit. Reviewers should use the
 
 ## Current Base Sepolia Assumption
 
-As of this repo revision, the official Uniswap v4 deployments page lists Base Sepolia chain id `84532` with PoolManager:
+Re-checked on May 19, 2026 against the official Uniswap v4 deployments page: Base Sepolia chain id `84532` lists PoolManager:
 
 ```text
 0x05E73354cFDd6745C338b50BcFDfA3Aa6fA03408
