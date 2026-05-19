@@ -147,6 +147,25 @@ Tests:
 python -m unittest tools.test_compute_reuse_consistency
 ```
 
+## `compute_chargeline.py`
+
+Checks whether AI/GPU compute payment matches the memory-consistent compute
+route.
+
+Compute ChargeLine distinguishes fresh compute from safe reuse and rejects
+charges that drift from payment requirement, buyer memory head, runtime
+commitment, attestation reference, or reuse safety.
+
+```bash
+python tools/compute_chargeline.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_compute_chargeline
+```
+
 ## `spendline_harness.py`
 
 Checks memory-linearizability for autonomous agent spending.

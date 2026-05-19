@@ -1,0 +1,30 @@
+{
+  "caseId": "CCL-OK-002",
+  "charge": {
+    "attestationRef": null,
+    "attestationRequired": false,
+    "buyerAgentId": "buyer-agent-001",
+    "buyerComputePolicy": "ALLOWS_REUSE",
+    "buyerMemoryHead": "flowpulse-buyer-compute-001",
+    "chargeAlreadyConsumed": false,
+    "chargeId": "compute-charge-reuse-001",
+    "computeRoute": {
+      "cacheLineageVerdict": "CACHE_REUSE_ACCEPTED",
+      "computePulseId": "computepulse-reuse-001",
+      "computeReuseVerdict": "REUSE_ACCEPTED",
+      "routeDecision": "REUSE_PRIOR_COMPUTE"
+    },
+    "expectedBuyerMemoryHead": "flowpulse-buyer-compute-001",
+    "expectedRuntimeCommitment": "sha256:runtime-cuda-vllm-001",
+    "observedPaymentRequirementHash": "sha256:compute-payment-001",
+    "paymentMode": "REUSE_PRIOR_COMPUTE",
+    "paymentRequirementHash": "sha256:compute-payment-001",
+    "rootfieldId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+    "runtimeCommitment": "sha256:runtime-cuda-vllm-001",
+    "schema": "flowmemory.compute_charge.v0",
+    "sellerAgentId": "compute-agent-001"
+  },
+  "expectedDecision": "CHARGE_ACCEPTED",
+  "schema": "flowmemory.compute_chargeline_case.v0",
+  "title": "safe reuse charged as reuse"
+}

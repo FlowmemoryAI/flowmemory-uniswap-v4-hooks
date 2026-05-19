@@ -32,6 +32,7 @@ Claims:
   FM-C18 Compute Reuse Router turns proof-backed compute memory into a scheduler decision. PASS
   FM-C20 Cache Lineage Gate makes KV/context reuse proof-carried instead of token-only. PASS
   FM-C21 Compute Reuse Consistency requires cache lineage, compute fingerprint, and receipt-bound history before reuse becomes live. PASS
+  FM-C26 Compute ChargeLine checks that AI/GPU compute payment matches the memory-consistent compute route. PASS
   FM-C22 SpendLine makes autonomous spend histories memory-linearizable.        PASS
   FM-C23 DuplexLine makes buyer/seller agent exchange co-serializable across spend, work, payment, and memory state. PASS
   FM-C24 Agent Commerce Conservation checks that autonomous commerce episodes conserve declared obligations across spend, work, compute, refusal, and memory state. PASS
@@ -46,4 +47,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:efa114a0ed3d9e2a538da5e91227b802b302f894a778bbc4b8ddadac0257d4df
+Walkthrough ID: sha256:6d7894ffca1427c056396ae1b362ac5d50feb44a325983260d72b271d757980a

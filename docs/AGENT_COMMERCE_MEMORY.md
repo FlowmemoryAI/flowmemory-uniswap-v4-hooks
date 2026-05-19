@@ -58,6 +58,30 @@ Agent commerce needs serializable economic memory.
 
 ## First Public Surfaces
 
+### Compute ChargeLine
+
+Compute ChargeLine is payment consistency for AI/GPU work.
+
+It checks whether a charge for fresh compute or reused compute matches the
+memory-consistent compute route that produced the artifact.
+
+It rejects:
+
+- reuse charged as fresh compute;
+- unsafe reuse charged as valid compute;
+- buyer fresh-compute policy laundered into reuse;
+- duplicate compute charges;
+- missing required attestation references;
+- runtime drift under the same payment;
+- payment requirement drift;
+- stale buyer memory heads.
+
+Core line:
+
+```text
+Compute billing without memory consistency is invoice optimism.
+```
+
 ### SpendLine
 
 SpendLine is memory-linearizability for autonomous agent spending.

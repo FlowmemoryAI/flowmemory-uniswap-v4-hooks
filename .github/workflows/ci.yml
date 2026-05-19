@@ -91,6 +91,7 @@ jobs:
             docs/COMPUTE_PULSE.md
             docs/COMPUTE_REUSE_CONSISTENCY.md
             docs/COMPUTE_REUSE_ROUTER.md
+            docs/COMPUTE_CHARGELINE.md
             docs/SPENDLINE.md
             docs/DUPLEXLINE.md
             docs/OBLIGATION_MEMBRANE.md
@@ -132,6 +133,7 @@ jobs:
             specs/ComputePulse.v0.md
             specs/ComputeReuseConsistency.v0.md
             specs/ComputeReuseRouter.v0.md
+            specs/ComputeChargeLine.v0.md
             specs/SpendLine.v0.md
             specs/DuplexLine.v0.md
             specs/AgentCommerceConservation.v0.md
@@ -167,6 +169,18 @@ jobs:
             examples/compute-reuse-router/expected-output.txt
             examples/compute-reuse-consistency/README.md
             examples/compute-reuse-consistency/expected-output.txt
+            examples/compute-chargeline/README.md
+            examples/compute-chargeline/fresh_compute_charged_as_fresh.json
+            examples/compute-chargeline/safe_reuse_charged_as_reuse.json
+            examples/compute-chargeline/reuse_route_charged_as_fresh.json
+            examples/compute-chargeline/unsafe_reuse_charged.json
+            examples/compute-chargeline/buyer_requires_fresh_seller_reuses.json
+            examples/compute-chargeline/duplicate_compute_charge.json
+            examples/compute-chargeline/missing_required_attestation.json
+            examples/compute-chargeline/runtime_drift_under_same_payment.json
+            examples/compute-chargeline/payment_requirement_drift.json
+            examples/compute-chargeline/stale_buyer_memory_head.json
+            examples/compute-chargeline/expected-output.txt
             examples/spendline/README.md
             examples/spendline/valid_spend_after_memory_head.json
             examples/spendline/stale_memory_head_spend.json
@@ -353,6 +367,7 @@ jobs:
             tools/cache_lineage_gate.py
             tools/compute_reuse_consistency.py
             tools/compute_reuse_router.py
+            tools/compute_chargeline.py
             tools/spendline_harness.py
             tools/duplexline_harness.py
             tools/agent_commerce_conservation.py
@@ -450,6 +465,12 @@ jobs:
 
       - name: Check Compute Reuse Consistency demo
         run: python tools/compute_reuse_consistency.py demo --pretty
+
+      - name: Test Compute ChargeLine
+        run: python -m unittest tools.test_compute_chargeline
+
+      - name: Check Compute ChargeLine demo
+        run: python tools/compute_chargeline.py demo --pretty
 
       - name: Test SpendLine Harness
         run: python -m unittest tools.test_spendline_harness

@@ -393,6 +393,31 @@
       ]
     },
     {
+      "id": "FM-C26",
+      "category": "ai_compute_payment",
+      "claim": "Compute ChargeLine checks that AI/GPU compute payment matches the memory-consistent compute route.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/ComputeChargeLine.v0.md",
+        "docs/COMPUTE_CHARGELINE.md",
+        "tools/compute_chargeline.py",
+        "examples/compute-chargeline/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/compute_chargeline.py demo --pretty",
+        "python -m unittest tools.test_compute_chargeline"
+      ],
+      "expected": "Compute ChargeLine accepts 2/2 valid charges, rejects 8/8 invalid charges, and reports 0 escaped invalid charges.",
+      "nonClaims": [
+        "not_gpu_acceleration",
+        "not_hardware_execution_proof",
+        "not_production_attestation_infrastructure",
+        "not_wallet_authorization",
+        "not_semantic_truth",
+        "not_model_correctness"
+      ]
+    },
+    {
       "id": "FM-C22",
       "category": "agent_money_memory",
       "claim": "SpendLine makes autonomous spend histories memory-linearizable.",

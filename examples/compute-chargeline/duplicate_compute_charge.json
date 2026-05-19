@@ -1,0 +1,30 @@
+{
+  "caseId": "CCL-BAD-004",
+  "charge": {
+    "attestationRef": "attestation:local-demo-ref",
+    "attestationRequired": true,
+    "buyerAgentId": "buyer-agent-001",
+    "buyerComputePolicy": "ALLOWS_REUSE",
+    "buyerMemoryHead": "flowpulse-buyer-compute-001",
+    "chargeAlreadyConsumed": true,
+    "chargeId": "compute-charge-001",
+    "computeRoute": {
+      "cacheLineageVerdict": "NOT_APPLICABLE",
+      "computePulseId": "computepulse-fresh-001",
+      "computeReuseVerdict": "NOT_APPLICABLE",
+      "routeDecision": "RUN_GPU_JOB"
+    },
+    "expectedBuyerMemoryHead": "flowpulse-buyer-compute-001",
+    "expectedRuntimeCommitment": "sha256:runtime-cuda-vllm-001",
+    "observedPaymentRequirementHash": "sha256:compute-payment-001",
+    "paymentMode": "FRESH_COMPUTE",
+    "paymentRequirementHash": "sha256:compute-payment-001",
+    "rootfieldId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+    "runtimeCommitment": "sha256:runtime-cuda-vllm-001",
+    "schema": "flowmemory.compute_charge.v0",
+    "sellerAgentId": "compute-agent-001"
+  },
+  "expectedDecision": "REJECT_CHARGE",
+  "schema": "flowmemory.compute_chargeline_case.v0",
+  "title": "duplicate compute charge"
+}

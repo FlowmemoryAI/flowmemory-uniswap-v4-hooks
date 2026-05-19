@@ -22,6 +22,7 @@ What this release-prep surface includes:
 - FMM-0 witness, counterexample, closure, boundary, and forbidden-core harnesses.
 - FlowPulse Boundary ABI gate for hook-time and receipt-time schema separation.
 - Cache Lineage Gate, Compute Reuse Router, and Compute Reuse Consistency for proof-backed AI/GPU workflow reuse discipline.
+- Compute ChargeLine for matching AI/GPU compute payment to the memory-consistent compute route.
 - SpendLine Harness for memory-linearizable autonomous agent spend histories.
 - DuplexLine Harness for co-serializable buyer/seller agent exchange histories.
 - Agent Commerce Conservation Lab for obligation conservation across spend, work, compute, refusal, and memory state.
@@ -32,7 +33,7 @@ What this release-prep surface includes:
 
 Verified locally before this entry:
 
-- `python -m unittest discover -s tools -p 'test_*.py'`: 343 tests passed.
+- `python -m unittest discover -s tools -p 'test_*.py'`: 361 tests passed.
 - `forge fmt --check`: passed.
 - `forge build`: passed.
 - `forge test -vvv`: 12 tests passed.

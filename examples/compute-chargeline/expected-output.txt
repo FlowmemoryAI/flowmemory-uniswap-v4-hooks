@@ -1,0 +1,34 @@
+Compute ChargeLine
+
+Valid charges:
+  CCL-OK-001  fresh compute charged as fresh         CHARGE_ACCEPTED
+  CCL-OK-002  safe reuse charged as reuse            CHARGE_ACCEPTED
+
+Invalid charges:
+  CCL-BAD-001 reuse route charged as fresh           REJECT_CHARGE
+  CCL-BAD-002 unsafe reuse charged                   REJECT_CHARGE
+  CCL-BAD-003 buyer requires fresh seller reuses     REJECT_CHARGE
+  CCL-BAD-004 duplicate compute charge               REJECT_CHARGE
+  CCL-BAD-005 missing required attestation           REJECT_CHARGE
+  CCL-BAD-006 runtime drift under same payment       REJECT_CHARGE
+  CCL-BAD-007 payment requirement drift              REJECT_CHARGE
+  CCL-BAD-008 stale buyer memory head                REJECT_CHARGE
+
+Invariant coverage:
+  CCL-I1   Payment mode matches compute route          PASS
+  CCL-I2   Unsafe reuse cannot close compute payment   PASS
+  CCL-I3   Fresh-compute policy cannot be laundered    PASS
+  CCL-I4   Payment requirement hash is stable          PASS
+  CCL-I5   Compute charge is single-use                PASS
+  CCL-I6   Required attestation reference is present   PASS
+  CCL-I7   Runtime commitment is stable                PASS
+  CCL-I8   Buyer memory head is current                PASS
+
+Summary:
+  compute charges checked: 10
+  valid charges accepted: 2/2
+  invalid charges rejected: 8/8
+  escaped invalid charges: 0
+
+Result:
+  Compute payment must match the memory-consistent compute route.

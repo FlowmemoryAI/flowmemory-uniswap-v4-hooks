@@ -1,0 +1,6 @@
+{
+  "caseId": "CCL-OK-001",
+  "expectedDecision": "CHARGE_ACCEPTED",
+  "schema": "flowmemory.compute_chargeline_case.v0",
+  "title": "fresh compute charged as fresh"
+}

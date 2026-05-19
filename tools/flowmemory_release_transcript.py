@@ -22,6 +22,7 @@ try:  # pragma: no cover
         cache_lineage_gate,
         compute_reuse_consistency,
         compute_reuse_router,
+        compute_chargeline,
         duplexline_harness,
         fmm0_witness_pack,
         launch_reality_check,
@@ -35,6 +36,7 @@ except ModuleNotFoundError:  # pragma: no cover
     import cache_lineage_gate  # type: ignore
     import compute_reuse_consistency  # type: ignore
     import compute_reuse_router  # type: ignore
+    import compute_chargeline  # type: ignore
     import duplexline_harness  # type: ignore
     import fmm0_witness_pack  # type: ignore
     import launch_reality_check  # type: ignore
@@ -88,6 +90,7 @@ def build_transcript() -> dict[str, Any]:
     compute = compute_reuse_router.build_demo()
     cache = cache_lineage_gate.build_demo()
     consistency = compute_reuse_consistency.build_report()
+    chargeline = compute_chargeline.build_report()
     spendline = spendline_harness.build_report()
     duplexline = duplexline_harness.build_report()
     conservation = agent_commerce_conservation.build_report()
@@ -124,6 +127,12 @@ def build_transcript() -> dict[str, Any]:
             status_from_bool(consistency["status"] == "pass"),
             f"{consistency['casesPassed']}/{consistency['casesTotal']} cases, {consistency['unsafeReuseBlocked']}/{consistency['unsafeReuseTotal']} unsafe reuse blocked",
             consistency,
+        ),
+        evidence_item(
+            "Compute ChargeLine",
+            status_from_bool(chargeline["status"] == "pass"),
+            f"{chargeline['validChargesAccepted']}/{chargeline['validChargesTotal']} valid charges, {chargeline['invalidChargesRejected']}/{chargeline['invalidChargesTotal']} invalid charges rejected",
+            chargeline,
         ),
         evidence_item(
             "SpendLine Harness",
