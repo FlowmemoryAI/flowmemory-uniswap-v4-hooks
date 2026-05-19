@@ -1,0 +1,11 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-010",
+  "title": "payment requirement double consumed",
+  "ledger": {
+    "consumedPaymentRequirementHashes": [
+      "sha256:d2cb341946c5ffa6f84e81a7c98ebf80f221d672104687f8b3aed48a4f4e56db"
+    ]
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

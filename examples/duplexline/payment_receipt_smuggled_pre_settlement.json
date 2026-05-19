@@ -1,0 +1,14 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-013",
+  "title": "payment receipt smuggled before settlement",
+  "exchange": {
+    "claimedPaymentReceiptFacts": [
+      {
+        "field": "txHash",
+        "boundaryId": "payment-boundary-missing"
+      }
+    ]
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

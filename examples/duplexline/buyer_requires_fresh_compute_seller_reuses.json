@@ -1,0 +1,16 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-011",
+  "title": "buyer requires fresh compute seller reuses",
+  "exchange": {
+    "spendSurface": "compute_service_payment",
+    "computeReuseVerdict": "REUSE_PRIOR_COMPUTE",
+    "cacheLineageVerdict": "CACHE_REUSE_ALLOWED",
+    "buyerComputePolicy": {
+      "freshComputeRequired": true,
+      "reuseAllowed": false,
+      "attestationRequired": false
+    }
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

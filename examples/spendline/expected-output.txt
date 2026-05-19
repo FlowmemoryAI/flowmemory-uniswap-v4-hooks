@@ -1,0 +1,23 @@
+SpendLine Harness
+
+Valid spend:
+  SPL-OK-001  PASS  ACCEPT_SPENDLINE   all_spendline_gates_passed
+
+Unsafe spends:
+  SPL-BAD-001 PASS  REJECT_SPENDLINE   currentMemoryHeadMatchesLedger
+  SPL-BAD-002 PASS  REJECT_SPENDLINE   intentNotReplayed
+  SPL-BAD-003 PASS  REJECT_SPENDLINE   retrocausal_receipt_claim
+  SPL-BAD-004 PASS  REJECT_SPENDLINE   postSpendFlowPulsePresent
+  SPL-BAD-005 PASS  REJECT_SPENDLINE   rootfield_rollback
+  SPL-BAD-006 PASS  REJECT_SPENDLINE   axiomPatchAllowsSpendSurface
+  SPL-BAD-007 PASS  REJECT_SPENDLINE   paymentRequirementMatchesSpend
+  SPL-BAD-008 PASS  REJECT_SPENDLINE   computeReuseConsistentIfUsed
+
+Summary:
+  spend cases checked: 9
+  valid spends accepted: 1/1
+  unsafe spends rejected: 8/8
+  escaped unsafe spends: 0
+
+Result:
+  Autonomous spend must be memory-linearizable.

@@ -1,0 +1,10 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-005",
+  "title": "compute reuse inconsistent",
+  "exchange": {
+    "spendSurface": "compute_service_payment",
+    "computeReuseVerdict": "RECOMPUTE_REQUIRED"
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

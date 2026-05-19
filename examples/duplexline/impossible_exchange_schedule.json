@@ -1,0 +1,26 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-012",
+  "title": "impossible exchange schedule",
+  "exchange": {
+    "serialSchedule": {
+      "events": [
+        {
+          "eventId": "seller_commits_work",
+          "order": 2,
+          "mustFollow": [
+            "buyer_payment_receipt"
+          ]
+        },
+        {
+          "eventId": "buyer_payment_receipt",
+          "order": 3,
+          "mustFollow": [
+            "seller_commits_work"
+          ]
+        }
+      ]
+    }
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-006",
+  "title": "AxiomPatch downgrade ignored",
+  "request": {
+    "axiomPatchVerdict": "downgraded_to_propose_unsigned_action"
+  },
+  "expectedDecision": "REJECT_SPENDLINE"
+}

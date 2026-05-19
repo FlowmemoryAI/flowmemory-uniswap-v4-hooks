@@ -27,6 +27,8 @@ PUBLIC_CLAIM_FILES = [
     "docs/LAUNCH_DAY_CHECKLIST.md",
     "docs/REVIEWER_QUICKSTART.md",
     "docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md",
+    "docs/SPENDLINE.md",
+    "docs/DUPLEXLINE.md",
 ]
 
 GUARD_START_RE = re.compile(

@@ -393,6 +393,53 @@
       ]
     },
     {
+      "id": "FM-C22",
+      "category": "agent_money_memory",
+      "claim": "SpendLine makes autonomous spend histories memory-linearizable.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/SpendLine.v0.md",
+        "docs/SPENDLINE.md",
+        "tools/spendline_harness.py",
+        "examples/spendline/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/spendline_harness.py demo --pretty",
+        "python -m unittest tools.test_spendline_harness"
+      ],
+      "expected": "SpendLine accepts 1/1 valid spend, rejects 8/8 unsafe spends, and reports 0 escaped unsafe spends.",
+      "nonClaims": [
+        "not_wallet_authorization",
+        "not_custody",
+        "not_fund_protection",
+        "not_semantic_truth"
+      ]
+    },
+    {
+      "id": "FM-C23",
+      "category": "agent_exchange_memory",
+      "claim": "DuplexLine makes buyer/seller agent exchange co-serializable across spend, work, payment, and memory state.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/DuplexLine.v0.md",
+        "docs/DUPLEXLINE.md",
+        "tools/duplexline_harness.py",
+        "examples/duplexline/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/duplexline_harness.py demo --pretty",
+        "python -m unittest tools.test_duplexline_harness"
+      ],
+      "expected": "DuplexLine accepts 1/1 valid exchange, rejects 15/15 unsafe exchanges, and reports 0 escaped unsafe exchanges.",
+      "nonClaims": [
+        "not_escrow",
+        "not_wallet_authorization",
+        "not_work_quality_proof",
+        "not_semantic_truth",
+        "not_fund_protection"
+      ]
+    },
+    {
       "id": "FM-C19",
       "category": "launch_packaging",
       "claim": "FlowMemory Release Transcript gives one offline object for passed, pending, and non-claimed launch state.",

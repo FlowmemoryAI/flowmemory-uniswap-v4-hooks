@@ -1,0 +1,40 @@
+DuplexLine Harness
+
+Valid exchange:
+  DPL-OK-001  PASS  ACCEPT_DUPLEXLINE   all_duplexline_gates_passed
+
+Unsafe exchanges:
+  DPL-BAD-001 PASS  REJECT_DUPLEXLINE   taskCommitmentsMatch
+  DPL-BAD-002 PASS  REJECT_DUPLEXLINE   buyerMemoryHeadMatchesLedger
+  DPL-BAD-003 PASS  REJECT_DUPLEXLINE   paymentRequirementHashMatches
+  DPL-BAD-004 PASS  REJECT_DUPLEXLINE   sellerWorkLineSerializable
+  DPL-BAD-005 PASS  REJECT_DUPLEXLINE   computeReuseConsistentIfUsed
+  DPL-BAD-006 PASS  REJECT_DUPLEXLINE   sellerMemoryHeadMatchesLedger
+  DPL-BAD-007 PASS  REJECT_DUPLEXLINE   buyerSpendLineAccepted
+  DPL-BAD-008 PASS  REJECT_DUPLEXLINE   counterpartyPayeeBinding
+  DPL-BAD-009 PASS  REJECT_DUPLEXLINE   workCommitmentNotReplayed
+  DPL-BAD-010 PASS  REJECT_DUPLEXLINE   paymentRequirementNotConsumed
+  DPL-BAD-011 PASS  REJECT_DUPLEXLINE   buyerComputePolicyAllowsSellerReuse
+  DPL-BAD-012 PASS  REJECT_DUPLEXLINE   exchangeScheduleAcyclic
+  DPL-BAD-013 PASS  REJECT_DUPLEXLINE   noPreSettlementPaymentReceiptClaims
+  DPL-BAD-014 PASS  REJECT_DUPLEXLINE   serviceEndpointConserved
+  DPL-BAD-015 PASS  REJECT_DUPLEXLINE   sellerStateFmm0Live
+
+Invariant coverage:
+  DPL-I1  PASS  Co-Serial Exchange
+  DPL-I2  PASS  Counterparty-Payee Binding
+  DPL-I3  PASS  Quote-Task-Work Conservation
+  DPL-I4  PASS  Dual-Head Compatibility
+  DPL-I5  PASS  No Pre-Receipt Economic Claims
+  DPL-I6  PASS  Buyer Reuse Policy Dominance
+  DPL-I7  PASS  Idempotent Exchange Commitment
+  DPL-I8  PASS  No Quality/Truth Upgrade
+
+Summary:
+  exchanges checked: 16
+  valid exchanges accepted: 1/1
+  unsafe exchanges rejected: 15/15
+  escaped unsafe exchanges: 0
+
+Result:
+  Agent-to-agent exchange must be co-serializable across spend, work, payment, and memory state.

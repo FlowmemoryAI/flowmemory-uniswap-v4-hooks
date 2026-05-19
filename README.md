@@ -569,10 +569,44 @@ Compute Reuse Consistency ties the AI/GPU bridge back into the memory model:
 safe reuse requires cache lineage, compute fingerprint compatibility, and
 receipt-bound machine-history consistency.
 
+For autonomous money movement:
+
+```text
+agent wallet + payment rail + FlowPulse memory head -> SpendLine -> ACCEPT_SPENDLINE or REJECT_SPENDLINE
+```
+
+SpendLine checks whether a declared agent spend can be accepted into a
+receipt-bound memory history. It does not authorize wallets, custody funds, or
+protect funds. It asks whether the spend is memory-linearizable: current head,
+declared intent, post-spend FlowPulse, replay status, and FlowSerial ordering
+must all agree.
+SpendLine also rejects ignored AxiomPatch downgrades, x402 payment requirement
+mismatches, and compute-reuse/payment drift.
+
+For autonomous agent-to-agent exchange:
+
+```text
+buyer SpendLine + seller work memory + payment requirement -> DuplexLine -> ACCEPT_DUPLEXLINE or REJECT_DUPLEXLINE
+```
+
+DuplexLine checks whether the buyer's spend and the seller's work can be
+co-serialized into one memory-consistent exchange. It does not escrow payments,
+authorize wallets, prove work quality, or settle disputes. It asks whether both
+sides of the exchange acted from compatible receipt-bound memory histories.
+DuplexLine rejects wrong-task seller output, stale buyer memory, payment
+requirement drift, missing seller FlowSerial evidence, and compute-reuse/payment
+drift. It also rejects stale seller memory and duplicate buyer intent replay.
+The hardened pass adds counterparty-payee binding, work replay rejection,
+payment requirement consumption, buyer compute policy dominance, impossible
+exchange schedule detection, payment receipt smuggling rejection, endpoint
+drift rejection, and seller FMM-0 state checks.
+
 ```bash
 python tools/cache_lineage_gate.py demo --pretty
 python tools/compute_reuse_router.py demo --pretty
 python tools/compute_reuse_consistency.py demo --pretty
+python tools/spendline_harness.py demo --pretty
+python tools/duplexline_harness.py demo --pretty
 ```
 
 Expected launch signal:
@@ -585,6 +619,10 @@ GPU jobs avoided: 1
 unsafe reuse rejected: 4/4
 cases passed: 5/5
 unsafe reuse blocked: 4/4
+valid spends accepted: 1/1
+unsafe spends rejected: 8/8
+valid exchanges accepted: 1/1
+unsafe exchanges rejected: 15/15
 ```
 
 ## Release Transcript
@@ -603,7 +641,7 @@ Expected launch line:
 FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
 ```
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), [docs/SPENDLINE.md](docs/SPENDLINE.md), [docs/DUPLEXLINE.md](docs/DUPLEXLINE.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Surfaces
 
@@ -951,6 +989,8 @@ docs/
   COMPUTE_PULSE.md                 # ComputePulse architecture for AI/GPU memory artifacts
   COMPUTE_REUSE_CONSISTENCY.md     # Cache, compute, and receipt-history reuse harness
   COMPUTE_REUSE_ROUTER.md          # Proof-backed scheduler decisions for reusable compute
+  SPENDLINE.md                     # Memory-linearizable autonomous spend histories
+  DUPLEXLINE.md                    # Co-serializable buyer/seller agent exchange
   PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
@@ -997,6 +1037,8 @@ tools/
   cache_lineage_gate.py            # Gates KV/context reuse through lineage commitments
   compute_reuse_consistency.py     # Tests cache, compute, and receipt-history reuse gates
   compute_reuse_router.py          # Routes safe reuse of committed AI/GPU work
+  spendline_harness.py             # Checks autonomous spend history consistency
+  duplexline_harness.py            # Checks buyer/seller exchange consistency
   flowmemory_release_transcript.py # Builds the canonical offline launch transcript
   public_claim_gate.py             # Checks public launch copy for unguarded overclaims
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
@@ -1020,6 +1062,8 @@ specs/
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
   ComputeReuseConsistency.v0.md    # Draft cache/compute/history reuse consistency spec
   ComputeReuseRouter.v0.md         # Draft scheduler-facing compute reuse spec
+  SpendLine.v0.md                  # Draft autonomous spend history consistency spec
+  DuplexLine.v0.md                 # Draft buyer/seller exchange consistency spec
   FlowMemoryReleaseTranscript.v0.md # Draft offline release transcript spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
   AgentMemoryPack.v0.md            # Draft proof-carried agent memory pack spec
@@ -1039,6 +1083,8 @@ examples/
   cache-lineage-gate/              # Example proof-carried KV/context reuse decision
   compute-reuse-router/            # Example proof-backed GPU workflow reuse decision
   compute-reuse-consistency/       # Example cache + compute + history consistency harness
+  spendline/                       # Example memory-linearizable agent spend harness
+  duplexline/                      # Example co-serializable buyer/seller exchange harness
   release-transcript/              # Example canonical launch transcript output
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action

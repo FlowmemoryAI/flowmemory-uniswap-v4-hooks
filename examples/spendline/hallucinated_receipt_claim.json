@@ -1,0 +1,8 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-003",
+  "title": "hallucinated receipt claim before receipt boundary",
+  "retrocausal": true,
+  "eventDeclaredOrder": 1,
+  "expectedDecision": "REJECT_SPENDLINE"
+}

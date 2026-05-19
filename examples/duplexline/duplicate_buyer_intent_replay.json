@@ -1,0 +1,11 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-007",
+  "title": "duplicate buyer intent replay",
+  "ledger": {
+    "spentBuyerIntentCommitments": [
+      "0x4444444444444444444444444444444444444444444444444444444444444444"
+    ]
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

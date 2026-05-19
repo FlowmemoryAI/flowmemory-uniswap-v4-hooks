@@ -1,0 +1,6 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-OK-001",
+  "title": "valid buyer seller exchange",
+  "expectedDecision": "ACCEPT_DUPLEXLINE"
+}

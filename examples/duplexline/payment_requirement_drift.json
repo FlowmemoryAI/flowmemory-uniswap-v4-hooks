@@ -1,0 +1,14 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-003",
+  "title": "payment requirement drift",
+  "exchange": {
+    "paymentRequirement": {
+      "asset": "USDC",
+      "amount": "0.020000",
+      "recipient": "x402://market-data.example",
+      "taskCommitment": "sha256:task-agent-market-data"
+    }
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

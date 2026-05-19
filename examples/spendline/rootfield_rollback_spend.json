@@ -1,0 +1,29 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-005",
+  "title": "rootfield rollback spend",
+  "request": {
+    "currentMemoryHead": "flowpulse-head-b",
+    "observedBoundaries": [
+      "flowpulse-head-b"
+    ],
+    "claimedReceiptFacts": [
+      {
+        "field": "txHash",
+        "boundaryId": "flowpulse-head-b"
+      },
+      {
+        "field": "logIndex",
+        "boundaryId": "flowpulse-head-b"
+      }
+    ],
+    "postSpendFlowPulse": "flowpulse-head-b"
+  },
+  "ledger": {
+    "currentMemoryHead": "flowpulse-head-b"
+  },
+  "rootfieldRollback": true,
+  "eventWriteHead": "flowpulse-head-a",
+  "eventDeclaredOrder": 5,
+  "expectedDecision": "REJECT_SPENDLINE"
+}

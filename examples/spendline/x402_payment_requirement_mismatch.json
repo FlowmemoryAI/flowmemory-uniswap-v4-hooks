@@ -1,0 +1,13 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-007",
+  "title": "x402 payment requirement mismatch",
+  "request": {
+    "paymentRequirement": {
+      "asset": "USDC",
+      "amount": "0.020000",
+      "recipient": "x402://market-data.example"
+    }
+  },
+  "expectedDecision": "REJECT_SPENDLINE"
+}

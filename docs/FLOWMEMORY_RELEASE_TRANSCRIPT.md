@@ -21,6 +21,8 @@ What is explicitly not claimed?
 - Compute Reuse Router.
 - Cache Lineage Gate.
 - Compute Reuse Consistency Harness.
+- SpendLine Harness.
+- DuplexLine Harness.
 - Public Base Sepolia receipt evidence gate.
 
 The transcript is deterministic and does not depend on live RPC.
@@ -49,6 +51,8 @@ The repo is not only a hook demo. It now has:
 - an executable GPU workflow reuse gate;
 - an executable cache-lineage reuse gate;
 - an executable compute-reuse consistency harness;
+- an executable autonomous spend consistency harness;
+- an executable buyer/seller agent exchange consistency harness;
 - a pending-safe public evidence path.
 
 The transcript makes that consumable in one artifact.

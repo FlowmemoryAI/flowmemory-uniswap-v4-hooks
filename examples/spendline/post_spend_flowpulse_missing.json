@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-004",
+  "title": "post-spend FlowPulse missing",
+  "request": {
+    "postSpendFlowPulse": ""
+  },
+  "expectedDecision": "REJECT_SPENDLINE"
+}

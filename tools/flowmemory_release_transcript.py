@@ -21,8 +21,10 @@ try:  # pragma: no cover
         cache_lineage_gate,
         compute_reuse_consistency,
         compute_reuse_router,
+        duplexline_harness,
         fmm0_witness_pack,
         launch_reality_check,
+        spendline_harness,
         verify_release_evidence,
     )
 except ModuleNotFoundError:  # pragma: no cover
@@ -30,8 +32,10 @@ except ModuleNotFoundError:  # pragma: no cover
     import cache_lineage_gate  # type: ignore
     import compute_reuse_consistency  # type: ignore
     import compute_reuse_router  # type: ignore
+    import duplexline_harness  # type: ignore
     import fmm0_witness_pack  # type: ignore
     import launch_reality_check  # type: ignore
+    import spendline_harness  # type: ignore
     import verify_release_evidence  # type: ignore
 
 
@@ -80,6 +84,8 @@ def build_transcript() -> dict[str, Any]:
     compute = compute_reuse_router.build_demo()
     cache = cache_lineage_gate.build_demo()
     consistency = compute_reuse_consistency.build_report()
+    spendline = spendline_harness.build_report()
+    duplexline = duplexline_harness.build_report()
     release = verify_release_evidence.build_report()
 
     local_items = [
@@ -112,6 +118,18 @@ def build_transcript() -> dict[str, Any]:
             status_from_bool(consistency["status"] == "pass"),
             f"{consistency['casesPassed']}/{consistency['casesTotal']} cases, {consistency['unsafeReuseBlocked']}/{consistency['unsafeReuseTotal']} unsafe reuse blocked",
             consistency,
+        ),
+        evidence_item(
+            "SpendLine Harness",
+            status_from_bool(spendline["status"] == "pass"),
+            f"{spendline['validSpendsAccepted']}/{spendline['validSpendsTotal']} valid spend, {spendline['unsafeSpendsRejected']}/{spendline['unsafeSpendsTotal']} unsafe spends rejected",
+            spendline,
+        ),
+        evidence_item(
+            "DuplexLine Harness",
+            status_from_bool(duplexline["status"] == "pass"),
+            f"{duplexline['validExchangesAccepted']}/{duplexline['validExchangesTotal']} valid exchange, {duplexline['unsafeExchangesRejected']}/{duplexline['unsafeExchangesTotal']} unsafe exchanges rejected",
+            duplexline,
         ),
     ]
     public_status = release["verdict"]["publicBaseSepoliaReceiptEvidence"]

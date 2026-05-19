@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-008",
+  "title": "counterparty payee rebinding",
+  "exchange": {
+    "paymentRecipient": "x402://attacker.example"
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

@@ -89,6 +89,8 @@ jobs:
             docs/COMPUTE_PULSE.md
             docs/COMPUTE_REUSE_CONSISTENCY.md
             docs/COMPUTE_REUSE_ROUTER.md
+            docs/SPENDLINE.md
+            docs/DUPLEXLINE.md
             docs/PROOF_EXPLORER_CONCEPT.md
             docs/PROOF_CARRIED_AGENT_MEMORY.md
             docs/AXIOM_WRIT.md
@@ -127,6 +129,8 @@ jobs:
             specs/ComputePulse.v0.md
             specs/ComputeReuseConsistency.v0.md
             specs/ComputeReuseRouter.v0.md
+            specs/SpendLine.v0.md
+            specs/DuplexLine.v0.md
             specs/FlowMemoryReleaseTranscript.v0.md
             specs/MachineMemoryTrace.v0.md
             specs/AgentMemoryPack.v0.md
@@ -158,6 +162,35 @@ jobs:
             examples/compute-reuse-router/expected-output.txt
             examples/compute-reuse-consistency/README.md
             examples/compute-reuse-consistency/expected-output.txt
+            examples/spendline/README.md
+            examples/spendline/valid_spend_after_memory_head.json
+            examples/spendline/stale_memory_head_spend.json
+            examples/spendline/duplicate_intent_replay.json
+            examples/spendline/hallucinated_receipt_claim.json
+            examples/spendline/post_spend_flowpulse_missing.json
+            examples/spendline/rootfield_rollback_spend.json
+            examples/spendline/axiompatch_downgrade_ignored.json
+            examples/spendline/x402_payment_requirement_mismatch.json
+            examples/spendline/compute_reuse_inconsistent.json
+            examples/spendline/expected-output.txt
+            examples/duplexline/README.md
+            examples/duplexline/valid_buyer_seller_exchange.json
+            examples/duplexline/seller_output_wrong_task.json
+            examples/duplexline/buyer_stale_memory_head.json
+            examples/duplexline/payment_requirement_drift.json
+            examples/duplexline/seller_missing_flowserial.json
+            examples/duplexline/compute_reuse_inconsistent.json
+            examples/duplexline/seller_stale_memory_head.json
+            examples/duplexline/duplicate_buyer_intent_replay.json
+            examples/duplexline/counterparty_payee_rebinding.json
+            examples/duplexline/work_replay_across_buyer.json
+            examples/duplexline/payment_requirement_double_consumed.json
+            examples/duplexline/buyer_requires_fresh_compute_seller_reuses.json
+            examples/duplexline/impossible_exchange_schedule.json
+            examples/duplexline/payment_receipt_smuggled_pre_settlement.json
+            examples/duplexline/task_endpoint_drift.json
+            examples/duplexline/seller_reader_derived_not_fmm0_live.json
+            examples/duplexline/expected-output.txt
             examples/release-transcript/README.md
             examples/release-transcript/expected-output.txt
             examples/axiom-writ/README.md
@@ -293,6 +326,8 @@ jobs:
             tools/cache_lineage_gate.py
             tools/compute_reuse_consistency.py
             tools/compute_reuse_router.py
+            tools/spendline_harness.py
+            tools/duplexline_harness.py
             tools/flowmemory_release_transcript.py
             tools/public_claim_gate.py
             tools/axiom_writ.py
@@ -386,6 +421,18 @@ jobs:
 
       - name: Check Compute Reuse Consistency demo
         run: python tools/compute_reuse_consistency.py demo --pretty
+
+      - name: Test SpendLine Harness
+        run: python -m unittest tools.test_spendline_harness
+
+      - name: Check SpendLine Harness demo
+        run: python tools/spendline_harness.py demo --pretty
+
+      - name: Test DuplexLine Harness
+        run: python -m unittest tools.test_duplexline_harness
+
+      - name: Check DuplexLine Harness demo
+        run: python tools/duplexline_harness.py demo --pretty
 
       - name: Test FlowMemory release transcript
         run: python -m unittest tools.test_flowmemory_release_transcript

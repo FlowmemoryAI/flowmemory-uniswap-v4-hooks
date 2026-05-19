@@ -1,0 +1,10 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-008",
+  "title": "compute reuse inconsistent for paid work",
+  "request": {
+    "spendSurface": "compute_service_payment",
+    "computeReuseVerdict": "RECOMPUTE_REQUIRED"
+  },
+  "expectedDecision": "REJECT_SPENDLINE"
+}

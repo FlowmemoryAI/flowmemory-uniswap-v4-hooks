@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-004",
+  "title": "seller missing FlowSerial",
+  "ledger": {
+    "sellerReceiptBoundaries": []
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

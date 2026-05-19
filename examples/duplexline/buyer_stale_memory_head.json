@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-002",
+  "title": "buyer stale memory head",
+  "exchange": {
+    "buyerMemoryHead": "flowpulse-stale-buyer-head"
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

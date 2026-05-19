@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-015",
+  "title": "seller reader derived not FMM0 live",
+  "exchange": {
+    "sellerStatePhase": "READER_DERIVED_ONLY"
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

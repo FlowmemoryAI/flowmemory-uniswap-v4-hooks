@@ -1,0 +1,12 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-001",
+  "title": "stale memory head spend",
+  "request": {
+    "currentMemoryHead": "flowpulse-stale-head",
+    "observedBoundaries": [
+      "flowpulse-stale-head"
+    ]
+  },
+  "expectedDecision": "REJECT_SPENDLINE"
+}

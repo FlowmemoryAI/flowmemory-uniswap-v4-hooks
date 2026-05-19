@@ -147,6 +147,42 @@ Tests:
 python -m unittest tools.test_compute_reuse_consistency
 ```
 
+## `spendline_harness.py`
+
+Checks memory-linearizability for autonomous agent spending.
+
+SpendLine asks whether a declared spend can be admitted into a receipt-bound
+memory history before downstream systems treat the spend as memory-consistent.
+It does not authorize wallets, custody funds, or protect funds.
+
+```bash
+python tools/spendline_harness.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_spendline_harness
+```
+
+## `duplexline_harness.py`
+
+Checks co-serializability for buyer/seller agent exchange.
+
+DuplexLine composes buyer-side SpendLine, seller-side work memory, x402-style
+payment requirement consistency, compute reuse status, and FlowSerial ordering.
+It does not escrow payments, prove work quality, or settle disputes.
+
+```bash
+python tools/duplexline_harness.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_duplexline_harness
+```
+
 ## `flowmemory_release_transcript.py`
 
 Builds one offline launch transcript from the local evidence gates.

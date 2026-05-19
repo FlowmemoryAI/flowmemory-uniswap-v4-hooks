@@ -9,6 +9,8 @@ Local evidence:
   Compute Reuse Router         PASS     1 reuse, 4/4 unsafe reuse rejected
   Cache Lineage Gate           PASS     1 cache reuse, 4/4 unsafe reuse rejected
   Compute Reuse Consistency    PASS     5/5 cases, 4/4 unsafe reuse blocked
+  SpendLine Harness            PASS     1/1 valid spend, 8/8 unsafe spends rejected
+  DuplexLine Harness           PASS     1/1 valid exchange, 15/15 unsafe exchanges rejected
 
 Public evidence:
   Public Base Sepolia Receipt Evidence PENDING  pending-safe public release evidence gate

@@ -1,0 +1,9 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-014",
+  "title": "task endpoint drift",
+  "exchange": {
+    "deliveryEndpointHash": "sha256:drifted-delivery-endpoint"
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

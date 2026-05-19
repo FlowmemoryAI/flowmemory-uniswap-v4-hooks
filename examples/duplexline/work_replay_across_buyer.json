@@ -1,0 +1,11 @@
+{
+  "schema": "flowmemory.duplexline_case.v0",
+  "caseId": "DPL-BAD-009",
+  "title": "work replay across buyer",
+  "ledger": {
+    "consumedWorkCommitments": [
+      "sha256:work-agent-market-data"
+    ]
+  },
+  "expectedDecision": "REJECT_DUPLEXLINE"
+}

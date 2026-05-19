@@ -1,0 +1,6 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-OK-001",
+  "title": "valid spend after memory head",
+  "expectedDecision": "ACCEPT_SPENDLINE"
+}

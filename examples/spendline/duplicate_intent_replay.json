@@ -1,0 +1,14 @@
+{
+  "schema": "flowmemory.spendline_case.v0",
+  "caseId": "SPL-BAD-002",
+  "title": "duplicate intent replay",
+  "request": {
+    "spendIntentCommitment": "0x5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "ledger": {
+    "spentIntentCommitments": [
+      "0x5555555555555555555555555555555555555555555555555555555555555555"
+    ]
+  },
+  "expectedDecision": "REJECT_SPENDLINE"
+}

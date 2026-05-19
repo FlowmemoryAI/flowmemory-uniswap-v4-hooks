@@ -23,6 +23,8 @@ class FlowMemoryReleaseTranscriptTest(unittest.TestCase):
         self.assertIn("Compute Reuse Router", local_names)
         self.assertIn("Cache Lineage Gate", local_names)
         self.assertIn("Compute Reuse Consistency", local_names)
+        self.assertIn("SpendLine Harness", local_names)
+        self.assertIn("DuplexLine Harness", local_names)
         self.assertIn("Public Base Sepolia Receipt Evidence", public_names)
 
     def test_evidence_items_are_digest_bound(self):
