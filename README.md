@@ -111,6 +111,27 @@ Every launch claim has a command, and every overclaim has a red line.
 
 See [docs/SKEPTIC_REVIEW_WALKTHROUGH.md](docs/SKEPTIC_REVIEW_WALKTHROUGH.md), [docs/LAUNCH_CLAIM_LEDGER.md](docs/LAUNCH_CLAIM_LEDGER.md), and [examples/reviewer-walkthrough/](examples/reviewer-walkthrough/).
 
+## Base Sepolia Evidence Gate
+
+Public testnet receipt evidence should be explicit, not implied.
+
+Run:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
+Current expected state until a real `releases/base-sepolia/RELEASE_EVIDENCE.json` packet exists:
+
+```text
+Public Base Sepolia receipt evidence: PENDING
+Production verifier infrastructure: NOT_CLAIMED
+```
+
+The gate is pending-safe. It will not turn public evidence into `PASS` unless the release packet and referenced receipt/FlowPulse evidence files exist and validate.
+
+See [releases/base-sepolia/README.md](releases/base-sepolia/README.md) and [releases/base-sepolia/RELEASE_EVIDENCE.template.json](releases/base-sepolia/RELEASE_EVIDENCE.template.json).
+
 ## Memory Consistency Card
 
 Run the claim-to-evidence scorecard:
@@ -654,6 +675,7 @@ tools/
   memory_consistency_card.py       # Maps launch claims to executable consistency evidence
   render_fmm0_matrix.py            # Renders the FMM-0 conformance matrix
   reviewer_walkthrough.py          # Renders the launch claim ledger for skeptics
+  verify_release_evidence.py       # Pending-safe Base Sepolia evidence gate
 specs/
   FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
@@ -687,6 +709,8 @@ examples/
   memory-consistency-card/          # Claim-to-evidence card output
 releases/
   base-sepolia/README.md           # Staging area for public release evidence
+  base-sepolia/RELEASE_EVIDENCE.template.json
+  base-sepolia/expected-pending-output.txt
 ```
 
 ## Run It

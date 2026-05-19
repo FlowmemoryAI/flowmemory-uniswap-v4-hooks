@@ -103,7 +103,7 @@
       "name": "Public Release Evidence",
       "invariant": "A public Base Sepolia release record attaches receipt-derived txHash/logIndex evidence from a real deployed hook.",
       "evidence": [
-        "releases/base-sepolia/flowpulse-evidence.json"
+        "releases/base-sepolia/RELEASE_EVIDENCE.json"
       ],
       "statusWhenMissing": "pending"
     }

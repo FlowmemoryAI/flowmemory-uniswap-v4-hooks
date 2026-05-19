@@ -41,6 +41,8 @@ REQUIRED_FILES = [
     "tools/memory_consistency_card.py",
     "tools/render_fmm0_matrix.py",
     "tools/reviewer_walkthrough.py",
+    "tools/verify_release_evidence.py",
+    "releases/base-sepolia/RELEASE_EVIDENCE.template.json",
 ]
 BOUNDARY_LINES = [
     "swap != memory",

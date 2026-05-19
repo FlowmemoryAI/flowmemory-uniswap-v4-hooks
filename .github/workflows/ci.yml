@@ -231,7 +231,10 @@ jobs:
             tools/memory_consistency_card.py
             tools/render_fmm0_matrix.py
             tools/reviewer_walkthrough.py
+            tools/verify_release_evidence.py
             releases/base-sepolia/README.md
+            releases/base-sepolia/RELEASE_EVIDENCE.template.json
+            releases/base-sepolia/expected-pending-output.txt
           )
 
           missing=0
@@ -362,3 +365,9 @@ jobs:
 
       - name: Check reviewer walkthrough
         run: python tools/reviewer_walkthrough.py --pretty
+
+      - name: Test release evidence gate
+        run: python -m unittest tools.test_verify_release_evidence
+
+      - name: Check release evidence gate
+        run: python tools/verify_release_evidence.py --pretty

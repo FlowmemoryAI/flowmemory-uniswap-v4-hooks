@@ -1,0 +1,37 @@
+{
+  "schema": "flowmemory.release_evidence.v0",
+  "release": {
+    "name": "FlowMemory Uniswap v4 Hooks Public Launch Evidence",
+    "network": "Base Sepolia",
+    "status": "public_testnet_evidence",
+    "notClaims": [
+      "not_live_base_mainnet",
+      "not_production_verifier_infrastructure",
+      "not_audited_custody",
+      "not_fund_protection",
+      "not_semantic_truth",
+      "not_model_correctness",
+      "not_gpu_acceleration",
+      "not_swap_control"
+    ]
+  },
+  "hookBoundary": {
+    "hookType": "Uniswap v4 afterSwap",
+    "memoryArtifact": "FlowPulse",
+    "proofEnvelope": "transaction_receipt",
+    "receiptMetadataAttachedBy": "reader_verifier"
+  },
+  "evidenceFiles": {
+    "receipt": "flowpulse-receipt.json",
+    "flowPulseEvidence": "flowpulse-evidence.json",
+    "fmm0Verdict": "fmm0-release-verdict.json"
+  },
+  "expected": {
+    "publicReceiptEvidence": "PASS",
+    "flowPulseArtifactPresent": true,
+    "txHashReaderAttached": true,
+    "logIndexReaderAttached": true,
+    "hookKnowsTxHashDuringExecution": false,
+    "hookKnowsLogIndexDuringExecution": false
+  }
+}

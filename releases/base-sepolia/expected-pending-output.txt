@@ -1,0 +1,29 @@
+FlowMemory Base Sepolia Release Evidence
+
+Network: Base Sepolia
+Status: missing_release_packet
+
+Boundary model:
+  swap transaction != memory
+  transaction = proof envelope
+  FlowPulse = memory artifact
+  hook does not know txHash/logIndex
+  reader/verifier attaches receipt metadata later
+
+Receipt checks:
+  release packet present              PENDING
+  txHash present                      PENDING
+  logIndex present                    PENDING
+  FlowPulse artifact present          PENDING
+  rootfieldId present                 PENDING
+  commitment present                  PENDING
+
+FMM-0 release verdict:
+  Public Base Sepolia receipt evidence: PENDING
+  Production verifier infrastructure: NOT_CLAIMED
+  Semantic truth: NOT_CLAIMED
+  Custody/fund protection: NOT_CLAIMED
+
+Result: release evidence packet is pending.
+
+Report ID: sha256:b1cf04dd4c3e6a3e676ba638cc374630a7f0dd7e2dfde9bd727dd83fe51652c4

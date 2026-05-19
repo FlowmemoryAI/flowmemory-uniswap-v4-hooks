@@ -34,6 +34,8 @@ The repo now presents a stack rather than a loose set of ideas:
   FlowMemory is treating agent memory as a consistency model, not retrieval.
 - `FMM-0 Skeptic Walkthrough`: a claim ledger that maps every launch claim to
   evidence, commands, expected results, status, and explicit non-claims.
+- `Base Sepolia Evidence Gate`: a pending-safe verifier for the public release
+  evidence packet.
 
 ## Launch Command
 
@@ -61,6 +63,19 @@ Use this as the reviewer credibility packet:
 python tools/reviewer_walkthrough.py --pretty
 ```
 
+Use this to check whether public Base Sepolia receipt evidence is ready:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
+Current expected result before real receipt evidence exists:
+
+```text
+Public Base Sepolia receipt evidence: PENDING
+Production verifier infrastructure: NOT_CLAIMED
+```
+
 Expected core thesis:
 
 ```text
@@ -80,6 +95,8 @@ python tools/launch_reality_check.py --pretty
 python tools/memory_consistency_card.py --pretty
 python -m unittest tools.test_reviewer_walkthrough
 python tools/reviewer_walkthrough.py --pretty
+python -m unittest tools.test_verify_release_evidence
+python tools/verify_release_evidence.py --pretty
 git diff --check
 ```
 
@@ -102,6 +119,7 @@ FlowLitmus makes forbidden outcomes executable.
 FlowMemory Reality Check shows live histories pass and impossible histories fault.
 Memory Consistency Card maps the launch claim to evidence and marks public-chain evidence pending.
 Skeptic Walkthrough maps every public claim to evidence, commands, expected result, and non-claims.
+Release Evidence Gate keeps public receipt evidence pending until a real Base Sepolia packet validates.
 ```
 
 ## What To Share First
@@ -121,7 +139,7 @@ These are not repo-writing tasks. They require public chain evidence:
 - source verification URL;
 - at least one `AfterSwapObserved` log;
 - at least one `FlowPulse` log;
-- reader-generated evidence JSON with receipt-derived `txHash` and `logIndex`;
+- `RELEASE_EVIDENCE.json` with reader-generated receipt-derived `txHash` and `logIndex`;
 - filled Base Sepolia release record.
 
 Until those exist, use the repo as the launch artifact and avoid live deployment

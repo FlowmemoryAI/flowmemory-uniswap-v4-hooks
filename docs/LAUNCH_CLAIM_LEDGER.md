@@ -36,6 +36,12 @@ Render the markdown walkthrough:
 python tools/reviewer_walkthrough.py --markdown docs/SKEPTIC_REVIEW_WALKTHROUGH.md
 ```
 
+Check the public release evidence gate:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or

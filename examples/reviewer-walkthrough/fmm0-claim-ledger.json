@@ -172,12 +172,12 @@
       "claim": "Public Base Sepolia receipt evidence is pending.",
       "status": "PENDING",
       "evidenceFiles": [
-        "releases/base-sepolia/flowpulse-evidence.json"
+        "releases/base-sepolia/RELEASE_EVIDENCE.json"
       ],
       "commands": [
-        "python tools/read_flowpulse_logs.py --pretty"
+        "python tools/verify_release_evidence.py --pretty"
       ],
-      "expected": "A future release evidence file contains observed FlowPulse logs and reader-derived txHash/logIndex.",
+      "expected": "A future RELEASE_EVIDENCE.json packet contains observed FlowPulse logs and reader-derived txHash/logIndex.",
       "nonClaims": [
         "not_live_base_mainnet",
         "not_verified_deployment_yet"

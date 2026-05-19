@@ -64,6 +64,14 @@ python tools/reviewer_walkthrough.py --pretty
 This maps every launch claim to files, commands, expected results, status, and
 explicit non-claims.
 
+For the public release evidence gate:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
+This stays `PENDING` until a real `RELEASE_EVIDENCE.json` packet validates.
+
 ## Technical Thread
 
 1. FlowMemory is not another swap hook. It is a memory hook.
@@ -101,6 +109,9 @@ explicit non-claims.
 11. The skeptic walkthrough makes the claim surface reviewable: every launch
     claim has a command, and every overclaim has a red line.
 
+12. Public Base Sepolia receipt evidence stays `PENDING` until the release
+    evidence gate validates the actual packet.
+
 ## Demo Caption
 
 ```text
@@ -113,6 +124,10 @@ Memory Consistency Card: most AI memory retrieves context. FlowMemory checks whe
 
 ```text
 FMM-0 Skeptic Walkthrough: every launch claim has a command, and every overclaim has a red line.
+```
+
+```text
+Release Evidence Gate: public receipt evidence stays pending until the Base Sepolia packet validates.
 ```
 
 ## Founder Script
@@ -191,3 +206,4 @@ are attached by reader/verifier infrastructure.
 - claim-to-evidence launch scorecard;
 - public Base Sepolia evidence pending until the release record is filled.
 - every launch claim has a command, and every overclaim has a red line.
+- public receipt evidence pending until `RELEASE_EVIDENCE.json` validates.

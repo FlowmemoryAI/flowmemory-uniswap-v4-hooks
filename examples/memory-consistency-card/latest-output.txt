@@ -40,4 +40,4 @@ Do not claim
   no GPU acceleration
   no txHash/logIndex at hook time
 
-Card ID: sha256:ac27a0c2943206bed96e6a6898e2c46ba5e108a5f719d22312fc39117e8e28bc
+Card ID: sha256:8c88efa74512503e055ce199f7e0d6acf33aa57aede2d6a2de0a8dca47308ae3

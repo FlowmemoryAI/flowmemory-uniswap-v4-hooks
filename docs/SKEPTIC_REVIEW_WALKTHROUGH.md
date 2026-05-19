@@ -31,7 +31,7 @@ The goal is not to ask reviewers to believe the category language. The goal is t
 | `FM-C06` FMM-0 defines legal and impossible machine histories around FlowPulse receipt boundaries. | PASS | `specs/FMM-0.v0.md`<br>`docs/FLOWMEMORY_MEMORY_MODEL.md`<br>`examples/memory-model/fmm0.manifest.json`<br>`docs/FMM_0_CONFORMANCE_MATRIX.md` | `python tools/render_fmm0_matrix.py --check` | FMM-0 matrix reports local model status PASS and public release evidence PENDING. | `not_production_standard`, `not_production_verifier_infrastructure` |
 | `FM-C07` FlowSerial catches impossible schedules. | PASS | `tools/flow_serial.py`<br>`tools/test_flow_serial.py`<br>`examples/flow-serial/` | `python -m unittest tools.test_flow_serial` | Retrocausal receipt claims, rollback, and split-brain writes fault. | `not_semantic_truth`, `not_model_correctness` |
 | `FM-C08` FlowLitmus makes forbidden outcomes executable. | PASS | `tools/flow_litmus.py`<br>`tools/test_flow_litmus.py`<br>`examples/flow-litmus/litmus.manifest.json` | `python tools/flow_litmus.py run --suite examples/flow-litmus/litmus.manifest.json` | FlowLitmus reports 8/8 passed. | `not_ai_memory_verifier_network`, `not_model_correctness` |
-| `FM-C09` Public Base Sepolia receipt evidence is pending. | PENDING | `releases/base-sepolia/flowpulse-evidence.json` | `python tools/read_flowpulse_logs.py --pretty` | A future release evidence file contains observed FlowPulse logs and reader-derived txHash/logIndex. | `not_live_base_mainnet`, `not_verified_deployment_yet` |
+| `FM-C09` Public Base Sepolia receipt evidence is pending. | PENDING | `releases/base-sepolia/RELEASE_EVIDENCE.json` | `python tools/verify_release_evidence.py --pretty` | A future RELEASE_EVIDENCE.json packet contains observed FlowPulse logs and reader-derived txHash/logIndex. | `not_live_base_mainnet`, `not_verified_deployment_yet` |
 | `FM-C10` Production verifier infrastructure is not claimed. | NOT_CLAIMED | `docs/LAUNCH_REALITY_CHECK.md`<br>`docs/PUBLIC_LAUNCH_COPY.md`<br>`docs/MEMORY_CONSISTENCY_CARD.md` | - | Launch copy keeps production verifier infrastructure out of the claim surface. | `not_production_verifier_infrastructure`, `not_audited_runtime`, `not_mainnet_proven` |
 
 ## Launch-Safe Wording
@@ -48,4 +48,4 @@ The goal is not to ask reviewers to believe the category language. The goal is t
 - production verifier infrastructure;
 - live Base mainnet deployment.
 
-Walkthrough ID: `sha256:2a737994da120755150f6940994d3956633072fcf8e9d2334c0f608f961a8fcb`
+Walkthrough ID: `sha256:caac38b83557d251de80f74151fd87f124baae5978c8a40e76e2fff7c749198b`

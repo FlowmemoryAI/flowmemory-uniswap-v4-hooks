@@ -2,8 +2,6 @@ import json
 import subprocess
 import sys
 import unittest
-from pathlib import Path
-from tempfile import TemporaryDirectory
 
 from tools import memory_consistency_card
 
@@ -43,15 +41,6 @@ class MemoryConsistencyCardTest(unittest.TestCase):
         payload = json.loads(completed.stdout)
         self.assertEqual(memory_consistency_card.CARD_SCHEMA, payload["schema"])
         self.assertEqual("pass", payload["localStatus"])
-
-    def test_public_release_evidence_status_can_pass_when_file_exists(self):
-        with TemporaryDirectory() as directory:
-            root = Path(directory)
-            evidence = root / memory_consistency_card.PUBLIC_RELEASE_EVIDENCE
-            evidence.parent.mkdir(parents=True)
-            evidence.write_text("{}", encoding="utf-8")
-            level = next(item for item in memory_consistency_card.CONSISTENCY_LEVELS if item["id"] == "FM-C6")
-            self.assertEqual("pass", memory_consistency_card.level_status(level, root, "pass"))
 
     def test_avoids_forbidden_overclaims(self):
         text = memory_consistency_card.render_card(memory_consistency_card.build_card(run_litmus=True)).lower()

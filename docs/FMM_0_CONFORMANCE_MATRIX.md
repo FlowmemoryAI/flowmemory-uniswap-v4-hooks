@@ -26,7 +26,7 @@ Safe launch claim:
 | `FMM-0.R4` Quiescence | PASS | Active pre-boundary frames must quiesce, revalidate, fork, or abandon before joining post-boundary state. | `tools/flow_quiesce.py`<br>`tools/test_flow_quiesce.py`<br>`examples/flow-litmus/cases/FM-QS-001-unquiesced-output.json` | `FM-QS-001` |
 | `FMM-0.R5` Serialization | PASS | Agent histories must serialize around the FlowPulse receipt boundaries they claim to observe. | `tools/flow_serial.py`<br>`tools/test_flow_serial.py`<br>`examples/flow-litmus/cases/FM-SER-001-retrocausal-claim.json`<br>`examples/flow-litmus/cases/FM-SER-002-rootfield-rollback.json`<br>`examples/flow-litmus/cases/FM-SER-003-split-brain-write.json` | `FM-SER-001`, `FM-SER-002`, `FM-SER-003` |
 | `FMM-0.R6` Forbidden Outcomes | PASS | A conforming runtime rejects impossible histories and accepts valid receipt-ordered histories. | `tools/flow_litmus.py`<br>`tools/test_flow_litmus.py`<br>`examples/flow-litmus/litmus.manifest.json`<br>`examples/flow-litmus/cases/FM-OK-001-valid-boundary-history.json` | `FM-LB-001`, `FM-SER-001`, `FM-QS-001`, `FM-RT-001`, `FM-FIS-001`, `FM-SER-002`, `FM-SER-003`, `FM-OK-001` |
-| `FMM-0.R7` Public Release Evidence | PENDING | A public Base Sepolia release record attaches receipt-derived txHash/logIndex evidence from a real deployed hook. | `releases/base-sepolia/flowpulse-evidence.json` | - |
+| `FMM-0.R7` Public Release Evidence | PENDING | A public Base Sepolia release record attaches receipt-derived txHash/logIndex evidence from a real deployed hook. | `releases/base-sepolia/RELEASE_EVIDENCE.json` | - |
 
 ## Result
 
@@ -44,4 +44,4 @@ Pending release evidence: `FMM-0.R7`.
 - `not_gpu_acceleration`
 - `not_hook_enforced_agent_runtime`
 
-Matrix ID: `sha256:afa0e9fccf418c3601fea58bba6d6693e9909610536a914ad5ccc50cbb1e9a69`
+Matrix ID: `sha256:2f4145275b7a88a2d23b08b6d1ac53c5cd2f7c03a1d07d5e720071a0428a4db1`

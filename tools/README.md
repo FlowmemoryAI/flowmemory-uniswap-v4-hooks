@@ -504,3 +504,28 @@ Tests:
 ```bash
 python -m unittest tools.test_reviewer_walkthrough
 ```
+
+## `verify_release_evidence.py`
+
+Verifies the Base Sepolia release evidence packet.
+
+This gate is pending-safe: if `releases/base-sepolia/RELEASE_EVIDENCE.json` is
+missing, it prints `PENDING` instead of fabricating a public receipt claim.
+
+Run:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
+Require a real public receipt packet:
+
+```bash
+python tools/verify_release_evidence.py --require-pass
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_verify_release_evidence
+```

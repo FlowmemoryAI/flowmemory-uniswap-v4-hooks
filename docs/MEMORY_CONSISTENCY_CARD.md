@@ -77,6 +77,15 @@ And precise about the current boundary:
 Public Base Sepolia receipt evidence is pending until the release record is filled.
 ```
 
+The release evidence gate is:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
+That command keeps `FM-C6` pending until `releases/base-sepolia/RELEASE_EVIDENCE.json`
+and its referenced receipt artifacts validate.
+
 ## What To Screenshot
 
 Screenshot the output from:

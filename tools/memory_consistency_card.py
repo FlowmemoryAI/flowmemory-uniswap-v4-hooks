@@ -17,14 +17,15 @@ from pathlib import Path
 from typing import Any
 
 try:  # pragma: no cover
-    from tools import axiom_writ, launch_reality_check
+    from tools import axiom_writ, launch_reality_check, verify_release_evidence
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
     import launch_reality_check  # type: ignore
+    import verify_release_evidence  # type: ignore
 
 
 CARD_SCHEMA = "flowmemory.memory_consistency_card.v0"
-PUBLIC_RELEASE_EVIDENCE = "releases/base-sepolia/flowpulse-evidence.json"
+PUBLIC_RELEASE_EVIDENCE = "releases/base-sepolia/RELEASE_EVIDENCE.json"
 MODEL = "FMM-0"
 
 THESIS = "Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model."
@@ -104,7 +105,8 @@ def path_exists(root: Path, path: str) -> bool:
 
 def level_status(level: dict[str, Any], root: Path, litmus_status: str | None) -> str:
     if level.get("publicChainEvidence"):
-        return "pass" if all(path_exists(root, path) for path in level["evidence"]) else "pending"
+        status = verify_release_evidence.build_report()["verdict"]["publicBaseSepoliaReceiptEvidence"].lower()
+        return status
     if level.get("requiresLitmus") and litmus_status != "pass":
         return "fail"
     return "pass" if all(path_exists(root, path) for path in level["evidence"]) else "fail"

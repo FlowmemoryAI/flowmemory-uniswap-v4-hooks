@@ -40,6 +40,8 @@ Required launch artifacts
   PASS  tools/memory_consistency_card.py
   PASS  tools/render_fmm0_matrix.py
   PASS  tools/reviewer_walkthrough.py
+  PASS  tools/verify_release_evidence.py
+  PASS  releases/base-sepolia/RELEASE_EVIDENCE.template.json
 
 FlowLitmus Runtime Consistency Suite
 

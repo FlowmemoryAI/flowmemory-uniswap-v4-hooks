@@ -31,4 +31,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:2a737994da120755150f6940994d3956633072fcf8e9d2334c0f608f961a8fcb
+Walkthrough ID: sha256:caac38b83557d251de80f74151fd87f124baae5978c8a40e76e2fff7c749198b

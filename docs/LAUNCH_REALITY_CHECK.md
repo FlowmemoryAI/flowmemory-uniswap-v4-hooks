@@ -33,6 +33,12 @@ For the 10-minute skeptic review packet, run:
 python tools/reviewer_walkthrough.py --pretty
 ```
 
+For the pending-safe public receipt evidence gate, run:
+
+```bash
+python tools/verify_release_evidence.py --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around
