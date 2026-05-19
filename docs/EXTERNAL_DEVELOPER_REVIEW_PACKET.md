@@ -1,8 +1,8 @@
-# External Developer Review Packet
+# FlowMemory Review Packet
 
-This packet is written for a senior developer or security reviewer who needs to
-understand the project quickly, challenge it hard, and separate real technical
-claims from marketing language.
+This packet is written for an outside technical reviewer who needs to understand
+the project quickly, challenge it hard, and separate real technical claims from
+marketing language.
 
 ## Copy-Paste Note To The Reviewer
 
@@ -32,6 +32,62 @@ public boundary.
 I want you to look for technical weakness, overclaiming, security problems,
 fake novelty, unverifiable assumptions, and anything that sounds stronger than
 the code supports.
+
+## No-Jargon Version
+
+Strip away the names and the category language.
+
+This is a small Uniswap v4 hook that runs after a swap.
+
+It does not move money.
+It does not hold tokens.
+It does not route trades.
+It does not set fees.
+It does not protect funds.
+It does not decide whether the swap should happen.
+
+It writes a structured event after the swap boundary has been reached.
+
+That event says, in effect:
+
+```text
+This swap boundary happened.
+This actor and pool were involved.
+This memory commitment was attached to that boundary.
+Here is the sequence number for this memory namespace.
+```
+
+The transaction receipt proves that the event landed on-chain.
+
+Later software can read that receipt and use it as evidence. It can then reject
+claims, cached context, or reused compute if the proof trail does not match.
+
+In one sentence:
+
+```text
+The hook does not make swaps smarter. It gives later systems a clean proof point
+for what happened.
+```
+
+## Name Translation
+
+The project has a lot of names. Here is the simple version:
+
+| Project wording | Plain wording |
+| --- | --- |
+| FlowMemory | the memory system around the proof trail |
+| FlowPulse | the event emitted by the hook |
+| memory signal | a structured event that later systems can use as evidence |
+| memory artifact | the concrete event/data object that gets remembered |
+| proof envelope | the transaction receipt that proves where the event landed |
+| rootfieldId | a memory namespace or bucket |
+| commitment | a hash or opaque pointer to the thing being remembered |
+| parentPulseId | a link to an earlier memory event |
+| uri | an optional note or pointer; useful but not trusted as truth |
+| reader | software that reads the transaction receipt later |
+| FMM-0 | local rules for checking whether a memory history could have happened |
+| FlowLitmus | test cases that try to make impossible histories fail |
+| cache/compute reuse gates | checks that stop reuse when the proof trail does not match |
 
 ## Simple Explanation
 
@@ -368,7 +424,7 @@ The largest risks are not hidden:
 
 ## What Would Make It Stronger
 
-A senior reviewer should expect the next maturity steps to include:
+The next maturity steps should include:
 
 - public Base Sepolia release evidence packet;
 - verified contract source on explorer;

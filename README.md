@@ -110,7 +110,7 @@ Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUB
 
 For a short reviewer path, start with [docs/REVIEWER_QUICKSTART.md](docs/REVIEWER_QUICKSTART.md).
 
-For a senior external developer or security reviewer, send [docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md](docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md) or the printable PDF at [docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.pdf](docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.pdf).
+For external technical review, send [docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md](docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md) or the printable PDF at [docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.pdf](docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.pdf).
 
 For the public technical report, read [FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md](FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.md) or the printable PDF at [FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf](FLOWMEMORY_PUBLIC_TECHNICAL_REPORT.pdf).
 
