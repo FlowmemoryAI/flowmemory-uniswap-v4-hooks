@@ -57,6 +57,7 @@ REQUIRED_FILES = [
     "docs/COMPUTE_REUSE_ROUTER.md",
     "docs/SKEPTIC_REVIEW_WALKTHROUGH.md",
     "docs/LAUNCH_CLAIM_LEDGER.md",
+    "docs/REVIEWER_QUICKSTART.md",
     "examples/flow-litmus/litmus.manifest.json",
     "examples/flow-litmus/flowlitmus-casebook.json",
     "examples/memory-model/fmm0.manifest.json",

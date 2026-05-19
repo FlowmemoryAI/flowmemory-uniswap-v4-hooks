@@ -28,6 +28,32 @@ This is not a trading engine.
 
 This is a memory hook.
 
+## Launch Theorem
+
+FlowMemory is not trying to make agents remember more. It is making impossible
+memory states fail.
+
+The launch path is intentionally narrow:
+
+| Layer | Claim |
+| --- | --- |
+| Hook boundary | `afterSwap` is the verified on-chain emission boundary. |
+| Memory artifact | `FlowPulse` is the memory signal emitted from that boundary. |
+| Proof envelope | The transaction receipt proves where the signal landed. |
+| Memory model | FMM-0 checks whether machine histories could have happened. |
+| Runtime checks | FlowLitmus, witness packs, and adversarial tools catch impossible histories. |
+| AI/GPU reuse | Cache and compute reuse stay blocked unless lineage and FMM-0 consistency pass. |
+| Public evidence | Base Sepolia receipt evidence remains pending until a real release packet validates. |
+
+That is the full claim surface:
+
+```text
+FlowPulse is the afterSwap memory artifact.
+The transaction is the proof envelope.
+FMM-0 is the memory consistency model.
+Cache and compute reuse are allowed only when lineage and memory consistency pass.
+```
+
 ## Launch Reality Check
 
 Run the launch-grade runtime consistency demo:
@@ -55,6 +81,8 @@ The FlowPulse is the memory artifact.
 See [docs/LAUNCH_REALITY_CHECK.md](docs/LAUNCH_REALITY_CHECK.md) and [examples/launch-reality-check/](examples/launch-reality-check/).
 
 Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUBLIC_LAUNCH_COPY.md](docs/PUBLIC_LAUNCH_COPY.md). The sprint-level launch summary lives in [docs/LAUNCH_SPRINT_SUMMARY.md](docs/LAUNCH_SPRINT_SUMMARY.md).
+
+For a short reviewer path, start with [docs/REVIEWER_QUICKSTART.md](docs/REVIEWER_QUICKSTART.md).
 
 ## FMM-0: FlowMemory Agent Memory Model
 
@@ -904,6 +932,7 @@ docs/
   MEMORY_CONSISTENCY_CARD.md       # Claim-to-evidence consistency scorecard
   LAUNCH_SPRINT_SUMMARY.md         # Launch package summary and remaining evidence gaps
   PUBLIC_LAUNCH_COPY.md            # Public launch post, founder script, and skeptic replies
+  REVIEWER_QUICKSTART.md           # Short path through the launch evidence stack
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path
   PUBLIC_REVIEW_CHECKLIST.md       # Share/deploy/mainnet review gates

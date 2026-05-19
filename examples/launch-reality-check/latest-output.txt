@@ -67,6 +67,7 @@ Required launch artifacts
   PASS  docs/COMPUTE_REUSE_ROUTER.md
   PASS  docs/SKEPTIC_REVIEW_WALKTHROUGH.md
   PASS  docs/LAUNCH_CLAIM_LEDGER.md
+  PASS  docs/REVIEWER_QUICKSTART.md
   PASS  examples/flow-litmus/litmus.manifest.json
   PASS  examples/flow-litmus/flowlitmus-casebook.json
   PASS  examples/memory-model/fmm0.manifest.json

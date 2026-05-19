@@ -70,6 +70,12 @@ Use this as the screenshot-ready proof point:
 python tools/launch_reality_check.py --pretty
 ```
 
+Use this as the shortest reviewer path:
+
+```text
+docs/REVIEWER_QUICKSTART.md
+```
+
 Expected result:
 
 ```text

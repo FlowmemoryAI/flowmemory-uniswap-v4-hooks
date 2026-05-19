@@ -28,6 +28,7 @@ The swap transaction is not the memory. The transaction is the proof envelope. T
 | Release artifact staging exists | `releases/base-sepolia/README.md` | Defines where public release record and evidence JSON should live. |
 | Public canary language exists | `docs/PUBLIC_CANARY_TEMPLATE.md` | Gives evidence-first post copy without Base mainnet or custody overclaims. |
 | Launch checklist exists | `docs/LAUNCH_DAY_CHECKLIST.md` | Separates launch with Base Sepolia evidence from launch as repo/live-prep artifact. |
+| Reviewer quickstart exists | `docs/REVIEWER_QUICKSTART.md` | Gives a short command path through release transcript, launch reality check, compute reuse consistency, and Foundry tests. |
 | Marketing language is controlled | `docs/MARKETING_POSITIONING.md` | Strong category language plus explicit forbidden claims. |
 | Frontier R&D artifact shows broader AI-agent value | `docs/FLOW_SERIAL.md`, `tools/flow_serial.py`, `examples/flow-serial/` | Demonstrates receipt-linearizable machine histories without claiming semantic truth, custody, swap control, or live production deployment. |
 | Launch demo makes the runtime model executable | `docs/FLOWLITMUS_LAUNCH_DEMO.md`, `tools/flow_litmus.py`, `examples/flow-litmus/` | Runs forbidden-outcome cases that show pre-receipt, stale-state, retirement, quiescence, rollback, and split-brain failures. |
@@ -98,6 +99,7 @@ GitHub Actions should show both jobs green:
 - Reader decoder tests.
 - Public canary template.
 - Launch-day checklist.
+- Reviewer quickstart.
 - FlowSerial R&D artifact for receipt-linearizable machine cognition.
 - FlowLitmus launch demo for executable forbidden outcomes.
 - FlowLitmus forbidden-outcomes casebook.

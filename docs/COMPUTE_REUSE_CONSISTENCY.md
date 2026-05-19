@@ -1,7 +1,7 @@
 # Compute Reuse Consistency Harness
 
-The Compute Reuse Consistency Harness is the bridge GPT recommended after the
-Compute Reuse Router and Cache Lineage Gate.
+The Compute Reuse Consistency Harness is the bridge between the Compute Reuse
+Router, Cache Lineage Gate, and the FlowMemory memory model.
 
 It ties AI/GPU reuse back into the FlowMemory memory model:
 
