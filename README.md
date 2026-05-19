@@ -54,7 +54,7 @@ The FlowPulse is the memory artifact.
 
 See [docs/LAUNCH_REALITY_CHECK.md](docs/LAUNCH_REALITY_CHECK.md) and [examples/launch-reality-check/](examples/launch-reality-check/).
 
-Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUBLIC_LAUNCH_COPY.md](docs/PUBLIC_LAUNCH_COPY.md).
+Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUBLIC_LAUNCH_COPY.md](docs/PUBLIC_LAUNCH_COPY.md). The sprint-level launch summary lives in [docs/LAUNCH_SPRINT_SUMMARY.md](docs/LAUNCH_SPRINT_SUMMARY.md).
 
 ## The New Primitive: Memory Signals
 
@@ -529,6 +529,7 @@ docs/
   FLOWMEMORY_RUNTIME_MODEL.md      # Runtime rules and forbidden outcomes
   FLOWLITMUS_LAUNCH_DEMO.md        # Executable launch demo for runtime consistency
   LAUNCH_REALITY_CHECK.md          # One-command launch screenshot guide
+  LAUNCH_SPRINT_SUMMARY.md         # Launch package summary and remaining evidence gaps
   PUBLIC_LAUNCH_COPY.md            # Public launch post, founder script, and skeptic replies
   ARCHITECTURE_DECISIONS.md        # ADR-style design records
   PUBLIC_RELEASE_PATH.md           # Base Sepolia and public launch evidence path

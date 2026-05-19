@@ -67,6 +67,7 @@ jobs:
             docs/LAUNCH_ARTIFACT_AUDIT.md
             docs/LAUNCH_DAY_CHECKLIST.md
             docs/PUBLIC_CANARY_TEMPLATE.md
+            docs/LAUNCH_SPRINT_SUMMARY.md
             docs/OFFICIAL_REFERENCES.md
             docs/EXPERT_REVIEW_PROMPT.md
             docs/BEYOND_DEFI_MEMORY.md
