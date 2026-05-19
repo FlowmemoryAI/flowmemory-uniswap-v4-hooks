@@ -37,6 +37,24 @@ Expected result:
 Result: FlowMemory can tell impossible histories from live ones using receipt-bound FlowPulse boundaries.
 ```
 
+## Runtime Path
+
+```mermaid
+flowchart LR
+    Swap["Uniswap v4 swap lifecycle"] --> Hook["FlowMemory afterSwap hook"]
+    Hook --> Pulse["FlowPulse memory artifact"]
+    Pulse --> Receipt["transaction proof envelope"]
+    Receipt --> Reader["reader attaches txHash/logIndex"]
+    Reader --> Serial["FlowSerial checks serial history"]
+    Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
+    Litmus --> Check["FlowMemory Reality Check"]
+
+    Hook -. absent .-> Custody["custody"]
+    Hook -. absent .-> Routing["routing"]
+    Hook -. absent .-> Fees["dynamic fees"]
+    Hook -. absent .-> Accounting["custom accounting"]
+```
+
 ## What This Demo Does Not Prove
 
 No live mainnet deployment.
