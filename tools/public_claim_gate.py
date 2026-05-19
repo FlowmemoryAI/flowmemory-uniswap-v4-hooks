@@ -27,6 +27,7 @@ PUBLIC_CLAIM_FILES = [
     "docs/LAUNCH_DAY_CHECKLIST.md",
     "docs/REVIEWER_QUICKSTART.md",
     "docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md",
+    "docs/AGENT_COMMERCE_MEMORY.md",
     "docs/SPENDLINE.md",
     "docs/DUPLEXLINE.md",
 ]

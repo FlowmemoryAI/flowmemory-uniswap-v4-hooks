@@ -85,6 +85,7 @@ jobs:
             docs/OFFICIAL_REFERENCES.md
             docs/EXPERT_REVIEW_PROMPT.md
             docs/BEYOND_DEFI_MEMORY.md
+            docs/AGENT_COMMERCE_MEMORY.md
             docs/CACHE_LINEAGE_GATE.md
             docs/COMPUTE_PULSE.md
             docs/COMPUTE_REUSE_CONSISTENCY.md
