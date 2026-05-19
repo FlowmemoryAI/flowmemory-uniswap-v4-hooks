@@ -27,6 +27,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] `python tools/fmm0_counterexample_forge.py demo --pretty` passes and catches 12/12 generated counterexamples.
 - [ ] `python tools/fmm0_closure_lab.py demo --pretty` passes and preserves/rejects 8/8 closure laws.
 - [ ] `python tools/fmm0_boundary_bisim.py demo --pretty` passes and preserves/rejects 8/8 boundary projection checks.
+- [ ] `python tools/fmm0_forbidden_core.py demo --pretty` passes and extracts 10/10 one-minimal forbidden cores.
 - [ ] `python tools/memory_consistency_card.py --pretty` passes and marks public Base Sepolia evidence pending unless release evidence exists.
 - [ ] `python tools/reviewer_walkthrough.py --pretty` passes and shows each launch claim with evidence/status/non-claims.
 - [ ] `python tools/verify_release_evidence.py --pretty` passes and reports `PENDING` unless real public receipt evidence exists.

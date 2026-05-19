@@ -17,12 +17,13 @@ from pathlib import Path
 from typing import Any
 
 try:  # pragma: no cover
-    from tools import axiom_writ, fmm0_boundary_bisim, fmm0_closure_lab, fmm0_counterexample_forge, fmm0_phase_table, launch_reality_check, verify_release_evidence
+    from tools import axiom_writ, fmm0_boundary_bisim, fmm0_closure_lab, fmm0_counterexample_forge, fmm0_forbidden_core, fmm0_phase_table, launch_reality_check, verify_release_evidence
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
     import fmm0_boundary_bisim  # type: ignore
     import fmm0_closure_lab  # type: ignore
     import fmm0_counterexample_forge  # type: ignore
+    import fmm0_forbidden_core  # type: ignore
     import fmm0_phase_table  # type: ignore
     import launch_reality_check  # type: ignore
     import verify_release_evidence  # type: ignore
@@ -104,6 +105,13 @@ CONSISTENCY_LEVELS = [
         "requiresBoundaryBisim": True,
     },
     {
+        "id": "FM-C15",
+        "name": "Forbidden core extractor",
+        "claim": "Impossible machine histories can be reduced to one-minimal forbidden cores.",
+        "evidence": ["tools/fmm0_forbidden_core.py", "docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md", "examples/fmm0-forbidden-core/expected-output.txt"],
+        "requiresForbiddenCore": True,
+    },
+    {
         "id": "FM-C10",
         "name": "Public Base Sepolia evidence",
         "claim": "A public release record can attach txHash/logIndex evidence from a real deployed hook.",
@@ -181,6 +189,14 @@ def boundary_bisim_status() -> str:
     return "pass" if report.get("status") == "pass" and report.get("escaped") == 0 else "fail"
 
 
+def forbidden_core_status() -> str:
+    try:
+        report = fmm0_forbidden_core.build_report()
+    except Exception:
+        return "fail"
+    return "pass" if report.get("status") == "pass" and report.get("escapedFaults") == 0 else "fail"
+
+
 def level_status(
     level: dict[str, Any],
     root: Path,
@@ -189,6 +205,7 @@ def level_status(
     counterexample_forge_status: str | None,
     closure_lab_status_value: str | None,
     boundary_bisim_status_value: str | None,
+    forbidden_core_status_value: str | None,
 ) -> str:
     if level.get("publicChainEvidence"):
         status = verify_release_evidence.build_report()["verdict"]["publicBaseSepoliaReceiptEvidence"].lower()
@@ -203,6 +220,8 @@ def level_status(
         return "fail"
     if level.get("requiresBoundaryBisim") and boundary_bisim_status_value != "pass":
         return "fail"
+    if level.get("requiresForbiddenCore") and forbidden_core_status_value != "pass":
+        return "fail"
     return "pass" if all(path_exists(root, path) for path in level["evidence"]) else "fail"
 
 
@@ -215,9 +234,10 @@ def build_card(run_litmus: bool = True) -> dict[str, Any]:
     counterexample_forge_status = counterexample_status()
     closure_lab_status_value = closure_lab_status()
     boundary_bisim_status_value = boundary_bisim_status()
+    forbidden_core_status_value = forbidden_core_status()
     levels = []
     for item in CONSISTENCY_LEVELS:
-        status = level_status(item, root, litmus_status, phase_status, counterexample_forge_status, closure_lab_status_value, boundary_bisim_status_value)
+        status = level_status(item, root, litmus_status, phase_status, counterexample_forge_status, closure_lab_status_value, boundary_bisim_status_value, forbidden_core_status_value)
         evidence = [{"path": path, "exists": path_exists(root, path)} for path in item["evidence"]]
         levels.append({**item, "status": status, "evidence": evidence})
 

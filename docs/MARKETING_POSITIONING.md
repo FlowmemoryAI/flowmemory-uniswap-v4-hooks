@@ -132,6 +132,7 @@ Use these lines for the broader vision:
 - FMM-0 Counterexample Forge is the launch negative-test layer: it generates impossible histories and requires FMM-0 to catch them.
 - FMM-0 Closure Lab is the launch memory-algebra layer: it proves valid composition stays valid and invalid composition is rejected.
 - FMM-0 Boundary Bisimulation is the launch cross-layer layer: it catches FlowPulse projection drift between hook signal, receipt envelope, and runtime state.
+- FMM-0 Forbidden Core Extractor is the launch diagnostic layer: it shrinks impossible histories to one-minimal failing cores.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -291,3 +292,22 @@ The line is simple:
 ```text
 FlowMemory preserves boundary semantics across hook, receipt, and runtime.
 ```
+
+## FMM-0 Forbidden Core Founder Script
+
+FMM-0 should not only reject an impossible machine history. It should explain
+the smallest reason that history is impossible.
+
+Forbidden Core takes failed histories and shrinks them to one-minimal cores:
+pre-receipt `txHash`, missing reader evidence, missing consistency evidence,
+rootfield drift, commitment drift, semantic overclaims, and model-correctness
+overclaims.
+
+The practical line:
+
+```text
+FMM-0 catches impossible histories, then shrinks them to minimal forbidden cores.
+```
+
+That turns FlowMemory from a conformance suite into a debugging surface for
+agent runtimes, readers, and future compute-memory pipelines.

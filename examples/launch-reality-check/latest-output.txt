@@ -22,6 +22,7 @@ Runtime model
   PASS  FMM-0 Counterexample Forge: adversarial impossible-history generation
   PASS  FMM-0 Closure Lab: executable memory algebra closure checks
   PASS  FMM-0 Boundary Bisimulation: hook-to-receipt-to-runtime projection checks
+  PASS  FMM-0 Forbidden Core Extractor: minimal failing-core diagnostics
   PASS  FlowSerial: receipt-linearizability for machine cognition
   PASS  FlowLitmus: executable forbidden outcomes
 
@@ -34,6 +35,7 @@ Required launch artifacts
   PASS  specs/FMM-0-CounterexampleForge.v0.md
   PASS  specs/FMM-0-ClosureLab.v0.md
   PASS  specs/FMM-0-BoundaryBisimulation.v0.md
+  PASS  specs/FMM-0-ForbiddenCore.v0.md
   PASS  docs/FLOW_SERIAL.md
   PASS  docs/FLOWLITMUS_LAUNCH_DEMO.md
   PASS  docs/FLOWLITMUS_FORBIDDEN_OUTCOMES.md
@@ -44,6 +46,7 @@ Required launch artifacts
   PASS  docs/FMM_0_COUNTEREXAMPLE_FORGE.md
   PASS  docs/FMM_0_CLOSURE_LAB.md
   PASS  docs/FMM_0_BOUNDARY_BISIMULATION.md
+  PASS  docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md
   PASS  docs/SKEPTIC_REVIEW_WALKTHROUGH.md
   PASS  docs/LAUNCH_CLAIM_LEDGER.md
   PASS  examples/flow-litmus/litmus.manifest.json
@@ -53,12 +56,14 @@ Required launch artifacts
   PASS  examples/fmm0-counterexample-forge/expected-output.txt
   PASS  examples/fmm0-closure-lab/expected-output.txt
   PASS  examples/fmm0-boundary-bisimulation/expected-output.txt
+  PASS  examples/fmm0-forbidden-core/expected-output.txt
   PASS  examples/reviewer-walkthrough/fmm0-claim-ledger.json
   PASS  tools/flow_litmus.py
   PASS  tools/fmm0_phase_table.py
   PASS  tools/fmm0_counterexample_forge.py
   PASS  tools/fmm0_closure_lab.py
   PASS  tools/fmm0_boundary_bisim.py
+  PASS  tools/fmm0_forbidden_core.py
   PASS  tools/memory_consistency_card.py
   PASS  tools/render_fmm0_matrix.py
   PASS  tools/reviewer_walkthrough.py

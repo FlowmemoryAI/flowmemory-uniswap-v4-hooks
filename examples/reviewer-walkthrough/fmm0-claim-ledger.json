@@ -255,6 +255,29 @@
       ]
     },
     {
+      "id": "FM-C15",
+      "category": "fmm0_runtime",
+      "claim": "FMM-0 Forbidden Core Extractor shrinks impossible histories to one-minimal cores.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/FMM-0-ForbiddenCore.v0.md",
+        "docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md",
+        "tools/fmm0_forbidden_core.py",
+        "examples/fmm0-forbidden-core/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/fmm0_forbidden_core.py demo --pretty",
+        "python -m unittest tools.test_fmm0_forbidden_core"
+      ],
+      "expected": "Forbidden Core extracts 10/10 one-minimal cores and reports 0 escaped faults.",
+      "nonClaims": [
+        "not_formal_verification",
+        "not_semantic_truth",
+        "not_model_correctness",
+        "not_production_verifier_infrastructure"
+      ]
+    },
+    {
       "id": "FM-C10",
       "category": "public_release_evidence",
       "claim": "Public Base Sepolia receipt evidence is pending.",

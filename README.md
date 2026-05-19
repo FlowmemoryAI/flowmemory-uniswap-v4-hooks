@@ -197,6 +197,35 @@ are rejected.
 
 See [specs/FMM-0-BoundaryBisimulation.v0.md](specs/FMM-0-BoundaryBisimulation.v0.md), [docs/FMM_0_BOUNDARY_BISIMULATION.md](docs/FMM_0_BOUNDARY_BISIMULATION.md), and [examples/fmm0-boundary-bisimulation/](examples/fmm0-boundary-bisimulation/).
 
+## FMM-0 Forbidden Core Extractor
+
+FMM-0 does not only catch impossible histories.
+
+It can shrink them.
+
+The Forbidden Core Extractor takes an invalid machine artifact or transition
+and reduces it to a one-minimal set of boundary-state mutations that still
+violates the model.
+
+Run:
+
+```bash
+python tools/fmm0_forbidden_core.py demo --pretty
+```
+
+Expected result:
+
+```text
+minimal cores found: 10/10
+one-minimal cores: 10/10
+escaped faults: 0
+```
+
+This is the diagnostic layer: an integrator can see the smallest reason a
+machine history is impossible instead of only seeing a generic invalid result.
+
+See [specs/FMM-0-ForbiddenCore.v0.md](specs/FMM-0-ForbiddenCore.v0.md), [docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md](docs/FMM_0_FORBIDDEN_CORE_EXTRACTOR.md), and [examples/fmm0-forbidden-core/](examples/fmm0-forbidden-core/).
+
 ## 10-Minute Skeptic Review
 
 FlowMemory's launch claim is reviewable.

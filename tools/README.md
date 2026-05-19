@@ -541,6 +541,28 @@ Tests:
 python -m unittest tools.test_fmm0_boundary_bisim
 ```
 
+## `fmm0_forbidden_core.py`
+
+Shrinks invalid FMM-0 histories into one-minimal forbidden cores.
+
+This is the diagnostic minimization layer:
+
+```text
+FMM-0 catches impossible histories, then shrinks them to minimal forbidden cores.
+```
+
+Run:
+
+```bash
+python tools/fmm0_forbidden_core.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_fmm0_forbidden_core
+```
+
 ## `render_fmm0_matrix.py`
 
 Renders the FMM-0 conformance matrix from `examples/memory-model/fmm0.manifest.json`.

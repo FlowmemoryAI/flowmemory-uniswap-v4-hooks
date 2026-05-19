@@ -83,6 +83,15 @@ This checks that the same FlowPulse boundary survives hook signal, receipt
 envelope, and FMM-0 runtime projection without rootfield, commitment, or receipt
 drift.
 
+For the minimal forbidden-core demo:
+
+```bash
+python tools/fmm0_forbidden_core.py demo --pretty
+```
+
+This shrinks impossible histories into one-minimal diagnostic cores so an
+integrator can see the smallest reason a machine history failed.
+
 For that, run the Memory Consistency Card:
 
 ```bash

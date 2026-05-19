@@ -12,7 +12,8 @@ It now also names the runtime model and its state surface:
 - **FMM-0 Phase Space**;
 - **FMM-0 Counterexample Forge**;
 - **FMM-0 Closure Lab**;
-- **FMM-0 Boundary Bisimulation**.
+- **FMM-0 Boundary Bisimulation**;
+- **FMM-0 Forbidden Core Extractor**.
 
 ## Command
 
@@ -75,6 +76,12 @@ For the cross-layer boundary projection harness, run:
 python tools/fmm0_boundary_bisim.py demo --pretty
 ```
 
+For the minimal forbidden-core diagnostic harness, run:
+
+```bash
+python tools/fmm0_forbidden_core.py demo --pretty
+```
+
 ## What This Demo Proves
 
 It proves the repo can execute local runtime consistency checks around
@@ -89,6 +96,7 @@ It checks:
 - FMM-0 Counterexample Forge;
 - FMM-0 Closure Lab;
 - FMM-0 Boundary Bisimulation;
+- FMM-0 Forbidden Core Extractor;
 - the FlowLitmus forbidden-outcome suite.
 
 Expected result:
@@ -109,7 +117,8 @@ flowchart LR
     Phase --> Forge["Counterexample Forge"]
     Forge --> Closure["Closure Lab checks memory algebra"]
     Closure --> Bisim["Boundary Bisimulation checks projection drift"]
-    Bisim --> Serial["FlowSerial checks serial history"]
+    Bisim --> Core["Forbidden Core shrinks impossible histories"]
+    Core --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
 
@@ -216,6 +225,10 @@ cannot escape.
 Boundary Bisimulation is the cross-layer layer. It checks that the same
 FlowPulse boundary survives hook signal, receipt envelope, and FMM-0 runtime
 projection without drift.
+
+Forbidden Core is the diagnostic layer. It shrinks impossible histories to the
+smallest mutation core that still violates FMM-0, so the failure becomes
+explainable instead of only rejected.
 
 So the launch is not "we emitted an event." The launch is: FlowMemory gives
 machines a way to tell live histories from impossible ones.

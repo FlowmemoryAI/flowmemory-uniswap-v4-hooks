@@ -1,0 +1,56 @@
+{
+  "schema": "flowmemory.fmm0_forbidden_core_manifest.v0",
+  "title": "FMM-0 Forbidden Core Cases",
+  "cases": [
+    {
+      "caseId": "CORE-001",
+      "name": "pre_receipt_txHash_smuggle",
+      "expectedFault": "receipt_field_smuggled_before_reader_attachment"
+    },
+    {
+      "caseId": "CORE-002",
+      "name": "pre_receipt_logIndex_smuggle",
+      "expectedFault": "receipt_field_smuggled_before_reader_attachment"
+    },
+    {
+      "caseId": "CORE-003",
+      "name": "local_to_fmm0_without_reader",
+      "expectedFault": "missing_reader_derived_receipt_metadata"
+    },
+    {
+      "caseId": "CORE-004",
+      "name": "reader_to_fmm0_without_serial",
+      "expectedFault": "missing_fmm0_consistency_checks"
+    },
+    {
+      "caseId": "CORE-005",
+      "name": "reader_flowpulse_missing_txHash",
+      "expectedFault": "missing_reader_derived_receipt_metadata"
+    },
+    {
+      "caseId": "CORE-006",
+      "name": "reader_flowpulse_missing_logIndex",
+      "expectedFault": "missing_reader_derived_receipt_metadata"
+    },
+    {
+      "caseId": "CORE-007",
+      "name": "rootfield_drift",
+      "expectedFault": "rootfield_or_commitment_mismatch"
+    },
+    {
+      "caseId": "CORE-008",
+      "name": "commitment_drift",
+      "expectedFault": "rootfield_or_commitment_mismatch"
+    },
+    {
+      "caseId": "CORE-009",
+      "name": "semantic_truth_operation",
+      "expectedFault": "operation_forbidden_in_phase"
+    },
+    {
+      "caseId": "CORE-010",
+      "name": "model_correctness_operation",
+      "expectedFault": "operation_forbidden_in_phase"
+    }
+  ]
+}

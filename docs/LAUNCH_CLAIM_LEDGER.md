@@ -66,6 +66,12 @@ Check FMM-0 Boundary Bisimulation:
 python tools/fmm0_boundary_bisim.py demo --pretty
 ```
 
+Check the FMM-0 Forbidden Core Extractor:
+
+```bash
+python tools/fmm0_forbidden_core.py demo --pretty
+```
+
 ## Status Meanings
 
 `PASS` means the claim is supported by local repo code, docs, examples, and/or

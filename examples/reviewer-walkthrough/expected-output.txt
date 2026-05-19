@@ -26,6 +26,7 @@ Claims:
   FM-C12 FMM-0 Counterexample Forge catches generated impossible histories.     PASS
   FM-C13 FMM-0 Closure Lab preserves valid memory algebra and rejects invalid composition. PASS
   FM-C14 FMM-0 Boundary Bisimulation catches cross-layer FlowPulse projection drift. PASS
+  FM-C15 FMM-0 Forbidden Core Extractor shrinks impossible histories to one-minimal cores. PASS
   FM-C10 Public Base Sepolia receipt evidence is pending.                       PENDING
   FM-C11 Production verifier infrastructure is not claimed.                     NOT_CLAIMED
 
@@ -35,4 +36,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:1b0bbec88593f7a259e43b5bc5e289c716f657d4162196c73321c37d2f69e2c1
+Walkthrough ID: sha256:1b172c2fb148d67739ebd1917c69e0916ac3ea4e01ef40ed14948252faedfdb6

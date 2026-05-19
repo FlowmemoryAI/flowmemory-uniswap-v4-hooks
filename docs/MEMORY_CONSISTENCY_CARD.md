@@ -39,7 +39,8 @@ machine artifacts before and after that receipt boundary. Counterexample Forge
 mutates valid artifacts into impossible histories. Closure Lab checks whether
 valid receipt-bound histories remain valid under composition and invalid
 composition is rejected. Boundary Bisimulation checks whether the same
-FlowPulse boundary survives hook-to-receipt-to-runtime projection. FlowSerial
+FlowPulse boundary survives hook-to-receipt-to-runtime projection. Forbidden
+Core shrinks impossible histories into one-minimal diagnostics. FlowSerial
 checks whether machine history can be serialized around those receipt-bound
 boundaries. FlowLitmus turns forbidden outcomes into executable tests.
 
@@ -69,6 +70,7 @@ The card separates local repo evidence from public release evidence:
 | `FM-C7` | FMM-0 Counterexample Forge catches generated impossible histories. | Local executable evidence |
 | `FM-C8` | FMM-0 Closure Lab preserves valid memory algebra and rejects invalid composition. | Local executable evidence |
 | `FM-C9` | FMM-0 Boundary Bisimulation catches cross-layer FlowPulse projection drift. | Local executable evidence |
+| `FM-C15` | FMM-0 Forbidden Core Extractor shrinks impossible histories to one-minimal cores. | Local executable evidence |
 | `FM-C10` | A real Base Sepolia release can attach public `txHash`/`logIndex` evidence. | Pending release evidence |
 
 This matters because it prevents the launch from collapsing into either hype or
@@ -119,6 +121,12 @@ Boundary bisimulation is:
 python tools/fmm0_boundary_bisim.py demo --pretty
 ```
 
+The forbidden core extractor is:
+
+```bash
+python tools/fmm0_forbidden_core.py demo --pretty
+```
+
 ## What To Screenshot
 
 Screenshot the output from:
@@ -141,6 +149,7 @@ Consistency ladder
   PASS    FM-C7  Counterexample forge
   PASS    FM-C8  Closure lab
   PASS    FM-C9  Boundary bisimulation
+  PASS    FM-C15 Forbidden core extractor
   PENDING FM-C10 Public Base Sepolia evidence
 ```
 
@@ -158,7 +167,7 @@ FlowMemory is not treating agent memory like retrieval. It is treating memory li
 Then:
 
 ```text
-The Uniswap v4 afterSwap hook emits the FlowPulse boundary signal. FMM-0 Phase Space classifies machine-state phases. Counterexample Forge generates impossible histories and requires FMM-0 to catch them. Closure Lab checks valid and invalid memory algebra. Boundary Bisimulation checks that hook, receipt, and runtime projections preserve the same boundary. FlowSerial gives receipt-linearizability. FlowLitmus makes forbidden histories executable. The Memory Consistency Card maps the claim to evidence and shows what is still pending for public-chain release.
+The Uniswap v4 afterSwap hook emits the FlowPulse boundary signal. FMM-0 Phase Space classifies machine-state phases. Counterexample Forge generates impossible histories and requires FMM-0 to catch them. Closure Lab checks valid and invalid memory algebra. Boundary Bisimulation checks that hook, receipt, and runtime projections preserve the same boundary. Forbidden Core shrinks impossible histories into one-minimal diagnostic cores. FlowSerial gives receipt-linearizability. FlowLitmus makes forbidden histories executable. The Memory Consistency Card maps the claim to evidence and shows what is still pending for public-chain release.
 ```
 
 Short version:

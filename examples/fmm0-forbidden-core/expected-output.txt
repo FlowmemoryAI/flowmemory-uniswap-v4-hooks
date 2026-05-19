@@ -1,0 +1,22 @@
+FMM-0 Forbidden Core Extractor
+
+Cases:
+  CORE-001 pre_receipt_txHash_smuggle                 CORE 2/5 atoms  one-minimal
+  CORE-002 pre_receipt_logIndex_smuggle               CORE 2/5 atoms  one-minimal
+  CORE-003 local_to_fmm0_without_reader               CORE 2/4 atoms  one-minimal
+  CORE-004 reader_to_fmm0_without_serial              CORE 1/4 atoms  one-minimal
+  CORE-005 reader_flowpulse_missing_txHash            CORE 1/4 atoms  one-minimal
+  CORE-006 reader_flowpulse_missing_logIndex          CORE 1/4 atoms  one-minimal
+  CORE-007 rootfield_drift                            CORE 1/3 atoms  one-minimal
+  CORE-008 commitment_drift                           CORE 1/3 atoms  one-minimal
+  CORE-009 semantic_truth_operation                   CORE 1/3 atoms  one-minimal
+  CORE-010 model_correctness_operation                CORE 1/3 atoms  one-minimal
+
+Summary:
+  invalid histories checked: 10
+  minimal cores found: 10/10
+  one-minimal cores: 10/10
+  escaped faults: 0
+
+Result:
+  FMM-0 can reduce impossible machine histories to minimal forbidden cores.
