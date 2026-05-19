@@ -221,6 +221,18 @@ The strongest GPU claim is:
 FlowMemory makes GPU work rememberable, reusable, and provable.
 ```
 
+This sits beside, not inside, the existing GPU memory stack. TensorRT-LLM
+already treats KV-cache reuse as a way to lower time to first token for matching
+prompt prefixes. vLLM/PagedAttention targets KV-cache waste and sharing inside
+LLM serving. FlashAttention targets GPU memory IO between HBM and on-chip SRAM.
+NVIDIA attestation can speak to hardware and runtime trust boundaries.
+
+FlowMemory is different. It is not a KV-cache engine, attention kernel,
+benchmark, or attestation provider. It is the proof-carrying memory layer around
+the work: which boundary produced the artifact, which commitments identify it,
+which receipt or compute evidence anchors it, and whether later cache or compute
+reuse is consistent with that memory.
+
 A GPU job can produce a model output, an embedding batch, a checkpoint, a context bundle, or a KV-cache lineage record. Today those artifacts usually live in private logs and infrastructure-specific databases.
 
 FlowMemory can turn them into memory signals.
@@ -351,3 +363,10 @@ This repository proves the first public edge:
 The hook is narrow because the category is not swap control.
 
 The category is memory-native infrastructure.
+
+## External Research Context
+
+- TensorRT-LLM KV cache reuse: <https://nvidia.github.io/TensorRT-LLM/advanced/kv-cache-reuse.html>
+- vLLM PagedAttention paper: <https://arxiv.org/abs/2309.06180>
+- FlashAttention paper: <https://arxiv.org/abs/2205.14135>
+- NVIDIA Attestation SDK: <https://docs.nvidia.com/attestation/attestation-client-tools-sdk/latest/gpu_and_switch_attestation.html>

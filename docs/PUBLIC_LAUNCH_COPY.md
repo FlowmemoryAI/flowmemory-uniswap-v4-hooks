@@ -10,6 +10,26 @@ The transaction is the proof envelope.
 The FlowPulse is the memory artifact.
 ```
 
+## Reviewer Demo Path
+
+Run these first:
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+python tools/launch_reality_check.py --pretty
+python tools/compute_reuse_consistency.py demo --pretty
+forge test -vvv
+```
+
+The first screen should show:
+
+```text
+FlowPulse is the afterSwap memory artifact.
+The transaction is the proof envelope.
+FMM-0 is the memory consistency model.
+Cache and compute reuse are allowed only when lineage and memory consistency pass.
+```
+
 ## Short Launch Post
 
 FlowMemory introduces the first memory-native Uniswap v4 hook primitive: a
@@ -41,6 +61,12 @@ The sharper AI-infrastructure thesis:
 
 ```text
 Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
+```
+
+The sharper runtime thesis:
+
+```text
+FlowMemory is not trying to make agents remember more. It is making impossible memory states fail.
 ```
 
 The model name is FMM-0: FlowMemory Agent Memory Model.
@@ -253,7 +279,22 @@ Compute reuse without memory consistency is just cache optimism.
 Release Transcript: local evidence is green, public receipt evidence is pending, and overclaims are fenced out.
 ```
 
-## Founder Script
+## 30-Second Founder Script
+
+FlowMemory introduces the first memory-native Uniswap v4 hook primitive. The
+hook uses the `afterSwap` lifecycle point as a verified boundary where a
+FlowPulse memory signal can be emitted after execution. The swap is not the
+memory. The transaction is the proof envelope. The FlowPulse is the memory
+artifact.
+
+The deeper point is not another event. It is memory consistency. FMM-0 checks
+whether machine histories could have happened, and FlowLitmus catches histories
+that cross receipt-bound boundaries illegally. For AI and GPU workflows, the
+same pattern becomes proof-backed reuse: cache and compute reuse stay blocked
+unless lineage and memory consistency pass. FlowMemory is not trying to make
+agents remember more. It is making impossible memory states fail.
+
+## Longer Founder Notes
 
 FlowMemory starts with a Uniswap v4 `afterSwap` hook that emits a FlowPulse.
 The swap is not the memory. The transaction is the proof envelope. The

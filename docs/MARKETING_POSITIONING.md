@@ -12,6 +12,29 @@ FlowMemory introduces the first memory-native Uniswap v4 hook primitive. Most ho
 
 Most hooks modify execution. FlowMemory emits memory.
 
+## Launch Compression
+
+Use this order when explaining the repo:
+
+1. `FlowPulse` is the `afterSwap` memory artifact.
+2. The transaction is the proof envelope.
+3. FMM-0 is the memory consistency model.
+4. FlowLitmus, witness packs, and adversarial tools catch impossible histories.
+5. Cache and compute reuse are blocked unless lineage and FMM-0 consistency pass.
+6. Public Base Sepolia receipt evidence remains pending until a real release packet validates.
+
+Shortest AI systems line:
+
+```text
+FlowMemory is not trying to make agents remember more. It is making impossible memory states fail.
+```
+
+Shortest GPU workflow line:
+
+```text
+FlowMemory is not making the chip faster. It is making compute reuse harder to get wrong.
+```
+
 ## One-Liners
 
 - DeFi has execution. FlowMemory adds memory.
