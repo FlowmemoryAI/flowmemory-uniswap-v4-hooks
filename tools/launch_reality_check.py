@@ -62,6 +62,7 @@ REQUIRED_FILES = [
     "docs/LAUNCH_CLAIM_LEDGER.md",
     "docs/REVIEWER_QUICKSTART.md",
     "docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.md",
+    "docs/EXTERNAL_DEVELOPER_REVIEW_PACKET.pdf",
     "docs/PUBLIC_TECHNICAL_REPORT.css",
     "examples/flow-litmus/litmus.manifest.json",
     "examples/flow-litmus/flowlitmus-casebook.json",

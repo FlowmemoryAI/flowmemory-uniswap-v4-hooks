@@ -24,7 +24,7 @@ What this release-prep surface includes:
 - Cache Lineage Gate, Compute Reuse Router, and Compute Reuse Consistency for proof-backed AI/GPU workflow reuse discipline.
 - Public Claim Gate, Release Transcript, Reviewer Quickstart, Skeptic Walkthrough, and Launch Reality Check.
 - Public Technical Report: a publication-style Markdown source and PDF for reviewers, journals, and public launch readers.
-- External Developer Review Packet: a simple plus technical review handoff for senior security and architecture reviewers.
+- External Developer Review Packet: a simple plus technical review handoff, with PDF, for senior security and architecture reviewers.
 
 Verified locally before this entry:
 
