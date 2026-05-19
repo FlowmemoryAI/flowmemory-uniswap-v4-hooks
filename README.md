@@ -96,6 +96,8 @@ Launch copy, founder script, demo caption, and skeptic replies live in [docs/PUB
 
 For a short reviewer path, start with [docs/REVIEWER_QUICKSTART.md](docs/REVIEWER_QUICKSTART.md).
 
+For launch-prep release notes, see [CHANGELOG.md](CHANGELOG.md).
+
 ## FMM-0: FlowMemory Agent Memory Model
 
 Everyone treated agent memory like retrieval. FlowMemory treats it like a memory model.
@@ -1034,6 +1036,14 @@ releases/
   base-sepolia/README.md           # Staging area for public release evidence
   base-sepolia/RELEASE_EVIDENCE.template.json
   base-sepolia/expected-pending-output.txt
+```
+
+Root files:
+
+```text
+CHANGELOG.md                       # Launch-prep release notes and non-claims
+README.md                          # Public project landing page
+LICENSE                            # MIT license
 ```
 
 ## Run It
