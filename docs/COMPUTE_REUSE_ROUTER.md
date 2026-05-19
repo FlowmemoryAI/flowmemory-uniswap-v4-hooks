@@ -47,6 +47,16 @@ It emits:
 That decision is deterministic and digestable. Unsafe reuse produces explicit
 reasons.
 
+## Relation To Cache Lineage Gate
+
+The Compute Reuse Router decides whether a compute output can be reused.
+
+Cache Lineage Gate decides whether the KV/context memory beneath that compute
+is safe to reuse.
+
+In an AI serving system, Cache Lineage Gate should run before a scheduler trusts
+`sourceCachePulse` as a reusable context artifact.
+
 ## Reuse Is Strict
 
 A prior ComputePulse can be reused only when:

@@ -158,6 +158,16 @@ python tools/compute_reuse_router.py demo --pretty
 This is the practical GPU angle: not faster silicon, but less repeated work
 because compute memory is proof-backed.
 
+Cache Lineage Gate is the companion artifact for KV/context reuse:
+
+```bash
+python tools/cache_lineage_gate.py demo --pretty
+```
+
+It proves that reusable context must carry model, tokenizer, runtime, prefix,
+side-input, adapter, and cache-policy commitments. Token equality alone is not
+enough.
+
 ## Related Future Pulses
 
 ComputePulse is the base AI/GPU workload artifact. It naturally leads to three adjacent memory signals:

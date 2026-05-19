@@ -347,6 +347,52 @@
       ]
     },
     {
+      "id": "FM-C20",
+      "category": "ai_cache_reuse",
+      "claim": "Cache Lineage Gate makes KV/context reuse proof-carried instead of token-only.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/CacheLineageGate.v0.md",
+        "docs/CACHE_LINEAGE_GATE.md",
+        "tools/cache_lineage_gate.py",
+        "examples/cache-lineage-gate/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/cache_lineage_gate.py demo --pretty",
+        "python -m unittest tools.test_cache_lineage_gate"
+      ],
+      "expected": "Cache Lineage Gate accepts 1 safe cache reuse and rejects 4/4 unsafe cache reuse attempts.",
+      "nonClaims": [
+        "not_kv_cache_storage",
+        "not_gpu_acceleration",
+        "not_model_correctness",
+        "not_semantic_truth"
+      ]
+    },
+    {
+      "id": "FM-C21",
+      "category": "ai_compute_reuse",
+      "claim": "Compute Reuse Consistency requires cache lineage, compute fingerprint, and receipt-bound history before reuse becomes live.",
+      "status": "PASS",
+      "evidenceFiles": [
+        "specs/ComputeReuseConsistency.v0.md",
+        "docs/COMPUTE_REUSE_CONSISTENCY.md",
+        "tools/compute_reuse_consistency.py",
+        "examples/compute-reuse-consistency/expected-output.txt"
+      ],
+      "commands": [
+        "python tools/compute_reuse_consistency.py demo --pretty",
+        "python -m unittest tools.test_compute_reuse_consistency"
+      ],
+      "expected": "Compute Reuse Consistency passes 5/5 cases and blocks 4/4 unsafe reuse cases.",
+      "nonClaims": [
+        "not_gpu_acceleration",
+        "not_kv_cache_storage",
+        "not_model_correctness",
+        "not_semantic_truth"
+      ]
+    },
+    {
       "id": "FM-C19",
       "category": "launch_packaging",
       "claim": "FlowMemory Release Transcript gives one offline object for passed, pending, and non-claimed launch state.",

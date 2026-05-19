@@ -30,6 +30,8 @@ Claims:
   FM-C16 FMM-0 Witness Pack bundles local conformance evidence into a reproducible packet. PASS
   FM-C17 FlowPulse Boundary ABI matches FMM-0 hook-time and receipt-time assumptions. PASS
   FM-C18 Compute Reuse Router turns proof-backed compute memory into a scheduler decision. PASS
+  FM-C20 Cache Lineage Gate makes KV/context reuse proof-carried instead of token-only. PASS
+  FM-C21 Compute Reuse Consistency requires cache lineage, compute fingerprint, and receipt-bound history before reuse becomes live. PASS
   FM-C19 FlowMemory Release Transcript gives one offline object for passed, pending, and non-claimed launch state. PASS
   FM-C10 Public Base Sepolia receipt evidence is pending.                       PENDING
   FM-C11 Production verifier infrastructure is not claimed.                     NOT_CLAIMED
@@ -40,4 +42,4 @@ Launch-safe wording:
 Do not claim:
   semantic truth, model correctness, fund protection, custody, GPU acceleration, or production verifier infrastructure.
 
-Walkthrough ID: sha256:17d64890adfbb3b2f92ddace7c94cd4c1f6c65b75fec7cee7dc11ecb20cab768
+Walkthrough ID: sha256:aad42854365a4f3b7e813a128876c3abd71ac8d25ec7322b61a8e35c506d3e77

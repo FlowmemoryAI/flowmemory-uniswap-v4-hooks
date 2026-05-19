@@ -7,6 +7,8 @@ Local evidence:
   FMM-0 Witness Pack           PASS     8/8 local layers, 0 escaped faults
   Launch Reality Check         PASS     boundary model, hook invariants, artifacts, and FlowLitmus
   Compute Reuse Router         PASS     1 reuse, 4/4 unsafe reuse rejected
+  Cache Lineage Gate           PASS     1 cache reuse, 4/4 unsafe reuse rejected
+  Compute Reuse Consistency    PASS     5/5 cases, 4/4 unsafe reuse blocked
 
 Public evidence:
   Public Base Sepolia Receipt Evidence PENDING  pending-safe public release evidence gate

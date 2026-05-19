@@ -135,7 +135,9 @@ Use these lines for the broader vision:
 - FMM-0 Forbidden Core Extractor is the launch diagnostic layer: it shrinks impossible histories to one-minimal failing cores.
 - FMM-0 Witness Pack is the launch evidence-quality layer: it bundles every local conformance surface into one reproducible packet.
 - FlowPulse Boundary ABI is the hook/model drift layer: it checks the Solidity event surface against FMM-0 assumptions.
+- Cache Lineage Gate is the cache-memory bridge: it catches unsafe KV/context reuse when tokenizer, side input, adapter, runtime, or policy drift.
 - Compute Reuse Router is the GPU workflow bridge: it proves when prior committed compute can be reused and when unsafe reuse must be rejected.
+- Compute Reuse Consistency is the systems bridge: cache lineage, compute fingerprint, and receipt-bound history all have to pass before reuse becomes live.
 
 For this repository, the public proof remains the Uniswap v4 hook primitive. The broader vision is the roadmap: FlowPulse first, then ComputePulse, CachePulse, ModelPulse, AgentPulse, and Rootflow as the memory graph.
 
@@ -158,6 +160,13 @@ rootfield, model, input, runtime, lineage, freshness, executor, hardware, and
 attestation policy before letting a request reuse prior compute. That is the
 honest GPU angle: FlowMemory does not make the chip faster; it makes the system
 less wasteful because memory becomes proof-backed and actionable.
+
+Cache Lineage Gate is the sharper infrastructure line: KV reuse should be
+proof-carried, not vibe-carried. It makes hidden cache identity dimensions
+explicit before a scheduler trusts reusable context.
+
+Compute Reuse Consistency is the category sentence: compute reuse without
+memory consistency is just cache optimism.
 
 ## BoundaryFission Founder Script
 

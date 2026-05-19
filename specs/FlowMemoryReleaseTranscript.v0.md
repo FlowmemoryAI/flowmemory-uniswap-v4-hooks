@@ -20,6 +20,8 @@ binds the current local evidence surface into one deterministic object.
 - FMM-0 Witness Pack.
 - Launch Reality Check.
 - Compute Reuse Router.
+- Cache Lineage Gate.
+- Compute Reuse Consistency Harness.
 
 ## Required Public Evidence
 

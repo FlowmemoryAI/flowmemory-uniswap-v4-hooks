@@ -18,6 +18,8 @@ from typing import Any
 try:  # pragma: no cover
     from tools import (
         axiom_writ,
+        cache_lineage_gate,
+        compute_reuse_consistency,
         compute_reuse_router,
         fmm0_witness_pack,
         launch_reality_check,
@@ -25,6 +27,8 @@ try:  # pragma: no cover
     )
 except ModuleNotFoundError:  # pragma: no cover
     import axiom_writ  # type: ignore
+    import cache_lineage_gate  # type: ignore
+    import compute_reuse_consistency  # type: ignore
     import compute_reuse_router  # type: ignore
     import fmm0_witness_pack  # type: ignore
     import launch_reality_check  # type: ignore
@@ -74,6 +78,8 @@ def build_transcript() -> dict[str, Any]:
     witness = fmm0_witness_pack.build_pack()
     reality = launch_reality_check.build_report(run_litmus=True)
     compute = compute_reuse_router.build_demo()
+    cache = cache_lineage_gate.build_demo()
+    consistency = compute_reuse_consistency.build_report()
     release = verify_release_evidence.build_report()
 
     local_items = [
@@ -94,6 +100,18 @@ def build_transcript() -> dict[str, Any]:
             status_from_bool(compute["status"] == "pass"),
             f"{compute['priorComputeReused']} reuse, {compute['unsafeReuseRejected']}/{compute['unsafeReuseRejectedTotal']} unsafe reuse rejected",
             compute,
+        ),
+        evidence_item(
+            "Cache Lineage Gate",
+            status_from_bool(cache["status"] == "pass"),
+            f"{cache['cacheReuseAccepted']} cache reuse, {cache['unsafeCacheReuseRejected']}/{cache['unsafeCacheReuseRejectedTotal']} unsafe reuse rejected",
+            cache,
+        ),
+        evidence_item(
+            "Compute Reuse Consistency",
+            status_from_bool(consistency["status"] == "pass"),
+            f"{consistency['casesPassed']}/{consistency['casesTotal']} cases, {consistency['unsafeReuseBlocked']}/{consistency['unsafeReuseTotal']} unsafe reuse blocked",
+            consistency,
         ),
     ]
     public_status = release["verdict"]["publicBaseSepoliaReceiptEvidence"]

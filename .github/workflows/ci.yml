@@ -78,7 +78,9 @@ jobs:
             docs/OFFICIAL_REFERENCES.md
             docs/EXPERT_REVIEW_PROMPT.md
             docs/BEYOND_DEFI_MEMORY.md
+            docs/CACHE_LINEAGE_GATE.md
             docs/COMPUTE_PULSE.md
+            docs/COMPUTE_REUSE_CONSISTENCY.md
             docs/COMPUTE_REUSE_ROUTER.md
             docs/PROOF_EXPLORER_CONCEPT.md
             docs/PROOF_CARRIED_AGENT_MEMORY.md
@@ -114,7 +116,9 @@ jobs:
             specs/FMM-0-ForbiddenCore.v0.md
             specs/FMM-0-WitnessPack.v0.md
             specs/FlowPulse.v1.md
+            specs/CacheLineageGate.v0.md
             specs/ComputePulse.v0.md
+            specs/ComputeReuseConsistency.v0.md
             specs/ComputeReuseRouter.v0.md
             specs/FlowMemoryReleaseTranscript.v0.md
             specs/MachineMemoryTrace.v0.md
@@ -133,12 +137,20 @@ jobs:
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
+            examples/cache-lineage-gate/README.md
+            examples/cache-lineage-gate/ledger.example.json
+            examples/cache-lineage-gate/policy.example.json
+            examples/cache-lineage-gate/request.reuse.json
+            examples/cache-lineage-gate/requests.example.json
+            examples/cache-lineage-gate/expected-output.txt
             examples/compute-reuse-router/README.md
             examples/compute-reuse-router/ledger.example.json
             examples/compute-reuse-router/policy.example.json
             examples/compute-reuse-router/request.reuse.json
             examples/compute-reuse-router/requests.example.json
             examples/compute-reuse-router/expected-output.txt
+            examples/compute-reuse-consistency/README.md
+            examples/compute-reuse-consistency/expected-output.txt
             examples/release-transcript/README.md
             examples/release-transcript/expected-output.txt
             examples/axiom-writ/README.md
@@ -271,6 +283,8 @@ jobs:
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/memory_trace.py
+            tools/cache_lineage_gate.py
+            tools/compute_reuse_consistency.py
             tools/compute_reuse_router.py
             tools/flowmemory_release_transcript.py
             tools/axiom_writ.py
@@ -341,6 +355,15 @@ jobs:
       - name: Check pulse trace example
         run: python tools/memory_trace.py verify-trace examples/pulse-trace/trace.example.json --output /tmp/agent-memory-pack.json
 
+      - name: Test Cache Lineage Gate
+        run: python -m unittest tools.test_cache_lineage_gate
+
+      - name: Check Cache Lineage Gate demo
+        run: |
+          python tools/cache_lineage_gate.py demo --pretty
+          python tools/cache_lineage_gate.py gate --request examples/cache-lineage-gate/request.reuse.json --ledger examples/cache-lineage-gate/ledger.example.json --policy examples/cache-lineage-gate/policy.example.json --out /tmp/cache-lineage-verdict.json --pretty
+          python tools/cache_lineage_gate.py verify-verdict --verdict /tmp/cache-lineage-verdict.json
+
       - name: Test Compute Reuse Router
         run: python -m unittest tools.test_compute_reuse_router
 
@@ -349,6 +372,12 @@ jobs:
           python tools/compute_reuse_router.py demo --pretty
           python tools/compute_reuse_router.py route --request examples/compute-reuse-router/request.reuse.json --ledger examples/compute-reuse-router/ledger.example.json --policy examples/compute-reuse-router/policy.example.json --out /tmp/compute-reuse-decision.json --pretty
           python tools/compute_reuse_router.py verify-decision --decision /tmp/compute-reuse-decision.json
+
+      - name: Test Compute Reuse Consistency
+        run: python -m unittest tools.test_compute_reuse_consistency
+
+      - name: Check Compute Reuse Consistency demo
+        run: python tools/compute_reuse_consistency.py demo --pretty
 
       - name: Test FlowMemory release transcript
         run: python -m unittest tools.test_flowmemory_release_transcript

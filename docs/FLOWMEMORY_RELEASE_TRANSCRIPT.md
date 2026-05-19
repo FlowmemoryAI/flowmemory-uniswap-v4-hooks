@@ -19,6 +19,8 @@ What is explicitly not claimed?
 - FMM-0 Witness Pack.
 - Launch Reality Check.
 - Compute Reuse Router.
+- Cache Lineage Gate.
+- Compute Reuse Consistency Harness.
 - Public Base Sepolia receipt evidence gate.
 
 The transcript is deterministic and does not depend on live RPC.
@@ -45,6 +47,8 @@ The repo is not only a hook demo. It now has:
 - adversarial conformance harnesses;
 - a Solidity ABI drift gate;
 - an executable GPU workflow reuse gate;
+- an executable cache-lineage reuse gate;
+- an executable compute-reuse consistency harness;
 - a pending-safe public evidence path.
 
 The transcript makes that consumable in one artifact.

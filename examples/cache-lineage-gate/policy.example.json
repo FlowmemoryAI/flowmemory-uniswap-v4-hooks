@@ -1,0 +1,9 @@
+{
+  "allowedExecutors": [
+    "executor-a",
+    "executor-b"
+  ],
+  "maxAgeSeconds": 3600,
+  "requireAttestationRef": false,
+  "schema": "flowmemory.cache_lineage_policy.v0"
+}

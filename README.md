@@ -497,16 +497,30 @@ request to `REUSE_PRIOR_COMPUTE` only when rootfield, model, input, runtime,
 lineage, freshness, executor, hardware, and attestation policy checks pass.
 Unsafe reuse is rejected with explicit proof failures.
 
+Cache Lineage Gate goes one layer lower: it checks whether KV/context cache
+reuse is safe when tokenizer, adapter, side input, runtime, or cache policy can
+drift.
+
+Compute Reuse Consistency ties the AI/GPU bridge back into the memory model:
+safe reuse requires cache lineage, compute fingerprint compatibility, and
+receipt-bound machine-history consistency.
+
 ```bash
+python tools/cache_lineage_gate.py demo --pretty
 python tools/compute_reuse_router.py demo --pretty
+python tools/compute_reuse_consistency.py demo --pretty
 ```
 
 Expected launch signal:
 
 ```text
+cache reuse accepted: 1
+unsafe cache reuse rejected: 4/4
 prior compute reused: 1
 GPU jobs avoided: 1
 unsafe reuse rejected: 4/4
+cases passed: 5/5
+unsafe reuse blocked: 4/4
 ```
 
 ## Release Transcript
@@ -525,7 +539,7 @@ Expected launch line:
 FlowMemory's local FMM-0 consistency surface is launch-ready; public receipt evidence remains pending and is not claimed.
 ```
 
-See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
+See [docs/BEYOND_DEFI_MEMORY.md](docs/BEYOND_DEFI_MEMORY.md), [docs/CACHE_LINEAGE_GATE.md](docs/CACHE_LINEAGE_GATE.md), [docs/COMPUTE_PULSE.md](docs/COMPUTE_PULSE.md), [docs/COMPUTE_REUSE_CONSISTENCY.md](docs/COMPUTE_REUSE_CONSISTENCY.md), [docs/COMPUTE_REUSE_ROUTER.md](docs/COMPUTE_REUSE_ROUTER.md), and [docs/PROOF_EXPLORER_CONCEPT.md](docs/PROOF_EXPLORER_CONCEPT.md).
 
 ## R&D Primitive: AxiomPatch
 
@@ -863,7 +877,9 @@ docs/
   WHY_IT_WORKS.md                  # Why the hook creates a new primitive
   EVENT_MODEL.md                   # FlowPulse artifact and reader-derived receipt metadata
   BEYOND_DEFI_MEMORY.md            # Larger FlowMemory thesis across DeFi, AI, GPU work, and agents
+  CACHE_LINEAGE_GATE.md            # Proof-carried KV/context reuse gate
   COMPUTE_PULSE.md                 # ComputePulse architecture for AI/GPU memory artifacts
+  COMPUTE_REUSE_CONSISTENCY.md     # Cache, compute, and receipt-history reuse harness
   COMPUTE_REUSE_ROUTER.md          # Proof-backed scheduler decisions for reusable compute
   PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
@@ -905,6 +921,8 @@ docs/
 tools/
   read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
   memory_trace.py                  # Builds proof-carried Agent Memory Packs from traces
+  cache_lineage_gate.py            # Gates KV/context reuse through lineage commitments
+  compute_reuse_consistency.py     # Tests cache, compute, and receipt-history reuse gates
   compute_reuse_router.py          # Routes safe reuse of committed AI/GPU work
   flowmemory_release_transcript.py # Builds the canonical offline launch transcript
   axiom_writ.py                    # Mints/verifies/applies AxiomWrit cognitive permissions
@@ -924,7 +942,9 @@ tools/
 specs/
   FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
+  CacheLineageGate.v0.md           # Draft proof-carried KV/context reuse gate spec
   ComputePulse.v0.md               # Draft AI/GPU ComputePulse spec
+  ComputeReuseConsistency.v0.md    # Draft cache/compute/history reuse consistency spec
   ComputeReuseRouter.v0.md         # Draft scheduler-facing compute reuse spec
   FlowMemoryReleaseTranscript.v0.md # Draft offline release transcript spec
   MachineMemoryTrace.v0.md         # Draft trace format across pulse artifacts
@@ -942,7 +962,9 @@ specs/
   FlowLitmus.v0.md                 # Draft forbidden-outcome suite spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
+  cache-lineage-gate/              # Example proof-carried KV/context reuse decision
   compute-reuse-router/            # Example proof-backed GPU workflow reuse decision
+  compute-reuse-consistency/       # Example cache + compute + history consistency harness
   release-transcript/              # Example canonical launch transcript output
   axiom-writ/                      # Example FlowPulse -> AxiomWrit -> cognition verdicts
   axiom-patch/                     # Example FlowPulse -> AxiomPatch -> downgraded agent action

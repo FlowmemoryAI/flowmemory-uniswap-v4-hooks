@@ -194,10 +194,17 @@ This names each impossible machine history and the FlowMemory fault that catches
 15. The forbidden-outcomes casebook translates FlowLitmus from a test suite into
     a reviewer-readable memory-model casebook.
 
-16. Compute Reuse Router shows the AI/GPU angle without overclaiming hardware:
+16. Cache Lineage Gate shows the context-memory angle: KV/context reuse should
+    be proof-carried, not vibe-carried.
+
+17. Compute Reuse Router shows the AI/GPU angle without overclaiming hardware:
     proof-backed compute memory can become a scheduler reuse decision.
 
-17. FlowMemory Release Transcript gives one offline object for what passed,
+18. Compute Reuse Consistency ties the AI/GPU angle back to the memory model:
+    cache lineage, compute fingerprint, and receipt-bound history all have to
+    pass before reuse becomes live.
+
+19. FlowMemory Release Transcript gives one offline object for what passed,
     what is pending, and what is explicitly not claimed.
 
 ## Demo Caption
@@ -231,7 +238,15 @@ FlowLitmus casebook: each impossible history has a name, a boundary reason, and 
 ```
 
 ```text
+Cache Lineage Gate: KV reuse should be proof-carried, not vibe-carried.
+```
+
+```text
 Compute Reuse Router: the fastest GPU job is the one the system can prove it does not need to run again.
+```
+
+```text
+Compute reuse without memory consistency is just cache optimism.
 ```
 
 ```text
@@ -265,9 +280,17 @@ evidence, commands, expected results, status, and explicit non-claims.
 The Release Transcript is the launch packaging layer: one offline object says
 what passed, what is still pending, and what the repo does not claim.
 
+The Cache Lineage Gate is the context-memory bridge: it checks whether reusable
+KV/context memory carries the right tokenizer, side-input, adapter, runtime, and
+policy commitments before the scheduler trusts it.
+
 The Compute Reuse Router is the GPU workflow bridge: it does not make a chip
 faster, but it shows how proof-backed memory can stop safe prior compute from
 being run twice.
+
+The Compute Reuse Consistency Harness is the systems bridge: cache lineage,
+compute fingerprint compatibility, and receipt-bound history must all pass
+before autonomous compute reuse becomes live.
 
 ## Skeptic Replies
 

@@ -87,7 +87,9 @@ python tools/flowpulse_boundary_abi.py check --pretty
 Check Compute Reuse Router:
 
 ```bash
+python tools/cache_lineage_gate.py demo --pretty
 python tools/compute_reuse_router.py demo --pretty
+python tools/compute_reuse_consistency.py demo --pretty
 ```
 
 Build the FlowMemory Release Transcript:

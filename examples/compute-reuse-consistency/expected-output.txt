@@ -1,0 +1,15 @@
+Compute Reuse Consistency Harness
+
+Cases:
+  CRC-OK-001  PASS  ACCEPT_REUSE               all_consistency_gates_passed
+  CRC-KV-001  PASS  BLOCK_CACHE_REUSE          tokenizerCommitmentMatches
+  CRC-GPU-001 PASS  RUN_GPU_JOB                runtimeCommitmentMatches
+  CRC-SER-001 PASS  BLOCK_IMPOSSIBLE_HISTORY   retrocausal_receipt_claim
+  CRC-ATT-001 PASS  BLOCK_CACHE_REUSE          attestationSatisfied
+
+Summary:
+  cases passed: 5/5
+  unsafe reuse blocked: 4/4
+
+Result:
+  FlowMemory is not trying to make GPUs faster. It is making compute reuse harder to get wrong.

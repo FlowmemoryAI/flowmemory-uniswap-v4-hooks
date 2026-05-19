@@ -16,7 +16,9 @@ It now also names the runtime model and its state surface:
 - **FMM-0 Forbidden Core Extractor**;
 - **FMM-0 Witness Pack**;
 - **FlowPulse Boundary ABI**;
+- **Cache Lineage Gate**;
 - **Compute Reuse Router**;
+- **Compute Reuse Consistency**;
 - **FlowMemory Release Transcript**.
 
 ## Command
@@ -115,7 +117,9 @@ It checks:
 - FMM-0 Forbidden Core Extractor;
 - FMM-0 Witness Pack;
 - FlowPulse Boundary ABI;
+- Cache Lineage Gate;
 - Compute Reuse Router;
+- Compute Reuse Consistency;
 - FlowMemory Release Transcript;
 - the FlowLitmus forbidden-outcome suite.
 
@@ -140,8 +144,10 @@ flowchart LR
     Bisim --> Core["Forbidden Core shrinks impossible histories"]
     Core --> ABI["FlowPulse Boundary ABI checks event drift"]
     ABI --> Witness["Witness Pack bundles local evidence"]
-    Witness --> Router["Compute Reuse Router checks reuse decisions"]
-    Router --> Transcript["Release Transcript summarizes launch state"]
+    Witness --> Cache["Cache Lineage Gate checks KV/context reuse"]
+    Cache --> Router["Compute Reuse Router checks reuse decisions"]
+    Router --> CRC["Compute Reuse Consistency checks all reuse gates"]
+    CRC --> Transcript["Release Transcript summarizes launch state"]
     Transcript --> Serial["FlowSerial checks serial history"]
     Serial --> Litmus["FlowLitmus runs forbidden outcomes"]
     Litmus --> Check["FlowMemory Reality Check"]
@@ -262,9 +268,17 @@ FlowPulse Boundary ABI is the hook/model drift layer. It checks that the
 Solidity event surface still excludes receipt-only fields and matches the
 runtime boundary assumptions.
 
+Cache Lineage Gate is the context-memory layer. It checks whether KV/context
+reuse carries the right tokenizer, side-input, adapter, runtime, and policy
+commitments before a scheduler trusts it.
+
 Compute Reuse Router is the GPU workflow bridge. It proves when committed
 compute memory can become a scheduler reuse decision, and when unsafe reuse must
 be rejected.
+
+Compute Reuse Consistency is the systems bridge. It requires cache lineage,
+compute fingerprint compatibility, and receipt-bound history to agree before
+reuse becomes live.
 
 FlowMemory Release Transcript is the launch packaging layer. It gives one
 offline object for passed local evidence, pending public evidence, and explicit

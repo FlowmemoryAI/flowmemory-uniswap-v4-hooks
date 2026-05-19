@@ -73,6 +73,31 @@ Tests:
 python -m unittest tools.test_memory_trace
 ```
 
+## `cache_lineage_gate.py`
+
+Gates KV/context cache reuse through CachePulse lineage commitments.
+
+It checks model, tokenizer, runtime, prefix, side-input, adapter, cache-policy,
+executor, freshness, and optional attestation commitments before allowing cache
+reuse.
+
+```bash
+python tools/cache_lineage_gate.py demo --pretty
+
+python tools/cache_lineage_gate.py gate \
+  --request examples/cache-lineage-gate/request.reuse.json \
+  --ledger examples/cache-lineage-gate/ledger.example.json \
+  --policy examples/cache-lineage-gate/policy.example.json \
+  --out /tmp/cache-lineage-verdict.json \
+  --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_cache_lineage_gate
+```
+
 ## `compute_reuse_router.py`
 
 Routes AI/GPU compute reuse through ComputePulse commitments.
@@ -105,6 +130,21 @@ Tests:
 
 ```bash
 python -m unittest tools.test_compute_reuse_router
+```
+
+## `compute_reuse_consistency.py`
+
+Runs the bridge harness across FlowSerial, Cache Lineage Gate, and Compute
+Reuse Router.
+
+```bash
+python tools/compute_reuse_consistency.py demo --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_compute_reuse_consistency
 ```
 
 ## `flowmemory_release_transcript.py`

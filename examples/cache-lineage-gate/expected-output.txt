@@ -1,0 +1,17 @@
+Cache Lineage Gate
+
+Verdicts:
+  req-cache-exact              REUSE_CACHE    cache-pulse-prefix-alpha
+  req-tokenizer-drift          RUN_PREFILL    tokenizerCommitmentMatches
+  req-side-input-drift         RUN_PREFILL    sideInputCommitmentMatches
+  req-cache-policy-drift       RUN_PREFILL    cachePolicyCommitmentMatches
+  req-unverified-cache         RUN_PREFILL    statusVerified
+
+Summary:
+  requests checked: 5
+  cache reuse accepted: 1
+  prefill required: 4
+  unsafe cache reuse rejected: 4/4
+
+Result:
+  FlowMemory can make KV/context reuse proof-carried without exposing cache payloads.

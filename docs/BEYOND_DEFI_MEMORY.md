@@ -239,6 +239,15 @@ It rejects unsafe reuse when runtime commitments drift, evidence is unverified,
 attestation is missing, or the artifact is stale. This is where FlowMemory moves
 from passive provenance to active compute routing.
 
+Cache Lineage Gate goes one layer lower. It checks whether KV/context cache
+reuse is safe when tokenizer, adapter, side input, runtime, or cache policy can
+drift. That turns cache reuse from an infrastructure assumption into a
+proof-carried memory decision.
+
+Compute Reuse Consistency ties both gates back to the memory model. Reuse is
+accepted only when cache lineage, compute fingerprint compatibility, and
+receipt-bound machine history all pass.
+
 ## What Feels Impossible
 
 The public demo should make one idea visible:
@@ -264,7 +273,7 @@ That is not a dashboard.
 
 That is execution becoming memory.
 
-## Ten Category-Defining Product Concepts
+## Sixteen Category-Defining Product Concepts
 
 1. **FlowPulse Proof Explorer**: paste a transaction hash and see the memory artifact, proof envelope, non-interference facts, and rootfield graph.
 2. **ComputePulse**: a memory artifact for GPU jobs, inference runs, embeddings, checkpoints, and model outputs.
@@ -276,10 +285,12 @@ That is execution becoming memory.
 8. **PulseRetire Queue**: receipt-driven retirement for speculative model outputs, cache reuse, and next actions.
 9. **FlowMMU**: receipt-backed virtual memory where agents fault if they dereference transaction facts before reader mapping.
 10. **FlowQuiesce**: receipt-triggered quiescence epochs for active agent and GPU workflow frames.
-11. **Compute Reuse Router**: an executable scheduler gate that checks whether a committed output or context already exists before scheduling GPU work.
-12. **KV Lineage Ledger**: off-chain commitments for KV-cache/context artifacts so long-running agent systems can identify reusable context without putting private data on-chain.
-13. **DePIN Compute Receipts**: a receipt model for GPU marketplaces where paid work emits a ComputePulse tied to model, input, output, executor, and attestation references.
-14. **Memory-Native Wallets**: wallets that show not just transactions, but verified memory timelines connected to protocols, agents, compute, and intent.
+11. **Cache Lineage Gate**: an executable gate for KV/context reuse that catches tokenizer, side-input, adapter, runtime, and policy drift.
+12. **Compute Reuse Router**: an executable scheduler gate that checks whether a committed output or context already exists before scheduling GPU work.
+13. **Compute Reuse Consistency**: a harness that requires cache lineage, compute fingerprint, and receipt-bound history before accepting reuse.
+14. **KV Lineage Ledger**: off-chain commitments for KV-cache/context artifacts so long-running agent systems can identify reusable context without putting private data on-chain.
+15. **DePIN Compute Receipts**: a receipt model for GPU marketplaces where paid work emits a ComputePulse tied to model, input, output, executor, and attestation references.
+16. **Memory-Native Wallets**: wallets that show not just transactions, but verified memory timelines connected to protocols, agents, compute, and intent.
 
 ## The Most Impressive Near-Term Demo
 
