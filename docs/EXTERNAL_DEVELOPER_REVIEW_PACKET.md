@@ -273,7 +273,7 @@ Do not credit the project for these until separate evidence exists:
 - live Base mainnet deployment;
 - audited custody infrastructure;
 - fund protection;
-- swap control;
+- swap-economic control;
 - fee control;
 - routing control;
 - custom accounting;
@@ -349,9 +349,9 @@ python tools/compute_reuse_consistency.py demo --pretty
 
 Expected current local results:
 
-- Python/tool tests: 276 passed.
+- Python/tool tests: 399 passed.
 - Foundry tests: 12 passed.
-- Public Claim Gate: 0 unguarded overclaims.
+- Public Claim Gate: 24 files checked, 0 unguarded overclaims.
 - Launch Reality Check: PASS.
 - Compute Reuse Consistency: 5/5 cases passed, 4/4 unsafe reuse blocked.
 

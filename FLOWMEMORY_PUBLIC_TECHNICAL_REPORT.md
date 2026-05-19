@@ -1,6 +1,6 @@
 ---
 title: "FlowMemory Uniswap v4 Hooks"
-subtitle: "A Public Technical Breakdown of a Memory-Native DeFi Primitive"
+subtitle: "A Public Technical Breakdown of a Receipt-Bound Memory-Signal Hook and Local Conformance Suite"
 author: "FlowMemory"
 date: "May 19, 2026"
 ---
@@ -8,6 +8,17 @@ date: "May 19, 2026"
 # FlowMemory Uniswap v4 Hooks
 
 ## Public Technical Report
+
+**Snapshot note**
+
+This report has been refreshed for the current launch-prep state after commit
+`07038fd`, which clarified the launch repo boundary and passed GitHub Actions
+CI. The report itself may be committed after that verification snapshot. For
+the live repository state, run:
+
+```bash
+python tools/flowmemory_release_transcript.py --pretty
+```
 
 **Core line**
 
@@ -66,17 +77,18 @@ impossible.
 | Area | Launch-prep status |
 | --- | --- |
 | Repository | Public GitHub repository: `FlowmemoryAI/flowmemory-uniswap-v4-hooks` |
-| Verification snapshot | `036d0c2` before report packaging; the report commit is recorded in Git history |
+| Verification snapshot | `07038fd` launch-boundary commit; report refresh follows this snapshot |
 | Public prerelease | `v0.1.0-launch-prep` |
 | License | MIT |
-| Latest CI at verification snapshot | Passing |
+| Latest CI at verification snapshot | Passing on GitHub Actions |
 | Solidity tests | 12 passed |
-| Python/tool tests | 276 passed |
+| Python/tool tests | 399 passed |
 | Launch reality check | PASS |
-| Public claim gate | PASS: 0 unguarded overclaims |
+| Public claim gate | PASS: 24 files checked, 0 unguarded overclaims |
 | Local FMM-0 consistency surface | PASS |
 | Public Base Sepolia receipt evidence | PENDING |
 | Production verifier infrastructure | NOT_CLAIMED |
+| Repo boundary | Current repo is the Uniswap v4 `afterSwap` FlowPulse primitive; FlowKernel, FlowCompiler, MCP adapters, and coding-agent conformance are deferred future packages |
 
 The project has a deliberately narrow public claim surface:
 
@@ -203,7 +215,53 @@ The gates check whether cache and compute reuse are allowed only when lineage,
 fingerprints, freshness, attestation policy, and receipt-bound memory history
 are compatible.
 
-### 6. Public Claim Gate
+### 6. Agent Commerce Conformance R&D
+
+The repository now includes local deterministic agent-commerce harnesses that
+show how receipt-bound FlowPulse memory can support downstream consistency
+checks without claiming wallet enforcement, custody, escrow, fund protection, or
+production verifier infrastructure.
+
+These include:
+
+- `Compute ChargeLine`: checks whether AI/GPU compute payment follows the
+  memory-consistent compute route;
+- `DischargeLine`: checks whether a receipt closes the right declared
+  obligation instead of treating payment settlement as semantic completion;
+- `SpendLine`: checks memory-linearizable autonomous spend histories;
+- `DuplexLine`: checks co-serializable buyer/seller agent exchange histories;
+- `Agent Commerce Conservation`: checks whether autonomous commerce episodes
+  conserve declared obligations across spend, work, compute, refusal, and
+  memory state;
+- `Obligation Membrane`: checks that multi-agent obligation chains do not
+  launder away memory, compute, payee, refusal, rootfield, aggregation, or
+  payment-ordering constraints;
+- `Agent Commerce Differential`: shows the category delta in one table:
+  ordinary rails can accept the action surface while FlowMemory rejects the
+  impossible history.
+
+The strongest agent-commerce line is:
+
+```text
+Wallets show that money moved. FlowMemory asks whether the machine history that produced the action could have happened.
+```
+
+### 7. Repo Boundary And Future Runtime Map
+
+The repo now makes its boundary explicit:
+
+```text
+current package: Uniswap v4 afterSwap FlowPulse primitive
+current launch claim: local FMM-0 conformance with public receipt evidence pending
+future packages: flowmemory-core, flowmemory-onchain-reader, flowmemory-agent-commerce, flowmemory-coding, flowmemory-kernel, flowmemory-mcp
+```
+
+This matters because the broader runtime architecture is real but intentionally
+deferred. The launch repo should remain the first public FlowPulse boundary
+primitive plus local conformance evidence, not a general-purpose AI-agent
+framework.
+
+### 8. Public Claim Gate
 
 Because this project uses bold category language, it also includes a launch-copy
 guard:
@@ -215,8 +273,8 @@ python tools/public_claim_gate.py --pretty
 Current result:
 
 ```text
-files checked: 8
-guarded risk mentions: 68
+files checked: 24
+guarded risk mentions: 213
 unguarded overclaims: 0
 Public launch copy is claim-safe.
 ```
@@ -282,17 +340,16 @@ verification performance: deterministic tests, proof gates, and CI status.
 
 ### Verification Results
 
-At verification snapshot `036d0c2`, before report packaging, the launch-prep
-verification surface was:
+At verification snapshot `07038fd`, the launch-prep verification surface was:
 
 | Verification command | Result |
 | --- | --- |
-| `python -m unittest discover -s tools -p 'test_*.py'` | 276 tests passed |
+| `python -m unittest discover -s tools -p 'test_*.py'` | 399 tests passed |
 | `forge fmt --check` | passed |
 | `forge build` | passed |
 | `forge test -vvv` | 12 tests passed |
 | `python tools/flowmemory_release_transcript.py --pretty` | local surface PASS; public evidence PENDING |
-| `python tools/public_claim_gate.py --pretty` | 0 unguarded overclaims |
+| `python tools/public_claim_gate.py --pretty` | 24 files checked; 0 unguarded overclaims |
 | `python tools/launch_reality_check.py --pretty` | launch reality PASS |
 | `python tools/compute_reuse_consistency.py demo --pretty` | 5/5 cases passed; 4/4 unsafe reuse blocked |
 | GitHub Actions CI | passing |
@@ -305,6 +362,13 @@ Launch Reality Check         PASS     boundary model, hook invariants, artifacts
 Compute Reuse Router         PASS     1 reuse, 4/4 unsafe reuse rejected
 Cache Lineage Gate           PASS     1 cache reuse, 4/4 unsafe reuse rejected
 Compute Reuse Consistency    PASS     5/5 cases, 4/4 unsafe reuse blocked
+Compute ChargeLine           PASS     2/2 valid charges, 8/8 invalid charges rejected
+DischargeLine Harness        PASS     2/2 valid discharges, 10/10 invalid discharges rejected
+SpendLine Harness            PASS     1/1 valid spend, 8/8 unsafe spends rejected
+DuplexLine Harness           PASS     1/1 valid exchange, 15/15 unsafe exchanges rejected
+Agent Commerce Conservation  PASS     1/1 valid episode, 7/7 invalid episodes rejected
+Obligation Membrane          PASS     1/1 valid chain, 9/9 unsafe chains rejected
+Agent Commerce Differential  PASS     1/1 valid case, 9/9 differential failures caught
 Public Base Sepolia Receipt Evidence PENDING
 ```
 
@@ -482,7 +546,7 @@ The project deliberately does **not** claim:
 - live Base mainnet deployment;
 - audited custody infrastructure;
 - fund protection;
-- swap control;
+- swap-economic control;
 - fee control;
 - routing control;
 - custom accounting;
@@ -490,6 +554,8 @@ The project deliberately does **not** claim:
 - model correctness;
 - GPU hardware speedup;
 - production verifier readiness;
+- coding-agent framework, MCP adapter, plugin ecosystem, or production runtime
+  package;
 - hook-time knowledge of `txHash`, `transactionIndex`, or `logIndex`.
 
 Public Base Sepolia receipt evidence is still `PENDING`. A live release requires
@@ -529,7 +595,7 @@ FlowMemory introduces a memory-native Uniswap v4 hook primitive. The swap is
 not the memory; the transaction is the proof envelope; the FlowPulse is the
 memory artifact. The hook is deliberately narrow: `afterSwap`, PoolManager
 gated, zero hook delta, no custody, no routing, no fee engine, no custom
-accounting, and no receipt metadata smuggling.
+accounting, no swap-economic control, and no receipt metadata smuggling.
 
 The broader contribution is FMM-0, a receipt-bound memory consistency model for
 machine histories. Instead of treating agent memory as retrieval alone,
