@@ -1,8 +1,20 @@
 # Launch Day Checklist
 
-Target date: May 19, 2026.
+Launch-ready snapshot: May 20, 2026.
 
 Launch focus: FlowMemory's memory-native Uniswap v4 hook primitive.
+
+Current public releases:
+
+- Uniswap hook launch repo: `v0.1.1-launch-ready`.
+- Warranted-agent companion framework: `v0.2.1-framework` at <https://github.com/FlowmemoryAI/flowmemory-warranted-agents/releases/tag/v0.2.1-framework>.
+
+Current local verification snapshot:
+
+- `forge test -vvv`: 12 Solidity tests passed.
+- `python -m unittest discover -s tools -p "test_*.py"`: 399 Python tests passed.
+- `python tools/public_claim_gate.py`: 0 unguarded overclaims.
+- `python tools/launch_reality_check.py`: PASS.
 
 ## Launch Thesis
 
