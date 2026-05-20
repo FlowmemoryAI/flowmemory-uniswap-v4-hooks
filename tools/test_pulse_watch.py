@@ -84,6 +84,61 @@ class PulseWatchTest(unittest.TestCase):
 
         self.assertIn("PulseWatch verify: PASS", completed.stdout)
 
+    def test_health_report_includes_reader_lag_and_cursor(self):
+        demo = pulse_watch.build_demo()
+        health = pulse_watch.health_report(
+            demo["nextState"],
+            latest_block=130,
+            expected_chain_id="84532",
+            expected_hook_address=demo["nextState"]["hookAddress"],
+        )
+        self.assertEqual("flowmemory.pulsewatch_health.v0", health["schema"])
+        self.assertEqual("healthy", health["status"])
+        self.assertEqual(9, health["readerLagBlocks"])
+        self.assertEqual(121, health["latestScannedBlock"])
+
+    def test_health_report_degrades_on_wrong_hook(self):
+        demo = pulse_watch.build_demo()
+        health = pulse_watch.health_report(
+            demo["nextState"],
+            latest_block=130,
+            expected_hook_address="0x0000000000000000000000000000000000000040",
+        )
+        self.assertEqual("degraded", health["status"])
+
+    def test_replay_reader_output_is_deterministic(self):
+        demo = pulse_watch.build_demo()
+        replay = pulse_watch.replay_reader_output(demo["readerOutput"], from_cursor=119)
+        self.assertEqual("PASS", replay["status"])
+        self.assertTrue(replay["deterministic"])
+        self.assertEqual(2, replay["recordsAccepted"])
+
+    def test_health_cli_reports_lag(self):
+        demo = pulse_watch.build_demo()
+        with tempfile.TemporaryDirectory() as tmp:
+            state_path = Path(tmp) / "state.json"
+            state_path.write_text(json.dumps(demo["nextState"]), encoding="utf-8")
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    "tools/pulse_watch.py",
+                    "health",
+                    "--state",
+                    str(state_path),
+                    "--latest-block",
+                    "130",
+                    "--expected-chain-id",
+                    "84532",
+                    "--expected-hook-address",
+                    demo["nextState"]["hookAddress"],
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+        self.assertIn("PulseWatch health: HEALTHY", completed.stdout)
+        self.assertIn("readerLagBlocks: 9", completed.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

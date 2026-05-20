@@ -1,0 +1,15 @@
+[Unit]
+Description=FlowMemory PulseWatch Base Sepolia Reader
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/flowmemory/flowmemory-uniswap-v4-hooks
+EnvironmentFile=/etc/flowmemory/pulsewatch.env
+ExecStart=/usr/bin/python3 tools/pulse_watch.py run --rpc-url ${FLOWMEMORY_RPC_URL} --hook-address ${FLOWMEMORY_HOOK_ADDRESS} --from-block ${FLOWMEMORY_FROM_BLOCK} --state ${FLOWMEMORY_PULSEWATCH_STATE} --memory-store ${FLOWMEMORY_PULSEWATCH_MEMORY_STORE} --poll-seconds 30 --max-retries 3 --retry-seconds 5
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.3 Base Sepolia Production Path - 2026-05-20
+
+Added the production-like Base Sepolia deployment and evidence path.
+
+What changed:
+
+- Added guarded Foundry scripts for Base Sepolia deployment/read-only
+  verification checks.
+- Added sanitized deployment manifest tooling that refuses non-Base-Sepolia
+  chain ids and redacts secret-like fields.
+- Added deterministic release evidence packet generation from observed
+  FlowPulse/AfterSwap reader output.
+- Added PulseWatch health and replay commands, plus retry/backoff for live
+  reader mode.
+- Added public Base Sepolia status generation.
+- Added production readiness gate and Base Sepolia operator runbooks.
+- Added systemd and Docker Compose PulseWatch operation templates.
+
+Boundary:
+
+- This is a Base Sepolia production-like path, not a Base mainnet claim.
+- Missing RPC, wallet funding, source verification, or observed FlowPulse logs
+  remain blocked instead of being faked.
+
 ## 0.1.2 System Architecture and Receipt Runtime - 2026-05-20
 
 Added the full-system architecture package and the first deterministic receipt

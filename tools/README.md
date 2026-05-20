@@ -73,6 +73,84 @@ Tests:
 python -m unittest tools.test_pulse_watch
 ```
 
+Health and replay:
+
+```bash
+python tools/pulse_watch.py health \
+  --state .flowmemory/pulsewatch-state.json \
+  --latest-block "$FLOWMEMORY_LATEST_BLOCK" \
+  --expected-chain-id 84532 \
+  --expected-hook-address "$FLOWMEMORY_HOOK_ADDRESS"
+
+python tools/pulse_watch.py replay \
+  --reader-output releases/base-sepolia/flowpulse-evidence.json \
+  --from-cursor "$FLOWMEMORY_FROM_BLOCK"
+```
+
+## `base_sepolia_deploy.py`
+
+Creates and validates sanitized Base Sepolia deployment manifests. It does not
+read private keys and does not deploy contracts.
+
+```bash
+python tools/base_sepolia_deploy.py dry-run-manifest
+python tools/base_sepolia_deploy.py validate \
+  --input deployments/base-sepolia/deployment-manifest.dry-run.json
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_base_sepolia_deploy
+```
+
+## `release_evidence.py`
+
+Builds deterministic Base Sepolia release packets from observed reader output.
+Observed packets require real FlowPulse records; fixture packets require
+explicit fixture mode.
+
+```bash
+python tools/release_evidence.py generate \
+  --reader-output releases/base-sepolia/flowpulse-evidence.json \
+  --output release-evidence/base-sepolia/RELEASE_PACKET.json
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_release_evidence
+```
+
+## `public_status.py`
+
+Generates the testnet-only public status page.
+
+```bash
+python tools/public_status.py --output public/status/base-sepolia.md
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_public_status
+```
+
+## `production_readiness.py`
+
+Checks the production-like Base Sepolia path without upgrading it into a
+mainnet or production verifier claim.
+
+```bash
+python tools/production_readiness.py --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_production_readiness
+```
+
 ## `receipt_runtime_demo.py`
 
 Runs the receipt-runtime MVP loop:

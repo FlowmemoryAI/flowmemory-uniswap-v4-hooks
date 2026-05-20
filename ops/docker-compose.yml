@@ -1,0 +1,37 @@
+services:
+  pulsewatch:
+    image: python:3.12-slim
+    working_dir: /repo
+    volumes:
+      - ..:/repo:ro
+      - pulsewatch-state:/state
+    environment:
+      FLOWMEMORY_RPC_URL: ${FLOWMEMORY_RPC_URL}
+      FLOWMEMORY_HOOK_ADDRESS: ${FLOWMEMORY_HOOK_ADDRESS}
+      FLOWMEMORY_FROM_BLOCK: ${FLOWMEMORY_FROM_BLOCK}
+      FLOWMEMORY_PULSEWATCH_STATE: /state/pulsewatch-state.json
+      FLOWMEMORY_PULSEWATCH_MEMORY_STORE: /state/pulsewatch-memory.jsonl
+    command:
+      - python
+      - tools/pulse_watch.py
+      - run
+      - --rpc-url
+      - ${FLOWMEMORY_RPC_URL}
+      - --hook-address
+      - ${FLOWMEMORY_HOOK_ADDRESS}
+      - --from-block
+      - ${FLOWMEMORY_FROM_BLOCK}
+      - --state
+      - /state/pulsewatch-state.json
+      - --memory-store
+      - /state/pulsewatch-memory.jsonl
+      - --poll-seconds
+      - "30"
+      - --max-retries
+      - "3"
+      - --retry-seconds
+      - "5"
+    restart: unless-stopped
+
+volumes:
+  pulsewatch-state:

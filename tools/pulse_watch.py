@@ -284,6 +284,61 @@ def append_memory_records(path: Path, records: list[dict[str, Any]]) -> None:
             handle.write(json.dumps(record, sort_keys=True) + "\n")
 
 
+def health_report(
+    state: dict[str, Any],
+    *,
+    latest_block: int | None = None,
+    expected_chain_id: str | None = None,
+    expected_hook_address: str | None = None,
+    last_error: str = "",
+) -> dict[str, Any]:
+    cursor_block = int(state.get("cursorBlock", 0))
+    reader_lag = None if latest_block is None else max(0, latest_block - cursor_block)
+    chain_ok = expected_chain_id is None or str(state.get("chainId")) == str(expected_chain_id)
+    hook_ok = expected_hook_address is None or str(state.get("hookAddress", "")).lower() == str(expected_hook_address).lower()
+    status = "healthy" if chain_ok and hook_ok and not last_error else "degraded"
+    return {
+        "schema": "flowmemory.pulsewatch_health.v0",
+        "status": status,
+        "chainId": state.get("chainId"),
+        "expectedChainId": expected_chain_id or state.get("chainId"),
+        "hookAddress": state.get("hookAddress"),
+        "expectedHookAddress": (expected_hook_address or state.get("hookAddress", "")).lower(),
+        "cursorBlock": cursor_block,
+        "latestScannedBlock": cursor_block,
+        "latestFinalizedBlock": latest_block,
+        "readerLagBlocks": reader_lag,
+        "recordsObserved": state.get("recordsObserved", 0),
+        "memoryRecordsWritten": state.get("memoryRecordsWritten", 0),
+        "rejectedRecords": state.get("rejectedRecords", 0),
+        "cursorStatus": "durable_state_loaded",
+        "lastError": last_error,
+    }
+
+
+def replay_reader_output(reader_output: dict[str, Any], *, from_cursor: int) -> dict[str, Any]:
+    state_a = empty_state(
+        chain_id=str(reader_output.get("chainId")),
+        hook_address=str(reader_output.get("hookAddress")),
+        cursor_block=from_cursor,
+    )
+    report_a, next_a, records_a = ingest_reader_output(reader_output, state_a)
+    report_b, next_b, records_b = ingest_reader_output(reader_output, state_a)
+    deterministic = next_a == next_b and records_a == records_b
+    return {
+        "schema": "flowmemory.pulsewatch_replay.v0",
+        "status": "PASS" if deterministic and not report_a["validationFaults"] else "FAIL",
+        "fromCursor": from_cursor,
+        "cursorAfter": next_a["cursorBlock"],
+        "recordsAccepted": report_a["recordsAccepted"],
+        "memoryRecordIds": [record["memoryRecordId"] for record in records_a],
+        "deterministic": deterministic,
+        "validationFaults": report_a["validationFaults"],
+        "secondReplayRecordsAccepted": report_b["recordsAccepted"],
+        "secondReplayCursorAfter": next_b["cursorBlock"],
+    }
+
+
 def _flowpulse_log(hook_address: str, *, block_number: int, tx_fill: str, log_index: int) -> dict[str, Any]:
     uri = "flowmemory://uniswap-v4/after-swap"
     data = (
@@ -401,6 +456,21 @@ def parse_args() -> argparse.Namespace:
     verify = sub.add_parser("verify", help="Verify a PulseWatch demo or watch report JSON file.")
     verify.add_argument("--input", required=True)
 
+    health = sub.add_parser("health", help="Render PulseWatch health from a durable state file.")
+    health.add_argument("--state", required=True)
+    health.add_argument("--latest-block", type=int)
+    health.add_argument("--expected-chain-id")
+    health.add_argument("--expected-hook-address")
+    health.add_argument("--last-error", default="")
+    health.add_argument("--json", action="store_true")
+    health.add_argument("--pretty", action="store_true")
+
+    replay = sub.add_parser("replay", help="Replay a reader-output JSON file deterministically.")
+    replay.add_argument("--reader-output", required=True)
+    replay.add_argument("--from-cursor", type=int, required=True)
+    replay.add_argument("--json", action="store_true")
+    replay.add_argument("--pretty", action="store_true")
+
     run = sub.add_parser("run", help="Run a live PulseWatch polling loop.")
     run.add_argument("--rpc-url", required=True)
     run.add_argument("--hook-address", required=True)
@@ -410,6 +480,8 @@ def parse_args() -> argparse.Namespace:
     run.add_argument("--to-block", default="latest")
     run.add_argument("--finality-confirmations", type=int, default=20)
     run.add_argument("--poll-seconds", type=float, default=30.0)
+    run.add_argument("--max-retries", type=int, default=3)
+    run.add_argument("--retry-seconds", type=float, default=5.0)
     run.add_argument("--once", action="store_true")
     run.add_argument("--json", action="store_true")
     run.add_argument("--pretty", action="store_true")
@@ -438,6 +510,36 @@ def main() -> int:
         print("PulseWatch verify: PASS")
         return 0
 
+    if args.command == "health":
+        state = load_json(Path(args.state))
+        report = health_report(
+            state,
+            latest_block=args.latest_block,
+            expected_chain_id=args.expected_chain_id,
+            expected_hook_address=args.expected_hook_address,
+            last_error=args.last_error,
+        )
+        if args.json:
+            print(json.dumps(report, indent=2 if args.pretty else None, sort_keys=True))
+        else:
+            print("PulseWatch health: " + report["status"].upper())
+            print(f"  chainId: {report['chainId']}")
+            print(f"  hookAddress: {report['hookAddress']}")
+            print(f"  latestScannedBlock: {report['latestScannedBlock']}")
+            print(f"  readerLagBlocks: {report['readerLagBlocks']}")
+            print(f"  lastError: {report['lastError'] or 'none'}")
+        return 0 if report["status"] == "healthy" else 1
+
+    if args.command == "replay":
+        report = replay_reader_output(load_json(Path(args.reader_output)), from_cursor=args.from_cursor)
+        if args.json:
+            print(json.dumps(report, indent=2 if args.pretty else None, sort_keys=True))
+        else:
+            print("PulseWatch replay: " + report["status"])
+            print(f"  recordsAccepted: {report['recordsAccepted']}")
+            print(f"  cursorAfter: {report['cursorAfter']}")
+        return 0 if report["status"] == "PASS" else 1
+
     if args.command == "run":
         state_path = Path(args.state)
         memory_path = Path(args.memory_store)
@@ -448,15 +550,24 @@ def main() -> int:
             cursor_block=args.from_block - 1,
         )
         reports = []
+        retries = 0
         while True:
             from_block = str(int(state.get("cursorBlock", args.from_block - 1)) + 1)
-            reader_output = pull_reader_output(
-                rpc_url=args.rpc_url,
-                hook_address=args.hook_address,
-                from_block=from_block,
-                to_block=args.to_block,
-                finality_confirmations=args.finality_confirmations,
-            )
+            try:
+                reader_output = pull_reader_output(
+                    rpc_url=args.rpc_url,
+                    hook_address=args.hook_address,
+                    from_block=from_block,
+                    to_block=args.to_block,
+                    finality_confirmations=args.finality_confirmations,
+                )
+                retries = 0
+            except Exception:
+                retries += 1
+                if retries > args.max_retries:
+                    raise
+                time.sleep(args.retry_seconds)
+                continue
             report, state, memory_records = ingest_reader_output(reader_output, state)
             append_memory_records(memory_path, memory_records)
             write_state(state_path, state)
