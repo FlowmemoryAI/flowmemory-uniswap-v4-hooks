@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.1.1 PulseWatch 24/7 Reader - 2026-05-20
+
+Added PulseWatch as the always-on reader/verifier layer for FlowPulse memory.
+
+Key clarification:
+
+```text
+The hook is transaction-triggered.
+PulseWatch is continuous.
+```
+
+What changed:
+
+- Added `tools/pulse_watch.py` with deterministic demo, live polling mode,
+  cursor state, duplicate skipping, append-only memory records, and validation.
+- Added `tools/test_pulse_watch.py` with coverage for demo output, duplicate
+  protection, proof-envelope memory records, CLI verification, and hook-time
+  receipt metadata smuggling.
+- Added `docs/PULSEWATCH_24_7_READER.md` and `specs/PulseWatch.v0.md`.
+- Added `examples/pulse-watch/` with expected output.
+- Wired PulseWatch into `docs/READER_VERIFIER_ARCHITECTURE.md`,
+  `docs/INTEGRATION_BLUEPRINT.md`, README, CI, and release transcript.
+
+Verified locally before this entry:
+
+- `python -m unittest discover -s tools -p "test_*.py"`: 407 tests passed.
+- `python tools/pulse_watch.py demo`: passed.
+- `python tools/flowmemory_release_transcript.py --pretty`: passed and includes
+  `PulseWatch 24/7 Reader`.
+- `python tools/public_claim_gate.py --pretty`: 0 unguarded overclaims.
+- `forge fmt --check`: passed.
+- `forge build`: passed.
+- `forge test -vvv`: 12 tests passed.
+
+Boundary:
+
+- PulseWatch does not make hooks run without transactions.
+- PulseWatch does not claim production verifier readiness.
+- PulseWatch does not claim live deployment, custody, fund protection, or
+  production operations.
+
 ## 0.1.0 Launch Prep - 2026-05-19
 
 FlowMemory Uniswap v4 Hooks is public launch prep for the first memory-native

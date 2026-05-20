@@ -30,6 +30,7 @@ try:  # pragma: no cover
         launch_reality_check,
         obligation_membrane,
         spendline_harness,
+        pulse_watch,
         verify_release_evidence,
     )
 except ModuleNotFoundError:  # pragma: no cover
@@ -46,6 +47,7 @@ except ModuleNotFoundError:  # pragma: no cover
     import launch_reality_check  # type: ignore
     import obligation_membrane  # type: ignore
     import spendline_harness  # type: ignore
+    import pulse_watch  # type: ignore
     import verify_release_evidence  # type: ignore
 
 
@@ -103,6 +105,7 @@ def build_transcript() -> dict[str, Any]:
     conservation = agent_commerce_conservation.build_report()
     membrane = obligation_membrane.build_report()
     differential = agent_commerce_differential.build_report()
+    watch = pulse_watch.build_demo()
     release = verify_release_evidence.build_report()
 
     local_items = [
@@ -178,6 +181,12 @@ def build_transcript() -> dict[str, Any]:
             f"{differential['validCasesAcceptedByBoth']}/{differential['validCasesTotal']} valid case, {differential['differentialFailuresCaught']}/{differential['differentialFailuresTotal']} differential failures caught",
             differential,
         ),
+        evidence_item(
+            "PulseWatch 24/7 Reader",
+            status_from_bool(watch["status"] == "pass"),
+            f"{watch['watchReport']['recordsAccepted']} accepted records, cursor {watch['watchReport']['cursorBlockBefore']}->{watch['watchReport']['cursorBlockAfter']}",
+            watch,
+        ),
     ]
     public_status = release["verdict"]["publicBaseSepoliaReceiptEvidence"]
     public_items = [
@@ -210,6 +219,7 @@ def build_transcript() -> dict[str, Any]:
                 "coding-agent conformance",
                 "MCP adapters",
                 "production reader/verifier infrastructure",
+                "production PulseWatch deployment",
             ],
         },
         "localStatus": "PASS" if local_pass else "FAIL",

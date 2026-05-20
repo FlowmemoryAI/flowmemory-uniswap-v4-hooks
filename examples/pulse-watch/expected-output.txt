@@ -1,0 +1,19 @@
+FlowMemory PulseWatch
+
+Thesis:
+  The hook emits during transactions; PulseWatch keeps the memory layer alive 24/7.
+
+Watch report:
+  status: PASS
+  records seen: 2
+  records accepted: 2
+  memory records written: 2
+  cursor: 119 -> 121
+  flowPulse memory records: 1
+  duplicates skipped: 0
+
+Result:
+  The hook is transaction-triggered. PulseWatch is the always-on memory layer.
+
+Non-claims:
+  no production verifier, no live deployment claim, no custody, no fund protection.

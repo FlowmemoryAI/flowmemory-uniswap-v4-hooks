@@ -24,7 +24,7 @@ flowchart TB
 | --- | --- | --- |
 | Execution boundary | Uniswap v4 `afterSwap` callback | Must be understood as lifecycle boundary, not finality. |
 | Memory emission | This repo | Public, tested, source-verifiable. |
-| Evidence reader | Release evidence, later code package | Must show receipt-derived records before live claims. |
+| Evidence reader | `read_flowpulse_logs.py` and `pulse_watch.py` | Must show receipt-derived records before live claims. |
 | Verifier policy | Public checklist/report | Must explain accepted/rejected evidence. |
 | FlowMemory / Rootflow memory | Public summary or dashboard | Must not overstate finality or verifier scope. |
 | Public dashboard/API | FlowMemory public surface | Must show status, contract, logs, and boundaries. |
@@ -42,6 +42,27 @@ flowchart LR
     Verifier --> Rootflow["FlowMemory / Rootflow state update"]
     Rootflow --> Public["public page/API"]
 ```
+
+## Always-On Layer
+
+The hook is not the 24/7 process. It is the transaction-bound emission boundary.
+
+The always-on process is PulseWatch:
+
+```text
+PulseWatch = reader + receipt verifier + cursor + append-only memory writer
+```
+
+Run:
+
+```bash
+python tools/pulse_watch.py demo
+```
+
+PulseWatch is the bridge from intermittent on-chain events to continuous memory
+availability. It watches for transactions, attaches receipt metadata, writes
+memory records, and advances a cursor. It does not submit transactions and does
+not make the hook execute without PoolManager activity.
 
 ## Integration Contracts
 

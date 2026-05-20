@@ -240,6 +240,38 @@ It:
 
 It does not submit transactions and does not need private keys.
 
+## PulseWatch: The 24/7 Reader
+
+The hook is transaction-triggered. It only runs when a Uniswap v4 transaction
+reaches the configured hook boundary.
+
+PulseWatch is the always-on layer:
+
+```text
+hook transaction -> FlowPulse log -> receipt -> PulseWatch -> append-only memory record
+```
+
+Run the deterministic local demo:
+
+```bash
+python tools/pulse_watch.py demo
+```
+
+Run a continuous reader loop:
+
+```bash
+python tools/pulse_watch.py run \
+  --rpc-url "$FLOWMEMORY_RPC_URL" \
+  --hook-address "$FLOWMEMORY_HOOK_ADDRESS" \
+  --from-block "$FLOWMEMORY_FROM_BLOCK" \
+  --state .flowmemory/pulsewatch-state.json \
+  --memory-store .flowmemory/pulsewatch-memory.jsonl
+```
+
+PulseWatch stores a cursor, skips duplicate log ids, writes memory records, and
+keeps receipt facts reader-derived. It does not make the hook run without
+transactions and it is not a production verifier claim.
+
 ## Why This Matters Publicly
 
 The reader is what makes the memory signal useful to people outside the project. Without it, the hook emits a real FlowPulse but has not attached the proof-envelope facts. With it, the project can show:

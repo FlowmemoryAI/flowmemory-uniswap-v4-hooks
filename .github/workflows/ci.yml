@@ -66,6 +66,7 @@ jobs:
             docs/WHY_IT_WORKS.md
             docs/EVENT_MODEL.md
             docs/READER_VERIFIER_ARCHITECTURE.md
+            docs/PULSEWATCH_24_7_READER.md
             docs/INTEGRATION_BLUEPRINT.md
             docs/SECURITY_MODEL.md
             docs/ARCHITECTURE_DECISIONS.md
@@ -167,7 +168,10 @@ jobs:
             specs/FlowSerial.v0.md
             specs/FlowLitmus.v0.md
             specs/ReaderVerifierTelemetry.v0.md
+            specs/PulseWatch.v0.md
             examples/pulse-trace/README.md
+            examples/pulse-watch/README.md
+            examples/pulse-watch/expected-output.txt
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
             examples/cache-lineage-gate/README.md
@@ -405,6 +409,7 @@ jobs:
             examples/reviewer-walkthrough/expected-output.txt
             tools/README.md
             tools/read_flowpulse_logs.py
+            tools/pulse_watch.py
             tools/memory_trace.py
             tools/cache_lineage_gate.py
             tools/compute_reuse_consistency.py
@@ -480,6 +485,12 @@ jobs:
 
       - name: Test reader decoder
         run: python -m unittest tools.test_read_flowpulse_logs
+
+      - name: Test PulseWatch reader loop
+        run: python -m unittest tools.test_pulse_watch
+
+      - name: Check PulseWatch demo
+        run: python tools/pulse_watch.py demo
 
       - name: Test agent memory trace compiler
         run: python -m unittest tools.test_memory_trace

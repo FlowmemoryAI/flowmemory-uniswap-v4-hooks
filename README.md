@@ -507,6 +507,28 @@ The signal is emitted intentionally through explicit FlowMemory `hookData`:
 
 The hook emits the memory signal. The reader proves where it landed.
 
+### Does The Hook Run 24/7?
+
+No. A Uniswap v4 hook is transaction-triggered. It runs when the PoolManager
+calls it during a swap lifecycle transaction.
+
+The 24/7 layer is PulseWatch:
+
+```text
+hook transaction -> FlowPulse log -> receipt -> PulseWatch -> append-only memory record
+```
+
+Run the local demo:
+
+```bash
+python tools/pulse_watch.py demo
+```
+
+PulseWatch is an always-on reader/verifier loop. It watches for hook logs,
+attaches receipt metadata, advances a cursor, skips duplicates, and keeps the
+memory pipeline alive continuously. It does not make the hook execute without
+transactions and it is not a production verifier claim.
+
 ## Why afterSwap?
 
 `afterSwap` is the right first boundary because execution has already happened.
@@ -1149,6 +1171,7 @@ docs/
   OBLIGATION_MEMBRANE.md           # No obligation laundering through multi-agent supply chains
   PROOF_EXPLORER_CONCEPT.md        # Launch-grade FlowPulse proof explorer concept
   READER_VERIFIER_ARCHITECTURE.md  # Reader, receipt, finality, and verifier pipeline
+  PULSEWATCH_24_7_READER.md        # Always-on reader loop for continuous memory ingestion
   REPO_BOUNDARY_AND_FUTURE_RUNTIME.md # Current hook repo boundary and future packages
   INTEGRATION_BLUEPRINT.md         # How the hook connects to FlowMemory / Rootflow systems
   SECURITY_MODEL.md                # Threat model, invariants, non-goals
@@ -1195,6 +1218,7 @@ docs/
   PROOF_CARRIED_AGENT_MEMORY.md    # R&D direction for proof-backed AI-agent memory
 tools/
   read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
+  pulse_watch.py                   # Always-on reader/verifier loop and append-only memory writer
   memory_trace.py                  # Builds proof-carried Agent Memory Packs from traces
   cache_lineage_gate.py            # Gates KV/context reuse through lineage commitments
   compute_reuse_consistency.py     # Tests cache, compute, and receipt-history reuse gates
@@ -1252,8 +1276,10 @@ specs/
   FlowSerial.v0.md                 # Draft receipt-linearizable machine history spec
   FlowLitmus.v0.md                 # Draft forbidden-outcome suite spec
   ReaderVerifierTelemetry.v0.md    # Draft reader/verifier telemetry record
+  PulseWatch.v0.md                 # Draft always-on reader/verifier loop spec
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
+  pulse-watch/                     # Example always-on reader/verifier output
   cache-lineage-gate/              # Example proof-carried KV/context reuse decision
   compute-reuse-router/            # Example proof-backed GPU workflow reuse decision
   compute-reuse-consistency/       # Example cache + compute + history consistency harness

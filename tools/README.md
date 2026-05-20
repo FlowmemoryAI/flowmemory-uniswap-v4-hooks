@@ -42,6 +42,37 @@ Decoder tests:
 python -m unittest tools.test_read_flowpulse_logs
 ```
 
+## `pulse_watch.py`
+
+Runs the always-on FlowPulse reader/verifier loop.
+
+The hook is transaction-triggered. PulseWatch is continuous: it polls logs,
+attaches receipt metadata, skips duplicate log ids, advances a cursor, and
+writes append-only memory records.
+
+Deterministic demo:
+
+```bash
+python tools/pulse_watch.py demo
+```
+
+Continuous reader:
+
+```bash
+python tools/pulse_watch.py run \
+  --rpc-url "$FLOWMEMORY_RPC_URL" \
+  --hook-address "$FLOWMEMORY_HOOK_ADDRESS" \
+  --from-block "$FLOWMEMORY_FROM_BLOCK" \
+  --state .flowmemory/pulsewatch-state.json \
+  --memory-store .flowmemory/pulsewatch-memory.jsonl
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_pulse_watch
+```
+
 ## `memory_trace.py`
 
 Builds a proof-carried Agent Memory Pack from a MachineMemoryTrace.
