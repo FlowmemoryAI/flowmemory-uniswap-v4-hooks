@@ -6,7 +6,7 @@ Launch focus: FlowMemory's memory-native Uniswap v4 hook primitive.
 
 Current public releases:
 
-- Uniswap hook launch repo: `v0.1.1-launch-ready`.
+- Uniswap hook launch repo: `v0.1.2-launch-ready`.
 - Warranted-agent companion framework: `v0.2.1-framework` at <https://github.com/FlowmemoryAI/flowmemory-warranted-agents/releases/tag/v0.2.1-framework>.
 
 Current local verification snapshot:
@@ -15,6 +15,7 @@ Current local verification snapshot:
 - `python -m unittest discover -s tools -p "test_*.py"`: 399 Python tests passed.
 - `python tools/public_claim_gate.py`: 0 unguarded overclaims.
 - `python tools/launch_reality_check.py`: PASS.
+- `python tools/mainnet_candidate_gate.py --pretty`: local launch ready, mainnet candidate blocked until external evidence exists.
 
 ## Launch Thesis
 
@@ -35,6 +36,7 @@ Execution already exists. Memory is the missing layer.
 - [ ] Release language does not claim the hook controls swaps or protects funds.
 - [ ] Release language does not claim txHash/logIndex are known during hook execution.
 - [ ] `python tools/launch_reality_check.py --pretty` passes and produces the screenshot text.
+- [ ] `python tools/mainnet_candidate_gate.py --pretty` passes in local launch mode.
 - [ ] `python tools/fmm0_phase_table.py demo --pretty` passes and catches illegal phase transitions.
 - [ ] `python tools/fmm0_counterexample_forge.py demo --pretty` passes and catches 12/12 generated counterexamples.
 - [ ] `python tools/fmm0_closure_lab.py demo --pretty` passes and preserves/rejects 8/8 closure laws.

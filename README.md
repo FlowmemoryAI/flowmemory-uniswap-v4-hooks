@@ -42,6 +42,20 @@ Public Base Sepolia receipt evidence: PENDING
 Production verifier infrastructure: NOT_CLAIMED
 ```
 
+Production-candidate check:
+
+```bash
+python tools/mainnet_candidate_gate.py --pretty
+```
+
+Expected current status:
+
+```text
+localLaunchReady:      True
+mainnetCandidateReady: False
+releaseMode:           LOCAL_LAUNCH_READY_ONLY
+```
+
 ## Repo Boundary
 
 This repository is the public launch repo for the Uniswap v4 `afterSwap`
@@ -411,6 +425,31 @@ Production verifier infrastructure: NOT_CLAIMED
 The gate is pending-safe. It will not turn public evidence into `PASS` unless the release packet and referenced receipt/FlowPulse evidence files exist and validate.
 
 See [releases/base-sepolia/README.md](releases/base-sepolia/README.md) and [releases/base-sepolia/RELEASE_EVIDENCE.template.json](releases/base-sepolia/RELEASE_EVIDENCE.template.json).
+
+### Mainnet Candidate Gate
+
+Local launch readiness is not a production deployment claim.
+
+Run:
+
+```bash
+python tools/mainnet_candidate_gate.py --pretty
+```
+
+Current expected state:
+
+```text
+localLaunchReady:      True
+mainnetCandidateReady: False
+releaseMode:           LOCAL_LAUNCH_READY_ONLY
+```
+
+This gate lets the repo say the local hook/conformance surface is healthy while
+blocking any mainnet-candidate mode until external deployment, source
+verification, observed logs, reader evidence, incident ownership, and security
+review gates are satisfied.
+
+See [docs/MAINNET_CANDIDATE_GATE.md](docs/MAINNET_CANDIDATE_GATE.md) and [docs/PRODUCTION_READINESS_ARCHITECTURE.md](docs/PRODUCTION_READINESS_ARCHITECTURE.md).
 
 ### Memory Consistency Card
 
@@ -1129,6 +1168,11 @@ docs/
   FMM_0_CONFORMANCE_MATRIX.md      # Generated FMM-0 rule/evidence matrix
   SKEPTIC_REVIEW_WALKTHROUGH.md    # 10-minute claim-to-evidence review path
   LAUNCH_CLAIM_LEDGER.md           # Claim status, commands, and non-claims
+  PRODUCTION_READINESS_ARCHITECTURE.md # Hook/read/verifier/release architecture
+  INCIDENT_RESPONSE.md             # Evidence, reader, and claim-drift incident path
+  SIGNER_CUSTODY_BOUNDARIES.md     # Signing, custody, and hook responsibility split
+  MAINNET_CANDIDATE_GATE.md        # Local-ready vs mainnet-candidate promotion gate
+  SLO_OBSERVABILITY.md             # Future reader/verifier monitoring plan
   EXTERNAL_DEVELOPER_REVIEW_PACKET.md # Simple plus technical packet for external review
   EXTERNAL_DEVELOPER_REVIEW_PACKET.pdf # Printable external review packet
   MEMORY_CONSISTENCY_CARD.md       # Claim-to-evidence consistency scorecard
@@ -1173,6 +1217,7 @@ tools/
   flow_serial.py                   # Compiles machine histories into serial schedules or typed faults
   flow_litmus.py                   # Runs executable forbidden-outcome cases across R&D tools
   launch_reality_check.py          # Screenshot-ready launch harness around FlowLitmus
+  mainnet_candidate_gate.py        # Blocks mainnet-candidate mode until external evidence exists
   memory_consistency_card.py       # Maps launch claims to executable consistency evidence
   render_fmm0_matrix.py            # Renders the FMM-0 conformance matrix
   reviewer_walkthrough.py          # Renders the launch claim ledger for skeptics
@@ -1206,6 +1251,7 @@ specs/
   FlowQuiesce.v0.md                # Draft receipt-triggered quiescence epoch spec
   FlowSerial.v0.md                 # Draft receipt-linearizable machine history spec
   FlowLitmus.v0.md                 # Draft forbidden-outcome suite spec
+  ReaderVerifierTelemetry.v0.md    # Draft reader/verifier telemetry record
 examples/
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   cache-lineage-gate/              # Example proof-carried KV/context reuse decision

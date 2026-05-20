@@ -128,6 +128,11 @@ jobs:
             docs/MEMORY_CONSISTENCY_CARD.md
             docs/SKEPTIC_REVIEW_WALKTHROUGH.md
             docs/LAUNCH_CLAIM_LEDGER.md
+            docs/PRODUCTION_READINESS_ARCHITECTURE.md
+            docs/INCIDENT_RESPONSE.md
+            docs/SIGNER_CUSTODY_BOUNDARIES.md
+            docs/MAINNET_CANDIDATE_GATE.md
+            docs/SLO_OBSERVABILITY.md
             specs/FMM-0.v0.md
             specs/FMM-0-PhaseTable.v0.md
             specs/FMM-0-CounterexampleForge.v0.md
@@ -161,6 +166,7 @@ jobs:
             specs/FlowQuiesce.v0.md
             specs/FlowSerial.v0.md
             specs/FlowLitmus.v0.md
+            specs/ReaderVerifierTelemetry.v0.md
             examples/pulse-trace/README.md
             examples/pulse-trace/trace.example.json
             examples/pulse-trace/agent-memory-pack.example.json
@@ -422,6 +428,7 @@ jobs:
             tools/flow_litmus.py
             tools/flowpulse_boundary_abi.py
             tools/launch_reality_check.py
+            tools/mainnet_candidate_gate.py
             tools/fmm0_phase_table.py
             tools/fmm0_counterexample_forge.py
             tools/fmm0_closure_lab.py
@@ -634,6 +641,12 @@ jobs:
 
       - name: Check launch reality check
         run: python tools/launch_reality_check.py --pretty
+
+      - name: Test mainnet candidate gate
+        run: python -m unittest tools.test_mainnet_candidate_gate
+
+      - name: Check mainnet candidate gate
+        run: python tools/mainnet_candidate_gate.py --pretty
 
       - name: Test FMM-0 manifest
         run: python -m unittest tools.test_fmm0_manifest
