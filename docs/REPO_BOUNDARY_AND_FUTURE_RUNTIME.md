@@ -77,6 +77,7 @@ being folded into this launch repo.
 | `flowmemory-core` | Shared pulse, envelope, rootfield, commitment, and FMM schemas. |
 | `flowmemory-onchain-reader` | Receipt/log reader and public evidence verifier. |
 | `flowmemory-agent-commerce` | Spend, discharge, duplex exchange, and obligation conformance packages. |
+| [`flowmemory-warranted-agents`](https://github.com/FlowmemoryAI/flowmemory-warranted-agents) | Local warranted-agent framework for PolicyCards, FlowBond, PulsePass, adapter conformance, launch packets, and scoped proof demos. |
 | `flowmemory-coding` | Coding-agent memory conformance and plan-to-envelope compilation. |
 | `flowmemory-kernel` | Plugin host for runtime adapters and policy modules. |
 | `flowmemory-mcp` | MCP-facing adapter for local conformance tools. |
@@ -128,6 +129,7 @@ agent-commerce consistency failures locally; they do not claim wallet
 enforcement, production verification, semantic truth, GPU acceleration, or live
 mainnet deployment.
 
-Future packages such as FlowKernel, FlowCompiler, and coding-agent conformance
-should build on this boundary, while this public launch repo remains the
-`afterSwap` FlowPulse primitive plus its local conformance evidence.
+Future packages such as FlowKernel, FlowCompiler, warranted-agent conformance,
+and coding-agent conformance should build on this boundary, while this public
+launch repo remains the `afterSwap` FlowPulse primitive plus its local
+conformance evidence.

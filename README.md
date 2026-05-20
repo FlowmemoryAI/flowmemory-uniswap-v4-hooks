@@ -51,8 +51,10 @@ It includes local FMM-0 R&D harnesses that show how receipt-bound FlowPulse
 artifacts can support memory consistency, compute reuse discipline, and
 agent-commerce conformance.
 
-Future runtime packages such as FlowKernel, FlowCompiler, MCP adapters, and
-coding-agent conformance should build on this boundary outside the launch repo.
+Future runtime packages such as FlowKernel, FlowCompiler, warranted-agent
+conformance, MCP adapters, and coding-agent conformance should build on this
+boundary outside the launch repo. The companion warranted-agent package now
+lives at <https://github.com/FlowmemoryAI/flowmemory-warranted-agents>.
 
 See [docs/REPO_BOUNDARY_AND_FUTURE_RUNTIME.md](docs/REPO_BOUNDARY_AND_FUTURE_RUNTIME.md).
 
