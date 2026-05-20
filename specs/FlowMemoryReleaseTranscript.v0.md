@@ -23,6 +23,8 @@ binds the current local evidence surface into one deterministic object.
 - Compute Reuse Router.
 - Cache Lineage Gate.
 - Compute Reuse Consistency Harness.
+- PulseWatch 24/7 Reader.
+- Receipt Runtime MVP.
 
 ## Required Public Evidence
 

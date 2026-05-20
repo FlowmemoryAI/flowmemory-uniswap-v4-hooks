@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.1.2 System Architecture and Receipt Runtime - 2026-05-20
+
+Added the full-system architecture package and the first deterministic receipt
+runtime MVP.
+
+What changed:
+
+- Added `docs/SYSTEM_ARCHITECTURE.md` as the end-to-end architecture for
+  boundary emission, PulseWatch, evidence stores, FMM-0, agent commerce,
+  compute reuse, product APIs, and production operations.
+- Added `specs/FlowMemorySystemArchitecture.v0.md` and
+  `examples/system-architecture/architecture-manifest.json`.
+- Added `tools/system_architecture_review.py` and tests to make the
+  architecture packet executable.
+- Added `docs/RECEIPT_RUNTIME_ARCHITECTURE.md` and `specs/ReceiptRuntime.v0.md`.
+- Added `tools/receipt_runtime_demo.py` and tests for the loop:
+  `PolicyCard -> PulsePermit -> ActionPulse -> FlowPulseLink -> OutcomePulse -> PulsePass`.
+- Wired system architecture and receipt runtime into README, CI, public claim
+  gate, tools docs, and release transcript.
+
+Core architecture line:
+
+```text
+Memory should gate the action before execution and settle the outcome after receipt evidence.
+```
+
+Boundary:
+
+- Receipt Runtime does not authorize wallets, custody funds, or escrow payments.
+- Receipt Runtime does not settle live payments.
+- Receipt Runtime does not prove semantic truth or model correctness.
+- Receipt Runtime does not claim live Base mainnet deployment.
+
 ## 0.1.1 PulseWatch 24/7 Reader - 2026-05-20
 
 Added PulseWatch as the always-on reader/verifier layer for FlowPulse memory.

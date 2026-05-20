@@ -31,6 +31,7 @@ try:  # pragma: no cover
         obligation_membrane,
         spendline_harness,
         pulse_watch,
+        receipt_runtime_demo,
         verify_release_evidence,
     )
 except ModuleNotFoundError:  # pragma: no cover
@@ -48,6 +49,7 @@ except ModuleNotFoundError:  # pragma: no cover
     import obligation_membrane  # type: ignore
     import spendline_harness  # type: ignore
     import pulse_watch  # type: ignore
+    import receipt_runtime_demo  # type: ignore
     import verify_release_evidence  # type: ignore
 
 
@@ -106,6 +108,7 @@ def build_transcript() -> dict[str, Any]:
     membrane = obligation_membrane.build_report()
     differential = agent_commerce_differential.build_report()
     watch = pulse_watch.build_demo()
+    receipt_runtime = receipt_runtime_demo.build_report()
     release = verify_release_evidence.build_report()
 
     local_items = [
@@ -186,6 +189,12 @@ def build_transcript() -> dict[str, Any]:
             status_from_bool(watch["status"] == "pass"),
             f"{watch['watchReport']['recordsAccepted']} accepted records, cursor {watch['watchReport']['cursorBlockBefore']}->{watch['watchReport']['cursorBlockAfter']}",
             watch,
+        ),
+        evidence_item(
+            "Receipt Runtime MVP",
+            status_from_bool(receipt_runtime["status"] == "pass"),
+            f"{receipt_runtime['pulsePermitVerdict']['status']} permit, {receipt_runtime['selectedRoute']} selected, {receipt_runtime['outcomePulse']['status']} outcome",
+            receipt_runtime,
         ),
     ]
     public_status = release["verdict"]["publicBaseSepoliaReceiptEvidence"]

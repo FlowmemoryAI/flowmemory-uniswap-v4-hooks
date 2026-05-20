@@ -1,0 +1,26 @@
+# System Architecture Review
+
+This example contains the machine-readable FlowMemory system architecture
+manifest.
+
+Run:
+
+```bash
+python tools/system_architecture_review.py --pretty
+```
+
+Expected result:
+
+```text
+FlowMemory System Architecture Review
+
+status: PASS
+layers checked: 8/8
+components checked: 51
+invariants checked: 12/12
+non-claims checked: 10/10
+readiness path: local_conformance -> public_testnet_evidence -> public_canary -> production_candidate
+
+Result:
+  Architecture packet is complete for launch review.
+```

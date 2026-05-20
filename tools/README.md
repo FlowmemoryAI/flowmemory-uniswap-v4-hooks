@@ -73,6 +73,27 @@ Tests:
 python -m unittest tools.test_pulse_watch
 ```
 
+## `receipt_runtime_demo.py`
+
+Runs the receipt-runtime MVP loop:
+
+```text
+PolicyCard -> PulsePermit -> ActionPulse -> FlowPulseLink -> OutcomePulse -> PulsePass
+```
+
+PulseWatch observes memory. The receipt runtime gates an action from a current
+memory head and settles the outcome after receipt evidence exists.
+
+```bash
+python tools/receipt_runtime_demo.py --pretty
+```
+
+Tests:
+
+```bash
+python -m unittest tools.test_receipt_runtime_demo
+```
+
 ## `memory_trace.py`
 
 Builds a proof-carried Agent Memory Pack from a MachineMemoryTrace.

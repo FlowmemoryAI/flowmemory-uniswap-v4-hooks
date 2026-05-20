@@ -1,0 +1,179 @@
+{
+  "schema": "flowmemory.system_architecture.v0",
+  "title": "FlowMemory System Architecture",
+  "thesis": "Execution happens; boundaries emit pulses; readers prove where they landed; memory models reject impossible histories.",
+  "currentRepoBoundary": "Uniswap v4 afterSwap FlowPulse primitive plus local conformance evidence.",
+  "layers": [
+    {
+      "id": "execution_boundary",
+      "purpose": "Define where external execution can produce a memory signal.",
+      "components": [
+        "Uniswap v4 afterSwap hook",
+        "future compute job boundary",
+        "future agent payment boundary",
+        "future API/service boundary"
+      ]
+    },
+    {
+      "id": "pulse_emission",
+      "purpose": "Emit intentional memory signals with rootfield, commitment, parent, subject, actor, sequence, and URI fields.",
+      "components": [
+        "FlowPulse",
+        "ComputePulse",
+        "AgentPulse",
+        "rootfieldId",
+        "commitment",
+        "parentPulseId"
+      ]
+    },
+    {
+      "id": "reader_24_7",
+      "purpose": "Run continuously outside the hook, attach receipt metadata, maintain cursor state, and dedupe records.",
+      "components": [
+        "PulseWatch",
+        "receipt attachment",
+        "cursor store",
+        "dedupe log id",
+        "finality classifier"
+      ]
+    },
+    {
+      "id": "evidence",
+      "purpose": "Preserve append-only proof-envelope records and public release packets.",
+      "components": [
+        "raw evidence store",
+        "canonical pulse store",
+        "release evidence packet",
+        "public proof explorer"
+      ]
+    },
+    {
+      "id": "memory_model",
+      "purpose": "Check whether receipt-bound machine histories could have happened.",
+      "components": [
+        "FMM-0",
+        "FlowSerial",
+        "FlowMMU",
+        "FlowQuiesce",
+        "PulseRetire",
+        "BoundaryFission"
+      ]
+    },
+    {
+      "id": "policy_action",
+      "purpose": "Gate agent, commerce, and compute actions using checked memory heads and typed repair paths.",
+      "components": [
+        "AxiomWrit",
+        "AxiomPatch",
+        "PolicyCard",
+        "PulsePermit",
+        "ActionPulse",
+        "FlowPulseLink",
+        "OutcomePulse",
+        "PulsePass",
+        "SpendLine",
+        "DischargeLine",
+        "DuplexLine",
+        "Agent Commerce Conservation",
+        "Obligation Membrane",
+        "Compute Reuse Router",
+        "Compute ChargeLine"
+      ]
+    },
+    {
+      "id": "product_api",
+      "purpose": "Expose proof-backed memory to developers, agents, and public reviewers.",
+      "components": [
+        "SDK",
+        "API",
+        "proof explorer",
+        "agent runtime adapters",
+        "compute routing adapter"
+      ]
+    },
+    {
+      "id": "operations",
+      "purpose": "Keep the public system replayable, observable, claim-safe, and incident-ready.",
+      "components": [
+        "reader health checks",
+        "reader lag SLO",
+        "replay from block",
+        "claim gate",
+        "release gate",
+        "incident response"
+      ]
+    }
+  ],
+  "invariants": [
+    "hooks_and_adapters_do_not_invent_receipt_metadata",
+    "receipt_metadata_is_reader_derived",
+    "hook_is_transaction_triggered_not_24_7",
+    "reader_is_the_24_7_process",
+    "memory_records_are_append_only",
+    "uri_content_is_advisory_unless_verified",
+    "wallet_and_payment_rails_are_external",
+    "compute_reuse_stores_commitments_and_lineage_not_gpu_memory",
+    "public_release_claims_are_evidence_gated",
+    "pulse_permits_bind_policy_actor_action_and_memory_head",
+    "outcome_pulses_require_receipt_bound_flowpulse_links",
+    "pulsepass_claims_can_hide_provider_txhash_and_amount"
+  ],
+  "nonClaims": [
+    "no_custody",
+    "no_escrow",
+    "no_fund_protection",
+    "no_wallet_authorization",
+    "no_hook_time_txhash_transactionindex_or_logindex",
+    "no_semantic_truth",
+    "no_model_correctness",
+    "no_gpu_hardware_acceleration",
+    "no_live_base_mainnet_without_release_evidence",
+    "no_production_verifier_network_without_operator_evidence"
+  ],
+  "readinessPath": [
+    "local_conformance",
+    "public_testnet_evidence",
+    "public_canary",
+    "production_candidate"
+  ],
+  "packagePlan": [
+    {
+      "package": "flowmemory-uniswap-v4-hooks",
+      "role": "public hook boundary and launch conformance"
+    },
+    {
+      "package": "flowmemory-core",
+      "role": "shared schemas, rootfields, commitments, FMM-0, and FlowSerial"
+    },
+    {
+      "package": "flowmemory-reader",
+      "role": "PulseWatch daemon, RPC readers, finality, and release evidence"
+    },
+    {
+      "package": "flowmemory-agent-commerce",
+      "role": "SpendLine, DischargeLine, DuplexLine, Conservation, and Membrane APIs"
+    },
+    {
+      "package": "flowmemory-compute",
+      "role": "ComputePulse, cache lineage, reuse routing, and charge checks"
+    },
+    {
+      "package": "flowmemory-warranted-agents",
+      "role": "PolicyCards, FlowBond, PulsePass, adapters, and agent-facing conformance"
+    },
+    {
+      "package": "flowmemory-explorer",
+      "role": "public proof explorer and launch canary"
+    }
+  ],
+  "startupBuildOrder": [
+    "keep_hook_repo_reviewable",
+    "run_pulsewatch_against_real_base_sepolia_evidence",
+    "build_tiny_proof_explorer",
+    "build_receipt_runtime_loop",
+    "extract_flowmemory_core_when_two_repos_need_shared_types",
+    "productize_one_agent_commerce_use_case",
+    "productize_one_compute_reuse_use_case",
+    "add_paid_developer_api_after_ingestion_and_replay_are_stable"
+  ]
+}

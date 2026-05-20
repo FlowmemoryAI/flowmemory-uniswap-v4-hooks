@@ -529,6 +529,28 @@ attaches receipt metadata, advances a cursor, skips duplicates, and keeps the
 memory pipeline alive continuously. It does not make the hook execute without
 transactions and it is not a production verifier claim.
 
+### Receipt Runtime MVP
+
+The next architecture step is the action loop around the hook:
+
+```text
+PolicyCard -> PulsePermit -> ActionPulse -> FlowPulseLink -> OutcomePulse -> PulsePass
+```
+
+PulseWatch observes memory. The receipt runtime uses memory before and after an
+action: it gates the action from the current memory head, selects the lowest
+cost-per-success route that can satisfy the policy, links the outcome to
+FlowPulse receipt evidence, and gives the user a scoped PulsePass claim.
+
+Run the deterministic local demo:
+
+```bash
+python tools/receipt_runtime_demo.py --pretty
+```
+
+This is local conformance, not wallet authorization, custody, escrow, or live
+payment settlement.
+
 ## Why afterSwap?
 
 `afterSwap` is the right first boundary because execution has already happened.
@@ -1148,6 +1170,8 @@ test/
   FlowMemoryAfterSwapHook.t.sol    # Dependency-light Foundry tests
 docs/
   ARCHITECTURE.md                  # Execution, emission, evidence, and memory layers
+  SYSTEM_ARCHITECTURE.md           # End-to-end system architecture for the full FlowMemory stack
+  RECEIPT_RUNTIME_ARCHITECTURE.md  # PolicyCard -> PulsePermit -> OutcomePulse -> PulsePass loop
   UNISWAP_V4_COMPATIBILITY.md      # ABI, hook flag, and upstream compatibility assumptions
   WHY_IT_WORKS.md                  # Why the hook creates a new primitive
   EVENT_MODEL.md                   # FlowPulse artifact and reader-derived receipt metadata
@@ -1219,6 +1243,8 @@ docs/
 tools/
   read_flowpulse_logs.py           # Dependency-light receipt-aware log reader
   pulse_watch.py                   # Always-on reader/verifier loop and append-only memory writer
+  system_architecture_review.py    # Checks the full system architecture manifest
+  receipt_runtime_demo.py          # PolicyCard/PulsePermit/OutcomePulse/PulsePass MVP
   memory_trace.py                  # Builds proof-carried Agent Memory Packs from traces
   cache_lineage_gate.py            # Gates KV/context reuse through lineage commitments
   compute_reuse_consistency.py     # Tests cache, compute, and receipt-history reuse gates
@@ -1248,6 +1274,8 @@ tools/
   verify_release_evidence.py       # Pending-safe Base Sepolia evidence gate
   render_flowlitmus_casebook.py    # Renders forbidden-outcome case explanations
 specs/
+  FlowMemorySystemArchitecture.v0.md # Draft full-system architecture packet spec
+  ReceiptRuntime.v0.md              # Draft PolicyCard/PulsePermit/OutcomePulse/PulsePass spec
   FMM-0.v0.md                      # Draft FlowMemory Agent Memory Model
   FlowPulse.v1.md                  # Draft public FlowPulse artifact spec
   CacheLineageGate.v0.md           # Draft proof-carried KV/context reuse gate spec
@@ -1278,6 +1306,8 @@ specs/
   ReaderVerifierTelemetry.v0.md    # Draft reader/verifier telemetry record
   PulseWatch.v0.md                 # Draft always-on reader/verifier loop spec
 examples/
+  system-architecture/              # Architecture manifest and review output
+  receipt-runtime/                  # Receipt runtime MVP output
   pulse-trace/                     # Example FlowPulse -> ComputePulse -> ModelPulse trace
   pulse-watch/                     # Example always-on reader/verifier output
   cache-lineage-gate/              # Example proof-carried KV/context reuse decision

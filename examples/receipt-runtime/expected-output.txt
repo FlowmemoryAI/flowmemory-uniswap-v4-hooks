@@ -1,0 +1,32 @@
+FlowMemory Receipt Runtime Demo
+
+status: PASS
+
+Loop:
+  1. PolicyCard created
+  2. PulsePermit issued from current memory head
+  3. Providers evaluated by policy success, bond status, and cost per successful outcome
+  4. ActionPulse created for selected route
+  5. FlowPulse receipt linked
+  6. OutcomePulse settled
+  7. PulsePass claim generated with scoped disclosure
+
+Provider routes:
+  cheap provider           ROUTE_REJECTED  quoted $0.001  cost/success infinite
+    reject: missing_required_provider_bond
+    reject: provider_expected_policy_failure
+    reject: missing_expected_flowpulse_link
+  private bonded provider  ROUTE_ACCEPTED  quoted $0.012  cost/success $0.012
+  expensive provider       ROUTE_ACCEPTED  quoted $0.090  cost/success $0.090
+
+Selected route: provider.private-bonded
+PulsePermit:    ALLOW
+OutcomePulse:   OUTCOME_SETTLED
+PulsePass:
+  predicate: bonded_policy_safe_swap_count >= 1
+  provider:  hidden
+  txHash:    hidden
+
+Result:
+  Receipt-bound memory gated the action, selected the best successful route, settled the outcome, and produced a private portable claim.
+

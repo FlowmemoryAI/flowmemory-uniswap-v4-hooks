@@ -130,6 +130,8 @@ jobs:
             docs/SKEPTIC_REVIEW_WALKTHROUGH.md
             docs/LAUNCH_CLAIM_LEDGER.md
             docs/PRODUCTION_READINESS_ARCHITECTURE.md
+            docs/SYSTEM_ARCHITECTURE.md
+            docs/RECEIPT_RUNTIME_ARCHITECTURE.md
             docs/INCIDENT_RESPONSE.md
             docs/SIGNER_CUSTODY_BOUNDARIES.md
             docs/MAINNET_CANDIDATE_GATE.md
@@ -154,6 +156,8 @@ jobs:
             specs/ObligationMembrane.v0.md
             specs/AgentCommerceDifferential.v0.md
             specs/FlowMemoryReleaseTranscript.v0.md
+            specs/FlowMemorySystemArchitecture.v0.md
+            specs/ReceiptRuntime.v0.md
             specs/MachineMemoryTrace.v0.md
             specs/AgentMemoryPack.v0.md
             specs/AxiomWrit.v0.md
@@ -169,6 +173,11 @@ jobs:
             specs/FlowLitmus.v0.md
             specs/ReaderVerifierTelemetry.v0.md
             specs/PulseWatch.v0.md
+            examples/system-architecture/README.md
+            examples/system-architecture/architecture-manifest.json
+            examples/system-architecture/expected-output.txt
+            examples/receipt-runtime/README.md
+            examples/receipt-runtime/expected-output.txt
             examples/pulse-trace/README.md
             examples/pulse-watch/README.md
             examples/pulse-watch/expected-output.txt
@@ -410,6 +419,8 @@ jobs:
             tools/README.md
             tools/read_flowpulse_logs.py
             tools/pulse_watch.py
+            tools/system_architecture_review.py
+            tools/receipt_runtime_demo.py
             tools/memory_trace.py
             tools/cache_lineage_gate.py
             tools/compute_reuse_consistency.py
@@ -491,6 +502,18 @@ jobs:
 
       - name: Check PulseWatch demo
         run: python tools/pulse_watch.py demo
+
+      - name: Test system architecture review
+        run: python -m unittest tools.test_system_architecture_review
+
+      - name: Check system architecture review
+        run: python tools/system_architecture_review.py --pretty
+
+      - name: Test receipt runtime demo
+        run: python -m unittest tools.test_receipt_runtime_demo
+
+      - name: Check receipt runtime demo
+        run: python tools/receipt_runtime_demo.py --pretty
 
       - name: Test agent memory trace compiler
         run: python -m unittest tools.test_memory_trace
