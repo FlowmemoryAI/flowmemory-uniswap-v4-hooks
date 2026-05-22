@@ -4,10 +4,12 @@ Launch-ready snapshot: May 20, 2026.
 
 Launch focus: FlowMemory's memory-native Uniswap v4 hook primitive.
 
+Checklist status: unchecked items are explicit pre-launch gates, not completed verification claims.
+
 Current public releases:
 
 - Uniswap hook launch repo: `v0.1.2-launch-ready`.
-- Warranted-agent companion framework: `v0.2.1-framework` at <https://github.com/FlowmemoryAI/flowmemory-warranted-agents/releases/tag/v0.2.1-framework>.
+- Warranted-agent companion framework: `v0.4.0-pulsepods` at <https://github.com/FlowmemoryAI/flowmemory-warranted-agents/releases/tag/v0.4.0-pulsepods>.
 
 Current local verification snapshot:
 
@@ -117,7 +119,7 @@ Not allowed:
 - FMM-0 is not just a claim; it has adversarial counterexamples.
 - Public receipt evidence stays PENDING until `RELEASE_EVIDENCE.json` validates.
 - Each impossible machine history has a FlowLitmus case and a named fault.
-- KV reuse should be proof-carried, not vibe-carried.
+- KV reuse should be proof-carried, not assertion-carried.
 - Compute reuse without memory consistency is just cache optimism.
 - GPUs compute. FlowMemory remembers.
 - The fastest GPU job is the one a system can prove it does not need to run again.

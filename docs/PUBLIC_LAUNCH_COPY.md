@@ -232,7 +232,7 @@ This names each impossible machine history and the FlowMemory fault that catches
     a reviewer-readable memory-model casebook.
 
 16. Cache Lineage Gate shows the context-memory angle: KV/context reuse should
-    be proof-carried, not vibe-carried.
+    be proof-carried, not assertion-carried.
 
 17. Compute Reuse Router shows the AI/GPU angle without overclaiming hardware:
     proof-backed compute memory can become a scheduler reuse decision.
@@ -275,7 +275,7 @@ FlowLitmus casebook: each impossible history has a name, a boundary reason, and 
 ```
 
 ```text
-Cache Lineage Gate: KV reuse should be proof-carried, not vibe-carried.
+Cache Lineage Gate: KV reuse should be proof-carried, not assertion-carried.
 ```
 
 ```text

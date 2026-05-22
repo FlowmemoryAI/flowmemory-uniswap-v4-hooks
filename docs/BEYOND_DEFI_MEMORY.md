@@ -340,7 +340,7 @@ FlowMemory gives both a way to remember.
 - From transaction logs to memory signals.
 - From compute logs to reusable memory.
 - AI agents do not need more vague memory. They need proof-backed memory.
-- Agents should not remember with vibes. They should remember with proofs.
+- Agents should not remember with unsupported claims. They should remember with proofs.
 - The GPU is not faster. The system is less forgetful.
 - Every autonomous system needs a black box recorder. FlowMemory is building it.
 - We are building the memory layer for autonomous systems.

@@ -9,7 +9,7 @@ because two requests look compatible while hidden context changed.
 FlowMemory's position:
 
 ```text
-KV reuse should be proof-carried, not vibe-carried.
+KV reuse should be proof-carried, not assertion-carried.
 ```
 
 ## What It Checks

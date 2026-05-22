@@ -251,7 +251,7 @@ Advances agent budget state by receipt-bound memory epochs instead of vague
 wall-clock resets.
 
 ```text
-Agent budgets should not reset by vibes; they should advance by legal memory
+Agent budgets should not reset by unsupported claims; they should advance by legal memory
 epochs.
 ```
 

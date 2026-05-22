@@ -185,7 +185,7 @@ honest GPU angle: FlowMemory does not make the chip faster; it makes the system
 less wasteful because memory becomes proof-backed and actionable.
 
 Cache Lineage Gate is the sharper infrastructure line: KV reuse should be
-proof-carried, not vibe-carried. It makes hidden cache identity dimensions
+proof-carried, not assertion-carried. It makes hidden cache identity dimensions
 explicit before a scheduler trusts reusable context.
 
 Compute Reuse Consistency is the category sentence: compute reuse without

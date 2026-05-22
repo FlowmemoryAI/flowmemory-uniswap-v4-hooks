@@ -156,6 +156,6 @@ revalidates, forks, abandons, or otherwise reaches a safe point.
 
 ## Line To Use
 
-Agents should not remember with vibes.
+Agents should not remember with unsupported claims.
 
 Agents should remember with proofs.

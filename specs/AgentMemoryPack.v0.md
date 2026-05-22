@@ -97,6 +97,6 @@ The initial tool only implements ComputePulse reuse candidates. That is enough t
 
 ## Design Line
 
-Agents should not remember with vibes.
+Agents should not remember with unsupported claims.
 
 Agents should remember with proofs.

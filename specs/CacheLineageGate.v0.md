@@ -49,4 +49,4 @@ drift, cache-policy drift, or unverified evidence.
 
 ## Design Line
 
-KV reuse should be proof-carried, not vibe-carried.
+KV reuse should be proof-carried, not assertion-carried.
